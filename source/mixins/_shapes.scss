@@ -1,0 +1,102 @@
+//
+// frame-scss | mixins/_shapes.scss
+// file version: 1.01.001
+//
+
+//-----------------------------------------------------------------------------
+// *Created using example from http://jsfiddle.net/tzi/awt33/
+//
+@mixin shape-hexagon($size)
+{
+    position:       relative;
+    display:        inline-block;
+    vertical-align: middle;
+    width:          $size;
+    height:         $size * 0.57735;
+
+    &:before,
+    &:after
+    {
+        content:          '';
+        position:         absolute;
+        z-index:          -1;
+        top:              0;
+        bottom:           0;
+        left:             0;
+        right:            0;
+        background-color: inherit;
+    }
+
+    &:before
+    {
+        transform: rotateZ(60deg);
+    }
+
+    &:after
+    {
+        transform: rotateZ(120deg);
+    }
+}
+
+//-----------------------------------------------------------------------------
+// *Created using example from http://css-tricks.com/examples/ShapesOfCSS/
+//
+@mixin shape-triangle($type, $color, $size, $size2: false)
+{
+    @if($size2 == false)
+    {
+        $size2: $size;
+    }
+
+    width:  0;
+    height: 0;
+
+    @if($type == up or $type == u)
+    {
+        border-left:   $size solid transparent;
+        border-right:  $size solid transparent;
+        border-bottom: $size2 solid $color;
+    }
+    @else if($type == down or $type == d)
+    {
+        border-top:    $size2 solid $color;
+        border-left:   $size solid transparent;
+        border-right:  $size solid transparent;
+    }
+    @else if($type == left or $type == l)
+    {
+        border-top:    $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-right:  $size2 solid $color;
+    }
+    @else if($type == right or $type == r)
+    {
+        border-top:    $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-left:   $size2 solid $color;
+    }
+    @else if($type == top-left or $type == tl)
+    {
+        border-top:    $size2 solid $color;
+        border-right:  $size solid transparent;
+    }
+    @else if($type == top-right or $type == tr)
+    {
+        border-top:    $size2 solid $color;
+        border-left:   $size solid transparent;
+    }
+    @else if($type == bottom-left or $type == bl)
+    {
+        border-bottom: $size2 solid $color;
+        border-right:  $size solid transparent;
+    }
+    @else if($type == bottom-right or $type == br)
+    {
+        border-bottom: $size2 solid $color;
+        border-left:   $size solid transparent;
+    }
+    @else
+    {
+        @warn "shape-triangle: type '#{$type}' does not exists!";
+    }
+}

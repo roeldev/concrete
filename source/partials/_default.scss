@@ -1,0 +1,252 @@
+//
+// frame-scss | partials/_default.scss
+// file version: 1.00.015
+//
+
+/*! frame-scss v0.1 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
+html, body
+{
+    width:      100%;
+    min-height: 100%;
+}
+
+html
+{
+    font-family: frame-font();
+    font-size:   frame-font-size();
+
+    -ms-text-size-adjust:    100%;
+    -webkit-font-smoothing:  antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@import 'normalize';
+
+
+//-----------------------------------------------------------------------------
+// Use box-sizing: border-box on all element.
+//-----------------------------------------------------------------------------
+*,
+*:before,
+*:after
+{
+    @include box-sizing;
+
+    margin:  0;
+    padding: 0;
+}
+
+//-----------------------------------------------------------------------------
+// Default button and hyperlink styles
+//-----------------------------------------------------------------------------
+a,
+button
+{
+    cursor: pointer;
+
+    .icon,
+    .icon:before
+    {
+        cursor: pointer;
+    }
+
+    &:active,
+    &:hover
+    {
+        outline: 0;
+    }
+}
+
+a
+{
+    background:      transparent;
+    text-decoration: none;
+}
+
+button
+{
+    @include appearance;
+}
+
+
+//-----------------------------------------------------------------------------
+// Headings, paragraphs and text elements
+//-----------------------------------------------------------------------------
+@for $i from 1 through 6
+{
+    $heading: 'h'+ $i;
+
+    @if(map-has-key($frame-fontSizes, $heading))
+    {
+        #{$heading}
+        {
+            font-size: rem(frame-font-size($heading));
+        }
+    }
+}
+
+p
+{
+    padding-bottom: $lineHeight;
+
+    &:last-child
+    {
+        padding-bottom: 0;
+    }
+}
+
+p,
+address,
+figcaption
+{
+    line-height: $lineHeight;
+}
+
+address
+{
+    font-style: normal;
+}
+
+//-----------------------------------------------------------------------------
+// Images and canvas
+//-----------------------------------------------------------------------------
+img
+{
+    vertical-align:         middle;
+    -ms-interpolation-mode: bicubic;
+}
+
+img,
+canvas
+{
+    &.fill-w,
+    &.max-w,
+    .fill-w &,
+    .max-w &
+    {
+        width:  100%;
+        height: auto;
+    }
+
+    &.fill-h,
+    &.max-h,
+    .fill-h &,
+    .max-h &
+    {
+        width:  auto;
+        height: 100%;
+    }
+
+    &.max-w,
+    .max-w &
+    {
+        max-width: 100%;
+    }
+
+    &.max-h,
+    .max-h &
+    {
+        max-height: 100%;
+    }
+}
+
+//-----------------------------------------------------------------------------
+// Default styles for other elements
+//-----------------------------------------------------------------------------
+input,
+select,
+option,
+textarea,
+button
+{
+    font-family: frame-font();
+}
+
+//-----------------------------------------------------------------------------
+
+ul
+{
+    padding-left: 16px;
+}
+
+nav > ul,
+ul.menu-list
+{
+    @include menu-list;
+}
+
+ul.block-list
+{
+    @include block-list;
+}
+
+//-----------------------------------------------------------------------------
+// Helper style classes
+//-----------------------------------------------------------------------------
+.clear
+{
+    clear: both;
+}
+
+.clearfix
+{
+    @include clearfix;
+}
+
+.hidden
+{
+    display:    none;
+    visibility: hidden;
+}
+
+.visible
+{
+    display:    block;
+    visibility: visible;
+}
+
+.nowrap
+{
+    white-space: nowrap;
+}
+
+//-----------------------------------------------------------------------------
+// Center position style classes
+//-----------------------------------------------------------------------------
+
+// x only
+.cx
+{
+    position:  relative;
+    width:     100%;
+    max-width: frame-breakpoint();
+    margin:    0 auto;
+}
+
+// y only
+.cy
+{
+    width:  100%;
+    height: 100%;
+
+    & > &-valign
+    {
+        display:        inline-block;
+        vertical-align: middle;
+        height:         100%;
+    }
+}
+
+// x inside y
+.cxy
+{
+    @extend .cy;
+    text-align: center;
+
+    > .cx
+    {
+        display:        inline-block;
+        vertical-align: middle;
+        text-align:     left;
+    }
+}

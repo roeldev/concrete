@@ -1,0 +1,52 @@
+//
+// frame-scss | mixins/_breakpoints.scss
+// file version: 1.00.002
+//
+
+//-----------------------------------------------------------------------------
+//
+@mixin use-breakpoint($breakpoint, $type: both)
+{
+    $baseBreakpoint: frame-breakpoint($breakpoint);
+
+    $min: map-get($baseBreakpoint, min);
+    $max: map-get($baseBreakpoint, max);
+
+    $hasMin: ($min != null);
+    $hasMax: ($max != null);
+
+    @if($type == max)
+    {
+        $hasMin: false;
+    }
+    @else if($type == min)
+    {
+        $hasMax: false;
+    }
+
+    @if($hasMin and $hasMax)
+    {
+        @media screen and (min-width: $min) and (max-width: $max)
+        {
+            @content;
+        }
+    }
+    @else if($hasMin)
+    {
+        @media screen and (min-width: $min)
+        {
+            @content;
+        }
+    }
+    @else if($hasMax)
+    {
+        @media screen and (max-width: $max)
+        {
+            @content;
+        }
+    }
+    @else
+    {
+        @warn "Frame: Unknown breakpoint '#{$breakpoint}' to respond to!";
+    }
+}

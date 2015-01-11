@@ -1,0 +1,76 @@
+//
+// frame-scss | mixins/_fontastic.scss
+// file version: 1.00.005
+//
+
+//-----------------------------------------------------------------------------
+// You can use this mixin in your main stylesheet. It will make adding icon
+// fonts made with Fontastic even easier. It includes some fixes over the
+// normal Fontastic generated CSS.
+//
+// *Fontastic base CSS from fontastic.me.
+//
+// @param $font The name of the font file without file extension.
+// @param $prefix A styleclass prefix for the added icons.
+// @param $dir The folder where the folders should be loaded from.
+//
+@mixin fontastic($font, $prefix: 'icon', $dir: '/fonts/')
+{
+    @font-face
+    {
+        font-family: $font;
+        font-weight: normal;
+        font-style:  normal;
+
+        src: url("#{$dir}#{$font}.eot");
+        src: url("#{$dir}#{$font}.eot?#iefix") format("embedded-opentype"),
+             url("#{$dir}#{$font}.woff") format("woff"),
+             url("#{$dir}#{$font}.ttf") format("truetype"),
+             url("#{$dir}#{$font}.svg##{$font}") format("svg");
+    }
+
+    [data-#{$prefix}]:before
+    {
+        content: attr(data-icon);
+    }
+
+    .fontastic,
+    [data-#{$prefix}]:before,
+    [class^="#{$prefix}-"]:before,
+    [class*=" #{$prefix}-"]:before
+    {
+        font-family:    $font !important;
+        font-style:     normal !important;
+        font-weight:    normal !important;
+        font-variant:   normal !important;
+        text-transform: none !important;
+        speak:          none;
+        line-height:    1;
+
+        -webkit-font-smoothing:  antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+        cursor: default;
+        @include user-select;
+    }
+
+    @media screen and (-webkit-min-device-pixel-ratio:0)
+    {
+        @font-face
+        {
+           font-family: $font;
+           src: url("#{$dir}#{$font}.svg##{$font}") format("svg") !important;
+        }
+
+        .fontastic,
+        [data-#{$prefix}]:before,
+        [class^="#{$prefix}-"]:before,
+        [class*=" #{$prefix}-"]:before
+        {
+            padding-top: 1px;
+            line-height: 1.15em !important;
+        }
+    }
+
+    @content;
+}

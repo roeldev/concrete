@@ -1,0 +1,113 @@
+//
+// frame-scss | mixins/_grid.scss
+// file version: 0.01.006
+//
+// Work in progress!
+//
+
+@mixin flexgrid-columns($columns)
+{
+    @each $column, $sizes in $columns
+    {
+        $width : map-get($sizes, default);
+
+        > .gc-#{$column}
+        {
+            max-width : $width;
+            @include flex(0 1 $width);
+        }
+    }
+}
+
+@mixin flexgrid-columns-breakpoint($columns, $breakpoint)
+{
+    @each $column, $sizes in $columns
+    {
+        $width : _grid-column-width($column, $sizes, $breakpoint);
+
+        > .gc-#{$column}
+        {
+            max-width : $width;
+            @include flex-basis($width);
+        }
+
+        > .gc-#{$breakpoint}-#{$column}
+        {
+            max-width : $width !important;
+            @include flex-basis($width !important);
+        }
+    }
+}
+
+//-----------------------------------------------------------------------------
+
+@mixin blockgrid-columns($columns)
+{
+    @each $column, $sizes in $columns
+    {
+        $width : map-get($sizes, default);
+
+        > .gc-#{$column}
+        {
+            width : $width;
+        }
+    }
+}
+
+@mixin blockgrid-columns-breakpoint($columns, $breakpoint)
+{
+    @each $column, $sizes in $columns
+    {
+        $width : map-get($sizes, default);
+        @if(map-has-key($sizes, $breakpoint))
+        {
+            $width : map-get($sizes, $breakpoint);
+        }
+
+        > .gc-#{$column}
+        {
+            width : $width;
+        }
+
+        > .gc-#{$breakpoint}-#{$column}
+        {
+            width : $width !important;
+        }
+    }
+}
+
+//-----------------------------------------------------------------------------
+
+@function _grid-column-width($column, $sizes, $breakpoint)
+{
+    $width : 100%;
+    @if(map-has-key($sizes, $breakpoint))
+    {
+        $width : map-get($sizes, $breakpoint);
+    }
+    @else
+    {
+        $previousBreakpoint : default;
+        $break              : false;
+
+        @each $k, $v in $base-breakpoints
+        {
+            @if($break != true)
+            {
+                @if(map-has-key($sizes, $k))
+                {
+                    $previousBreakpoint : $k;
+                }
+
+                @if($k == $breakpoint)
+                {
+                    $break : true;
+                }
+            }
+        }
+
+        $width : map-get($sizes, $previousBreakpoint);
+    }
+
+    @return $width;
+}
