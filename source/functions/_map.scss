@@ -1,0 +1,19 @@
+//
+// frame-scss | functions/_map.scss
+// file version: 0.00.001
+//
+
+@function map-append($map, $key, $value, $seperator: comma)
+{
+    @if(map-has-key($map, $key))
+    {
+        $currentValue: map-get($map, $key);
+        $value:        append($currentValue, $value, $seperator);
+        $map:          map-remove($map, $key);
+    }
+
+    $merge: ($key: $value);
+    $map:   map-merge($map, $merge);
+
+    @return $map;
+}

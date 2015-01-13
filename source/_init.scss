@@ -1,3 +1,22 @@
+//
+// frame-scss | _init.scss
+// file version: 1.00.002
+//
+// This file imports all required functions and mixins wich you can use while
+// developing your project.
+//
+@import 'functions/frame';
+@import 'functions/map';
+@import 'functions/utils';
+
+@import 'mixins/breakpoints';
+@import 'mixins/compatibility';
+@import 'mixins/effects';
+@import 'mixins/fontastic';
+@import 'mixins/helpers';
+@import 'mixins/shapes';
+@import 'mixins/transition';
+
 /*
     frame-scss Sassy CSS framework
     Copyright (c) 2014-2015 Roel Schut (roelschut.nl)
@@ -16,20 +35,3 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-//
-// frame-scss | _init.scss
-// file version: 1.00.001
-//
-// This file imports all required functions and mixins wich you can use while
-// developing your project.
-//
-@import 'functions/frame';
-@import 'functions/utils';
-
-@import 'mixins/breakpoints';
-@import 'mixins/compatibility';
-@import 'mixins/effects';
-@import 'mixins/fontastic';
-@import 'mixins/helpers';
-@import 'mixins/shapes';
-@import 'mixins/transition';

@@ -1,6 +1,6 @@
 //
 // frame-scss | partials/_default.scss
-// file version: 1.00.016
+// file version: 1.01.000
 //
 
 /*! frame-scss v0.1 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
@@ -71,21 +71,44 @@ button
 
 
 //-----------------------------------------------------------------------------
-// Headings, paragraphs and text elements
+// Headings
 //-----------------------------------------------------------------------------
-@for $i from 1 through 6
+// Group heading by font-size. So headings with the same font-sizes are put in
+// a list and displayed together.
+//
+@mixin _default-display-headings()
 {
-    $heading: 'h'+ $i;
+    $fontSizes: ();
 
-    @if(map-has-key($frame-fontSizes, $heading))
+    // loop through h1-h6
+    @for $i from 1 through 6
     {
-        #{$heading}
+        $heading: 'h'+ $i;
+
+        // check if the heading is set in the settings file
+        @if(map-has-key($frame-fontSizes, $heading))
         {
-            font-size: rem(frame-font-size($heading));
+            $fontSize:  frame-font-size($heading);
+            $heading:   $heading +', .'+ $heading;
+            $fontSizes: map-append($fontSizes, $fontSize, unquote($heading));
+        }
+    }
+
+    // loop through all font-sizes and display the grouped headings
+    @each $fontSize, $headings in $fontSizes
+    {
+        #{$headings}
+        {
+            font-size: rem($fontSize);
         }
     }
 }
 
+@include _default-display-headings();
+
+//-----------------------------------------------------------------------------
+// Paragraphs and text elements
+//-----------------------------------------------------------------------------
 p
 {
     padding-bottom: $lineHeight;
