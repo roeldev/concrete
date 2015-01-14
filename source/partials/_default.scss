@@ -1,6 +1,6 @@
 //
 // frame-scss | partials/_default.scss
-// file version: 1.01.000
+// file version: 1.01.001
 //
 
 /*! frame-scss v0.1 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
@@ -15,7 +15,6 @@ html
     font-family: frame-font();
     font-size:   frame-font-size();
 
-    -ms-text-size-adjust:    100%;
     -webkit-font-smoothing:  antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
