@@ -11,6 +11,7 @@
 // Here is where you can define all of the fonts used by your application.
 // The default font will automatically be set to the html, input, select,
 // option, textarea and button elements.
+// These values can be individual strings or lists with multiple fonts.
 //
 $frame-fonts:
 (
@@ -22,6 +23,7 @@ $frame-fonts:
 //-----------------------------------------------------------------------------
 // When set, the font sizes for headings (h1-h6) will automatically be
 // defined in partials/_default.scss.
+// Values are in pixels. They will be translated to rem values where necessary.
 //
 $frame-fontSizes:
 (
@@ -48,8 +50,9 @@ $frame-colors:
 //-----------------------------------------------------------------------------
 // Transitions
 //-----------------------------------------------------------------------------
-// If you're using transitions most of the time the duration and easing
-// properties are the same for all transitions. You can
+// If you're using transitions, most of the time the duration and easing
+// properties are the same for all transitions. You can define them here.
+// It is also possible to create multiple transition sets if needed.
 //
 $frame-transitions:
 (
@@ -58,25 +61,39 @@ $frame-transitions:
         delay:    0s,
         duration: .2s,
         easing:   ease-in-out
+    ),
+
+    // custom transition set example
+    customExample:
+    (
+        delay:    .1s,
+        duration: .1s,
+        easing:   ease-out
     )
 );
 
 //-----------------------------------------------------------------------------
-
+// Breakpoints
+//-----------------------------------------------------------------------------
+//
 $frame-breakpoints:
 (
     default: 1440px,
 
-    xl: (min: 1200px,  max: 1440px ),  // desktop >
-    l:  (min: 1024px,  max: 1199px ),  // tablet landscape
-    m:  (min: 768px,   max: 1023px ),  // tablet portrait
-    s:  (min: 480px,   max: 767px ),   // mobile landscape
-    xs: (min: 240px,   max: 479px )    // mobile portrait
+    xl: ( min: 1200px, max: 1440px ), // desktop >
+    l:  ( min: 1024px, max: 1199px ), // tablet landscape
+    m:  ( min: 768px,  max: 1023px ), // tablet portrait
+    s:  ( min: 480px,  max: 767px ),  // mobile landscape
+    xs: ( min: 240px,  max: 479px )   // mobile portrait
 );
 
-$gridWidth:        100%;
-$gridPadding:      10px;
-$gridOuterPadding: 30px;
+//-----------------------------------------------------------------------------
+// Grid
+//-----------------------------------------------------------------------------
+//
+$frame-gridWidth:        100%;
+$frame-gridPadding:      10px;
+$frame-gridOuterPadding: 30px;
 
 //-----------------------------------------------------------------------------
 // Other variables

@@ -1,6 +1,6 @@
 //
 // frame-scss | mixins/_shapes.scss
-// file version: 1.01.001
+// file version: 1.01.002
 //
 
 //-----------------------------------------------------------------------------
@@ -43,7 +43,7 @@
 //
 @mixin shape-triangle($type, $color, $size, $size2: false)
 {
-    @if($size2 == false)
+    @if ($size2 == false)
     {
         $size2: $size;
     }
@@ -51,46 +51,46 @@
     width:  0;
     height: 0;
 
-    @if($type == up or $type == u)
+    @if ($type == up or $type == u)
     {
         border-left:   $size solid transparent;
         border-right:  $size solid transparent;
         border-bottom: $size2 solid $color;
     }
-    @else if($type == down or $type == d)
+    @elseif ($type == down or $type == d)
     {
         border-top:    $size2 solid $color;
         border-left:   $size solid transparent;
         border-right:  $size solid transparent;
     }
-    @else if($type == left or $type == l)
+    @elseif ($type == left or $type == l)
     {
         border-top:    $size solid transparent;
         border-bottom: $size solid transparent;
         border-right:  $size2 solid $color;
     }
-    @else if($type == right or $type == r)
+    @elseif ($type == right or $type == r)
     {
         border-top:    $size solid transparent;
         border-bottom: $size solid transparent;
         border-left:   $size2 solid $color;
     }
-    @else if($type == top-left or $type == tl)
+    @elseif ($type == top-left or $type == tl)
     {
         border-top:    $size2 solid $color;
         border-right:  $size solid transparent;
     }
-    @else if($type == top-right or $type == tr)
+    @elseif ($type == top-right or $type == tr)
     {
         border-top:    $size2 solid $color;
         border-left:   $size solid transparent;
     }
-    @else if($type == bottom-left or $type == bl)
+    @elseif ($type == bottom-left or $type == bl)
     {
         border-bottom: $size2 solid $color;
         border-right:  $size solid transparent;
     }
-    @else if($type == bottom-right or $type == br)
+    @elseif ($type == bottom-right or $type == br)
     {
         border-bottom: $size2 solid $color;
         border-left:   $size solid transparent;

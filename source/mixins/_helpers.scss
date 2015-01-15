@@ -1,6 +1,6 @@
 //
 // frame-scss | mixins/_helpers.scss
-// file version: 1.00.003
+// file version: 1.00.004
 //
 
 //-----------------------------------------------------------------------------
@@ -30,7 +30,7 @@
     list-style:   none;
     padding-left: 0;
 
-    @if($float != false)
+    @if ($float != false)
     {
         li
         {

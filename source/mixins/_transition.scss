@@ -1,26 +1,36 @@
 //
 // frame-scss | mixins/_transition.scss
-// file version: 1.00.002
+// file version: 1.00.004
 //
 
 //-----------------------------------------------------------------------------
 //
-@mixin transition($property, $duration: default, $easing: default, $delay: default)
+@mixin transition($property, $duration: default,
+                  $easing: default, $delay: default)
 {
     // retrieve default values where necessary
-    @if($duration == default) { $duration: frame-transition(default, duration); }
-    @if($easing   == default) {   $easing: frame-transition(default, easing); }
-    @if($delay    == default) {    $delay: frame-transition(default, delay); }
+    @if ($duration == default)
+    {
+        $duration: frame-transition(default, duration);
+    }
+    @if ($easing == default)
+    {
+        $easing: frame-transition(default, easing);
+    }
+    @if ($delay == default)
+    {
+        $delay: frame-transition(default, delay);
+    }
 
     $hasPropertyList: (type-of($property) == list);
     $hasDurationList: (type-of($duration) == list);
 
-    @if($hasPropertyList and $hasDurationList)
+    @if ($hasPropertyList and $hasDurationList)
     {
         $propertyListLength: length($property);
         $durationListLength: length($duration);
 
-        @if($propertyListLength == $durationListLength)
+        @if ($propertyListLength == $durationListLength)
         {
             $transitions: ();
             @for $i from 1 through $propertyListLength
@@ -47,7 +57,7 @@
     }
     @else
     {
-        @if($hasPropertyList)
+        @if $hasPropertyList
         {
             @include transition-property($property);
             $property: null;
@@ -64,7 +74,7 @@
 //
 @mixin transition-delay($value: default)
 {
-    @if($value == default)
+    @if ($value == default)
     {
         $value: frame-transition(default, delay);
     }
@@ -79,7 +89,7 @@
 //
 @mixin transition-duration($value: default)
 {
-    @if($value == default)
+    @if ($value == default)
     {
         $value: frame-transition(default, duration);
     }
@@ -104,7 +114,7 @@
 //
 @mixin transition-timing-function($value: default)
 {
-    @if($value == default)
+    @if ($value == default)
     {
         $value: frame-transition(default, easing);
     }

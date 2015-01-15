@@ -1,6 +1,6 @@
 //
 // frame-scss | functions/_utils.scss
-// file version: 1.00.003
+// file version: 1.00.004
 //
 // Some extra functions to make your development live easier.
 //
@@ -14,7 +14,7 @@
 //
 @function em($px, $baseFontSize: default)
 {
-    @if(type-of($baseFontSize) == 'string')
+    @if type-of($baseFontSize) == 'string'
     {
         $baseFontSize: frame-font-size($baseFontSize);
     }

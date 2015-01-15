@@ -1,11 +1,11 @@
 //
 // frame-scss | mixins/_breakpoints.scss
-// file version: 1.00.002
+// file version: 1.00.003
 //
 
 //-----------------------------------------------------------------------------
 //
-@mixin use-breakpoint($breakpoint, $type: both)
+@mixin add-breakpoint($breakpoint, $type: both)
 {
     $baseBreakpoint: frame-breakpoint($breakpoint);
 
@@ -15,30 +15,30 @@
     $hasMin: ($min != null);
     $hasMax: ($max != null);
 
-    @if($type == max)
+    @if ($type == max)
     {
         $hasMin: false;
     }
-    @else if($type == min)
+    @elseif ($type == min)
     {
         $hasMax: false;
     }
 
-    @if($hasMin and $hasMax)
+    @if ($hasMin and $hasMax)
     {
         @media screen and (min-width: $min) and (max-width: $max)
         {
             @content;
         }
     }
-    @else if($hasMin)
+    @elseif $hasMin
     {
         @media screen and (min-width: $min)
         {
             @content;
         }
     }
-    @else if($hasMax)
+    @elseif $hasMax
     {
         @media screen and (max-width: $max)
         {
