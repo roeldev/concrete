@@ -1,6 +1,6 @@
 //
 // frame-scss | functions/_frame.scss
-// file version: 1.00.009
+// file version: 1.00.011
 //
 // All default frame-scss functions are within this file. Through these
 // functions you can easily use the variables you have set in your main
@@ -17,7 +17,7 @@
 // - maps from one value to another (e.g. (key1: value1, key2: value2)).
 //
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Returns a font-family value from the $frame-fonts setting.
 //
 // @param string $key The value of the corresponding key to return.
@@ -35,7 +35,7 @@
     @return null;
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Returns a font-size value from the $frame-fontSizes setting.
 //
 // @param string $key The value of the corresponding key to return.
@@ -43,16 +43,16 @@
 //
 @function frame-font-size($key: default)
 {
-    @if map-has-key($frame-fontSizes, $key)
+    @if map-has-key($frame-font-sizes, $key)
     {
-        @return map-get($frame-fontSizes, $key);
+        @return map-get($frame-font-sizes, $key);
     }
 
     @warn "Frame: Unknown font-size '#{$key}'!";
     @return null;
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Returns a color value from the $frame-colors setting. You can pass keys to
 // this functions with or withour quotes, eg. frame-color(grey) or
 // frame-color('grey') as the key will be quoted to make sure the key can be
@@ -73,7 +73,7 @@
     @return null;
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 //
 // @param string $name
 // @param string $attr
@@ -104,7 +104,7 @@
     @return null;
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // When the $size parameter is a valid key within the breakpoint of $type in
 // the $frame-breakpoints settings map, the value of this key is returns as a
 // number. When $size equals false (the default case) the complete map with the
@@ -134,7 +134,32 @@
             @return map-get($breakpoint, $size);
         }
     }
+    @else
+    {
+        @warn "Frame: Unknown breakpoint '#{$type}', '#{$size}'!";
+        @return null;
+    }
+}
 
-    @warn "Frame: Unknown breakpoint '#{$type}', '#{$size}'!";
-    @return null;
+@function frame-grid-width($breakpoint: default, $gridType: false)
+{
+    @if map-has-key($frame-breakpoints, $breakpoint)
+    {
+        @if map-has-key($frame-grid-width, $breakpoint) != true
+        {
+            $breakpoint: default;
+        }
+
+        @return map-get($frame-grid-width, $breakpoint);
+    }
+    @else
+    {
+        @warn "frame-grid-width: Unknown breakpoint '#{$breakpoint}'!";
+        @return null;
+    }
+}
+
+@function frame-grid-gap($breakpoint: default)
+{
+
 }

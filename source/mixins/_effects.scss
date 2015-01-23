@@ -1,9 +1,9 @@
 //
 // frame-scss | mixins/_effects.scss
-// file version: 1.01.000
+// file version: 1.01.001
 //
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 //
 @mixin fx-text-shadow($color, $size)
 {
@@ -17,7 +17,7 @@
     text-shadow: unquote($shadows);
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // *Mixin taken from Bootstrap
 //
 @mixin fx-gradient-horizontal($startColor, $endColor,
@@ -35,7 +35,7 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($startColor)}', endColorstr='#{ie-hex-str($endColor)}', GradientType=1);
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // *Mixin taken from Bootstrap
 //
 @mixin fx-gradient-vertical($startColor, $endColor,

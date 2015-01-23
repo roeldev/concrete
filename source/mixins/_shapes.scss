@@ -1,9 +1,9 @@
 //
 // frame-scss | mixins/_shapes.scss
-// file version: 1.01.002
+// file version: 1.01.003
 //
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // *Created using example from http://jsfiddle.net/tzi/awt33/
 //
 @mixin shape-hexagon($size)
@@ -38,7 +38,7 @@
     }
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // *Created using example from http://css-tricks.com/examples/ShapesOfCSS/
 //
 @mixin shape-triangle($type, $color, $size, $size2: false)

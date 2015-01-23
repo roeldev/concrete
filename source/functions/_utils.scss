@@ -1,11 +1,11 @@
 //
 // frame-scss | functions/_utils.scss
-// file version: 1.00.004
+// file version: 1.00.005
 //
 // Some extra functions to make your development live easier.
 //
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Calculates the relative em value compared to the default font-size.
 // Example taken from http://vvv.tobiassjosten.net/css/px-to-em-with-sass/
 //
@@ -22,7 +22,7 @@
     @return ($px / $baseFontSize) * 1em;
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Calculates the relative rem value. The rem units are always relative to the
 // font-size in the body html element.
 //

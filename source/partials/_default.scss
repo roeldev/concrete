@@ -1,6 +1,6 @@
 //
 // frame-scss | partials/_default.scss
-// file version: 1.01.002
+// file version: 1.01.004
 //
 
 /*! frame-scss v0.1 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
@@ -19,14 +19,14 @@ html
     -moz-osx-font-smoothing: grayscale;
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Import a modified version of Normalize.css.
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 @import 'normalize';
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Use box-sizing: border-box on all element.
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 *,
 *:before,
 *:after
@@ -37,9 +37,9 @@ html
     padding: 0;
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Default button and hyperlink styles
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 a,
 button
 {
@@ -69,13 +69,13 @@ button
 }
 
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Headings
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Group heading by font-size. So headings with the same font-sizes are put in
 // a list and displayed together.
 //
-@mixin _default-display-headings()
+@mixin _frame-display-headings()
 {
     $fontSizes: ();
 
@@ -85,7 +85,7 @@ button
         $heading: 'h'+ $i;
 
         // check if the heading is set in the settings file
-        @if map-has-key($frame-fontSizes, $heading)
+        @if map-has-key($frame-font-sizes, $heading)
         {
             $fontSize:  frame-font-size($heading);
             $heading:   $heading +', .'+ $heading;
@@ -103,11 +103,11 @@ button
     }
 }
 
-@include _default-display-headings();
+@include _frame-display-headings();
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Paragraphs and text elements
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 p
 {
     padding-bottom: $lineHeight;
@@ -130,9 +130,9 @@ address
     font-style: normal;
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Images and canvas
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 img
 {
     vertical-align:         middle;
@@ -142,40 +142,40 @@ img
 img,
 canvas
 {
-    &.fill-w,
-    &.max-w,
-    .fill-w &,
-    .max-w &
+    &%frame-img-fill-width,
+    &%frame-img-max-width,
+    %frame-img-fill-width &,
+    %frame-img-max-width &
     {
         width:  100%;
         height: auto;
     }
 
-    &.fill-h,
-    &.max-h,
-    .fill-h &,
-    .max-h &
+    &%frame-img-fill-height,
+    &%frame-img-max-height,
+    %frame-img-fill-height &,
+    %frame-img-max-height &
     {
         width:  auto;
         height: 100%;
     }
 
-    &.max-w,
-    .max-w &
+    &%frame-img-max-width,
+    %frame-img-max-width &
     {
-        max-width: 100%;
+       max-width: 100%;
     }
 
-    &.max-h,
-    .max-h &
+    &%frame-img-max-height,
+    %frame-img-max-height &
     {
         max-height: 100%;
     }
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Default styles for other elements
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 input,
 select,
 option,
@@ -185,7 +185,7 @@ button
     font-family: frame-font();
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 ul
 {
@@ -203,42 +203,48 @@ ul.block-list
     @include block-list;
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Helper style classes
-//-----------------------------------------------------------------------------
-.clear
+//------------------------------------------------------------------------------
+//.clear
+%frame-clearboth
 {
     clear: both;
 }
 
-.clearfix
+//.clearfix
+%frame-clearfix
 {
     @include clearfix;
 }
 
-.hidden
+//.hidden
+%frame-hidden
 {
     display:    none;
     visibility: hidden;
 }
 
-.visible
+//.visible
+%frame-visible
 {
     display:    block;
     visibility: visible;
 }
 
-.nowrap
+//.nowrap
+%frame-nowrap
 {
     white-space: nowrap;
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Center position style classes
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 // x only
-.cx
+// .cx
+%frame-center-x
 {
     position:  relative;
     width:     100%;
@@ -247,7 +253,8 @@ ul.block-list
 }
 
 // y only
-.cy
+// .cy
+%frame-center-y
 {
     width:  100%;
     height: 100%;
@@ -261,12 +268,13 @@ ul.block-list
 }
 
 // x inside y
-.cxy
+// .cxy
+%frame-center-xy
 {
-    @extend .cy;
+    @extend %center-y;
     text-align: center;
 
-    > .cx
+    > %center-x
     {
         display:        inline-block;
         vertical-align: middle;
