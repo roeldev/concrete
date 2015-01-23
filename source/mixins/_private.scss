@@ -1,0 +1,106 @@
+//
+// frame-scss | mixins/_private.scss
+// file version: 0.00.001
+//
+
+@mixin _frame-display-headings()
+{
+    $fontSizes: ();
+
+    // loop through h1-h6
+    @for $i from 1 through 6
+    {
+        $heading: 'h'+ $i;
+
+        // check if the heading is set in the settings file
+        @if map-has-key($frame-font-sizes, $heading)
+        {
+            $fontSize:  frame-font-size($heading);
+            $heading:   $heading +', .'+ $heading;
+            $fontSizes: map-append($fontSizes, $fontSize, unquote($heading));
+        }
+    }
+
+    // loop through all font-sizes and display the grouped headings
+    @each $fontSize, $headings in $fontSizes
+    {
+        #{$headings}
+        {
+            font-size: rem($fontSize);
+        }
+    }
+}
+
+@mixin _frame-display-wrapper()
+{
+    $min: false;
+    $max: false;
+
+    $width: frame-grid-width();
+    width: $width;
+    color: red;
+
+    @each $breakpoint, $breakpointValues in $frame-breakpoints
+    {
+        $bpMin:   map-get($breakpointValues, min);
+        $bpMax:   map-get($breakpointValues, max);
+        $bpWidth: frame-grid-width($breakpoint);
+
+        @if ($min == false)
+        {
+            $min: $bpMin;
+            $max: $bpMax;
+        }
+
+        @if ($bpWidth != $width)
+        {
+            @include add-custom-breakpoint($min, $max)
+            {
+                width: $width;
+            }
+        }
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+@mixin _frame-display-grid()
+{
+    @each $type, $columns in $frame-grid
+    {
+        @if ($columns != false)
+        {
+            @include _frame-grid-create($type, $columns);
+        }
+    }
+}
+
+@mixin _frame-grid-create($type, $columns: 12)
+{
+    %frame-blockgrid-row
+    {
+        display: block;
+        @extend %frame-clearfix;
+    }
+
+    %frame-blockgrid-cell
+    {
+        display: block;
+        float: left;
+    }
+
+    .blockgrid.gr,
+    .blockgrid .gr
+    {
+        @extend %frame-blockgrid-row;
+
+        @for $i from 1 through $columns
+        {
+            > .gc-#{$i}
+            {
+                @extend %frame-blockgrid-cell;
+                width: ($i / $columns) * 100%;
+            }
+        }
+    }
+}

@@ -1,6 +1,6 @@
 //
 // frame-scss | partials/_default.scss
-// file version: 1.01.004
+// file version: 1.01.005
 //
 
 /*! frame-scss v0.1 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
@@ -21,7 +21,7 @@ html
 
 //------------------------------------------------------------------------------
 // Import a modified version of Normalize.css.
-//------------------------------------------------------------------------------
+//--------------------------------------7----------------------------------------
 @import 'normalize';
 
 //------------------------------------------------------------------------------
@@ -75,34 +75,6 @@ button
 // Group heading by font-size. So headings with the same font-sizes are put in
 // a list and displayed together.
 //
-@mixin _frame-display-headings()
-{
-    $fontSizes: ();
-
-    // loop through h1-h6
-    @for $i from 1 through 6
-    {
-        $heading: 'h'+ $i;
-
-        // check if the heading is set in the settings file
-        @if map-has-key($frame-font-sizes, $heading)
-        {
-            $fontSize:  frame-font-size($heading);
-            $heading:   $heading +', .'+ $heading;
-            $fontSizes: map-append($fontSizes, $fontSize, unquote($heading));
-        }
-    }
-
-    // loop through all font-sizes and display the grouped headings
-    @each $fontSize, $headings in $fontSizes
-    {
-        #{$headings}
-        {
-            font-size: rem($fontSize);
-        }
-    }
-}
-
 @include _frame-display-headings();
 
 //------------------------------------------------------------------------------
@@ -239,8 +211,13 @@ ul.block-list
 }
 
 //------------------------------------------------------------------------------
-// Center position style classes
+// Wrapper and position style classes
 //------------------------------------------------------------------------------
+%frame-wrapper
+{
+    display: block;
+    @include _frame-display-wrapper();
+}
 
 // x only
 // .cx
@@ -259,7 +236,7 @@ ul.block-list
     width:  100%;
     height: 100%;
 
-    & > &-valign
+    & > %frame-center-y-valign
     {
         display:        inline-block;
         vertical-align: middle;
@@ -271,13 +248,18 @@ ul.block-list
 // .cxy
 %frame-center-xy
 {
-    @extend %center-y;
+    @extend %frame-center-y;
     text-align: center;
 
-    > %center-x
+    > %frame-center-x
     {
         display:        inline-block;
         vertical-align: middle;
         text-align:     left;
     }
 }
+
+//------------------------------------------------------------------------------
+// Grid
+//------------------------------------------------------------------------------
+@include _frame-display-grid();

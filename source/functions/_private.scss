@@ -1,0 +1,19 @@
+//
+// frame-scss | functions/_private.scss
+// file version: 0.00.002
+//
+
+@function _frame-prepare-breakpoints()
+{
+    $map: ();
+    $max: false;
+
+    @each $breakpoint, $min in $frame-breakpoints
+    {
+        $values: (min: $min, max: $max);
+        $map: map-append($map, $breakpoint, $values);
+        $max: ($min - 1);
+    }
+
+    @return $map;
+}

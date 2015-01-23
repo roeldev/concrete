@@ -117,6 +117,12 @@
 //
 @function frame-breakpoint($type: default, $size: false)
 {
+    @if ($type == default)
+    {
+        $type: xl;
+        $size: max;
+    }
+
     @if map-has-key($frame-breakpoints, $type)
     {
         $breakpoint: map-get($frame-breakpoints, $type);
@@ -143,7 +149,11 @@
 
 @function frame-grid-width($breakpoint: default, $gridType: false)
 {
-    @if map-has-key($frame-breakpoints, $breakpoint)
+    @if ($breakpoint == default)
+    {
+        @return map-get($frame-grid-width, $breakpoint);
+    }
+    @elseif map-has-key($frame-breakpoints, $breakpoint)
     {
         @if map-has-key($frame-grid-width, $breakpoint) != true
         {
