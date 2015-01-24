@@ -1,6 +1,9 @@
 //
 // frame-scss | functions/_private.scss
 // file version: 0.00.002
+////////////////////////////////////////////////////////////////////////////////
+//
+// These are some 'private' functions wich you normally would not need to use ;)
 //
 
 @function _frame-prepare-breakpoints()
@@ -8,12 +11,28 @@
     $map: ();
     $max: false;
 
-    @each $breakpoint, $min in $frame-breakpoints
+    @each $breakpoint, $value in $frame-breakpoints
     {
-        $values: (min: $min, max: $max);
-        $map: map-append($map, $breakpoint, $values);
+        @if (type-of($value) == 'map')
+        {
+            $min: map-get($value, min);
+        }
+        @else
+        {
+            $min:   $value;
+            $value: (min: $min, max: $max);
+        }
+
+        $map: map-append($map, $breakpoint, $value);
         $max: ($min - 1);
     }
 
     @return $map;
+}
+
+@function _frame-grid-column($name, $size: 1, $breakpointSizes: false)
+{
+    $size: ($size * 100%);
+
+    @return (name: $name, size: $size, breakpointSizes: $breakpointSizes);
 }

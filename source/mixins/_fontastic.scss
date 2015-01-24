@@ -1,7 +1,30 @@
 //
 // frame-scss | mixins/_fontastic.scss
-// file version: 1.00.006
+// file version: 1.01.000
 //
+
+//------------------------------------------------------------------------------
+// A function to add new font-families with @font-face.
+//
+// @param $name The name of the font-family.
+// @param $dir The folder where the folders should be loaded from.
+// @param $file The name of the font file without file extension.
+//
+@mixin font-face($name, $dir, $file)
+{
+    @font-face
+    {
+        font-family: $name;
+        font-weight: normal;
+        font-style:  normal;
+
+        src: url("#{$dir}#{$file}.eot");
+        src: url("#{$dir}#{$file}.eot?#iefix") format("embedded-opentype"),
+             url("#{$dir}#{$file}.woff") format("woff"),
+             url("#{$dir}#{$file}.ttf") format("truetype"),
+             url("#{$dir}#{$file}.svg##{$font}") format("svg");
+    }
+}
 
 //------------------------------------------------------------------------------
 // You can use this mixin in your main stylesheet. It will make adding icon
@@ -16,28 +39,9 @@
 //
 @mixin fontastic($font, $prefix: 'icon', $dir: '/fonts/')
 {
-    @font-face
-    {
-        font-family: $font;
-        font-weight: normal;
-        font-style:  normal;
+    @include font-face($font, $dir, $font);
 
-        src: url("#{$dir}#{$font}.eot");
-        src: url("#{$dir}#{$font}.eot?#iefix") format("embedded-opentype"),
-             url("#{$dir}#{$font}.woff") format("woff"),
-             url("#{$dir}#{$font}.ttf") format("truetype"),
-             url("#{$dir}#{$font}.svg##{$font}") format("svg");
-    }
-
-    [data-#{$prefix}]:before
-    {
-        content: attr(data-icon);
-    }
-
-    .fontastic,
-    [data-#{$prefix}]:before,
-    [class^="#{$prefix}-"]:before,
-    [class*=" #{$prefix}-"]:before
+    %fontastic
     {
         font-family:    $font !important;
         font-style:     normal !important;
@@ -52,6 +56,18 @@
 
         cursor: default;
         @include user-select;
+    }
+
+    [data-#{$prefix}]:before
+    {
+        @extend %fontastic;
+        content: attr(data-icon);
+    }
+
+    [class^="#{$prefix}-"]:before,
+    [class*=" #{$prefix}-"]:before
+    {
+        @extend %fontastic;
     }
 
     @media screen and (-webkit-min-device-pixel-ratio:0)

@@ -1,0 +1,49 @@
+//
+// frame-scss | _frame-grid.scss
+// file version: 0.01.001
+////////////////////////////////////////////////////////////////////////////////
+//
+// Basic grid settings
+//------------------------------------------------------------------------------
+// For more information about the available settings, check either the included
+// help documents, examples, or visit the project page: http://git.io/qoNLsw
+//
+
+//------------------------------------------------------------------------------
+// Grid columns
+//------------------------------------------------------------------------------
+// Specify wich columns you would like to use and what alternative sizes they
+// should have when a breakpoint is reached.
+//
+/*$frame-grid-columns:
+(
+    _frame-grid-column(1,   1/12, (s:  50%,  m: 25%)),
+    _frame-grid-column(1_5, 1/8,  (s:  50%,  m: 25%)),
+    _frame-grid-column(2,   1/6,  (s:  100%, m: 50%)),
+    _frame-grid-column(3,   1/4,  (xs: 100%, s: 50%)),
+    _frame-grid-column(4,   1/3,  (s:  100%)),
+    _frame-grid-column(6,   1/2,  (s:  100%)),
+    _frame-grid-column(8,   2/2,  (s:  100%)),
+    _frame-grid-column(9,   3/4,  (s:  100%)),
+    _frame-grid-column(10,  5/6,  (l:  100%)),
+    _frame-grid-column(12)
+);*/
+
+$frame-grid-columns:
+(
+    _frame-grid-column(20, 20%),
+    _frame-grid-column(33, 33.33%),
+    _frame-grid-column(40, 40%),
+    _frame-grid-column(50, 50%),
+    _frame-grid-column(60, 60%),
+    _frame-grid-column(80, 80%),
+    _frame-grid-column(100, 100%),
+);
+
+//------------------------------------------------------------------------------
+// Import grid specific frame-sccs functions/mixins/partials.
+//------------------------------------------------------------------------------
+// Last but not least, import the frame-scss initializer. This will import all
+// the needed functions and mixins to get you started :)
+//
+@import 'source/grid';

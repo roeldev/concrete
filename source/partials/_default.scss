@@ -1,6 +1,6 @@
 //
 // frame-scss | partials/_default.scss
-// file version: 1.01.005
+// file version: 1.01.006
 //
 
 /*! frame-scss v0.1 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
@@ -21,7 +21,7 @@ html
 
 //------------------------------------------------------------------------------
 // Import a modified version of Normalize.css.
-//--------------------------------------7----------------------------------------
+//------------------------------------------------------------------------------
 @import 'normalize';
 
 //------------------------------------------------------------------------------
@@ -68,7 +68,6 @@ button
     @include appearance;
 }
 
-
 //------------------------------------------------------------------------------
 // Headings
 //------------------------------------------------------------------------------
@@ -103,49 +102,6 @@ address
 }
 
 //------------------------------------------------------------------------------
-// Images and canvas
-//------------------------------------------------------------------------------
-img
-{
-    vertical-align:         middle;
-    -ms-interpolation-mode: bicubic;
-}
-
-img,
-canvas
-{
-    &%frame-img-fill-width,
-    &%frame-img-max-width,
-    %frame-img-fill-width &,
-    %frame-img-max-width &
-    {
-        width:  100%;
-        height: auto;
-    }
-
-    &%frame-img-fill-height,
-    &%frame-img-max-height,
-    %frame-img-fill-height &,
-    %frame-img-max-height &
-    {
-        width:  auto;
-        height: 100%;
-    }
-
-    &%frame-img-max-width,
-    %frame-img-max-width &
-    {
-       max-width: 100%;
-    }
-
-    &%frame-img-max-height,
-    %frame-img-max-height &
-    {
-        max-height: 100%;
-    }
-}
-
-//------------------------------------------------------------------------------
 // Default styles for other elements
 //------------------------------------------------------------------------------
 input,
@@ -155,6 +111,14 @@ textarea,
 button
 {
     font-family: frame-font();
+}
+
+//------------------------------------------------------------------------------
+
+img
+{
+    vertical-align:         middle;
+    -ms-interpolation-mode: bicubic;
 }
 
 //------------------------------------------------------------------------------
@@ -173,90 +137,6 @@ ul.menu-list
 ul.block-list
 {
     @include block-list;
-}
-
-//------------------------------------------------------------------------------
-// Helper style classes
-//------------------------------------------------------------------------------
-//.clear
-%frame-clearboth
-{
-    clear: both;
-}
-
-//.clearfix
-%frame-clearfix
-{
-    @include clearfix;
-}
-
-//.hidden
-%frame-hidden
-{
-    display:    none;
-    visibility: hidden;
-}
-
-//.visible
-%frame-visible
-{
-    display:    block;
-    visibility: visible;
-}
-
-//.nowrap
-%frame-nowrap
-{
-    white-space: nowrap;
-}
-
-//------------------------------------------------------------------------------
-// Wrapper and position style classes
-//------------------------------------------------------------------------------
-%frame-wrapper
-{
-    display: block;
-    @include _frame-display-wrapper();
-}
-
-// x only
-// .cx
-%frame-center-x
-{
-    position:  relative;
-    width:     100%;
-    max-width: frame-breakpoint();
-    margin:    0 auto;
-}
-
-// y only
-// .cy
-%frame-center-y
-{
-    width:  100%;
-    height: 100%;
-
-    & > %frame-center-y-valign
-    {
-        display:        inline-block;
-        vertical-align: middle;
-        height:         100%;
-    }
-}
-
-// x inside y
-// .cxy
-%frame-center-xy
-{
-    @extend %frame-center-y;
-    text-align: center;
-
-    > %frame-center-x
-    {
-        display:        inline-block;
-        vertical-align: middle;
-        text-align:     left;
-    }
 }
 
 //------------------------------------------------------------------------------

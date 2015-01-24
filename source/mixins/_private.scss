@@ -66,18 +66,18 @@
 
 @mixin _frame-display-grid()
 {
-    @each $type, $columns in $frame-grid
+    /*@each $type, $columns in $frame-grid
     {
         @if ($columns != false)
         {
             @include _frame-grid-create($type, $columns);
         }
-    }
+    }*/
 }
 
 @mixin _frame-grid-create($type, $columns: 12)
 {
-    %frame-blockgrid-row
+    /*%frame-blockgrid-row
     {
         display: block;
         @extend %frame-clearfix;
@@ -102,5 +102,5 @@
                 width: ($i / $columns) * 100%;
             }
         }
-    }
+    }*/
 }

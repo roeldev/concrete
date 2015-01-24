@@ -1,0 +1,114 @@
+//
+// frame-scss | partials/_placeholders.scss
+// file version: 0.00.001
+//
+
+//------------------------------------------------------------------------------
+// Helper style classes
+//------------------------------------------------------------------------------
+%frame-clearboth //.clear
+{
+    clear: both;
+}
+
+%frame-clearfix //.clearfix
+{
+    @include clearfix;
+}
+
+%frame-hidden //.hidden
+{
+    display:    none;
+    visibility: hidden;
+}
+
+%frame-visible //.visible
+{
+    display:    block;
+    visibility: visible;
+}
+
+%frame-nowrap //.nowrap
+{
+    white-space: nowrap;
+}
+
+//------------------------------------------------------------------------------
+// Wrapper and position style classes
+//------------------------------------------------------------------------------
+%frame-wrapper //.wrapper
+{
+    display: block;
+    @include _frame-display-wrapper();
+}
+
+%frame-center-x //.center-x
+{
+    position:  relative;
+    width:     100%;
+    max-width: frame-breakpoint();
+    margin:    0 auto;
+}
+
+%frame-center-y //.center-y
+{
+    width:  100%;
+    height: 100%;
+
+    & > %frame-center-valign //.center-valign
+    {
+        display:        inline-block;
+        vertical-align: middle;
+        height:         100%;
+    }
+}
+
+%frame-center-xy //.center-xy
+{
+    @extend %frame-center-y;
+    text-align: center;
+
+    > %frame-center-x
+    {
+        display:        inline-block;
+        vertical-align: middle;
+        text-align:     left;
+    }
+}
+
+//------------------------------------------------------------------------------
+// Images and canvas
+//------------------------------------------------------------------------------
+img,
+canvas
+{
+    &%frame-img-fill-width, //.fill-width
+    &%frame-img-max-width,  //.max-width
+    %frame-img-fill-width &,
+    %frame-img-max-width &
+    {
+        width:  100%;
+        height: auto;
+    }
+
+    &%frame-img-fill-height, //.fill-height
+    &%frame-img-max-height,  //.max-height
+    %frame-img-fill-height &,
+    %frame-img-max-height &
+    {
+        width:  auto;
+        height: 100%;
+    }
+
+    &%frame-img-max-width,
+    %frame-img-max-width &
+    {
+       max-width: 100%;
+    }
+
+    &%frame-img-max-height,
+    %frame-img-max-height &
+    {
+        max-height: 100%;
+    }
+}
