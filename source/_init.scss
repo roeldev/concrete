@@ -1,24 +1,23 @@
 //
 // frame-scss | _init.scss
-// file version: 1.01.001
+// file version: 1.01.002
 ////////////////////////////////////////////////////////////////////////////////
 //
 // This file imports all required functions and mixins wich you can use while
 // developing your project.
 //
-@import 'functions/frame';
-@import 'functions/map';
-@import 'functions/private';
-@import 'functions/utils';
+@import 'core/frame-core';
+@import 'core/map';
+@import 'core/utils';
 
-@import 'mixins/breakpoints';
-@import 'mixins/compatibility';
-@import 'mixins/effects';
-@import 'mixins/fontastic';
-@import 'mixins/helpers';
-@import 'mixins/private';
-@import 'mixins/shapes';
-@import 'mixins/transition';
+@import 'components/basics';
+@import 'components/breakpoints';
+@import 'components/compatibility';
+@import 'components/effects';
+@import 'components/fontastic';
+@import 'components/helpers';
+@import 'components/shapes';
+@import 'components/transition';
 
 ////////////////////////////////////////////////////////////////////////////////
 

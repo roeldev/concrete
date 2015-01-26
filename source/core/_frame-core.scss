@@ -1,6 +1,6 @@
 //
-// frame-scss | functions/_frame.scss
-// file version: 1.00.011
+// frame-scss | core/_frame-core.scss
+// file version: 1.01.000
 ////////////////////////////////////////////////////////////////////////////////
 //
 // All default frame-scss functions are within this file. Through these
@@ -22,7 +22,7 @@
 // Returns a font-family value from the $frame-fonts setting.
 //
 // @param string $key The value of the corresponding key to return.
-// @return string, list
+// @return string|list
 //
 @function frame-font($key: default)
 {
@@ -32,7 +32,7 @@
         @return unquote($return);
     }
 
-    @warn "Frame: Unknown font '#{$key}'!";
+    @warn "frame-font: Unknown font '#{$key}'!";
     @return null;
 }
 
@@ -40,7 +40,7 @@
 // Returns a font-size value from the $frame-fontSizes setting.
 //
 // @param string $key The value of the corresponding key to return.
-// @return number (px)
+// @return number(px)
 //
 @function frame-font-size($key: default)
 {
@@ -49,7 +49,7 @@
         @return map-get($frame-font-sizes, $key);
     }
 
-    @warn "Frame: Unknown font-size '#{$key}'!";
+    @warn "frame-font-size: Unknown font-size '#{$key}'!";
     @return null;
 }
 
@@ -70,7 +70,7 @@
         @return map-get($frame-colors, $key);
     }
 
-    @warn "Frame: Unknown color '#{$key}'!";
+    @warn "frame-color: Unknown color '#{$key}'!";
     @return null;
 }
 
@@ -78,7 +78,7 @@
 //
 // @param string $name
 // @param string $attr
-// @return map, number (s), string
+// @return map|number(s)|string
 //
 @function frame-transition($name: default, $attr: false)
 {
@@ -96,12 +96,12 @@
         }
         @else
         {
-            @warn "Frame: Unknown attribute '#{$attr}' for transition '#{$name}'!";
+            @warn "frame-transition: Unknown attribute '#{$attr}' for transition '#{$name}'!";
             @return null;
         }
     }
 
-    @warn "Frame: Unknown transition set '#{$name}'!";
+    @warn "frame-transition: Unknown transition set '#{$name}'!";
     @return null;
 }
 
@@ -114,7 +114,7 @@
 //
 // @param string $type The value of the corresponding breakpoint to return.
 // @param string $size The min/max value of the breakpoint to return.
-// @return map, number (px)
+// @return map|number(px)
 //
 @function frame-breakpoint($type: default, $size: false)
 {
@@ -143,7 +143,7 @@
     }
     @else
     {
-        @warn "Frame: Unknown breakpoint '#{$type}', '#{$size}'!";
+        @warn "frame-breakpoint: Unknown breakpoint '#{$type}', '#{$size}'!";
         @return null;
     }
 }
@@ -173,4 +173,35 @@
 @function frame-grid-gap($breakpoint: default)
 {
 
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+//------------------------------------------------------------------------------
+// Private functions
+//------------------------------------------------------------------------------
+
+@function _frame-prepare-breakpoints()
+{
+    $map: ();
+    $min: false;
+    $max: false;
+
+    @each $breakpoint, $value in $frame-breakpoints
+    {
+        @if (type-of($value) == 'map')
+        {
+            $min: map-get($value, min);
+        }
+        @else
+        {
+            $min:   $value;
+            $value: (min: $min, max: $max);
+        }
+
+        $map: map-append($map, $breakpoint, $value);
+        $max: ($min - 1);
+    }
+
+    @return $map;
 }

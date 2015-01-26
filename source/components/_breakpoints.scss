@@ -1,0 +1,228 @@
+//
+// frame-scss | components/_breakpoints.scss
+// file version: 1.01.001
+////////////////////////////////////////////////////////////////////////////////
+//
+// Breakpoint and media query related mixins.
+//
+
+//------------------------------------------------------------------------------
+// Standard function to add a custom breakpoint wich is not related to the
+// $frame-breakpoints setting.
+//
+// @param number(px|em|rem) $min Minimale breedte voor media query.
+// @param number(px|em|rem) $max Maximale breedte voor media query.
+//
+@mixin add-custom-breakpoint($min, $max, $scrollbarBuffer: false)
+{
+    $hasMin: ($min != null and $min != false);
+    $hasMax: ($max != null and $max != false);
+
+    @if ($scrollbarBuffer != false)
+    {
+        @if ($scrollbarBuffer == true)
+        {
+            $scrollbarBuffer: 20px;
+        }
+        @else
+        {
+            $scrollbarBuffer: ($scrollbarBuffer * 1px);
+        }
+
+        @if $hasMin
+        {
+            $min: ($min + $scrollbarBuffer);
+        }
+        @if $hasMax
+        {
+            $max: ($max + $scrollbarBuffer);
+        }
+    }
+
+    @if ($hasMin and $hasMax)
+    {
+        //$min: rem($min);
+        //$max: rem($max);
+
+        @media screen and (min-width: $min) and (max-width: $max)
+        {
+            @content;
+        }
+    }
+    @elseif $hasMin
+    {
+         //$min: rem($min);
+
+        @media screen and (min-width: $min)
+        {
+            @content;
+        }
+    }
+    @elseif $hasMax
+    {
+        //$max: rem($max);
+
+        @media screen and (max-width: $max)
+        {
+            @content;
+        }
+    }
+}
+
+//------------------------------------------------------------------------------
+// @param string $breakpoint
+// @param string $type
+// @param bool|number(px|em|rem) $scrollbarBuffer
+//
+@mixin add-breakpoint($breakpoint, $type: both, $scrollbarBuffer: true)
+{
+    $baseBreakpoint: frame-breakpoint($breakpoint);
+
+    $min: map-get($baseBreakpoint, min);
+    $max: map-get($baseBreakpoint, max);
+
+    @if ($type == max)
+    {
+        $min: false;
+    }
+    @elseif ($type == min)
+    {
+        $max: false;
+    }
+
+    @if ($min != null and $min != false) or ($max != null and $max != false)
+    {
+        @include add-custom-breakpoint($min, $max, $scrollbarBuffer)
+        {
+            @content;
+        }
+    }
+    @else
+    {
+        @warn "add-breakpoint: Cannot add unknown breakpoint '#{$breakpoint}'!";
+    }
+}
+
+@function _frame-mq($mq, $min, $max, $scrollbarBuffer)
+{
+    $hasMin: ($min != null and $min != false);
+    $hasMax: ($max != null and $max != false);
+
+    @if ($scrollbarBuffer != false)
+    {
+        @if ($scrollbarBuffer == true)
+        {
+            $scrollbarBuffer: 20px;
+        }
+        @else
+        {
+            $scrollbarBuffer: ($scrollbarBuffer * 1px);
+        }
+
+        @if $hasMin
+        {
+            $min: ($min + $scrollbarBuffer);
+        }
+        @if $hasMax
+        {
+            $max: ($max + $scrollbarBuffer);
+        }
+    }
+
+    @if ($hasMin or $hasMax)
+    {
+        @if ($hasMin and $hasMax)
+        {
+            $condition: 'screen and (min-width: #{$min}) and (max-width: #{$max})';
+        }
+        @elseif $hasMin
+        {
+            $condition: 'screen and (min-width: #{$min})';
+        }
+        @elseif $hasMax
+        {
+            $condition: 'screen and (max-width: #{$max})';
+        }
+
+        $mq: append($mq, $condition, comma);
+    }
+    @return $mq;
+}
+
+@function _frame-mq-map($mq, $breakpoint, $scrollbarBuffer)
+{
+    $min: false;
+    $max: false;
+
+    @if (map-has-key($breakpoint, min))
+    {
+        $min: map-get($breakpoint, min);
+    }
+    @if (map-has-key($breakpoint, max))
+    {
+        $max: map-get($breakpoint, max);
+    }
+
+    @return _frame-mq($mq, $min, $max, $scrollbarBuffer);
+}
+
+// screen and (min-width: $min) and (max-width: $max)
+@mixin add-breakpoint2($breakpoint, $type: both, $scrollbarBuffer: true)
+{
+    $mediaQuery: ();
+
+    // enkele breakpoint key (xl|l)
+    @if (type-of($breakpoint) == string)
+    {
+        $breakpoint: frame-breakpoint($breakpoint);
+        $mediaQuery: _breakpoint-mq-key($mediaQuery, $breakpoint, $scrollbarBuffer: true);
+    }
+    // custom breakpoint map (min: #, max: #)
+    @elseif (type-of($breakpoint) == map)
+    {
+        /*$hasMin: map-has-key($breakpoint, min);
+        $hasMax: map-has-key($breakpoint, max);
+
+        @if ($hasMin == false and $hasMax == false)
+        {
+            @warn "add-breakpoint: Invalid breakpoint list argument!";
+        }*/
+    }
+    // meerder breakpoints in list
+    @elseif (type-of($breakpoint) == list)
+    {
+        $breakpoints: $breakpoint;
+        $breakpoint:  nth($breakpoints, 1);
+
+        // meerdere breakpoint keys (xl, l, ...)
+        @if (type-of($breakpoint) == string)
+        {
+
+        }
+        // meerdere custom maps ((min: #, max: #), (min: #, max: #), ...)
+        @elseif (type-of($breakpoint) == map)
+        {
+
+        }
+    }
+}
+
+//------------------------------------------------------------------------------
+// @param bool|number(px|em|rem) $scrollbarBuffer
+//
+@mixin frame-display-wrapper-breakpoints($scrollbarBuffer: true)
+{
+    @each $breakpoint, $values in $frame-breakpoints
+    {
+        @if ($breakpoint != xl)
+        {
+            @include add-breakpoint($breakpoint, both, $scrollbarBuffer)
+            {
+                $width: frame-breakpoint($breakpoint, min);
+                //$width: rem($width);
+
+                max-width: $width;
+            }
+        }
+    }
+}
