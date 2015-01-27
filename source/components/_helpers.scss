@@ -10,55 +10,20 @@
 //
 @mixin apply-clearfix
 {
-    &:before,
-    &:after
-    {
-        content: " ";
-        display: table;
-    }
-
-    &:after
-    {
-        clear: both;
-    }
+    @extend %frame-clearfix;
 }
 
 //------------------------------------------------------------------------------
 //
-@mixin menu-list($float: left)
+@mixin apply-menu-list($float: left)
 {
-    list-style:   none;
-    padding-left: 0;
+    @extend %frame-menu-list;
 
     @if ($float != false)
     {
         li
         {
             float: $float;
-        }
-    }
-
-    li > a
-    {
-        display: block;
-    }
-}
-
-//------------------------------------------------------------------------------
-//
-@mixin block-list
-{
-    list-style:   none;
-    padding-left: 0;
-
-    li
-    {
-        display: block;
-        width:   100%;
-
-        > a
-        {
-            display: block;
         }
     }
 }

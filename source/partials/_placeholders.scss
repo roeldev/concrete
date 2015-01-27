@@ -1,6 +1,6 @@
 //
 // frame-scss | partials/_placeholders.scss
-// file version: 0.00.003
+// file version: 0.00.005
 //
 
 //------------------------------------------------------------------------------
@@ -13,7 +13,17 @@
 
 %frame-clearfix //.clearfix
 {
-    @include apply-clearfix;
+    &:before,
+    &:after
+    {
+        content: " ";
+        display: table;
+    }
+
+    &:after
+    {
+        clear: both;
+    }
 }
 
 %frame-hidden //.hidden
@@ -68,6 +78,7 @@
 %frame-center-xy //.center-xy
 {
     @extend %frame-center-y;
+
     width:      100%;
     text-align: center;
 
@@ -75,6 +86,37 @@
     {
         @include apply-valign-middle(true);
         text-align: left;
+    }
+}
+
+//------------------------------------------------------------------------------
+// Lists and menus
+//------------------------------------------------------------------------------
+%frame-menu-list
+{
+    list-style:   none;
+    padding-left: 0;
+
+    li > a
+    {
+        display: block;
+    }
+}
+
+%frame-block-list
+{
+    list-style:   none;
+    padding-left: 0;
+
+    li
+    {
+        display: block;
+        width:   100%;
+
+        > a
+        {
+            display: block;
+        }
     }
 }
 

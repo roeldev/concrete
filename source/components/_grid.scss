@@ -89,7 +89,7 @@
         /* hasBreakpoints: #{map-get($gridSettings, hasBreakpoints)} */
 
         display: block;
-        @extend %frame-clearfix;
+        @include apply-clearfix();
 
         $columns: map-get($gridSettings, columns);
         @each $name, $column in $columns

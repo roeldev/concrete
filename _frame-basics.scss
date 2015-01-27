@@ -1,6 +1,6 @@
 //
 // frame-scss | _frame-basics.scss
-// file version: 0.00.001
+// file version: 0.00.002
 ////////////////////////////////////////////////////////////////////////////////
 //
 // Frame basic styles and optional selectors
@@ -20,19 +20,22 @@
 //------------------------------------------------------------------------------
 // Enable/disable basic frame-scss selectors.
 //------------------------------------------------------------------------------
-.clear    { @extend %frame-clearboth; }
-.clearfix { @extend %frame-clearfix; }
-.hidden   { @extend %frame-hidden; }
-.visible  { @extend %frame-visible; }
-.nowrap   { @extend %frame-nowrap; }
-.wrapper  { @extend %frame-wrapper; }
+.clear         { @extend %frame-clearboth; }
+.clearfix      { @extend %frame-clearfix; }
+.hidden        { @extend %frame-hidden; }
+.visible       { @extend %frame-visible; }
+.nowrap        { @extend %frame-nowrap; }
+.wrapper       { @extend %frame-wrapper; }
 
 .center-y      { @extend %frame-center-y; }
 .center-valign { @extend %frame-center-valign; }
 .center-x      { @extend %frame-center-x; }
 .center-xy     { @extend %frame-center-xy; }
 
-.fill-width  { @extend %frame-img-fill-width; }
-.fill-height { @extend %frame-img-fill-height; }
-.max-width   { @extend %frame-img-max-width; }
-.max-height  { @extend %frame-img-max-height; }
+.fill-width    { @extend %frame-img-fill-width; }
+.fill-height   { @extend %frame-img-fill-height; }
+.max-width     { @extend %frame-img-max-width; }
+.max-height    { @extend %frame-img-max-height; }
+
+ul.menu-list   { @include apply-menu-list(left); }
+ul.block-list  { @extend %frame-block-list; }
