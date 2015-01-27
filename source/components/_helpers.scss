@@ -8,7 +8,7 @@
 //
 // *Clearfix helper taken from http://nicolasgallagher.com/micro-clearfix-hack/
 //
-@mixin clearfix
+@mixin apply-clearfix
 {
     &:before,
     &:after
@@ -65,8 +65,13 @@
 
 //------------------------------------------------------------------------------
 //
-@mixin valign-middle
+@mixin apply-valign-middle($fontSizeFix: true)
 {
     display:        inline-block;
     vertical-align: middle;
+
+    @if $fontSizeFix
+    {
+        font-size: 1rem;
+    }
 }
