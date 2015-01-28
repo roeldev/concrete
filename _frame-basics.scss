@@ -1,6 +1,6 @@
 //
 // frame-scss | _frame-basics.scss
-// file version: 0.00.002
+// file version: 0.00.003
 ////////////////////////////////////////////////////////////////////////////////
 //
 // Frame basic styles and optional selectors
@@ -37,5 +37,5 @@
 .max-width     { @extend %frame-img-max-width; }
 .max-height    { @extend %frame-img-max-height; }
 
-ul.menu-list   { @include apply-menu-list(left); }
+ul.float-list  { @include apply-float-list(left); }
 ul.block-list  { @extend %frame-block-list; }

@@ -1,25 +1,30 @@
 //
 // frame-scss | components/_transition.scss
-// file version: 1.00.005
+// file version: 1.01.000
 //
 
 //------------------------------------------------------------------------------
 //
-@mixin transition($property, $duration: default,
-                  $easing: default, $delay: default)
+@mixin transition($property, $duration: default, $easing: false, $delay: false)
 {
+    $default: default;
+    @if (type-of($duration) == string and $duration != default)
+    {
+        $default: $duration;
+    }
+
     // retrieve default values where necessary
-    @if ($duration == default)
+    @if ($duration == $default)
     {
-        $duration: frame-transition(default, duration);
+        $duration: frame-transition($default, duration);
     }
-    @if ($easing == default)
+    @if ($easing == false)
     {
-        $easing: frame-transition(default, easing);
+        $easing: frame-transition($default, easing);
     }
-    @if ($delay == default)
+    @if ($delay == false)
     {
-        $delay: frame-transition(default, delay);
+        $delay: frame-transition($default, delay);
     }
 
     $hasPropertyList: (type-of($property) == list);

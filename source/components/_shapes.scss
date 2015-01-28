@@ -1,6 +1,6 @@
 //
 // frame-scss | components/_shapes.scss
-// file version: 1.01.003
+// file version: 1.01.004
 //
 
 //------------------------------------------------------------------------------
@@ -43,6 +43,10 @@
 //
 @mixin shape-triangle($type, $color, $size, $size2: false)
 {
+    @if (type-of($color) == string)
+    {
+        $color: frame-color($color);
+    }
     @if ($size2 == false)
     {
         $size2: $size;
