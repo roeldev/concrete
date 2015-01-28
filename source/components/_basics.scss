@@ -1,8 +1,12 @@
 //
 // frame-scss | components/_basics.scss
-// file version: 0.00.001
+// file version: 0.00.002
 //
 
+//------------------------------------------------------------------------------
+// This 'private' function will display all headings, wich are defined in the
+// $frame-font-sizes setting, in partials/_default.scss.
+//
 @mixin _frame-display-headings()
 {
     $fontSizes: ();
@@ -10,23 +14,33 @@
     // loop through h1-h6
     @for $i from 1 through 6
     {
-        $heading: 'h'+ $i;
+        $heading: unquote('h'+ $i);
 
         // check if the heading is set in the settings file
         @if map-has-key($frame-font-sizes, $heading)
         {
+            // group the elements by font-size
             $fontSize:  frame-font-size($heading);
-            $heading:   $heading +', .'+ $heading;
-            $fontSizes: map-append($fontSizes, $fontSize, unquote($heading));
+            $fontSizes: map-append($fontSizes, $fontSize, $heading);
         }
     }
 
-    // loop through all font-sizes and display the grouped headings
+    // loop through all grouped headings
     @each $fontSize, $headings in $fontSizes
     {
         #{$headings}
         {
             font-size: rem($fontSize);
+        }
+
+        // by extending the heading elements, any custom rules to h1-h6 will
+        // also be available to the .h1-.h6 classes
+        @each $heading in $headings
+        {
+            .#{$heading}
+            {
+                @extend #{$heading};
+            }
         }
     }
 }
