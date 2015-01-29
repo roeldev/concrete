@@ -1,6 +1,6 @@
 //
 // frame-scss | partials/_default.scss
-// file version: 1.01.001
+// file version: 1.01.008
 //
 
 /*! frame-scss v0.1 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
@@ -19,14 +19,9 @@ html
     -moz-osx-font-smoothing: grayscale;
 }
 
-//-----------------------------------------------------------------------------
-// Import a modified version of Normalize.css.
-//-----------------------------------------------------------------------------
-@import 'normalize';
-
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Use box-sizing: border-box on all element.
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 *,
 *:before,
 *:after
@@ -37,9 +32,9 @@ html
     padding: 0;
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Default button and hyperlink styles
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 a,
 button
 {
@@ -68,46 +63,17 @@ button
     @include appearance;
 }
 
-
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Headings
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Group heading by font-size. So headings with the same font-sizes are put in
 // a list and displayed together.
 //
-@mixin _default-display-headings()
-{
-    $fontSizes: ();
+@include _frame-display-headings();
 
-    // loop through h1-h6
-    @for $i from 1 through 6
-    {
-        $heading: 'h'+ $i;
-
-        // check if the heading is set in the settings file
-        @if(map-has-key($frame-fontSizes, $heading))
-        {
-            $fontSize:  frame-font-size($heading);
-            $heading:   $heading +', .'+ $heading;
-            $fontSizes: map-append($fontSizes, $fontSize, unquote($heading));
-        }
-    }
-
-    // loop through all font-sizes and display the grouped headings
-    @each $fontSize, $headings in $fontSizes
-    {
-        #{$headings}
-        {
-            font-size: rem($fontSize);
-        }
-    }
-}
-
-@include _default-display-headings();
-
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Paragraphs and text elements
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 p
 {
     padding-bottom: $lineHeight;
@@ -130,52 +96,9 @@ address
     font-style: normal;
 }
 
-//-----------------------------------------------------------------------------
-// Images and canvas
-//-----------------------------------------------------------------------------
-img
-{
-    vertical-align:         middle;
-    -ms-interpolation-mode: bicubic;
-}
-
-img,
-canvas
-{
-    &.fill-w,
-    &.max-w,
-    .fill-w &,
-    .max-w &
-    {
-        width:  100%;
-        height: auto;
-    }
-
-    &.fill-h,
-    &.max-h,
-    .fill-h &,
-    .max-h &
-    {
-        width:  auto;
-        height: 100%;
-    }
-
-    &.max-w,
-    .max-w &
-    {
-        max-width: 100%;
-    }
-
-    &.max-h,
-    .max-h &
-    {
-        max-height: 100%;
-    }
-}
-
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Default styles for other elements
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 input,
 select,
 option,
@@ -185,91 +108,22 @@ button
     font-family: frame-font();
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+img
+{
+    vertical-align:         middle;
+    -ms-interpolation-mode: bicubic;
+}
+
+//------------------------------------------------------------------------------
 
 ul
 {
     padding-left: 16px;
 }
 
-nav > ul,
-ul.menu-list
+nav > ul
 {
-    @include menu-list;
-}
-
-ul.block-list
-{
-    @include block-list;
-}
-
-//-----------------------------------------------------------------------------
-// Helper style classes
-//-----------------------------------------------------------------------------
-.clear
-{
-    clear: both;
-}
-
-.clearfix
-{
-    @include clearfix;
-}
-
-.hidden
-{
-    display:    none;
-    visibility: hidden;
-}
-
-.visible
-{
-    display:    block;
-    visibility: visible;
-}
-
-.nowrap
-{
-    white-space: nowrap;
-}
-
-//-----------------------------------------------------------------------------
-// Center position style classes
-//-----------------------------------------------------------------------------
-
-// x only
-.cx
-{
-    position:  relative;
-    width:     100%;
-    max-width: frame-breakpoint();
-    margin:    0 auto;
-}
-
-// y only
-.cy
-{
-    width:  100%;
-    height: 100%;
-
-    & > &-valign
-    {
-        display:        inline-block;
-        vertical-align: middle;
-        height:         100%;
-    }
-}
-
-// x inside y
-.cxy
-{
-    @extend .cy;
-    text-align: center;
-
-    > .cx
-    {
-        display:        inline-block;
-        vertical-align: middle;
-        text-align:     left;
-    }
+    @extend %frame-menu-list;
 }

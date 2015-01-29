@@ -1,0 +1,77 @@
+//
+// frame-scss | _frame-grid.scss
+// file version: 0.01.001
+////////////////////////////////////////////////////////////////////////////////
+//
+// Basic grid settings
+//------------------------------------------------------------------------------
+// For more information about the available settings, check either the included
+// help documents, examples, or visit the project page: http://git.io/qoNLsw
+//
+
+//------------------------------------------------------------------------------
+// Grid columns
+//------------------------------------------------------------------------------
+// Specify wich columns you would like to use and what alternative sizes they
+// should have when a breakpoint is reached.
+//
+// Arguments
+//------------------------------------------------------------------------------
+// columnName: columnWidth
+// columnName: (columnWidth, (breakpoint1: adaptiveColumnWidth1,
+//                            breakpoint2: adaptiveColumnWidth2, ...))
+//
+// Values types
+//------------------------------------------------------------------------------
+// columnName:          any valid list key/css selector name
+// columnWidth:         a valid number, this can be a fraction or a percentage
+// breakpoint:          the breakpoint key as in $frame-breakpoints
+// adaptiveColumnWidth: same as columnWidth
+//
+/*$frame-grid-columns:
+(
+    '1':   (1/12, (s:  50%,  m: 25%)),
+    '1_5': (1/8,  (s:  50%,  m: 25%)),
+    '2':   (1/6,  (s:  100%, m: 50%)),
+    '3':   (1/4,  (xs: 100%, s: 50%)),
+    '4':   (1/3,  (s:  100%)),
+    '6':   (1/2,  (s:  100%)),
+    '8':   (2/2,  (s:  100%)),
+    '9':   (3/4,  (s:  100%)),
+    '10':  (5/6,  (l:  100%)),
+    '12':  1
+);*/
+
+$frame-grid-columns:
+(
+    '20':  20%,
+    '33':  (33.33%, (s: 100%)),
+    '40':  40%,
+    '50':  50%,
+    '60':  60%,
+    '80':  80%,
+    '100': 100%
+);
+
+$frame-grid-columns:
+(
+    '20':  240px,
+    '33':  (33.33%, (s: 100%)),
+    '40':  480px,
+    '50':  50%,
+    '60':  60%,
+    '80':  80%,
+    '100': 100%
+);
+
+//------------------------------------------------------------------------------
+// Import grid specific frame-sccs functions/mixins/partials.
+//------------------------------------------------------------------------------
+// Last but not least, import the frame-scss initializer. This will import all
+// the needed functions and mixins to get you started :)
+//
+@import 'source/grid';
+
+.blockgrid { @include frame-grid(block, $frame-grid-columns); }
+//.flexgrid  { @include frame-grid(flex, $frame-grid-columns); }
+//.tablegrid { @include frame-grid(table, $frame-grid-columns); }

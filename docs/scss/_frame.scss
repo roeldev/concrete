@@ -1,45 +1,53 @@
-//------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+// Frame settings and variables
+//-----------------------------------------------------------------------------
+// Some useful links:
+// - Github project: http://git.io/qoNLsw
+//
+
+//-----------------------------------------------------------------------------
 // Fonts and font families
-//------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // Here is where you can define all of the fonts used by your application.
 // The default font will automatically be set to the html, input, select,
 // option, textarea and button elements.
 //
 $frame-fonts:
 (
-    default : ('museo-sans-rounded', sans-serif)
+    default: ('some-custom-font', sans-serif)
 );
 
-//------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // Font sizes
-//------------------------------------------------------------------------------
-// When set, the font sizes for headings (h1-h6) will automatically
-// defined.
+//-----------------------------------------------------------------------------
+// When set, the font sizes for headings (h1-h6) will automatically be
+// defined in partials/_default.scss.
 //
 $frame-fontSizes:
 (
-    default : 16px,
-    h1      : 40px,
-    h3      : 25px,
-    h4      : 20px,
-    h5      : 20px,
-    h6      : 15px
+    default: 16px,
+    h1:      32px,
+    h2:      24px,
+    h3:      18px,
+    h4:      16px,
+    h5:      13px,
+    h6:      10px
 );
 
-//------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // Colors
-//------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // Define all of your colors here. These can be anything from font colors,
 // background-colors to border-colors.
 //
 $frame-colors:
 (
-    default : #000
+    default: #000
 );
 
-//------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // Transitions
-//------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // If you're using transitions most of the time the duration and easing
 // properties are the same for all transitions. You can
 //
@@ -47,42 +55,41 @@ $frame-transitions:
 (
     default:
     (
-        delay    : 0s,
-        duration : .2s,
-        easing   : ease-in-out
+        delay:    0s,
+        duration: .2s,
+        easing:   ease-in-out
     )
 );
 
-//------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
 $frame-breakpoints:
 (
-    default : 1440px,
+    default: 1440px,
 
-    xl : (min: 1200px,  max: 1440px ),  // desktop >
-    l  : (min: 1024px,  max: 1199px ),  // tablet landscape
-    m  : (min: 768px,   max: 1023px ),  // tablet portrait
-    s  : (min: 480px,   max: 767px ),   // mobile landscape
-    xs : (min: 240px,   max: 479px )    // mobile portrait
+    xl: (min: 1200px,  max: 1440px ),  // desktop >
+    l:  (min: 1024px,  max: 1199px ),  // tablet landscape
+    m:  (min: 768px,   max: 1023px ),  // tablet portrait
+    s:  (min: 480px,   max: 767px ),   // mobile landscape
+    xs: (min: 240px,   max: 479px )    // mobile portrait
 );
 
-$gridWidth        : 100%;
-$gridPadding      : 10px;
-$gridOuterPadding : 30px;
+$gridWidth:        100%;
+$gridPadding:      10px;
+$gridOuterPadding: 30px;
 
-//------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // Other variables
-//------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // You can set any other variables you'd like to use in this section.
 //
+$lineHeight:   1.6em;
+$borderRadius: 3px;
 
-$lineHeight   : 1.6em;
-$borderRadius : 3px;
-
-//------------------------------------------------------------------------------
-// Import Frame
-//------------------------------------------------------------------------------
-// Last but not least, import the Frame initializer. This will import all
-// the needed functions and mixins to get you started!
+//-----------------------------------------------------------------------------
+// Import frame-sccs
+//-----------------------------------------------------------------------------
+// Last but not least, import the frame-scss initializer. This will import all
+// the needed functions and mixins to get you started :)
 //
 @import '../../source/init';

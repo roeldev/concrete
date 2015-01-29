@@ -1,26 +1,41 @@
 //
-// frame-scss | mixins/_transition.scss
-// file version: 1.00.002
+// frame-scss | components/_transition.scss
+// file version: 1.01.000
 //
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 //
-@mixin transition($property, $duration: default, $easing: default, $delay: default)
+@mixin transition($property, $duration: default, $easing: false, $delay: false)
 {
+    $default: default;
+    @if (type-of($duration) == string and $duration != default)
+    {
+        $default: $duration;
+    }
+
     // retrieve default values where necessary
-    @if($duration == default) { $duration: frame-transition(default, duration); }
-    @if($easing   == default) {   $easing: frame-transition(default, easing); }
-    @if($delay    == default) {    $delay: frame-transition(default, delay); }
+    @if ($duration == $default)
+    {
+        $duration: frame-transition($default, duration);
+    }
+    @if ($easing == false)
+    {
+        $easing: frame-transition($default, easing);
+    }
+    @if ($delay == false)
+    {
+        $delay: frame-transition($default, delay);
+    }
 
     $hasPropertyList: (type-of($property) == list);
     $hasDurationList: (type-of($duration) == list);
 
-    @if($hasPropertyList and $hasDurationList)
+    @if ($hasPropertyList and $hasDurationList)
     {
         $propertyListLength: length($property);
         $durationListLength: length($duration);
 
-        @if($propertyListLength == $durationListLength)
+        @if ($propertyListLength == $durationListLength)
         {
             $transitions: ();
             @for $i from 1 through $propertyListLength
@@ -47,7 +62,7 @@
     }
     @else
     {
-        @if($hasPropertyList)
+        @if $hasPropertyList
         {
             @include transition-property($property);
             $property: null;
@@ -60,11 +75,11 @@
     }
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 //
 @mixin transition-delay($value: default)
 {
-    @if($value == default)
+    @if ($value == default)
     {
         $value: frame-transition(default, delay);
     }
@@ -75,11 +90,11 @@
             transition-delay: $value;
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 //
 @mixin transition-duration($value: default)
 {
-    @if($value == default)
+    @if ($value == default)
     {
         $value: frame-transition(default, duration);
     }
@@ -90,7 +105,7 @@
             transition-duration: $value;
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 //
 @mixin transition-property($value...)
 {
@@ -100,11 +115,11 @@
             transition-property: $value;
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 //
 @mixin transition-timing-function($value: default)
 {
-    @if($value == default)
+    @if ($value == default)
     {
         $value: frame-transition(default, easing);
     }

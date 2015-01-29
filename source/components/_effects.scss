@@ -1,30 +1,30 @@
 //
-// frame-scss | mixins/_effects.scss
-// file version: 1.00.002
+// frame-scss | components/_effects.scss
+// file version: 1.01.001
+////////////////////////////////////////////////////////////////////////////////
+//
+// Easy to use and pretty cool effects!
 //
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 //
 @mixin fx-text-shadow($color, $size)
 {
-    $shadows: '';
+    $shadows: ();
     @for $i from 1px through $size
     {
-        @if($i > 1)
-        {
-            $shadows: $shadows + ',';
-        }
-
-        $shadows: $shadows + '#{$i} #{$i} #{$color}';
+        $shadow:  $i $i $color;
+        $shadows: append($shadows, $shadow, comma);
     }
 
     text-shadow: unquote($shadows);
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // *Mixin taken from Bootstrap
 //
-@mixin fx-gradient-horizontal($startColor, $endColor, $startPercent: 0%, $endPercent: 100%)
+@mixin fx-gradient-horizontal($startColor, $endColor,
+                              $startPercent: 0%, $endPercent: 100%)
 {
     // Safari 5.1-6, Chrome 10+
     background-image: -webkit-linear-gradient(left, $startColor $startPercent, $endColor $endPercent);
@@ -38,10 +38,11 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($startColor)}', endColorstr='#{ie-hex-str($endColor)}', GradientType=1);
 }
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // *Mixin taken from Bootstrap
 //
-@mixin fx-gradient-vertical($startColor, $endColor, $startPercent: 0%, $endPercent: 100%)
+@mixin fx-gradient-vertical($startColor, $endColor,
+                            $startPercent: 0%, $endPercent: 100%)
 {
     // Safari 5.1-6, Chrome 10+
     background-image: -webkit-linear-gradient(top, $startColor $startPercent, $endColor $endPercent);

@@ -158,7 +158,7 @@
     // xl breakpoint overslaan, die is altijd gelijk aan default
     @if($breakpoint != default and $breakpoint != xl)
     {
-        @include use-breakpoint($breakpoint, max)
+        @include add-breakpoint($breakpoint, max)
         {
             /*.flexgrid
             {

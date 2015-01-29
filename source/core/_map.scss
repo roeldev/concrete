@@ -1,11 +1,14 @@
 //
-// frame-scss | functions/_map.scss
-// file version: 0.00.001
+// frame-scss | core/_map.scss
+// file version: 0.00.002
+////////////////////////////////////////////////////////////////////////////////
+//
+// Some extra map related functions.
 //
 
 @function map-append($map, $key, $value, $seperator: comma)
 {
-    @if(map-has-key($map, $key))
+    @if map-has-key($map, $key)
     {
         $currentValue: map-get($map, $key);
         $value:        append($currentValue, $value, $seperator);

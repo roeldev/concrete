@@ -1,0 +1,158 @@
+//
+// frame-scss | partials/_placeholders.scss
+// file version: 0.00.006
+//
+
+//------------------------------------------------------------------------------
+// Helper style classes
+//------------------------------------------------------------------------------
+%frame-clearboth //.clear
+{
+    clear: both;
+}
+
+%frame-clearfix //.clearfix
+{
+    &:before,
+    &:after
+    {
+        content: " ";
+        display: table;
+    }
+
+    &:after
+    {
+        clear: both;
+    }
+}
+
+%frame-hidden //.hidden
+{
+    display:    none;
+    visibility: hidden;
+}
+
+%frame-visible //.visible
+{
+    display:    block;
+    visibility: visible;
+}
+
+%frame-nowrap //.nowrap
+{
+    white-space: nowrap;
+}
+
+//------------------------------------------------------------------------------
+// Wrapper and position style classes
+//------------------------------------------------------------------------------
+%frame-wrapper //.wrapper
+{
+    display: block;
+    margin: 0 auto;
+
+    @include _frame-display-wrapper();
+}
+
+%frame-center-x //.center-x
+{
+    position:  relative;
+    width:     100%;
+    max-width: frame-breakpoint();
+    margin:    0 auto;
+}
+
+%frame-center-y //.center-y
+{
+    height:    100%;
+    font-size: 0;
+
+    & > %frame-center-valign //.center-valign
+    {
+        display:        inline-block;
+        vertical-align: middle;
+        height:         100%;
+    }
+}
+
+%frame-center-xy //.center-xy
+{
+    @extend %frame-center-y;
+
+    width:      100%;
+    text-align: center;
+
+    > %frame-center-x
+    {
+        @include apply-valign-middle(true);
+        text-align: left;
+    }
+}
+
+//------------------------------------------------------------------------------
+// Lists and menus
+//------------------------------------------------------------------------------
+%frame-float-list
+{
+    list-style:   none;
+    padding-left: 0;
+
+    li > a
+    {
+        display: block;
+    }
+}
+
+%frame-block-list
+{
+    list-style:   none;
+    padding-left: 0;
+
+    li
+    {
+        display: block;
+        width:   100%;
+
+        > a
+        {
+            display: block;
+        }
+    }
+}
+
+//------------------------------------------------------------------------------
+// Images and canvas
+//------------------------------------------------------------------------------
+img,
+canvas
+{
+    &%frame-img-fill-width, //.fill-width
+    &%frame-img-max-width,  //.max-width
+    %frame-img-fill-width &,
+    %frame-img-max-width &
+    {
+        width:  100%;
+        height: auto;
+    }
+
+    &%frame-img-fill-height, //.fill-height
+    &%frame-img-max-height,  //.max-height
+    %frame-img-fill-height &,
+    %frame-img-max-height &
+    {
+        width:  auto;
+        height: 100%;
+    }
+
+    &%frame-img-max-width,
+    %frame-img-max-width &
+    {
+       max-width: 100%;
+    }
+
+    &%frame-img-max-height,
+    %frame-img-max-height &
+    {
+        max-height: 100%;
+    }
+}

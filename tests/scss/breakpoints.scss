@@ -1,0 +1,29 @@
+//------------------------------------------------------------------------------
+// Import Frame assets
+//------------------------------------------------------------------------------
+// Import all the Frame assets you like. Ofcourse you can also import your own
+// or 3rd party .scss files at this point.
+//
+@import '../../frame';
+//@import '../../frame-basics';
+//@import '../../frame-grid';
+
+////////////////////////////////////////////////////////////////////////////////
+
+body
+{
+    @include add-breakpoint(xl, min)
+    {
+        background-color: red;
+    }
+
+    @include add-breakpoint(l)
+    {
+        background-color: blue;
+    }
+
+    @include add-breakpoint(m, max)
+    {
+        background-color: green;
+    }
+}

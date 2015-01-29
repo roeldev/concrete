@@ -1,13 +1,17 @@
-//-----------------------------------------------------------------------------
+//
+// frame-scss | _frame.scss
+// file version: 0.01.001
+////////////////////////////////////////////////////////////////////////////////
+//
 // Frame settings and variables
-//-----------------------------------------------------------------------------
-// Some useful links:
-// - Github project: http://git.io/qoNLsw
+//------------------------------------------------------------------------------
+// For more information about the available settings, check either the included
+// help documents, examples, or visit the project page: http://git.io/qoNLsw
 //
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Fonts and font families
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Here is where you can define all of the fonts used by your application.
 // The default font will automatically be set to the html, input, select,
 // option, textarea and button elements.
@@ -17,13 +21,13 @@ $frame-fonts:
     default: ('some-custom-font', sans-serif)
 );
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Font sizes
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // When set, the font sizes for headings (h1-h6) will automatically be
 // defined in partials/_default.scss.
 //
-$frame-fontSizes:
+$frame-font-sizes:
 (
     default: 16px,
     h1:      32px,
@@ -34,9 +38,9 @@ $frame-fontSizes:
     h6:      10px
 );
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Colors
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Define all of your colors here. These can be anything from font colors,
 // background-colors to border-colors.
 //
@@ -45,9 +49,9 @@ $frame-colors:
     default: #000
 );
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Transitions
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // If you're using transitions most of the time the duration and easing
 // properties are the same for all transitions. You can
 //
@@ -61,34 +65,47 @@ $frame-transitions:
     )
 );
 
-//-----------------------------------------------------------------------------
-
+//------------------------------------------------------------------------------
+// Breakpoints
+//------------------------------------------------------------------------------
 $frame-breakpoints:
 (
-    default: 1440px,
-
-    xl: (min: 1200px,  max: 1440px ),  // desktop >
-    l:  (min: 1024px,  max: 1199px ),  // tablet landscape
-    m:  (min: 768px,   max: 1023px ),  // tablet portrait
-    s:  (min: 480px,   max: 767px ),   // mobile landscape
-    xs: (min: 240px,   max: 479px )    // mobile portrait
+    xl: (min: 1200px, max: 1440px), // desktop >
+    l:  1024px,  // tablet landscape
+    m:  768px,  // tablet portrait
+    s:  480px,  // mobile landscape
+    xs: 240px   // mobile portrait
 );
 
-$gridWidth:        100%;
-$gridPadding:      10px;
-$gridOuterPadding: 30px;
+//------------------------------------------------------------------------------
+// Grid
+//------------------------------------------------------------------------------
+$frame-grid-width:
+(
+    default: 100%,
+    xl:      90%,
+    s:       95%
+);
 
-//-----------------------------------------------------------------------------
+$frame-grid-gap:
+(
+    default: 10px,
+    xl:      15px,
+    s:       8px,
+    xs:      5px
+);
+
+//------------------------------------------------------------------------------
 // Other variables
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // You can set any other variables you'd like to use in this section.
 //
 $lineHeight:   1.6em;
 $borderRadius: 3px;
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Import frame-sccs
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // Last but not least, import the frame-scss initializer. This will import all
 // the needed functions and mixins to get you started :)
 //

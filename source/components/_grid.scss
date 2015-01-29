@@ -1,0 +1,105 @@
+@function frame-grid-column($map, $name, $size: 1, $breakpointSizes: false)
+{
+    $size:   ($size * 100%);
+    $column: (name: $name, size: $size, breakpointSizes: $breakpointSizes);
+
+    $map: map-append($map, $name, $column);
+    @return $map;
+}
+
+@mixin frame-grid($type, $columns: default)
+{
+    @if ($columns == default)
+    {
+        $columns: $frame-grid-columns;
+    }
+
+    @if ($type == block)
+    {
+        $columns: _frame-prepare-blockgrid($columns);
+        @include  _frame-display-blockgrid($columns);
+    }
+    @elseif ($type == flex)
+    {
+
+    }
+    @elseif ($type == table)
+    {
+
+    }
+    @else
+    {
+        @warn "frame-grid: Unable to create, unknown grid type '#{$type}'!";
+    }
+}
+
+@function _frame-prepare-blockgrid($columnSettings)
+{
+    $columns:        ();
+    $breakpoints:    ();
+    $hasBreakpoints: false;
+
+    @each $name, $settings in $columnSettings
+    {
+        $width: 100%;
+
+        @if (type-of($settings) == 'list')
+        {
+            $width:          nth($settings, 1);
+            $breakpoints:    nth($settings, 2);
+            $hasBreakpoints: true;
+        }
+        @else
+        {
+            $width: $settings;
+        }
+
+        // make sure $width is a percentage value
+        @if ($width <= 1)
+        {
+            $width: ($width * 100%);
+        }
+
+        $columns: map-append($columns, $name,
+        (
+            name:  $name,
+            width: $width
+        ));
+    }
+
+    @return
+    (
+        columns:        $columns,
+        breakpoints:    $breakpoints,
+        hasBreakpoints: $hasBreakpoints
+    );
+}
+
+@mixin _frame-display-blockgrid($gridSettings)
+{
+    %frame-blockgrid-cell
+    {
+        display: block;
+        float: left;
+    }
+
+    &.gr,
+    & .gr
+    {
+        /* hasBreakpoints: #{map-get($gridSettings, hasBreakpoints)} */
+
+        display: block;
+        @include apply-clearfix();
+
+        $columns: map-get($gridSettings, columns);
+        @each $name, $column in $columns
+        {
+            > .gc-#{$name}
+            {
+                @extend %frame-blockgrid-cell;
+                width: map-get($column, width);
+            }
+        }
+    }
+}
+
