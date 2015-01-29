@@ -5,14 +5,25 @@
 // or 3rd party .scss files at this point.
 //
 @import '../../frame';
-@import '../../frame-basics';
-@import '../../frame-grid';
+//@import '../../frame-basics';
+//@import '../../frame-grid';
 
 ////////////////////////////////////////////////////////////////////////////////
 
-html, body
+body
 {
-    height: 100%;
-    font-weight: 300;
-    color: frame-color();
+    @include add-breakpoint(xl, min)
+    {
+        background-color: red;
+    }
+
+    @include add-breakpoint(l)
+    {
+        background-color: blue;
+    }
+
+    @include add-breakpoint(m, max)
+    {
+        background-color: green;
+    }
 }
