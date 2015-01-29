@@ -1,6 +1,6 @@
 //
 // frame-scss | core/_utils.scss
-// file version: 1.01.001
+// file version: 1.01.002
 ////////////////////////////////////////////////////////////////////////////////
 //
 // Some extra functions to make your development live easier.
@@ -24,7 +24,7 @@
         $type: nth($type, 1);
     }
 
-    @if (type-of($var) != $type)
+    @if (type-of($var) != $type and $var != null)
     {
         @if ($default == null)
         {
