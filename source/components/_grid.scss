@@ -35,18 +35,22 @@
 
 @function _frame-prepare-blockgrid($columnSettings)
 {
-    $columns:        ();
-    $breakpoints:    ();
-    $hasBreakpoints: false;
+    $returnColumns:     ();
+    $returnBreakpoints: map-keys($frame-breakpoints);
+    $hasBreakpoints:    false;
 
     @each $name, $settings in $columnSettings
     {
-        $width: 100%;
+        $width:       100%;
+        $breakpoints: all;
+        $altWidths:   ();
 
         @if (type-of($settings) == 'list')
         {
-            $width:          nth($settings, 1);
-            $breakpoints:    nth($settings, 2);
+            $width:       nth($settings, 1);
+            $breakpoints: nth($settings, 2);
+            $altWidths:   nth($settings, 3);
+
             $hasBreakpoints: true;
         }
         @else
@@ -60,7 +64,7 @@
             $width: ($width * 100%);
         }
 
-        $columns: map-append($columns, $name,
+        $returnColumns: map-append($returnColumns, $name,
         (
             name:  $name,
             width: $width
@@ -69,8 +73,8 @@
 
     @return
     (
-        columns:        $columns,
-        breakpoints:    $breakpoints,
+        columns:        $returnColumns,
+        breakpoints:    $returnBreakpoints,
         hasBreakpoints: $hasBreakpoints
     );
 }
@@ -86,18 +90,32 @@
     &.gr,
     & .gr
     {
-        /* hasBreakpoints: #{map-get($gridSettings, hasBreakpoints)} */
-
         display: block;
         @include apply-clearfix();
 
-        $columns: map-get($gridSettings, columns);
+        $columns:     map-get($gridSettings, columns);
+        $breakpoints: map-get($gridSettings, breakpoints);
+
         @each $name, $column in $columns
         {
             > .gc-#{$name}
             {
                 @extend %frame-blockgrid-cell;
                 width: map-get($column, width);
+            }
+        }
+
+        @each $breakpoint in $breakpoints
+        {
+            @include add-breakpoint($breakpoint, max)
+            {
+                @each $name, $column in $columns
+                {
+                    > .gc-#{$breakpoint}-#{$name}
+                    {
+                        width: map-get($column, width);
+                    }
+                }
             }
         }
     }
