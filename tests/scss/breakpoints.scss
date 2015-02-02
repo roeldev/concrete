@@ -26,4 +26,9 @@ body
     {
         background-color: green;
     }
+
+    @include add-breakpoint(xl l m, max)
+    {
+        color: purple;
+    }
 }

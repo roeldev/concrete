@@ -112,40 +112,50 @@
 // min/max keys is returned.
 // Of course, when $type equals default, the default number value is return.
 //
-// @param string $type The value of the corresponding breakpoint to return.
-// @param string $size The min/max value of the breakpoint to return.
+// @param string $breakpoint The breakpoint to return.
+// @param string $value The min/max value of the breakpoint to return.
 // @return map|number(px)
 //
-@function frame-breakpoint($type: default, $size: false)
+@function frame-breakpoint($breakpoint: default, $value: false)
 {
-    @if ($type == default)
+    $isDefault: ($breakpoint == default);
+
+    @if $isDefault
     {
-        $type: xl;
-        $size: max;
+        $breakpoint: xl;
     }
 
-    @if map-has-key($frame-breakpoints, $type)
+    @if map-has-key($frame-breakpoints, $breakpoint)
     {
-        $breakpoint: map-get($frame-breakpoints, $type);
+        $breakpoint: map-get($frame-breakpoints, $breakpoint);
 
-        @if ($type == default)
+        @if ($value == false or $value == both)
         {
             @return $breakpoint;
         }
-        @elseif ($size == false)
+        @elseif map-has-key($breakpoint, $value)
         {
-            @return $breakpoint;
-        }
-        @elseif map-has-key($breakpoint, $size)
-        {
-            @return map-get($breakpoint, $size);
+            @return map-get($breakpoint, $value);
         }
     }
     @else
     {
-        @warn "frame-breakpoint: Unknown breakpoint '#{$type}', '#{$size}'!";
+        @warn "frame-breakpoint: Unknown breakpoint '#{$breakpoint}', '#{$value}'!";
         @return null;
     }
+}
+
+@function frame-wrapper-width()
+{
+    $breakpoint: frame-breakpoint();
+    $key:        if(map-has-key($breakpoint, max), max, min);
+
+    @return map-get($breakpoint, $key);
+}
+
+@function frame-breakpoint-scrollbar-buffer($type: default)
+{
+
 }
 
 @function frame-grid-width($breakpoint: default, $gridType: false)
