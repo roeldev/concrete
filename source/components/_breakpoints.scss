@@ -13,7 +13,7 @@
 //
 @mixin add-breakpoint($breakpoint, $type: both, $scrollbarBuffer: true)
 {
-    $mediaQuery: false;
+    $mediaQuery: ();
 
     // enkele breakpoint key (xl|l), haal corresponderende map op
     @if (type-of($breakpoint) == string)
@@ -23,7 +23,7 @@
     // custom breakpoint map (min: #, max: #)
     @if (type-of($breakpoint) == map)
     {
-        $mediaQuery: create-media-query((),
+        $mediaQuery: create-media-query($mediaQuery,
                                         $breakpoint,
                                         $type,
                                         $scrollbarBuffer);
@@ -50,7 +50,7 @@
         }
     }
 
-    @if ($mediaQuery != false)
+    @if (length($mediaQuery) > 0)
     {
         @media #{$mediaQuery}
         {
