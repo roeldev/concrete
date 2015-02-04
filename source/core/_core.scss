@@ -1,6 +1,6 @@
 //
-// frame-scss | core/_frame-core.scss
-// file version: 1.01.000
+// frame-scss | core/_core.scss
+// file version: 1.01.001
 ////////////////////////////////////////////////////////////////////////////////
 //
 // All default frame-scss functions are within this file. Through these
@@ -32,8 +32,7 @@
         @return unquote($return);
     }
 
-    @warn "frame-font: Unknown font '#{$key}'!";
-    @return null;
+    @return warn("frame-font: Unknown font '#{$key}'!");
 }
 
 //------------------------------------------------------------------------------
@@ -49,8 +48,7 @@
         @return map-get($frame-font-sizes, $key);
     }
 
-    @warn "frame-font-size: Unknown font-size '#{$key}'!";
-    @return null;
+    @return warn("frame-font-size: Unknown font-size '#{$key}'!");
 }
 
 //------------------------------------------------------------------------------
@@ -70,8 +68,7 @@
         @return map-get($frame-colors, $key);
     }
 
-    @warn "frame-color: Unknown color '#{$key}'!";
-    @return null;
+    @return warn("frame-color: Unknown color '#{$key}'!");
 }
 
 //------------------------------------------------------------------------------
@@ -96,13 +93,11 @@
         }
         @else
         {
-            @warn "frame-transition: Unknown attribute '#{$attr}' for transition '#{$name}'!";
-            @return null;
+            @return warn("frame-transition: Unknown attribute '#{$attr}' for transition '#{$name}'!");
         }
     }
 
-    @warn "frame-transition: Unknown transition set '#{$name}'!";
-    @return null;
+    @return warn("frame-transition: Unknown transition set '#{$name}'!");
 }
 
 //------------------------------------------------------------------------------
@@ -137,11 +132,14 @@
         {
             @return map-get($breakpoint, $value);
         }
+        @else
+        {
+            @return warn("frame-breakpoint: Unknown value '#{$value}' in '#{$breakpoint}'!");
+        }
     }
     @else
     {
-        @warn "frame-breakpoint: Unknown breakpoint '#{$breakpoint}', '#{$value}'!";
-        @return null;
+        @return warn("frame-breakpoint: Unknown breakpoint '#{$breakpoint}'!");
     }
 }
 
@@ -175,8 +173,7 @@
     }
     @else
     {
-        @warn "frame-grid-width: Unknown breakpoint '#{$breakpoint}'!";
-        @return null;
+        @return warn("frame-grid-width: Unknown breakpoint '#{$breakpoint}'!");
     }
 }
 

@@ -1,22 +1,158 @@
 //
 // frame-scss | core/_debug.scss
-// file version: 0.00.001
+// file version: 0.00.002
 ////////////////////////////////////////////////////////////////////////////////
 //
 // Debug related functions and mixins. Work in progress!
 //
 
-// create map for debugging
-@function debug-make()
-{
-
-}
-
 // displays all given variables
-@mixin debug()
+@mixin debug($debug: null)
 {
-    #debug
-    {
+    $display: '';
+    $newline: '
+ * ';
 
+    $varType: type-of($debug);
+    @if($varType == number)
+    {
+        $display: $newline + _frame-debug-number($debug);
     }
+    @elseif ($varType == string)
+    {
+        $display: $newline + _frame-debug-string($debug);
+    }
+    @elseif ($varType == color)
+    {
+        $display: $newline + _frame-debug-color($debug);
+    }
+    @elseif ($varType == boolean)
+    {
+        $display: $newline + _frame-debug-boolean($debug);
+    }
+    @elseif ($varType == null)
+    {
+        $display: $newline + _frame-debug-null();
+    }
+    @elseif ($varType == list)
+    {
+        $display: _frame-debug-list($debug, $newline);
+    }
+    @elseif ($varType == map)
+    {
+        $display: _frame-debug-map($debug, $newline);
+    }
+    @else
+    {
+        $display: $newline + _frame-debug-unknown();
+    }
+
+/**
+ * frame-scss debug#{$display}
+ */
 }
+
+@function debug($debug)
+{
+    $frame-debugs: append($frame-debugs, $debug, comma);
+    @return null;
+}
+
+@function warn($message)
+{
+    $frame-warnings: append($frame-warnings, $message, comma);
+
+    @warn $message;
+    @return null;
+}
+
+@mixin frame-display-debug()
+{
+    @include debug($frame-debugs);
+    $frame-debugs: ();
+}
+
+@mixin frame-display-warnings()
+{
+    $length:  length($frame-warnings);
+    $display: '';
+    $newline: '
+';
+
+    @if ($length > 0)
+    {
+        @for $i from 1 through $length
+        {
+            $message: nth($frame-warnings, $i);
+            $display: $display + $newline + ' * [#{$i}] '+ $message;
+        }
+
+        $frame-warnings: ();
+    }
+    @else
+    {
+        $display: ' {none}';
+    }
+
+/**
+ * frame-scss warnings
+ *#{$display}
+ */
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+//------------------------------------------------------------------------------
+// Private functions
+//------------------------------------------------------------------------------
+
+// numbers (e.g. 1.2, 13, 10px, .2s);
+@function _frame-debug-number($number)
+{
+    @return '[number] '+ $number;
+}
+
+// strings of text, with and without quotes (e.g. "foo", 'bar', baz);
+@function _frame-debug-string($string)
+{
+    @return '[string] '+ $string;
+}
+
+@function _frame-debug-color($color)
+{
+    @return '[color] '+ $color;
+}
+
+@function _frame-debug-boolean($bool)
+{
+    @return '[boolean] '+ if($bool == true, 'true', 'false');
+}
+
+@function _frame-debug-null()
+{
+    @return '[null] null';
+}
+
+@function _frame-debug-unknown()
+{
+    @return '{unknown}';
+}
+
+@function _frame-debug-list($list, $newline)
+{
+    @return '[list] ()';
+}
+
+@function _frame-debug-map($map, $newline)
+{
+    @return '[map] ()';
+}
+
+// -
+// -
+// - colors (e.g. blue, #04a3f9, rgba(255, 0, 0, 0.5));
+// - booleans (e.g. true, false);
+// - nulls (e.g. null);
+// - lists of values, separated by spaces or commas (e.g. 1.5em 1em 0 2em or
+//   Helvetica, Arial, sans-serif);
+// - maps from one value to another (e.g. (key1: value1, key2: value2)).

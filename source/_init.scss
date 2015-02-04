@@ -1,13 +1,13 @@
 //
 // frame-scss | _init.scss
-// file version: 1.01.003
+// file version: 1.01.004
 ////////////////////////////////////////////////////////////////////////////////
 //
 // This file imports all required functions and mixins wich you can use while
 // developing your project.
 //
+@import 'core/core';
 @import 'core/debug';
-@import 'core/frame-core';
 @import 'core/map';
 @import 'core/utils';
 
@@ -23,6 +23,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 $frame-breakpoints: _frame-prepare-breakpoints();
+$frame-debugs:      ();
+$frame-warnings:    ();
 
 /*
     frame-scss Sassy CSS framework
