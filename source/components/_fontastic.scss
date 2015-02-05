@@ -1,6 +1,6 @@
 //
 // frame-scss | components/_fontastic.scss
-// file version: 1.01.000
+// file version: 1.01.001
 //
 
 //------------------------------------------------------------------------------
@@ -22,7 +22,16 @@
         src: url("#{$dir}#{$file}.eot?#iefix") format("embedded-opentype"),
              url("#{$dir}#{$file}.woff") format("woff"),
              url("#{$dir}#{$file}.ttf") format("truetype"),
-             url("#{$dir}#{$file}.svg##{$font}") format("svg");
+             url("#{$dir}#{$file}.svg##{$name}") format("svg");
+    }
+
+    @media screen and (-webkit-min-device-pixel-ratio:0)
+    {
+        @font-face
+        {
+           font-family: $font;
+           src: url("#{$dir}#{$file}.svg##{$name}") format("svg") !important;
+        }
     }
 }
 
@@ -72,12 +81,6 @@
 
     @media screen and (-webkit-min-device-pixel-ratio:0)
     {
-        @font-face
-        {
-           font-family: $font;
-           src: url("#{$dir}#{$font}.svg##{$font}") format("svg") !important;
-        }
-
         .fontastic,
         [data-#{$prefix}]:before,
         [class^="#{$prefix}-"]:before,
