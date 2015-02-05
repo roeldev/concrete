@@ -6,12 +6,49 @@
 // Debug related functions and mixins. Work in progress!
 //
 
+@function warn($function, $message: false)
+{
+    $message: if($message == false, $function, $function +': '+ $message);
+    $frame-warnings: append($frame-warnings, $message, comma);
+
+    @warn $message;
+    @return null;
+}
+
+@mixin frame-display-warnings()
+{
+    $length:  length($frame-warnings);
+    $display: '';
+    $newline: '
+';
+
+    @if ($length > 0)
+    {
+        @for $i from 1 through $length
+        {
+            $message: nth($frame-warnings, $i);
+            $display: $display + $newline + ' ##{$i} - '+ $message;
+        }
+
+        $frame-warnings: ();
+    }
+    @else
+    {
+        $display: ' {none}';
+    }
+
+/*#{$display}
+ */
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
 // displays all given variables
 @mixin debug($debug: null)
 {
     $display: '';
     $newline: '
- * ';
+ > ';
 
     $varType: type-of($debug);
     @if($varType == number)
@@ -47,8 +84,7 @@
         $display: $newline + _frame-debug-unknown();
     }
 
-/**
- * frame-scss debug#{$display}
+/*#{$display}
  */
 }
 
@@ -58,46 +94,10 @@
     @return null;
 }
 
-@function warn($message)
-{
-    $frame-warnings: append($frame-warnings, $message, comma);
-
-    @warn $message;
-    @return null;
-}
-
 @mixin frame-display-debug()
 {
     @include debug($frame-debugs);
     $frame-debugs: ();
-}
-
-@mixin frame-display-warnings()
-{
-    $length:  length($frame-warnings);
-    $display: '';
-    $newline: '
-';
-
-    @if ($length > 0)
-    {
-        @for $i from 1 through $length
-        {
-            $message: nth($frame-warnings, $i);
-            $display: $display + $newline + ' * [#{$i}] '+ $message;
-        }
-
-        $frame-warnings: ();
-    }
-    @else
-    {
-        $display: ' {none}';
-    }
-
-/**
- * frame-scss warnings
- *#{$display}
- */
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -118,16 +118,19 @@
     @return '[string] '+ $string;
 }
 
+// colors (e.g. blue, #04a3f9, rgba(255, 0, 0, 0.5));
 @function _frame-debug-color($color)
 {
     @return '[color] '+ $color;
 }
 
+// booleans (e.g. true, false);
 @function _frame-debug-boolean($bool)
 {
     @return '[boolean] '+ if($bool == true, 'true', 'false');
 }
 
+// nulls (e.g. null);
 @function _frame-debug-null()
 {
     @return '[null] null';
@@ -138,21 +141,15 @@
     @return '{unknown}';
 }
 
+// lists of values, separated by spaces or commas (e.g. 1.5em 1em 0 2em or
+// Helvetica, Arial, sans-serif);
 @function _frame-debug-list($list, $newline)
 {
-    @return '[list] ()';
+    @return '[list] () '+ $list;
 }
 
+// maps from one value to another (e.g. (key1: value1, key2: value2)).
 @function _frame-debug-map($map, $newline)
 {
-    @return '[map] ()';
+    @return '[map] () '+ $map;
 }
-
-// -
-// -
-// - colors (e.g. blue, #04a3f9, rgba(255, 0, 0, 0.5));
-// - booleans (e.g. true, false);
-// - nulls (e.g. null);
-// - lists of values, separated by spaces or commas (e.g. 1.5em 1em 0 2em or
-//   Helvetica, Arial, sans-serif);
-// - maps from one value to another (e.g. (key1: value1, key2: value2)).
