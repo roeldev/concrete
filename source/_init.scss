@@ -1,6 +1,6 @@
 //
 // frame-scss | _init.scss
-// file version: 1.01.004
+// file version: 1.01.005
 ////////////////////////////////////////////////////////////////////////////////
 //
 // This file imports all required functions and mixins wich you can use while
@@ -9,6 +9,7 @@
 @import 'core/core';
 @import 'core/debug';
 @import 'core/map';
+@import 'core/types';
 @import 'core/utils';
 
 @import 'components/basics';

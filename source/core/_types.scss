@@ -1,0 +1,49 @@
+//
+// frame-scss | core/_types.scss
+// file version: 0.00.001
+//
+
+@function is-number($var, $unit: false)
+{
+    $return: (type-of($var) == 'number');
+    @if ($return and $unit != false)
+    {
+        $return: (unit($var) == $unit);
+    }
+    @return $return;
+}
+
+@function is-string($var)
+{
+    @return (type-of($var) == 'string');
+}
+
+@function is-color($var)
+{
+    @return (type-of($var) == 'color');
+}
+
+@function is-bool($var)
+{
+    @return (type-of($var) == 'boolean');
+}
+
+@function is-null($var)
+{
+    @return (type-of($var) == 'null');
+}
+
+@function is-list($var, $length: false)
+{
+    $return: (type-of($var) == 'list');
+    @if ($return and $length != false)
+    {
+        $return: (length($var) >= $length);
+    }
+    @return $return;
+}
+
+@function is-map($var)
+{
+    @return (type-of($var) == 'map');
+}

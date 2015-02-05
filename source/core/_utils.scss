@@ -1,6 +1,6 @@
 //
 // frame-scss | core/_utils.scss
-// file version: 1.01.002
+// file version: 1.01.004
 ////////////////////////////////////////////////////////////////////////////////
 //
 // Some extra functions to make your development live easier.
@@ -18,7 +18,7 @@
 @function set($var, $type, $default: null)
 {
     $unit: false;
-    @if (type-of($type) == list)
+    @if is-list($type)
     {
         $unit: nth($type, 2);
         $type: nth($type, 1);
@@ -53,7 +53,7 @@
 //
 @function em($px, $baseFontSize: default)
 {
-    @if (type-of($baseFontSize) == string)
+    @if is-string($baseFontSize)
     {
         $baseFontSize: frame-font-size($baseFontSize);
     }

@@ -1,7 +1,12 @@
+//
+// frame-scss | components/_grid.scss
+// file version: 0.00.002
+//
+
 @function frame-grid-column($map, $name, $size: 1, $breakpointSizes: false)
 {
     $size:   ($size * 100%);
-    $column: (name: $name, size: $size, breakpointSizes: $breakpointSizes);
+    $column: ('name': $name, 'size': $size, 'breakpointSizes': $breakpointSizes);
 
     $map: map-append($map, $name, $column);
     @return $map;

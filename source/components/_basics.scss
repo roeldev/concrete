@@ -1,6 +1,6 @@
 //
 // frame-scss | components/_basics.scss
-// file version: 0.00.002
+// file version: 0.00.003
 //
 
 //------------------------------------------------------------------------------
@@ -47,10 +47,10 @@
 
 @mixin _frame-display-wrapper()
 {
-    $maxWidth: frame-breakpoint(xl, max);
+    $maxWidth: frame-breakpoint('xl', 'max');
     @if ($maxWidth == false)
     {
-        $maxWidth: frame-breakpoint(xl, min);
+        $maxWidth: frame-breakpoint('xl', 'min');
     }
 
     width:     frame-grid-width();
