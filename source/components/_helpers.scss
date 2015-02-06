@@ -1,41 +1,45 @@
-//
-// frame-scss | components/_helpers.scss
-// file version: 1.00.006
-//
+///
+/// frame-scss | components/_helpers.scss
+/// file version: 1.00.007
+///
+/// @group helpers
+////
 
-//------------------------------------------------------------------------------
-// Use this mixins on elements wich have floating children.
-//
-// *Clearfix helper taken from http://nicolasgallagher.com/micro-clearfix-hack/
-//
+///
+/// Use this mixins on elements wich have floating children.
+///
+/// *Clearfix helper taken from http://nicolasgallagher.com/micro-clearfix-hack/
+///
 @mixin apply-clearfix()
 {
     @extend %frame-clearfix;
 }
 
-//------------------------------------------------------------------------------
-//
-@mixin apply-float-list($float: left)
+///
+/// @param {string} $float [left] - Float value for the float-list.
+///
+@mixin apply-float-list($float: 'left')
 {
     @extend %frame-float-list;
 
-    @if ($float != false)
+    @if is-string($float)
     {
         li
         {
-            float: $float;
+            float: unquote($float);
         }
     }
 }
 
-//------------------------------------------------------------------------------
-//
-@mixin apply-valign-middle($fontSizeFix: true)
+///
+/// @param {bool} $resetFontSize [true] - Apply a font-size reset to 1rem.
+///
+@mixin apply-valign-middle($resetFontSize: true)
 {
     display:        inline-block;
     vertical-align: middle;
 
-    @if $fontSizeFix
+    @if $resetFontSize
     {
         font-size: 1rem;
     }

@@ -1,27 +1,25 @@
-//
-// frame-scss | _init.scss
-// file version: 1.01.005
-////////////////////////////////////////////////////////////////////////////////
-//
-// This file imports all required functions and mixins wich you can use while
-// developing your project.
-//
+////
+/// frame-scss | _init.scss
+/// file version: 1.01.006
+///
+/// This file imports all required functions and mixins wich you can use while
+/// developing your project.
+////
 @import 'core/core';
 @import 'core/debug';
 @import 'core/map';
 @import 'core/types';
-@import 'core/utils';
 
 @import 'components/basics';
 @import 'components/breakpoints';
 @import 'components/compatibility';
 @import 'components/effects';
-@import 'components/fontastic';
+@import 'components/fonts';
 @import 'components/helpers';
 @import 'components/shapes';
 @import 'components/transition';
 
-////////////////////////////////////////////////////////////////////////////////
+//------------------------------------------------------------------------------
 
 $frame-breakpoints: _frame-prepare-breakpoints();
 $frame-debugs:      ();

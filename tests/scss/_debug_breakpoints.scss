@@ -1,0 +1,35 @@
+#debug-breakpoint
+{
+	z-index: 2349587345;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 5px;
+	background-color: purple;
+	color: #fff;
+
+	[class*='breakpoint-']
+	{
+		display: none;
+	}
+
+	@each $breakpoint, $breakpointValues in $frame-breakpoints
+	{
+		@if($breakpoint != default)
+		{
+			$type: both;
+			@if($breakpoint == xl)
+			{
+				$type: min;
+			}
+
+			@include use-breakpoint($breakpoint, $type)
+			{
+				.breakpoint-#{$breakpoint}
+				{
+					display: block;
+				}
+			}
+		}
+	}
+}

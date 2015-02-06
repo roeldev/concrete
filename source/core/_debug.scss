@@ -1,20 +1,23 @@
-//
-// frame-scss | core/_debug.scss
-// file version: 0.00.003
-////////////////////////////////////////////////////////////////////////////////
-//
-// Debug related functions and mixins. Work in progress!
-//
+////
+/// frame-scss | core/_debug.scss
+/// file version: 0.00.004
+///
+/// Debug related functions and mixins. Work in progress!
+///
+/// @group debug
+////
 
-//------------------------------------------------------------------------------
+//
 // Adds a warning to the $frame-warnings list and, if available, outputs the
 // warning with the @warn directive.
 // If the 2nd optional parameter is not used, the first parameter should contain
 // the actual warning message.
 //
-// @param string $function The function that created the warning.
-// @param string $message The warning text message.
-// @return null
+// @param {string} $function - The function that created the warning.
+//
+// @param {string} $message [false] - The warning text message.
+//
+// @return {null}
 //
 @function warn($function, $message: false)
 {
@@ -25,7 +28,7 @@
     @return null;
 }
 
-//------------------------------------------------------------------------------
+//
 // Displays the warnings added to the $frame-warnings list.
 //
 @mixin frame-display-warnings()
@@ -42,10 +45,14 @@
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////
+//------------------------------------------------------------------------------
 
-// displays all given variables
-@mixin debug($var: null)
+///
+/// Displays all given variables and their types.
+///
+/// @param {mixed} $var
+///
+@mixin debug($var)
 {
     $prefix:  '@debug';
     $display: '';
@@ -70,29 +77,35 @@
 /* #{$prefix} #{$display} */
 }
 
+///
+/// Adds the variable $var to the list $frame-debugs and will be displayed by
+/// the frame-display-debug() mixin.
+///
+/// @param {mixed} $var
+/// @return {null}
+///
 @function debug($var)
 {
     $frame-debugs: append($frame-debugs, $var, comma);
     @return null;
 }
 
+///
+/// Displays all variables added to the $frame-debugs list.
+///
 @mixin frame-display-debug()
 {
     @include debug($frame-debugs);
     $frame-debugs: ();
 }
 
-////////////////////////////////////////////////////////////////////////////////
-
-//------------------------------------------------------------------------------
-// Private functions
 //------------------------------------------------------------------------------
 
-// numbers (e.g. 1.2, 13, 10px, .2s);
-// strings of text, with and without quotes (e.g. "foo", 'bar', baz);
-// colors (e.g. blue, #04a3f9, rgba(255, 0, 0, 0.5));
-// booleans (e.g. true, false);
-// nulls (e.g. null);
+///
+/// @access private
+/// @param {number|string|color|bool|null} $var
+/// @return {string}
+///
 @function _frame-debug-scalar($var)
 {
     $type: type-of($var);
@@ -108,8 +121,12 @@
     @return '('+ $type +') `'+ $var +'`';
 }
 
-// lists of values, separated by spaces or commas (e.g. 1.5em 1em 0 2em or
-// Helvetica, Arial, sans-serif);
+///
+/// @access private
+/// @param {list} $list
+/// @param {bool|string} $indentLevel [false]
+/// @return {string}
+///
 @function _frame-debug-list($list, $indentLevel: false)
 {
     $indent:  '   ';
@@ -159,7 +176,12 @@
     @return '(list|'+ $listLength +')'+ $display;
 }
 
-// maps from one value to another (e.g. (key1: value1, key2: value2)).
+///
+/// @access private
+/// @param {map} $map
+/// @param {bool|string} $indentLevel [false]
+/// @return {string}
+///
 @function _frame-debug-map($map, $indentLevel: false)
 {
     $indent:  '   ';

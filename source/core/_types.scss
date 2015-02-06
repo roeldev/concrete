@@ -1,38 +1,78 @@
-//
-// frame-scss | core/_types.scss
-// file version: 0.00.002
-//
+///
+/// frame-scss | core/_types.scss
+/// file version: 1.00.000
+///
+/// @group types
+////
 
+///
+/// Returns `true` if $var is a number. If the 2nd parameter $unit is a string,
+/// the function will also check if $var is of that type of unit.
+///
+/// @param {mixed} $var
+/// @param {bool|string} $unit [false]
+/// @return {bool}
+///
 @function is-number($var, $unit: false)
 {
     $return: (type-of($var) == 'number');
-    @if ($return and $unit != false)
+    @if ($return and is-string($unit))
     {
         $return: (unit($var) == $unit);
     }
     @return $return;
 }
 
+///
+/// Returns `true` if $var is a string.
+///
+/// @param {mixed} $var
+/// @return {bool}
+///
 @function is-string($var)
 {
     @return (type-of($var) == 'string');
 }
 
+///
+/// Returns `true` if $var is a color.
+///
+/// @param {mixed} $var
+/// @return {bool}
+///
 @function is-color($var)
 {
     @return (type-of($var) == 'color');
 }
 
+///
+/// Returns `true` if $var is a boolean.
+///
+/// @param {mixed} $var
+/// @return {bool}
+///
 @function is-bool($var)
 {
     @return (type-of($var) == 'bool');
 }
 
+///
+/// Returns `true` if $var is equal to null.
+///
+/// @param {mixed} $var
+/// @return {bool}
+///
 @function is-null($var)
 {
     @return (type-of($var) == 'null');
 }
 
+///
+/// Returns `true` if $var is a number, string, color, boolean or null.
+///
+/// @param {mixed} $var
+/// @return {bool}
+///
 @function is-scalar($var)
 {
     @return is-number($var)
@@ -42,17 +82,113 @@
         or is-null($var);
 }
 
+///
+/// Returns `true` if $var is a list with the minimum length of $length. When no
+/// length is given or is not a valid number, the length check is skipped.
+///
+/// @param {mixed} $var
+/// @param {bool|number} $length
+/// @return {bool}
+///
 @function is-list($var, $length: false)
 {
     $return: (type-of($var) == 'list');
-    @if ($return and $length != false)
+    @if ($return and is-number($length))
     {
         $return: (length($var) >= $length);
     }
     @return $return;
 }
 
+///
+/// Returns `true` if $var is a map.
+///
+/// @param {mixed} $var
+/// @return {bool}
+///
 @function is-map($var)
 {
     @return (type-of($var) == 'map');
+}
+
+//------------------------------------------------------------------------------
+
+///
+/// Checks if a variable is the correct type. If not, the variable will be
+/// overwritten and set to a default value for that type.
+///
+/// @param {mixed} $var - The variable to check.
+///
+/// @param {string|list} $type - The type $var should be.
+///
+/// @param {mixed} $default [null]
+///        The default value to return if type-of($var) != $type.
+///
+/// @return {mixed}
+///
+@function set($var, $type, $default: null)
+{
+    $unit: false;
+    @if is-list($type)
+    {
+        $unit: nth($type, 2);
+        $type: nth($type, 1);
+    }
+
+    @if (type-of($var) != $type and $var != null)
+    {
+        @if ($default == null)
+        {
+            @if ($type == number)
+            {
+                $default: 0;
+            }
+            @elseif ($type == list)
+            {
+                $default: ();
+            }
+        }
+
+        $var: $default;
+    }
+    @return $var;
+}
+
+//------------------------------------------------------------------------------
+
+///
+/// Calculates the relative em value compared to the default font-size.
+/// Example taken from http://vvv.tobiassjosten.net/css/px-to-em-with-sass/
+///
+/// @param {number} $px - The pixel value to calculate the em value from.
+///
+/// @param {number|string} $baseFontSize [default]
+///        The font-size to compare the $px value with.
+///
+/// @return {number}
+///
+@function em($px, $baseFontSize: 'default')
+{
+    @if is-string($baseFontSize)
+    {
+        $baseFontSize: frame-font-size($baseFontSize);
+    }
+
+    $baseFontSize: set($baseFontSize, number px);
+    @return if(($baseFontSize > 0), ($px / $baseFontSize) * 1em, $px);
+}
+
+///
+/// Calculates the relative rem value. The rem units are always relative to the
+/// font-size in the body html element.
+///
+/// @param {number} $px - The pixel value to calculate the rem value from.
+/// @return {number}
+///
+@function rem($px)
+{
+    $baseFontSize: frame-font-size();
+    $baseFontSize: set($baseFontSize, number px);
+
+    @return if(($baseFontSize > 0), ($px / $baseFontSize) * 1rem, $px);
 }

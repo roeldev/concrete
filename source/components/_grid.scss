@@ -1,34 +1,54 @@
-//
-// frame-scss | components/_grid.scss
-// file version: 0.00.002
-//
+////
+/// frame-scss | components/_grid.scss
+/// file version: 0.00.003
+///
+/// @group grid
+////
 
-@mixin frame-grid($type, $columns: default)
+///
+/// @param {string} $type
+///        Available grid types are `block`, `flex` and `table`.
+///
+/// @param {string|map} $columns [default]
+///        A map with grid columns. When `default`, the grid columns in
+///        $frame-grid-columns is used.
+///
+/// @todo The flex and table grids are still work in progress.
+///
+@mixin frame-grid($type, $columns: 'default')
 {
-    @if ($columns == default)
+    @if ($columns == 'default')
     {
         $columns: $frame-grid-columns;
     }
 
-    @if ($type == block)
+    @if ($type == 'block')
     {
         $columns: _frame-prepare-blockgrid($columns);
         @include  _frame-display-blockgrid($columns);
     }
-    @elseif ($type == flex)
+    /*@elseif ($type == 'flex')
     {
-
-    }
-    @elseif ($type == table)
+        $columns: _frame-prepare-flexgrid($columns);
+        @include  _frame-display-flexgrid($columns);
+    }*/
+    /*@elseif ($type == 'table')
     {
-
-    }
+        $columns: _frame-prepare-tablegrid($columns);
+        @include  _frame-display-tablegrid($columns);
+    }*/
     @else
     {
-        @warn "frame-grid: Unable to create, unknown grid type '#{$type}'!";
+        @return warn('frame-grid',
+                     'Unable to create grid, unknown type `#{$type}`!');
     }
 }
 
+///
+/// @access private
+/// @param {map} $columnSettings
+/// @return {map}
+///
 @function _frame-prepare-blockgrid($columnSettings)
 {
     $returnColumns:     ();
@@ -40,7 +60,7 @@
         $width:       100%;
         $breakpoints: ();
 
-        @if (type-of($settings) == 'list')
+        @if is-list($settings)
         {
             $width:       nth($settings, 1);
             $breakpoints:  nth($settings, 2);
@@ -73,12 +93,16 @@
     );
 }
 
+///
+/// @access private
+/// @param {map} $gridSettings
+///
 @mixin _frame-display-blockgrid($gridSettings)
 {
     %frame-blockgrid-cell
     {
         display: block;
-        float: left;
+        float:   left;
     }
 
     &.gr,

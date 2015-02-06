@@ -1,13 +1,16 @@
-//
-// frame-scss | components/_effects.scss
-// file version: 1.01.002
-////////////////////////////////////////////////////////////////////////////////
-//
-// Easy to use and pretty cool effects!
-//
+////
+/// frame-scss | components/_effects.scss
+/// file version: 1.01.002
+///
+/// Easy to use and pretty cool effects!
+///
+/// @group effects
+////
 
-//------------------------------------------------------------------------------
-//
+///
+/// @param {color} $color
+/// @param {number} $size
+///
 @mixin fx-text-shadow($color, $size)
 {
     $shadows: ();
@@ -20,9 +23,14 @@
     text-shadow: unquote($shadows);
 }
 
-//------------------------------------------------------------------------------
-// *Mixin taken from Bootstrap
-//
+///
+/// *Mixin taken from Bootstrap
+///
+/// @param {color} $startColor
+/// @param {color} $endColor
+/// @param {number} $startPercent [0%]
+/// @param {number} $endPercent [100%]
+///
 @mixin fx-gradient-horizontal($startColor,
                               $endColor,
                               $startPercent: 0%,
@@ -40,9 +48,14 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($startColor)}', endColorstr='#{ie-hex-str($endColor)}', GradientType=1);
 }
 
-//------------------------------------------------------------------------------
-// *Mixin taken from Bootstrap
-//
+///
+/// *Mixin taken from Bootstrap
+///
+/// @param {color} $startColor
+/// @param {color} $endColor
+/// @param {number} $startPercent [0%]
+/// @param {number} $endPercent [100%]
+///
 @mixin fx-gradient-vertical($startColor,
                             $endColor,
                             $startPercent: 0%,

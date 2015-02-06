@@ -1,14 +1,15 @@
-//
-// frame-scss | components/_compatibility.scss
-// file version: 1.01.003
-////////////////////////////////////////////////////////////////////////////////
-//
-// These functions add backwards compatible prefixes for older browsers.
-//
-// Example
-// Normal CSS:           background-size: contain;
-// Using the SCSS mixin: @include background-size(contain);
-//
+////
+/// frame-scss | components/_compatibility.scss
+/// file version: 1.01.003
+///
+/// These functions add backwards compatible prefixes for older browsers.
+///
+/// Example
+/// Normal CSS:           background-size: contain;
+/// Using the SCSS mixin: @include background-size(contain);
+///
+/// @group compatibility
+////
 
 @mixin appearance($value: none)
 {
@@ -17,7 +18,7 @@
             appearance: $value;
 }
 
-////////////////////////////////////////////////////////////////////////////////
+//------------------------------------------------------------------------------
 
 @mixin background-size($value)
 {
@@ -27,7 +28,7 @@
             background-size: $value;
 }
 
-////////////////////////////////////////////////////////////////////////////////
+//------------------------------------------------------------------------------
 
 @mixin box-shadow($value)
 {
@@ -43,7 +44,7 @@
             box-sizing: $value;
 }
 
-////////////////////////////////////////////////////////////////////////////////
+//------------------------------------------------------------------------------
 
 @mixin column-break-inside($value: avoid)
 {
@@ -115,7 +116,7 @@
             columns: $value;
 }
 
-////////////////////////////////////////////////////////////////////////////////
+//------------------------------------------------------------------------------
 
 @mixin flex($value)
 {
@@ -198,7 +199,7 @@
             justify-content: $value;
 }
 
-////////////////////////////////////////////////////////////////////////////////
+//------------------------------------------------------------------------------
 
 @mixin transform($value)
 {
@@ -225,7 +226,7 @@
             transform-style: $value;
 }
 
-////////////////////////////////////////////////////////////////////////////////
+//------------------------------------------------------------------------------
 
 @mixin opacity($opacity)
 {
@@ -235,7 +236,7 @@
     filter:  alpha(opacity=#{$filterOpacity});
 }
 
-////////////////////////////////////////////////////////////////////////////////
+//------------------------------------------------------------------------------
 
 @mixin user-select($value: none)
 {
