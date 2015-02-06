@@ -1,11 +1,21 @@
 //
 // frame-scss | core/_debug.scss
-// file version: 0.00.002
+// file version: 0.00.003
 ////////////////////////////////////////////////////////////////////////////////
 //
 // Debug related functions and mixins. Work in progress!
 //
 
+//------------------------------------------------------------------------------
+// Adds a warning to the $frame-warnings list and, if available, outputs the
+// warning with the @warn directive.
+// If the 2nd optional parameter is not used, the first parameter should contain
+// the actual warning message.
+//
+// @param string $function The function that created the warning.
+// @param string $message The warning text message.
+// @return null
+//
 @function warn($function, $message: false)
 {
     $message: if($message == false, $function, $function +': '+ $message);
@@ -15,82 +25,54 @@
     @return null;
 }
 
+//------------------------------------------------------------------------------
+// Displays the warnings added to the $frame-warnings list.
+//
 @mixin frame-display-warnings()
 {
-    $length:  length($frame-warnings);
-    $display: '';
-    $newline: '
-';
-
-    @if ($length > 0)
+    $prefix: '@warn';
+    @if is-list($frame-warnings, 1)
     {
-        @for $i from 1 through $length
+        @each $message in $frame-warnings
         {
-            $message: nth($frame-warnings, $i);
-            $display: $display + $newline + ' ##{$i} - '+ $message;
+            /* #{$prefix} #{$message} */
         }
 
         $frame-warnings: ();
     }
-    @else
-    {
-        $display: ' {none}';
-    }
-
-/*#{$display}
- */
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
 // displays all given variables
-@mixin debug($debug: null)
+@mixin debug($var: null)
 {
+    $prefix:  '@debug';
     $display: '';
-    $newline: '
- > ';
 
-    $varType: type-of($debug);
-    @if($varType == number)
+    @if is-scalar($var)
     {
-        $display: $newline + _frame-debug-number($debug);
+        $display: _frame-debug-scalar($var);
     }
-    @elseif ($varType == string)
+    @elseif is-list($var)
     {
-        $display: $newline + _frame-debug-string($debug);
+        $display: _frame-debug-list($var);
     }
-    @elseif ($varType == color)
+    @elseif is-map($var)
     {
-        $display: $newline + _frame-debug-color($debug);
-    }
-    @elseif ($varType == boolean)
-    {
-        $display: $newline + _frame-debug-boolean($debug);
-    }
-    @elseif ($varType == null)
-    {
-        $display: $newline + _frame-debug-null();
-    }
-    @elseif ($varType == list)
-    {
-        $display: _frame-debug-list($debug, $newline);
-    }
-    @elseif ($varType == map)
-    {
-        $display: _frame-debug-map($debug, $newline);
+        $display: _frame-debug-map($var);
     }
     @else
     {
-        $display: $newline + _frame-debug-unknown();
+        $display: '{unknown}'
     }
 
-/*#{$display}
- */
+/* #{$prefix} #{$display} */
 }
 
-@function debug($debug)
+@function debug($var)
 {
-    $frame-debugs: append($frame-debugs, $debug, comma);
+    $frame-debugs: append($frame-debugs, $var, comma);
     @return null;
 }
 
@@ -107,49 +89,121 @@
 //------------------------------------------------------------------------------
 
 // numbers (e.g. 1.2, 13, 10px, .2s);
-@function _frame-debug-number($number)
-{
-    @return '[number] '+ $number;
-}
-
 // strings of text, with and without quotes (e.g. "foo", 'bar', baz);
-@function _frame-debug-string($string)
-{
-    @return '[string] '+ $string;
-}
-
 // colors (e.g. blue, #04a3f9, rgba(255, 0, 0, 0.5));
-@function _frame-debug-color($color)
-{
-    @return '[color] '+ $color;
-}
-
 // booleans (e.g. true, false);
-@function _frame-debug-boolean($bool)
-{
-    @return '[boolean] '+ if($bool == true, 'true', 'false');
-}
-
 // nulls (e.g. null);
-@function _frame-debug-null()
+@function _frame-debug-scalar($var)
 {
-    @return '[null] null';
-}
+    $type: type-of($var);
+    @if is-number($var)
+    {
+        $unit: unit($var);
+        @if ($unit != '')
+        {
+            $type: $type +'|'+ $unit;
+        }
+    }
 
-@function _frame-debug-unknown()
-{
-    @return '{unknown}';
+    @return '('+ $type +') `'+ $var +'`';
 }
 
 // lists of values, separated by spaces or commas (e.g. 1.5em 1em 0 2em or
 // Helvetica, Arial, sans-serif);
-@function _frame-debug-list($list, $newline)
+@function _frame-debug-list($list, $indentLevel: false)
 {
-    @return '[list] () '+ $list;
+    $indent:  '   ';
+    $newline: '
+';
+
+    $listLength: length($list);
+    @if($listLength > 0)
+    {
+        $display: '';
+
+        @if ($indentLevel == false)
+        {
+            $indentLevel: $indent;
+        }
+
+        @for $i from 1 through $listLength
+        {
+            $value: nth($list, $i);
+            @if is-scalar($value)
+            {
+                $value: _frame-debug-scalar($value);
+            }
+            @elseif is-list($value)
+            {
+                $value: _frame-debug-list($value, $indentLevel + $indent);
+            }
+            @elseif is-map($value)
+            {
+                $value: _frame-debug-map($value, $indentLevel + $indent);
+            }
+
+            $value:   '['+ $i +'] => '+ $value;
+            $value:   $newline + $indent + $indentLevel + $value;
+            $display: $display + unquote($value);
+        }
+
+        $tagOpen:  $indentLevel +'(';
+        $tagClose: $indentLevel +')';
+        $display:  $newline + $tagOpen + $display + $newline + $tagClose;
+    }
+    @else
+    {
+        $display: ' ( )';
+    }
+
+    @return '(list|'+ $listLength +')'+ $display;
 }
 
 // maps from one value to another (e.g. (key1: value1, key2: value2)).
-@function _frame-debug-map($map, $newline)
+@function _frame-debug-map($map, $indentLevel: false)
 {
-    @return '[map] () '+ $map;
+    $indent:  '   ';
+    $newline: '
+';
+
+    $mapLength: length($map);
+    @if($mapLength > 0)
+    {
+        $display: '';
+
+        @if ($indentLevel == false)
+        {
+            $indentLevel: $indent;
+        }
+
+        @each $key, $value in $map
+        {
+            @if is-scalar($value)
+            {
+                $value: _frame-debug-scalar($value);
+            }
+            @elseif is-list($value)
+            {
+                $value: _frame-debug-list($value, $indentLevel + $indent);
+            }
+            @elseif is-map($value)
+            {
+                $value: _frame-debug-map($value, $indentLevel + $indent);
+            }
+
+            $value:   '[`'+ $key +'`] => '+ $value;
+            $value:   $newline + $indent + $indentLevel + $value;
+            $display: $display + unquote($value);
+        }
+
+        $tagOpen:  $indentLevel +'{';
+        $tagClose: $indentLevel +'}';
+        $display:  $newline + $tagOpen + $display + $newline + $tagClose;
+    }
+    @else
+    {
+        $display: ' { }';
+    }
+
+    @return '(map|'+ $mapLength +')'+ $display;
 }

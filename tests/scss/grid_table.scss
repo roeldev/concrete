@@ -5,14 +5,8 @@
 // or 3rd party .scss files at this point.
 //
 @import '../../frame';
-@import '../../frame-basics';
+//@import '../../frame-basics';
 @import '../../frame-grid';
 
 ////////////////////////////////////////////////////////////////////////////////
 
-html, body
-{
-    height: 100%;
-    font-weight: 300;
-    color: frame-color();
-}

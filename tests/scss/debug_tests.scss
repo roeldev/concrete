@@ -8,12 +8,47 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
-/* NUMBER TESTS */
+/******************************************************************************/
+/* Number TESTS */
 @include debug(1);
+@include debug(16px);
+@include debug(100%);
 
-/* STRING TESTS */
+/******************************************************************************/
+/* String TESTS */
 @include debug('string');
 @include debug('1');
-@include debug('grey');
+@include debug('red');
+@include debug('#f00');
 @include debug('true');
 @include debug('false');
+
+/******************************************************************************/
+/* Color TESTS */
+@include debug(red);
+@include debug(#f00);
+@include debug(rgb(255, 0, 0));
+@include debug(rgba(255, 0, 0, 1));
+
+/******************************************************************************/
+/* Boolean TESTS */
+@include debug(true);
+@include debug(false);
+@include debug(() == ());
+@include debug(1 == '1');
+@include debug(1 == true);
+
+/******************************************************************************/
+/* Null TESTS */
+@include debug(null);
+@include debug();
+
+/******************************************************************************/
+/* List TESTS */
+@include debug(());
+@include debug(one red 33 (test1 test2) () (key1: value1, key2: 2));
+
+/******************************************************************************/
+/* Map TESTS */
+@include debug($frame-breakpoints);
+@include debug($frame-transitions);
