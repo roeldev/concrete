@@ -7,9 +7,12 @@
 //
 
 //------------------------------------------------------------------------------
-// @param string|map|list $breakpoint
+// @param string $breakpoint
+//        map $breakpoint
+//        list $breakpoint
 // @param string $type min, max or both
-// @param bool|number(px) $scrollbarBuffer
+// @param bool $scrollbarBuffer
+//        number(px) $scrollbarBuffer
 //
 @mixin add-breakpoint($breakpoint, $type: 'both', $scrollbarBuffer: true)
 {

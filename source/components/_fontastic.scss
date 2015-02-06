@@ -6,9 +6,9 @@
 //------------------------------------------------------------------------------
 // A function to add new font-families with @font-face.
 //
-// @param $name The name of the font-family.
-// @param $dir The folder where the folders should be loaded from.
-// @param $file The name of the font file without file extension.
+// @param string $name The name of the font-family.
+// @param string $dir The folder where the folders should be loaded from.
+// @param string $file The name of the font file without file extension.
 //
 @mixin font-face($name, $dir, $file)
 {
@@ -42,9 +42,9 @@
 //
 // *Fontastic base CSS from fontastic.me.
 //
-// @param $font The name of the font file without file extension.
-// @param $prefix A styleclass prefix for the added icons.
-// @param $dir The folder where the folders should be loaded from.
+// @param string $font The name of the font file without file extension.
+// @param string $prefix A styleclass prefix for the added icons.
+// @param string $dir The folder where the folders should be loaded from.
 //
 @mixin fontastic($font, $prefix: 'icon', $dir: '/fonts/')
 {

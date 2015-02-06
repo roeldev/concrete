@@ -12,7 +12,7 @@
 //
 // @param mixed $var The variable to check.
 // @param string $type A string with the type $var should be.
-// @param list $type A list with the type and unit $var should be.
+//        list $type A list with the type and unit $var should be.
 // @param mixed [$default] The default value to return if typeof($var) != $type.
 //
 @function set($var, $type, $default: null)

@@ -8,7 +8,7 @@
 //
 // *Clearfix helper taken from http://nicolasgallagher.com/micro-clearfix-hack/
 //
-@mixin apply-clearfix
+@mixin apply-clearfix()
 {
     @extend %frame-clearfix;
 }

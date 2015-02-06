@@ -1,6 +1,6 @@
 //
 // frame-scss | core/_types.scss
-// file version: 0.00.001
+// file version: 0.00.002
 //
 
 @function is-number($var, $unit: false)
@@ -25,12 +25,21 @@
 
 @function is-bool($var)
 {
-    @return (type-of($var) == 'boolean');
+    @return (type-of($var) == 'bool');
 }
 
 @function is-null($var)
 {
     @return (type-of($var) == 'null');
+}
+
+@function is-scalar($var)
+{
+    @return is-number($var)
+        or is-string($var)
+        or is-color($var)
+        or is-bool($var)
+        or is-null($var);
 }
 
 @function is-list($var, $length: false)

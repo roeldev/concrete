@@ -3,15 +3,6 @@
 // file version: 0.00.002
 //
 
-@function frame-grid-column($map, $name, $size: 1, $breakpointSizes: false)
-{
-    $size:   ($size * 100%);
-    $column: ('name': $name, 'size': $size, 'breakpointSizes': $breakpointSizes);
-
-    $map: map-append($map, $name, $column);
-    @return $map;
-}
-
 @mixin frame-grid($type, $columns: default)
 {
     @if ($columns == default)
@@ -47,14 +38,12 @@
     @each $name, $settings in $columnSettings
     {
         $width:       100%;
-        $breakpoints: all;
-        $altWidths:   ();
+        $breakpoints: ();
 
         @if (type-of($settings) == 'list')
         {
             $width:       nth($settings, 1);
-            $breakpoints: nth($settings, 2);
-            $altWidths:   nth($settings, 3);
+            $breakpoints:  nth($settings, 2);
 
             $hasBreakpoints: true;
         }
