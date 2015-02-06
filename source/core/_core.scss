@@ -1,0 +1,237 @@
+///
+/// frame-scss | core/_core.scss
+/// file version: 1.01.004
+///
+/// All default frame-scss functions are within this file. Through these
+/// functions you can easily use the variables you have set in your main
+/// _frame.scss file.
+///
+/// SassScript supports seven main data types:
+/// - numbers (e.g. 1.2, 13, 10px, .2s);
+/// - strings of text, with and without quotes (e.g. "foo", 'bar', baz);
+/// - colors (e.g. blue, #04a3f9, rgba(255, 0, 0, 0.5));
+/// - booleans (e.g. true, false);
+/// - nulls (e.g. null);
+/// - lists of values, separated by spaces or commas (e.g. 1.5em 1em 0 2em or
+///   Helvetica, Arial, sans-serif);
+/// - maps from one value to another (e.g. (key1: value1, key2: value2)).
+///
+/// @group core
+////
+
+///
+/// Returns a font-family value from the $frame-fonts setting.
+///
+/// @param {string} $key [default]
+///        The value of the corresponding key to return.
+///
+/// @return {string}
+///
+@function frame-font($key: 'default')
+{
+    @if map-has-key($frame-fonts, $key)
+    {
+        $return: map-get($frame-fonts, $key);
+        @return unquote($return);
+    }
+
+    @return warn('frame-font', 'Unknown font `#{$key}`!');
+}
+
+///
+/// Returns a font-size value from the $frame-fontSizes setting.
+///
+/// @param {string} $key [default]
+///        The value of the corresponding key to return.
+///
+/// @return {number}
+///
+@function frame-font-size($key: 'default')
+{
+    @if map-has-key($frame-font-sizes, $key)
+    {
+        @return map-get($frame-font-sizes, $key);
+    }
+
+    @return warn('frame-font-size', 'Unknown font-size `#{$key}`!');
+}
+
+///
+/// Returns a color value from the $frame-colors setting. You can pass keys to
+/// this functions with or withour quotes, eg. frame-color(grey) or
+/// frame-color('grey') as the key will be quoted to make sure the key can be
+/// selected from the $frame-colors map.
+///
+/// @param {string} $key [default]
+///        The value of the corresponding key to return.
+///
+/// @return {color}
+///
+@function frame-color($key: 'default')
+{
+    $key: quote($key);
+    @if map-has-key($frame-colors, $key)
+    {
+        @return map-get($frame-colors, $key);
+    }
+
+    @return warn('frame-color', 'Unknown color `#{$key}`!');
+}
+
+///
+/// @param {string} $name [default]
+/// @param {string} $attr [false]
+/// @return {map|number|string}
+///
+@function frame-transition($name: 'default', $attr: false)
+{
+    @if map-has-key($frame-transitions, $name)
+    {
+        $transition: map-get($frame-transitions, $name);
+
+        @if ($attr == false)
+        {
+            @return $transition;
+        }
+        @elseif map-has-key($transition, $attr)
+        {
+            @return map-get($transition, $attr);
+        }
+        @else
+        {
+            @return warn('frame-transition',
+                'Unknown attribute `#{$attr}` for transition `#{$name}`!');
+        }
+    }
+
+    @return warn('frame-transition', 'Unknown transition set `#{$name}`!');
+}
+
+///
+/// When $value is either `min` or `max`, the min/max value is returned from the
+/// breakpoint map inside $frame-breakpoints with key $breakpoint.
+/// If $value has any other value, the whole map (with min and max keys) will
+/// be returned. If the breakpoint map cannot be found, a warning will be stored
+/// in $frame-warnings.
+///
+/// @param {string} $breakpoint [default] - The breakpoint to return.
+///
+/// @param {bool|string} $value [false]
+///        The value of the breakpoint to return. This can be either `min`,
+///        `max`, `false` or `both`.
+///
+/// @return {map|number}
+///
+@function frame-breakpoint($breakpoint: 'default', $value: false)
+{
+    @if ($breakpoint == 'default')
+    {
+        $breakpoint: 'xl';
+    }
+
+    @if map-has-key($frame-breakpoints, $breakpoint)
+    {
+        $breakpoint: map-get($frame-breakpoints, $breakpoint);
+
+        @if ($value == false or $value == 'both')
+        {
+            @return $breakpoint;
+        }
+        @elseif map-has-key($breakpoint, $value)
+        {
+            @return map-get($breakpoint, $value);
+        }
+        @else
+        {
+            @return warn('frame-breakpoint',
+                         'Unknown value `#{$value}` in `#{$breakpoint}`!');
+        }
+    }
+    @else
+    {
+        @return warn('frame-breakpoint',
+                     'Unknown breakpoint `#{$breakpoint}`!');
+    }
+}
+
+///
+/// @todo WIP
+///
+@function frame-wrapper-width()
+{
+    $breakpoint: frame-breakpoint();
+    $key:        if(map-has-key($breakpoint, 'max'), 'max', 'min');
+
+    @return map-get($breakpoint, $key);
+}
+
+///
+/// @todo WIP
+///
+@function frame-breakpoint-scrollbar-buffer($type: 'default')
+{
+
+}
+
+///
+/// @todo WIP
+///
+@function frame-grid-width($breakpoint: 'default', $gridType: false)
+{
+    @if ($breakpoint == 'default')
+    {
+        @return map-get($frame-grid-width, $breakpoint);
+    }
+    @elseif map-has-key($frame-breakpoints, $breakpoint)
+    {
+        @if map-has-key($frame-grid-width, $breakpoint) != true
+        {
+            $breakpoint: 'default';
+        }
+
+        @return map-get($frame-grid-width, $breakpoint);
+    }
+    @else
+    {
+        @return warn('frame-grid-width',
+                     'Unknown breakpoint `#{$breakpoint}`!');
+    }
+}
+
+///
+/// @todo WIP
+///
+@function frame-grid-gap($breakpoint: 'default')
+{
+
+}
+
+///------------------------------------------------------------------------------
+
+///
+/// @access private
+///
+@function _frame-prepare-breakpoints()
+{
+    $map: ();
+    $min: false;
+    $max: false;
+
+    @each $breakpoint, $value in $frame-breakpoints
+    {
+        @if is-map($value)
+        {
+            $min: map-get($value, 'min');
+        }
+        @else
+        {
+            $min:   $value;
+            $value: ('min': $min, 'max': $max);
+        }
+
+        $map: map-append($map, $breakpoint, $value);
+        $max: ($min - 1);
+    }
+
+    @return $map;
+}

@@ -1,34 +1,38 @@
-//
-// frame-scss | components/_transition.scss
-// file version: 1.01.000
-//
+////
+/// frame-scss | components/_transition.scss
+/// file version: 1.01.001
+///
+/// @group transition
+////
 
-//------------------------------------------------------------------------------
-//
-@mixin transition($property, $duration: default, $easing: false, $delay: false)
+///
+/// @param {list|string} $property
+/// @param {string|number} $duration [default]
+/// @param {bool|string} $easing [false]
+/// @param {bool|number} $delay [false]
+///
+@mixin transition($property, $duration: 'default', $easing: false, $delay: false)
 {
-    $default: default;
-    @if (type-of($duration) == string and $duration != default)
-    {
-        $default: $duration;
-    }
+    // determin the default transition setting group
+    $default: (is-string($duration) and $duration != 'default');
+    $default: if($default, $duration, 'default');
 
     // retrieve default values where necessary
     @if ($duration == $default)
     {
-        $duration: frame-transition($default, duration);
+        $duration: frame-transition($default, 'duration');
     }
     @if ($easing == false)
     {
-        $easing: frame-transition($default, easing);
+        $easing: frame-transition($default, 'easing');
     }
     @if ($delay == false)
     {
-        $delay: frame-transition($default, delay);
+        $delay: frame-transition($default, 'delay');
     }
 
-    $hasPropertyList: (type-of($property) == list);
-    $hasDurationList: (type-of($duration) == list);
+    $hasPropertyList: is-list($property);
+    $hasDurationList: is-list($duration);
 
     @if ($hasPropertyList and $hasDurationList)
     {
@@ -44,7 +48,7 @@
                 $d: nth($duration, $i);
 
                 $transition:  $p $d $easing $delay;
-                $transitions: append($transitions, $transition, comma);
+                $transitions: append($transitions, $transition, 'comma');
             }
 
             -webkit-transition: $transitions;
@@ -75,13 +79,14 @@
     }
 }
 
-//------------------------------------------------------------------------------
-//
-@mixin transition-delay($value: default)
+///
+/// @param {string|number} $value [default]
+///
+@mixin transition-delay($value: 'default')
 {
-    @if ($value == default)
+    @if ($value == 'default')
     {
-        $value: frame-transition(default, delay);
+        $value: frame-transition($value, 'delay');
     }
 
     -webkit-transition-delay: $value;
@@ -90,13 +95,14 @@
             transition-delay: $value;
 }
 
-//------------------------------------------------------------------------------
-//
-@mixin transition-duration($value: default)
+///
+/// @param {string|number} $value [default]
+///
+@mixin transition-duration($value: 'default')
 {
     @if ($value == default)
     {
-        $value: frame-transition(default, duration);
+        $value: frame-transition($value, 'duration');
     }
 
     -webkit-transition-duration: $value;
@@ -105,8 +111,9 @@
             transition-duration: $value;
 }
 
-//------------------------------------------------------------------------------
-//
+///
+/// @param {list|string} $value
+///
 @mixin transition-property($value...)
 {
     -webkit-transition-property: $value;
@@ -115,13 +122,14 @@
             transition-property: $value;
 }
 
-//------------------------------------------------------------------------------
-//
-@mixin transition-timing-function($value: default)
+///
+/// @param {string} $value
+///
+@mixin transition-timing-function($value: 'default')
 {
-    @if ($value == default)
+    @if ($value == 'default')
     {
-        $value: frame-transition(default, easing);
+        $value: frame-transition($value, 'easing');
     }
 
     -webkit-transition-timing-function: $value;

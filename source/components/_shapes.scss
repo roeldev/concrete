@@ -1,11 +1,15 @@
-//
-// frame-scss | components/_shapes.scss
-// file version: 1.01.004
-//
+///
+/// frame-scss | components/_shapes.scss
+/// file version: 1.01.005
+///
+/// @group shapes
+////
 
-//------------------------------------------------------------------------------
-// *Created using example from http://jsfiddle.net/tzi/awt33/
-//
+///
+/// *Created using example from http://jsfiddle.net/tzi/awt33/
+///
+/// @param {number} $size
+///
 @mixin shape-hexagon($size)
 {
     position:       relative;
@@ -38,16 +42,27 @@
     }
 }
 
-//------------------------------------------------------------------------------
-// *Created using example from http://css-tricks.com/examples/ShapesOfCSS/
-//
-@mixin shape-triangle($type, $color, $size, $size2: false)
+///
+/// *Created using example from http://css-tricks.com/examples/ShapesOfCSS/
+///
+/// @param {string} $direction
+///        The direction of the triangle point. Valid values are `up`/`u`,
+///        `down`/`d`, `left`/`l`, `right`/`r`, `top-left`/`tl`,
+///        `top-right`/`tr`, `bottom-left`/`bl` or `bottom-right`/`br`.
+///
+/// @param {color} $color - The color of the triangle.
+///
+/// @param {number} $size - The size of the triangle.
+///
+/// @param {number} $size2 [false]
+///
+@mixin shape-triangle($direction, $color, $size, $size2: false)
 {
-    @if (type-of($color) == string)
+    @if is-string($color)
     {
         $color: frame-color($color);
     }
-    @if ($size2 == false)
+    @elseif ($size2 == false)
     {
         $size2: $size;
     }
@@ -55,52 +70,53 @@
     width:  0;
     height: 0;
 
-    @if ($type == up or $type == u)
+    @if ($direction == 'up' or $direction == 'u')
     {
         border-left:   $size solid transparent;
         border-right:  $size solid transparent;
         border-bottom: $size2 solid $color;
     }
-    @elseif ($type == down or $type == d)
+    @elseif ($direction == 'down' or $direction == 'd')
     {
         border-top:    $size2 solid $color;
         border-left:   $size solid transparent;
         border-right:  $size solid transparent;
     }
-    @elseif ($type == left or $type == l)
+    @elseif ($direction == 'left' or $direction == 'l')
     {
         border-top:    $size solid transparent;
         border-bottom: $size solid transparent;
         border-right:  $size2 solid $color;
     }
-    @elseif ($type == right or $type == r)
+    @elseif ($direction == 'right' or $direction == 'r')
     {
         border-top:    $size solid transparent;
         border-bottom: $size solid transparent;
         border-left:   $size2 solid $color;
     }
-    @elseif ($type == top-left or $type == tl)
+    @elseif ($direction == 'top-left' or $direction == 'tl')
     {
         border-top:    $size2 solid $color;
         border-right:  $size solid transparent;
     }
-    @elseif ($type == top-right or $type == tr)
+    @elseif ($direction == 'top-right' or $direction == 'tr')
     {
         border-top:    $size2 solid $color;
         border-left:   $size solid transparent;
     }
-    @elseif ($type == bottom-left or $type == bl)
+    @elseif ($direction == 'bottom-left' or $direction == 'bl')
     {
         border-bottom: $size2 solid $color;
         border-right:  $size solid transparent;
     }
-    @elseif ($type == bottom-right or $type == br)
+    @elseif ($direction == 'bottom-right' or $direction == 'br')
     {
         border-bottom: $size2 solid $color;
         border-left:   $size solid transparent;
     }
     @else
     {
-        @warn "shape-triangle: type '#{$type}' does not exists!";
+        @return warn('shape-triangle',
+            'Cannot create triangle, unknown direction `#{$direction}`.');
     }
 }

@@ -1,12 +1,16 @@
-//
-// frame-scss | components/_basics.scss
-// file version: 0.00.002
-//
+////
+/// frame-scss | components/_basics.scss
+/// file version: 0.00.003
+///
+/// @group private
+////
 
-//------------------------------------------------------------------------------
-// This 'private' function will display all headings, wich are defined in the
-// $frame-font-sizes setting, in partials/_default.scss.
-//
+///
+/// This 'private' function will display all headings, wich are defined in the
+/// $frame-font-sizes setting, in partials/_default.scss.
+///
+/// @access private
+///
 @mixin _frame-display-headings()
 {
     $fontSizes: ();
@@ -45,12 +49,16 @@
     }
 }
 
+///
+/// @access private
+/// @todo WIP
+///
 @mixin _frame-display-wrapper()
 {
-    $maxWidth: frame-breakpoint(xl, max);
+    $maxWidth: frame-breakpoint('xl', 'max');
     @if ($maxWidth == false)
     {
-        $maxWidth: frame-breakpoint(xl, min);
+        $maxWidth: frame-breakpoint('xl', 'min');
     }
 
     width:     frame-grid-width();

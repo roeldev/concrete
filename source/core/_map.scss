@@ -1,12 +1,20 @@
-//
-// frame-scss | core/_map.scss
-// file version: 0.00.002
-////////////////////////////////////////////////////////////////////////////////
-//
-// Some extra map related functions.
-//
+////
+/// frame-scss | core/_map.scss
+/// file version: 0.00.002
+///
+/// Some extra map related functions.
+///
+/// @group map
+////
 
-@function map-append($map, $key, $value, $seperator: comma)
+///
+/// @param {map} $map
+/// @param {string} $key
+/// @param {mixed} $value
+/// @param {string} $seperator [comma]
+/// @return {map}
+///
+@function map-append($map, $key, $value, $seperator: 'comma')
 {
     @if map-has-key($map, $key)
     {

@@ -1,10 +1,6 @@
 //
-// frame-scss | mixins/_grid.scss
-// file version: 0.01.007
+// old junk, only here for refactoring
 //
-// Work in progress!
-//
-
 @mixin flexgrid-columns($columns)
 {
     @each $column, $sizes in $columns

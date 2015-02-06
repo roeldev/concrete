@@ -5,8 +5,14 @@
 // or 3rd party .scss files at this point.
 //
 @import '../../frame';
-//@import '../../frame-basics';
-@import '../../frame-grid';
 
 ////////////////////////////////////////////////////////////////////////////////
 
+$x:warn('function-name', 'First warning.');
+$x:warn('function-name', 'Second warning!');
+$x:warn('function-name', 'This is your last warning!');
+
+$x:frame-color('unknown-color');
+
+@include frame-display-warnings();
+@include frame-display-warnings();

@@ -1,52 +1,70 @@
-@function frame-grid-column($map, $name, $size: 1, $breakpointSizes: false)
-{
-    $size:   ($size * 100%);
-    $column: (name: $name, size: $size, breakpointSizes: $breakpointSizes);
+////
+/// frame-scss | components/_grid.scss
+/// file version: 0.00.003
+///
+/// @group grid
+////
 
-    $map: map-append($map, $name, $column);
-    @return $map;
-}
-
-@mixin frame-grid($type, $columns: default)
+///
+/// @param {string} $type
+///        Available grid types are `block`, `flex` and `table`.
+///
+/// @param {string|map} $columns [default]
+///        A map with grid columns. When `default`, the grid columns in
+///        $frame-grid-columns is used.
+///
+/// @todo The flex and table grids are still work in progress.
+///
+@mixin frame-grid($type, $columns: 'default')
 {
-    @if ($columns == default)
+    @if ($columns == 'default')
     {
         $columns: $frame-grid-columns;
     }
 
-    @if ($type == block)
+    @if ($type == 'block')
     {
         $columns: _frame-prepare-blockgrid($columns);
         @include  _frame-display-blockgrid($columns);
     }
-    @elseif ($type == flex)
+    /*@elseif ($type == 'flex')
     {
-
-    }
-    @elseif ($type == table)
+        $columns: _frame-prepare-flexgrid($columns);
+        @include  _frame-display-flexgrid($columns);
+    }*/
+    /*@elseif ($type == 'table')
     {
-
-    }
+        $columns: _frame-prepare-tablegrid($columns);
+        @include  _frame-display-tablegrid($columns);
+    }*/
     @else
     {
-        @warn "frame-grid: Unable to create, unknown grid type '#{$type}'!";
+        @return warn('frame-grid',
+                     'Unable to create grid, unknown type `#{$type}`!');
     }
 }
 
+///
+/// @access private
+/// @param {map} $columnSettings
+/// @return {map}
+///
 @function _frame-prepare-blockgrid($columnSettings)
 {
-    $columns:        ();
-    $breakpoints:    ();
-    $hasBreakpoints: false;
+    $returnColumns:     ();
+    $returnBreakpoints: map-keys($frame-breakpoints);
+    $hasBreakpoints:    false;
 
     @each $name, $settings in $columnSettings
     {
-        $width: 100%;
+        $width:       100%;
+        $breakpoints: ();
 
-        @if (type-of($settings) == 'list')
+        @if is-list($settings)
         {
-            $width:          nth($settings, 1);
-            $breakpoints:    nth($settings, 2);
+            $width:       nth($settings, 1);
+            $breakpoints:  nth($settings, 2);
+
             $hasBreakpoints: true;
         }
         @else
@@ -60,7 +78,7 @@
             $width: ($width * 100%);
         }
 
-        $columns: map-append($columns, $name,
+        $returnColumns: map-append($returnColumns, $name,
         (
             name:  $name,
             width: $width
@@ -69,35 +87,53 @@
 
     @return
     (
-        columns:        $columns,
-        breakpoints:    $breakpoints,
+        columns:        $returnColumns,
+        breakpoints:    $returnBreakpoints,
         hasBreakpoints: $hasBreakpoints
     );
 }
 
+///
+/// @access private
+/// @param {map} $gridSettings
+///
 @mixin _frame-display-blockgrid($gridSettings)
 {
     %frame-blockgrid-cell
     {
         display: block;
-        float: left;
+        float:   left;
     }
 
     &.gr,
     & .gr
     {
-        /* hasBreakpoints: #{map-get($gridSettings, hasBreakpoints)} */
-
         display: block;
         @include apply-clearfix();
 
-        $columns: map-get($gridSettings, columns);
+        $columns:     map-get($gridSettings, columns);
+        $breakpoints: map-get($gridSettings, breakpoints);
+
         @each $name, $column in $columns
         {
             > .gc-#{$name}
             {
                 @extend %frame-blockgrid-cell;
                 width: map-get($column, width);
+            }
+        }
+
+        @each $breakpoint in $breakpoints
+        {
+            @include add-breakpoint($breakpoint, max)
+            {
+                @each $name, $column in $columns
+                {
+                    > .gc-#{$breakpoint}-#{$name}
+                    {
+                        width: map-get($column, width);
+                    }
+                }
             }
         }
     }

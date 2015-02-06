@@ -1,7 +1,6 @@
 //
 // frame-scss | _frame.scss
 // file version: 0.01.001
-////////////////////////////////////////////////////////////////////////////////
 //
 // Frame settings and variables
 //------------------------------------------------------------------------------
@@ -59,7 +58,7 @@ $frame-transitions:
 (
     default:
     (
-        delay:    0s,
+        delay:    0,
         duration: .2s,
         easing:   ease-in-out
     )
@@ -75,6 +74,11 @@ $frame-breakpoints:
     m:  768px,  // tablet portrait
     s:  480px,  // mobile landscape
     xs: 240px   // mobile portrait
+);
+
+$frame-breakpoint-scrollbar-buffer:
+(
+    default: 20px
 );
 
 //------------------------------------------------------------------------------
