@@ -1,6 +1,6 @@
 ////
 /// frame-scss | core/_core.scss
-/// file version: 1.01.005
+/// file version: 1.01.006
 ///
 /// All default frame-scss functions are within this file. Through these
 /// functions you can easily use the variables you have set in your main
@@ -69,6 +69,11 @@
 ///
 @function frame-color($key: 'default')
 {
+    @if is-color($key)
+    {
+        @return $key;
+    }
+
     $key: quote($key);
     @if map-has-key($frame-colors, $key)
     {
