@@ -1,15 +1,11 @@
 ////
 /// frame-scss | _init.scss
-/// file version: 1.01.006
+/// file version: 1.01.007
 ///
 /// This file imports all required functions and mixins wich you can use while
 /// developing your project.
 ////
-@import 'core/core';
-@import 'core/debug';
-@import 'core/map';
-@import 'core/types';
-
+@import 'core';
 @import 'components/basics';
 @import 'components/breakpoints';
 @import 'components/compatibility';

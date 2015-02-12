@@ -1,10 +1,10 @@
 ////
 /// frame-scss | core/_debug.scss
-/// file version: 0.00.004
+/// file version: 0.00.005
 ///
 /// Debug related functions and mixins. Work in progress!
 ///
-/// @group debug
+/// @group Core
 ////
 
 //
@@ -71,7 +71,7 @@
     }
     @else
     {
-        $display: '{unknown}'
+        $display: '{unknown}';
     }
 
 /* #{$prefix} #{$display} */
@@ -158,6 +158,10 @@
             {
                 $value: _frame-debug-map($value, $indentLevel + $indent);
             }
+            @else
+            {
+                $value: '{unknown} ['+ type-of($value) +'] '+ $value;
+            }
 
             $value:   '['+ $i +'] => '+ $value;
             $value:   $newline + $indent + $indentLevel + $value;
@@ -211,6 +215,10 @@
             @elseif is-map($value)
             {
                 $value: _frame-debug-map($value, $indentLevel + $indent);
+            }
+            @else
+            {
+                $value: '{unknown} ['+ type-of($value) +'] '+ $value;
             }
 
             $value:   '[`'+ $key +'`] => '+ $value;

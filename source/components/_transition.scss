@@ -1,8 +1,6 @@
 ////
 /// frame-scss | components/_transition.scss
 /// file version: 1.01.001
-///
-/// @group transition
 ////
 
 ///
@@ -47,7 +45,7 @@
                 $p: nth($property, $i);
                 $d: nth($duration, $i);
 
-                $transition:  $p $d $easing $delay;
+                $transition:  unquote($p) $d $easing $delay;
                 $transitions: append($transitions, $transition, 'comma');
             }
 
@@ -70,6 +68,10 @@
         {
             @include transition-property($property);
             $property: null;
+        }
+        @else
+        {
+            $property: unquote($property);
         }
 
         -webkit-transition: $property $duration $easing $delay;
@@ -100,7 +102,7 @@
 ///
 @mixin transition-duration($value: 'default')
 {
-    @if ($value == default)
+    @if ($value == 'default')
     {
         $value: frame-transition($value, 'duration');
     }
@@ -116,6 +118,8 @@
 ///
 @mixin transition-property($value...)
 {
+    $value: unquote-all($value);
+
     -webkit-transition-property: $value;
        -moz-transition-property: $value;
          -o-transition-property: $value;
