@@ -7,8 +7,6 @@
 /// Example
 /// Normal CSS:           background-size: contain;
 /// Using the SCSS mixin: @include background-size(contain);
-///
-/// @group compatibility
 ////
 
 @mixin appearance($value: none)
