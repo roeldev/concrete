@@ -119,3 +119,79 @@
 // Unit type related functions
 //------------------------------------------------------------------------------
 
+///
+/// Returns `true` if the given number is of unit `em`.
+///
+/// @param {number} $number
+/// @return {bool}
+///
+@function is-em($number)
+{
+    @return (is-number($number) and unit($number) == 'em');
+}
+
+///
+/// Returns `true` if the given number is of unit `rem`.
+///
+/// @param {number} $number
+/// @return {bool}
+///
+@function is-rem($number)
+{
+    @return (is-number($number) and unit($number) == 'rem');
+}
+
+///
+/// Returns `true` if the given number is of unit `%`.
+///
+/// @param {number} $number
+/// @return {bool}
+///
+@function is-percent($number)
+{
+    @return (is-number($number) and unit($number) == '%');
+}
+
+///
+/// Returns `true` if the given number is of unit `px`.
+///
+/// @param {number} $number
+/// @return {bool}
+///
+@function is-pixel($number)
+{
+    @return (is-number($number) and unit($number) == 'px');
+}
+
+///
+/// Returns `true` if the given number is of unit `pt`.
+///
+/// @param {number} $number
+/// @return {bool}
+///
+@function is-point($number)
+{
+    @return (is-number($number) and unit($number) == 'pt');
+}
+
+///
+/// Returns `true` if the given number is of unit `in`.
+///
+/// @param {number} $number
+/// @return {bool}
+///
+@function is-inch($number)
+{
+    @return (is-number($number) and unit($number) == 'in');
+}
+
+///
+/// Returns `true` if the given number is of unit `s`.
+///
+/// @param {number} $number
+/// @return {bool}
+///
+@function is-second($number)
+{
+    @return (is-number($number) and unit($number) == 's');
+}

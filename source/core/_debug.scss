@@ -52,7 +52,7 @@
 ///
 /// @param {mixed} $var
 ///
-@mixin debug($var)
+@mixin debug($var...)
 {
     $prefix:  '@debug';
     $display: '';
@@ -84,7 +84,7 @@
 /// @param {mixed} $var
 /// @return {null}
 ///
-@function debug($var)
+@function debug($var...)
 {
     $frame-debugs: append($frame-debugs, $var, comma);
     @return null;
@@ -127,7 +127,7 @@
 /// @param {bool|string} $indentLevel [false]
 /// @return {string}
 ///
-@function _frame-debug-list($list, $indentLevel: false)
+@function _frame-debug-list($list, $inspect: true, $indentLevel: false)
 {
     $indent:  '   ';
     $newline: '
@@ -136,41 +136,48 @@
     $listLength: length($list);
     @if($listLength > 0)
     {
-        $display: '';
-
-        @if ($indentLevel == false)
+        @if ($inspect == true)
         {
-            $indentLevel: $indent;
-        }
+            $display: '';
 
-        @for $i from 1 through $listLength
+            @if ($indentLevel == false)
+            {
+                $indentLevel: $indent;
+            }
+
+            @for $i from 1 through $listLength
+            {
+                $value: nth($list, $i);
+                @if is-scalar($value)
+                {
+                    $value: _frame-debug-scalar($value);
+                }
+                @elseif is-list($value)
+                {
+                    $value: _frame-debug-list($value, true, $indentLevel + $indent);
+                }
+                @elseif is-map($value)
+                {
+                    $value: _frame-debug-map($value, true, $indentLevel + $indent);
+                }
+                @else
+                {
+                    $value: '{unknown} ['+ type-of($value) +'] '+ $value;
+                }
+
+                $value:   '['+ $i +'] => '+ $value;
+                $value:   $newline + $indent + $indentLevel + $value;
+                $display: $display + unquote($value);
+            }
+
+            $tagOpen:  $indentLevel +'(';
+            $tagClose: $indentLevel +')';
+            $display:  $newline + $tagOpen + $display + $newline + $tagClose;
+        }
+        @else
         {
-            $value: nth($list, $i);
-            @if is-scalar($value)
-            {
-                $value: _frame-debug-scalar($value);
-            }
-            @elseif is-list($value)
-            {
-                $value: _frame-debug-list($value, $indentLevel + $indent);
-            }
-            @elseif is-map($value)
-            {
-                $value: _frame-debug-map($value, $indentLevel + $indent);
-            }
-            @else
-            {
-                $value: '{unknown} ['+ type-of($value) +'] '+ $value;
-            }
-
-            $value:   '['+ $i +'] => '+ $value;
-            $value:   $newline + $indent + $indentLevel + $value;
-            $display: $display + unquote($value);
+            $display: ' (...)';
         }
-
-        $tagOpen:  $indentLevel +'(';
-        $tagClose: $indentLevel +')';
-        $display:  $newline + $tagOpen + $display + $newline + $tagClose;
     }
     @else
     {
@@ -186,7 +193,7 @@
 /// @param {bool|string} $indentLevel [false]
 /// @return {string}
 ///
-@function _frame-debug-map($map, $indentLevel: false)
+@function _frame-debug-map($map, $inspect: true, $indentLevel: false)
 {
     $indent:  '   ';
     $newline: '
@@ -195,40 +202,47 @@
     $mapLength: length($map);
     @if($mapLength > 0)
     {
-        $display: '';
-
-        @if ($indentLevel == false)
+        @if ($inspect == true)
         {
-            $indentLevel: $indent;
-        }
+            $display: '';
 
-        @each $key, $value in $map
+            @if ($indentLevel == false)
+            {
+                $indentLevel: $indent;
+            }
+
+            @each $key, $value in $map
+            {
+                @if is-scalar($value)
+                {
+                    $value: _frame-debug-scalar($value);
+                }
+                @elseif is-list($value)
+                {
+                    $value: _frame-debug-list($value, true, $indentLevel + $indent);
+                }
+                @elseif is-map($value)
+                {
+                    $value: _frame-debug-map($value, true, $indentLevel + $indent);
+                }
+                @else
+                {
+                    $value: '{unknown} ['+ type-of($value) +'] '+ $value;
+                }
+
+                $value:   '[`'+ $key +'`] => '+ $value;
+                $value:   $newline + $indent + $indentLevel + $value;
+                $display: $display + unquote($value);
+            }
+
+            $tagOpen:  $indentLevel +'{';
+            $tagClose: $indentLevel +'}';
+            $display:  $newline + $tagOpen + $display + $newline + $tagClose;
+        }
+        @else
         {
-            @if is-scalar($value)
-            {
-                $value: _frame-debug-scalar($value);
-            }
-            @elseif is-list($value)
-            {
-                $value: _frame-debug-list($value, $indentLevel + $indent);
-            }
-            @elseif is-map($value)
-            {
-                $value: _frame-debug-map($value, $indentLevel + $indent);
-            }
-            @else
-            {
-                $value: '{unknown} ['+ type-of($value) +'] '+ $value;
-            }
-
-            $value:   '[`'+ $key +'`] => '+ $value;
-            $value:   $newline + $indent + $indentLevel + $value;
-            $display: $display + unquote($value);
+            $display: ' {...}';
         }
-
-        $tagOpen:  $indentLevel +'{';
-        $tagClose: $indentLevel +'}';
-        $display:  $newline + $tagOpen + $display + $newline + $tagClose;
     }
     @else
     {
