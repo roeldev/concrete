@@ -1,3 +1,10 @@
+logs
+node_modules
+
+.grunt
 .sass-cache
+
+*.css.map
 *.cfg
 *.dmp
+*.log
