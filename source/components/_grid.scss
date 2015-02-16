@@ -3,6 +3,38 @@
 /// file version: 0.00.003
 ////
 
+@function frame-grid-columns($settings)
+{
+    $return:         ();
+    $breakpointKeys: map-keys($frame-breakpoints);
+
+    @each $entry in $settings
+    {
+        $name:        nth($entry, 1);
+        $width:       nth($entry, 2);
+        $breakpoints: ();
+
+        @if (length($entry) >= 3)
+        {
+            $breakpoints: nth($settings, 3);
+            @if is-list($breakpoints)
+            {
+                // xl l m s xs
+               // $x:debug('blaat', $breakpoints);
+            }
+        }
+
+        $return: map-append($return, $name,
+        (
+            'name':        $name,
+            'width':       $width,
+            'breakpoints': if(is-list($breakpoints, 1), $breakpoints, false)
+        ));
+    }
+
+    @return $return;
+}
+
 ///
 /// @param {string} $type
 ///        Available grid types are `block`, `flex` and `table`.
@@ -13,7 +45,7 @@
 ///
 /// @todo The flex and table grids are still work in progress.
 ///
-@mixin frame-grid($type, $columns: 'default')
+@mixin frame-grid-create($type, $columns: 'default')
 {
     @if ($columns == 'default')
     {
@@ -22,7 +54,6 @@
 
     @if ($type == 'block')
     {
-        $columns: _frame-prepare-blockgrid($columns);
         @include  _frame-display-blockgrid($columns);
     }
     /*@elseif ($type == 'flex')
@@ -44,58 +75,9 @@
 
 ///
 /// @access private
-/// @param {map} $columnSettings
-/// @return {map}
+/// @param {map} $columns
 ///
-@function _frame-prepare-blockgrid($columnSettings)
-{
-    $returnColumns:     ();
-    $returnBreakpoints: map-keys($frame-breakpoints);
-    $hasBreakpoints:    false;
-
-    @each $name, $settings in $columnSettings
-    {
-        $width:       100%;
-        $breakpoints: ();
-
-        @if is-list($settings)
-        {
-            $width:       nth($settings, 1);
-            $breakpoints:  nth($settings, 2);
-
-            $hasBreakpoints: true;
-        }
-        @else
-        {
-            $width: $settings;
-        }
-
-        // make sure $width is a percentage value
-        @if ($width <= 1)
-        {
-            $width: ($width * 100%);
-        }
-
-        $returnColumns: map-append($returnColumns, $name,
-        (
-            name:  $name,
-            width: $width
-        ));
-    }
-
-    @return
-    (
-        columns:        $returnColumns,
-        breakpoints:    $returnBreakpoints,
-        hasBreakpoints: $hasBreakpoints
-    );
-}
-
-///
-/// @access private
-/// @param {map} $gridSettings
-///
-@mixin _frame-display-blockgrid($gridSettings)
+@mixin _frame-display-blockgrid($columns)
 {
     %frame-blockgrid-cell
     {
@@ -109,9 +91,6 @@
         display: block;
         @include apply-clearfix();
 
-        $columns:     map-get($gridSettings, columns);
-        $breakpoints: map-get($gridSettings, breakpoints);
-
         @each $name, $column in $columns
         {
             > .gc-#{$name}
@@ -121,7 +100,7 @@
             }
         }
 
-        @each $breakpoint in $breakpoints
+        @each $breakpoint in map-keys($frame-breakpoints)
         {
             @include add-breakpoint($breakpoint, max)
             {

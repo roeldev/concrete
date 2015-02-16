@@ -1,6 +1,6 @@
 ////
 /// frame-scss | core/_debug.scss
-/// file version: 0.00.005
+/// file version: 0.00.006
 ///
 /// Debug related functions and mixins. Work in progress!
 ///
@@ -22,7 +22,7 @@
 @function warn($function, $message: false)
 {
     $message: if($message == false, $function, $function +': '+ $message);
-    $frame-warnings: append($frame-warnings, $message, comma);
+    $frame-warnings: append($frame-warnings, $message, 'comma');
 
     @warn $message;
     @return null;
@@ -54,6 +54,12 @@
 ///
 @mixin debug($var...)
 {
+    @if not is-list($var, 1)
+    {
+        $var: $frame-debugs;
+        $frame-debugs: ();
+    }
+
     $prefix:  '@debug';
     $display: '';
 
@@ -86,17 +92,8 @@
 ///
 @function debug($var...)
 {
-    $frame-debugs: append($frame-debugs, $var, comma);
+    $frame-debugs: append($frame-debugs, $var, 'comma');
     @return null;
-}
-
-///
-/// Displays all variables added to the $frame-debugs list.
-///
-@mixin frame-display-debug()
-{
-    @include debug($frame-debugs);
-    $frame-debugs: ();
 }
 
 //------------------------------------------------------------------------------

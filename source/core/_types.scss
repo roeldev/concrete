@@ -1,6 +1,6 @@
 ////
 /// frame-scss | core/_types.scss
-/// file version: 1.00.001
+/// file version: 1.00.002
 ///
 /// @group Core
 ////
@@ -97,6 +97,25 @@
 @function is-list($var, $length: false)
 {
     $return: (type-of($var) == 'list' or type-of($var) == 'arglist');
+    @if ($return and is-number($length))
+    {
+        $return: (length($var) >= $length);
+    }
+    @return $return;
+}
+
+///
+/// Returns `true` if $var is an argument list taken from a function, with the
+/// minimum length of $length. When no length is given or is not a valid
+/// number, the length check is skipped.
+///
+/// @param {mixed} $var
+/// @param {bool|number} $length
+/// @return {bool}
+///
+@function is-arglist($var, $length: false)
+{
+    $return: (type-of($var) == 'arglist');
     @if ($return and is-number($length))
     {
         $return: (length($var) >= $length);
