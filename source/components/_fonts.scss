@@ -1,6 +1,6 @@
 ////
 /// frame-scss | components/_fonts.scss
-/// file version: 1.01.001
+/// file version: 1.01.002
 ////
 
 ///
@@ -34,7 +34,7 @@
     {
         @font-face
         {
-           font-family: $font;
+           font-family: $name;
            src: url("#{$dir}#{$file}.svg##{$name}") format("svg") !important;
         }
     }
@@ -63,6 +63,7 @@
     [data-#{$prefix}]:before
     {
         @extend %fontastic;
+
         content:     attr(data-icon);
         font-family: $font !important;
     }
@@ -71,6 +72,7 @@
     [class*=" #{$prefix}-"]:before
     {
         @extend %fontastic;
+
         font-family: $font !important;
     }
 
@@ -98,5 +100,10 @@
     {
         padding-top: 1px;
         line-height: 1.15em !important;
+    }
+
+    a &
+    {
+        cursor: pointer;
     }
 }

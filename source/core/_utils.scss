@@ -1,6 +1,6 @@
 ////
 /// frame-scss | core/_utils.scss
-/// file version: 1.01.005
+/// file version: 1.01.006
 ///
 /// @group Core
 ////
@@ -60,7 +60,7 @@
         $list: ();
         @each $value in $var
         {
-            $value: if(is-string($value), unquote($value), $value);
+            $value: unquote-all($value);
             $list:  append($list, $value);
         }
 
