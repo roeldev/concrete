@@ -1,6 +1,6 @@
 ////
 /// frame-scss | partials/_default.scss
-/// file version: 1.01.009
+/// file version: 1.01.010
 ////
 
 /*! frame-scss v0.1 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
@@ -118,7 +118,8 @@ img
 
 //------------------------------------------------------------------------------
 
-ul
+ul,
+ol
 {
     padding-left: 16px;
 }
