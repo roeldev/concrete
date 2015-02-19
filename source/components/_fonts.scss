@@ -1,6 +1,6 @@
 ////
 /// frame-scss | components/_fonts.scss
-/// file version: 1.01.002
+/// file version: 1.01.003
 ////
 
 ///
@@ -63,11 +63,10 @@
     [data-#{$prefix}]:before
     {
         @extend %fontastic;
-
-        content:     attr(data-icon);
-        font-family: $font !important;
+        content: attr(data-icon);
     }
 
+    [data-#{$prefix}]:before,
     [class^="#{$prefix}-"]:before,
     [class*=" #{$prefix}-"]:before
     {
@@ -93,8 +92,8 @@
     -webkit-font-smoothing:  antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    cursor: default;
-    @include user-select;
+    cursor:      default;
+    user-select: none;
 
     @media screen and (-webkit-min-device-pixel-ratio:0)
     {
