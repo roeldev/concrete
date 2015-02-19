@@ -1,6 +1,6 @@
 ////
 /// frame-scss | components/_breakpoints.scss
-/// file version: 1.01.003
+/// file version: 1.01.004
 ///
 /// Breakpoint and media query related functions and mixins.
 ////
@@ -49,6 +49,17 @@
                                                 $scrollbarBuffer);
             }
         }
+    }
+    @elseif is-number($breakpoint)
+    {
+        $breakpoint: if($type == 'min',
+                        ('min': $breakpoint),
+                        ('max': $breakpoint));
+
+        $mediaQuery: create-media-query($mediaQuery,
+                                        $breakpoint,
+                                        $type,
+                                        $scrollbarBuffer);
     }
 
     @if is-list($mediaQuery, 1)
