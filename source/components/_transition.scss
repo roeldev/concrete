@@ -1,6 +1,6 @@
 ////
 /// frame-scss | components/_transition.scss
-/// file version: 1.01.002
+/// file version: 1.01.003
 ////
 
 ///
@@ -27,6 +27,10 @@
     @if ($delay == false)
     {
         $delay: frame-transition($default, 'delay');
+        @if not is-second($delay)
+        {
+            $delay: 0s;
+        }
     }
 
     $hasPropertyList: is-list($property);
@@ -83,6 +87,10 @@
     @if ($value == 'default')
     {
         $value: frame-transition($value, 'delay');
+    }
+    @if not is-second($value)
+    {
+        $value: 0s;
     }
 
     transition-delay: $value;

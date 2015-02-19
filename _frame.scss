@@ -1,6 +1,6 @@
 //
 // frame-scss | _frame.scss
-// file version: 0.01.001
+// file version: 0.01.002
 //
 // Frame settings and variables
 //------------------------------------------------------------------------------
@@ -17,7 +17,7 @@
 //
 $frame-fonts:
 (
-    default: ('some-custom-font', sans-serif)
+    'default': ('some-custom-font', sans-serif)
 );
 
 //------------------------------------------------------------------------------
@@ -28,13 +28,13 @@ $frame-fonts:
 //
 $frame-font-sizes:
 (
-    default: 16px,
-    h1:      32px,
-    h2:      24px,
-    h3:      18px,
-    h4:      16px,
-    h5:      13px,
-    h6:      10px
+    'default': 16px,
+    'h1':      32px,
+    'h2':      24px,
+    'h3':      18px,
+    'h4':      16px,
+    'h5':      13px,
+    'h6':      10px
 );
 
 //------------------------------------------------------------------------------
@@ -45,7 +45,7 @@ $frame-font-sizes:
 //
 $frame-colors:
 (
-    default: #000
+    'default': #000
 );
 
 //------------------------------------------------------------------------------
@@ -56,11 +56,11 @@ $frame-colors:
 //
 $frame-transitions:
 (
-    default:
+    'default':
     (
-        delay:    0,
-        duration: .2s,
-        easing:   ease-in-out
+        'delay':    0s,
+        'duration': .2s,
+        'easing':   ease-in-out
     )
 );
 
@@ -69,16 +69,16 @@ $frame-transitions:
 //------------------------------------------------------------------------------
 $frame-breakpoints:
 (
-    xl: (min: 1200px, max: 1440px), // desktop >
-    l:  1024px,  // tablet landscape
-    m:  768px,  // tablet portrait
-    s:  480px,  // mobile landscape
-    xs: 240px   // mobile portrait
+    'xl': ('min': 1200px, 'max': 1440px), // desktop >
+    'l':  1024px,  // tablet landscape
+    'm':  768px,  // tablet portrait
+    's':  480px,  // mobile landscape
+    'xs': 240px   // mobile portrait
 );
 
 $frame-breakpoint-scrollbar-buffer:
 (
-    default: 20px
+    'default': 20px
 );
 
 //------------------------------------------------------------------------------
@@ -86,17 +86,17 @@ $frame-breakpoint-scrollbar-buffer:
 //------------------------------------------------------------------------------
 $frame-grid-width:
 (
-    default: 100%,
-    xl:      90%,
-    s:       95%
+    'default': 100%,
+    'xl':      90%,
+    's':       95%
 );
 
 $frame-grid-gap:
 (
-    default: 10px,
-    xl:      15px,
-    s:       8px,
-    xs:      5px
+    'default': 10px,
+    'xl':      15px,
+    's':       8px,
+    'xs':      5px
 );
 
 //------------------------------------------------------------------------------
