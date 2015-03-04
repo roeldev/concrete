@@ -1,0 +1,31 @@
+////
+/// frame-scss | partials/_iconfont.scss
+/// file version: 1.01.011
+////
+
+%frame-iconfont
+{
+    font-style:     normal !important;
+    font-weight:    normal !important;
+    font-variant:   normal !important;
+    text-transform: none !important;
+    speak:          none;
+    line-height:    1;
+
+    -webkit-font-smoothing:  antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    cursor:      default;
+    user-select: none;
+
+    @media screen and (-webkit-min-device-pixel-ratio:0)
+    {
+        padding-top: 1px;
+        line-height: 1.15em !important;
+    }
+
+    a &
+    {
+        cursor: pointer;
+    }
+}

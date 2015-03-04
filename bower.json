@@ -1,0 +1,27 @@
+{
+  "name": "frame-scss",
+  "description": "Sassy CSS framework",
+  "homepage": "https://github.com/roeldev/frame-scss",
+  "version": "0.2.0",
+  "license": "GNU GPL v2.0",
+  "main": "source/_init.scss",
+  "authors": [
+    "Roel Schut"
+  ],
+  "keywords": [
+    "sass",
+    "scss",
+    "css",
+    "frame",
+    "framework",
+    "grid",
+    "breakpoints"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

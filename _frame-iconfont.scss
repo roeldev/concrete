@@ -1,17 +1,17 @@
 //
-// frame-scss | _frame-fontastic.scss
+// frame-scss | _frame-iconfont.scss
 // file version: 0.00.001
 //
 
 //------------------------------------------------------------------------------
-// Import frame-sccs Fontastic related functions/mixins/partials.
+// Import frame-sccs icon font related functions/mixins/partials.
 //------------------------------------------------------------------------------
-@import 'source/fontastic';
+@import 'source/iconfont';
 
 //------------------------------------------------------------------------------
 // Define your font icons
 //------------------------------------------------------------------------------
-@include fontastic('icon-font-name', 'icon-prefix', '/path/to/fonts/')
+@include add-iconfont('icon-font-name', 'icon-prefix', '/path/to/font-files/')
 {
     // place your icon classes here
     .icon-example:before {

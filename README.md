@@ -1,2 +1,3 @@
 # frame-scss
-Simple lightweight SCSS framework. Work in progress.
+Sassy CSS framework.
+Work in progress, stay tuned!
