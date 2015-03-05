@@ -1,6 +1,6 @@
 ////
-/// frame-scss | components/_effects.scss
-/// file version: 1.01.002
+/// frame-scss | source/components/_effects.scss
+/// file version: 1.01.003
 ///
 /// Easy to use and pretty cool effects!
 ////
@@ -15,7 +15,7 @@
     @for $i from 1px through $size
     {
         $shadow:  $i $i $color;
-        $shadows: append($shadows, $shadow, comma);
+        $shadows: append($shadows, $shadow, 'comma');
     }
 
     text-shadow: unquote($shadows);

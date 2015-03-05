@@ -1,5 +1,5 @@
 ////
-/// frame-scss | partials/_placeholders.scss
+/// frame-scss | source/partials/_placeholders.scss
 /// file version: 0.00.006
 ////
 
@@ -44,14 +44,14 @@
 }
 
 //------------------------------------------------------------------------------
-// Wrapper and position style classes
+// Wrapper/container and position style classes
 //------------------------------------------------------------------------------
-%frame-wrapper //.wrapper
+%frame-container //.container
 {
     display: block;
     margin: 0 auto;
 
-    @include _frame-display-wrapper();
+    @include _frame-display-container();
 }
 
 %frame-center-x //.center-x

@@ -1,6 +1,6 @@
 ////
-/// frame-scss | core/_debug.scss
-/// file version: 0.00.006
+/// frame-scss | source/core/_debug.scss
+/// file version: 0.00.009
 ///
 /// Debug related functions and mixins. Work in progress!
 ///
@@ -8,7 +8,7 @@
 ////
 
 //
-// Adds a warning to the $frame-warnings list and, if available, outputs the
+// Adds a warning to the $_frame-warnings list and, if available, outputs the
 // warning with the @warn directive.
 // If the 2nd optional parameter is not used, the first parameter should contain
 // the actual warning message.
@@ -22,26 +22,31 @@
 @function warn($function, $message: false)
 {
     $message: if($message == false, $function, $function +': '+ $message);
-    $frame-warnings: append($frame-warnings, $message, 'comma');
+    $_frame-warnings: append($_frame-warnings, $message, 'comma');
 
-    @warn $message;
+    @if ($frame-console-warnings)
+    {
+        @warn($message);
+    }
     @return null;
 }
 
 //
-// Displays the warnings added to the $frame-warnings list.
+// Displays the warnings added to the $_frame-warnings list.
 //
 @mixin frame-display-warnings()
 {
     $prefix: '@warn';
-    @if is-list($frame-warnings, 1)
+    @if is-list($_frame-warnings, 1)
     {
-        @each $message in $frame-warnings
+/******************************************************************************/
+/* frame-display-warnings(): */
+        @each $message in $_frame-warnings
         {
             /* #{$prefix} #{$message} */
         }
 
-        $frame-warnings: ();
+        $_frame-warnings: ();
     }
 }
 
@@ -56,8 +61,8 @@
 {
     @if not is-list($var, 1)
     {
-        $var: $frame-debugs;
-        $frame-debugs: ();
+        $var: $_frame-debugs;
+        $_frame-debugs: ();
     }
 
     $prefix:  '@debug';
@@ -80,11 +85,16 @@
         $display: '{unknown}';
     }
 
+    @if ($frame-console-debugs)
+    {
+        @debug($display);
+    }
+
 /* #{$prefix} #{$display} */
 }
 
 ///
-/// Adds the variable $var to the list $frame-debugs and will be displayed by
+/// Adds the variable $var to the list $_frame-debugs and will be displayed by
 /// the frame-display-debug() mixin.
 ///
 /// @param {mixed} $var
@@ -92,19 +102,26 @@
 ///
 @function debug($var...)
 {
-    $frame-debugs: append($frame-debugs, $var, 'comma');
+    $_frame-debugs: append($_frame-debugs, $var, 'comma');
     @return null;
 }
 
 @mixin frame-display-debug()
 {
-    @include debug();
+    @if is-list($_frame-debugs, 1)
+    {
+/******************************************************************************/
+/* frame-display-debug(): */
+
+        @include debug();
+    }
 }
 
 //------------------------------------------------------------------------------
 
 ///
 /// @access private
+/// @group private
 /// @param {number|string|color|bool|null} $var
 /// @return {string}
 ///
@@ -125,6 +142,7 @@
 
 ///
 /// @access private
+/// @group private
 /// @param {list} $list
 /// @param {bool|string} $indentLevel [false]
 /// @return {string}
@@ -191,6 +209,7 @@
 
 ///
 /// @access private
+/// @group private
 /// @param {map} $map
 /// @param {bool|string} $indentLevel [false]
 /// @return {string}

@@ -1,6 +1,6 @@
 //
 // frame-scss | _frame.scss
-// file version: 0.01.002
+// file version: 0.01.003
 //
 // Frame settings and variables
 //------------------------------------------------------------------------------
@@ -69,35 +69,46 @@ $frame-transitions:
 //------------------------------------------------------------------------------
 $frame-breakpoints:
 (
+    'lg': 1024px,  // tablet landscape
     'xl': ('min': 1200px, 'max': 1440px), // desktop >
-    'l':  1024px,  // tablet landscape
-    'm':  768px,  // tablet portrait
-    's':  480px,  // mobile landscape
-    'xs': 240px   // mobile portrait
+    'sm': 480px,  // mobile landscape
+    'xs': 240px,   // mobile portrait
+    'md': 768px,  // tablet portrait
 );
 
 $frame-breakpoint-scrollbar-buffer:
 (
-    'default': 20px
+    'xl': 20px,
+    'md': 0px
 );
 
 //------------------------------------------------------------------------------
-// Grid
+// Container and grid
 //------------------------------------------------------------------------------
-$frame-grid-width:
+// Set the
+//
+$frame-container-width:
 (
-    'default': 100%,
-    'xl':      90%,
-    's':       95%
+    'xl': 90%,
+    'lg': 100%
 );
 
 $frame-grid-gap:
 (
-    'default': 10px,
-    'xl':      15px,
-    's':       8px,
-    'xs':      5px
+    'xl': 15px,
+    'lg': 10px,
+    'sm': 8px,
+    'xs': 5px
 );
+
+//------------------------------------------------------------------------------
+// Warnings and debug
+//------------------------------------------------------------------------------
+// Display warnings and/or debug messages in console. Warnings and debugs are
+// always displayed in the compiled CSS file.
+//
+$frame-console-warnings: false;
+$frame-console-debugs:   false;
 
 //------------------------------------------------------------------------------
 // Other variables
