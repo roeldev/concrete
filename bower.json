@@ -1,13 +1,17 @@
 {
   "name": "frame-scss",
-  "description": "Sassy CSS framework",
+  "description": "Sassy CSS framework. Includes functions/mixins for media queries/breakpoints, flexible responsive grids and debugging custom Sass + more!",
   "homepage": "https://github.com/roeldev/frame-scss",
   "version": "0.2.0",
-  "license": "GNU GPL v2.0",
-  "main": "source/_init.scss",
+  "license": "GPL-2.0+",
+  "main": ["source/_init.scss"],
   "authors": [
-    "Roel Schut"
+    "Roel Schut (http://roelschut.nl)"
   ],
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/roeldev/frame-scss.git"
+    },
   "keywords": [
     "sass",
     "scss",
@@ -15,13 +19,17 @@
     "frame",
     "framework",
     "grid",
-    "breakpoints"
+    "media query",
+    "breakpoints",
+    "effects",
+    "shapes",
+    "iconfont"
   ],
   "ignore": [
-    "**/.*",
-    "node_modules",
     "bower_components",
-    "test",
+    "gulp_tasks",
+    "node_modules",
+    "sassdoc",
     "tests"
   ]
 }
