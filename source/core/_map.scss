@@ -1,5 +1,5 @@
 ////
-/// frame-scss | core/_map.scss
+/// frame-scss | source/core/_map.scss
 /// file version: 0.00.003
 ///
 /// Some extra map related functions.
@@ -27,4 +27,65 @@
     $map:   map-merge($map, $merge);
 
     @return $map;
+}
+
+///
+/// Finds and returns the key of first occurance of $value in $map.
+///
+/// @param {map} $map
+/// @param {mixed} $value
+/// @return {mixed}
+///
+@function map-get-key($map, $value)
+{
+    $index: index(map-values($map), $value);
+    @return if(not is-null($index), nth(map-keys($map), $index), null);
+}
+
+///
+/// Sort map according to values.
+///
+/// @param {map} $map
+/// @param {string} $type [regular]
+/// @param {bool} $reverse [false]
+/// @return {map}
+///
+/// @todo Make sorting of maps with multiple equal values possible.
+///
+@function map-sort($map, $type: 'regular', $reverse: false)
+{
+    $sorted:     ();
+    $keysList:   map-keys($map);
+    $valuesList: map-values($map);
+    $values:     sort($valuesList, $type, $reverse);
+
+    @each $value in $values
+    {
+        $index:  index($valuesList, $value);
+        $key:    nth($keysList, $index);
+        $sorted: map-merge($sorted, ($key: $value));
+    }
+
+    @return $sorted;
+}
+
+///
+/// Sort map according to keys.
+///
+/// @param {map} $map
+/// @param {string} $type [regular]
+/// @param {bool} $reverse [false]
+/// @return {map}
+///
+@function map-ksort($map, $type: 'regular', $reverse: false)
+{
+    $sorted: ();
+    $keys:   sort(map-keys($map), $type, $reverse);
+
+    @each $key in $keys
+    {
+        $value:  map-get($map, $key);
+        $sorted: map-merge($sorted, ($key: $value));
+    }
+    @return $sorted;
 }

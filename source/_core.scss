@@ -1,11 +1,12 @@
 ////
-/// frame-scss | _core.scss
-/// file version: 1.00.000
+/// frame-scss | source/_core.scss
+/// file version: 1.00.001
 ///
 /// This file imports all core functions used by the framework.
 ////
 @import 'core/core';
 @import 'core/debug';
+@import 'core/list';
 @import 'core/map';
 @import 'core/types';
 @import 'core/utils';
