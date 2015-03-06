@@ -80,12 +80,11 @@
 ///
 /// Sorts a list of numbers from low to high (0 -> 9).
 ///
-/// * Example code taken from Sam Richards' quick-sort function.
-///   https://css-tricks.com/snippets/sass/sorting-function/
+/// *Example code taken from Sam Richards' quick-sort function.
+///  https://css-tricks.com/snippets/sass/sorting-function/
 ///
 /// @access private
 /// @group private
-
 ///
 @function _sort-numeric($list)
 {
@@ -123,8 +122,8 @@
 ///
 /// Sorts a list of numbers from high to low (9 -> 0).
 ///
-/// * Example code taken from Sam Richards' quick-sort function.
-///   https://css-tricks.com/snippets/sass/sorting-function/
+/// *Example code taken from Sam Richards' quick-sort function.
+///  https://css-tricks.com/snippets/sass/sorting-function/
 ///
 /// @access private
 /// @group private
