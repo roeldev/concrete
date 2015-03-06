@@ -1,11 +1,21 @@
 ////
 /// frame-scss | source/core/_list.scss
-/// file version: 0.00.001
+/// file version: 0.00.002
 ///
 /// Some extra list related functions.
 ///
 /// @group Core
 ////
+
+@function nth-first($list)
+{
+    @return nth($list, 1);
+}
+
+@function nth-last($list)
+{
+    @return nth($list, length($list));
+}
 
 ///
 /// @param {list} $list
@@ -16,6 +26,22 @@
 @function prepend($list, $value, $seperator: 'auto')
 {
     @return join(($value), $list, $seperator);
+}
+
+///
+/// @todo WIP
+///
+@function slice($list, $offset, $length)
+{
+
+}
+
+///
+/// @todo WIP
+///
+@function splice($list, $offset, $length, $replacement)
+{
+
 }
 
 ///
@@ -47,6 +73,10 @@
     @return $list;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
+//------------------------------------------------------------------------------
+// Sort related 'private' functions
 //------------------------------------------------------------------------------
 
 ///
@@ -139,6 +169,7 @@
 ///
 /// @access private
 /// @group private
+/// @todo WIP
 ///
 @function _sort-regular($list, $reverse)
 {

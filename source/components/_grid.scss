@@ -1,6 +1,6 @@
 ////
-/// frame-scss | components/_grid.scss
-/// file version: 0.00.003
+/// frame-scss | source/components/_grid.scss
+/// file version: 0.00.004
 ////
 
 @function frame-grid-columns($settings)
@@ -75,41 +75,39 @@
 
 ///
 /// @access private
+/// @group private
 /// @param {map} $columns
 ///
 @mixin _frame-display-blockgrid($columns)
 {
-    %frame-blockgrid-cell
+    &.grid-row,
+    .grid-row
     {
-        display: block;
-        float:   left;
+        @extend %frame-blockgrid-row;
     }
 
-    &.gr,
-    & .gr
+    [data-col]
     {
-        display: block;
-        @include apply-clearfix();
+        @extend %frame-blockgrid-column;
+    }
 
-        @each $name, $column in $columns
+    @each $name, $column in $columns
+    {
+        [data-col*="#{$name}"]
         {
-            > .gc-#{$name}
-            {
-                @extend %frame-blockgrid-cell;
-                width: map-get($column, width);
-            }
+            width: map-get($column, 'width');
         }
+    }
 
-        @each $breakpoint in map-keys($frame-breakpoints)
+    @each $breakpoint in $_frame-breakpoints
+    {
+        @include add-breakpoint($breakpoint, 'max')
         {
-            @include add-breakpoint($breakpoint, max)
+            @each $name, $column in $columns
             {
-                @each $name, $column in $columns
+                [data-col*="#{$breakpoint}-#{$name}"]
                 {
-                    > .gc-#{$breakpoint}-#{$name}
-                    {
-                        width: map-get($column, width);
-                    }
+                    width: map-get($column, 'width');
                 }
             }
         }

@@ -1,10 +1,9 @@
-//------------------------------------------------------------------------------
-// Import Frame assets
-//------------------------------------------------------------------------------
-// Import all the Frame assets you like. Ofcourse you can also import your own
-// or 3rd party .scss files at this point.
-//
-@import '../../frame';
+////
+/// frame-scss | tests/types.scss
+/// file version: 0.00.001
+////
+
+@import '../frame';
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -33,7 +32,7 @@ $vars:
     'first' 2nd "third" fourth-string
     #f00 #00ff00 rgba(#00ffff, .5) rgba(#ff00ff, 1)
     true false 0
-    null ''
+    ''
     () ( ) (()) (0) (0 0)
 );
 
@@ -70,16 +69,20 @@ $vars:
         }
     }
 
-    @for $i from 1 through length($keys)
+    $iL: length($keys);
+    @if ($iL > 0)
     {
-        $key:    nth($keys, $i);
-        $result: nth($results, $i);
-
-        @for $j from str-length($key) through $keyLength
+        @for $i from 1 through $iL
         {
-            $key: $key +' ';
-        }
+            $key:    nth($keys, $i);
+            $result: nth($results, $i);
 
-        /* @test #{$key} => #{$result} */
+            @for $j from str-length($key) through $keyLength
+            {
+                $key: $key +' ';
+            }
+
+            /* @test #{$key} => #{$result} */
+        }
     }
 }

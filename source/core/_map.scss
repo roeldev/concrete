@@ -1,6 +1,6 @@
 ////
 /// frame-scss | source/core/_map.scss
-/// file version: 0.00.003
+/// file version: 0.00.004
 ///
 /// Some extra map related functions.
 ///
@@ -54,7 +54,7 @@
 ///
 @function map-sort($map, $type: 'regular', $reverse: false)
 {
-    $sorted:     ();
+    $result:     ();
     $keysList:   map-keys($map);
     $valuesList: map-values($map);
     $values:     sort($valuesList, $type, $reverse);
@@ -63,10 +63,10 @@
     {
         $index:  index($valuesList, $value);
         $key:    nth($keysList, $index);
-        $sorted: map-merge($sorted, ($key: $value));
+        $result: map-merge($result, ($key: $value));
     }
 
-    @return $sorted;
+    @return $result;
 }
 
 ///
@@ -79,13 +79,13 @@
 ///
 @function map-ksort($map, $type: 'regular', $reverse: false)
 {
-    $sorted: ();
+    $result: ();
     $keys:   sort(map-keys($map), $type, $reverse);
 
     @each $key in $keys
     {
         $value:  map-get($map, $key);
-        $sorted: map-merge($sorted, ($key: $value));
+        $result: map-merge($result, ($key: $value));
     }
-    @return $sorted;
+    @return $result;
 }

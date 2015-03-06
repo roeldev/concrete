@@ -69,28 +69,26 @@ $frame-transitions:
 //------------------------------------------------------------------------------
 $frame-breakpoints:
 (
-    'lg': 1024px,  // tablet landscape
     'xl': ('min': 1200px, 'max': 1440px), // desktop >
-    'sm': 480px,  // mobile landscape
-    'xs': 240px,   // mobile portrait
-    'md': 768px,  // tablet portrait
+    'lg': 1024px,                         // tablet landscape
+    'md': 768px,                          // tablet portrait
+    'sm': 480px,                          // mobile landscape
+    'xs': 240px,                          // mobile portrait
 );
 
 $frame-breakpoint-scrollbar-buffer:
 (
     'xl': 20px,
-    'md': 0px
+    'md': 0
 );
 
 //------------------------------------------------------------------------------
 // Container and grid
 //------------------------------------------------------------------------------
-// Set the
-//
 $frame-container-width:
 (
     'xl': 90%,
-    'lg': 100%
+    'lg': 95%
 );
 
 $frame-grid-gap:

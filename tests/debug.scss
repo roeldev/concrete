@@ -1,10 +1,9 @@
-//------------------------------------------------------------------------------
-// Import Frame assets
-//------------------------------------------------------------------------------
-// Import all the Frame assets you like. Ofcourse you can also import your own
-// or 3rd party .scss files at this point.
-//
-@import '../../frame';
+////
+/// frame-scss | tests/debug.scss
+/// file version: 0.00.001
+////
+
+@import '../frame';
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -37,10 +36,6 @@
 @include debug(() == ());
 @include debug(1 == '1');
 @include debug(1 == true);
-
-/******************************************************************************/
-/* Null TESTS */
-@include debug(null);
 
 /******************************************************************************/
 /* List TESTS */

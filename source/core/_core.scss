@@ -1,6 +1,6 @@
 ////
-/// frame-scss | core/_core.scss
-/// file version: 1.01.006
+/// frame-scss | source/core/_core.scss
+/// file version: 1.01.007
 ///
 /// All default frame-scss functions are within this file. Through these
 /// functions you can easily use the variables you have set in your main
@@ -127,11 +127,11 @@
 ///
 /// @return {map|number}
 ///
-@function frame-breakpoint($breakpoint: 'default', $value: false)
+@function frame-breakpoint($breakpoint: null, $value: false)
 {
-    @if ($breakpoint == 'default')
+    @if is-null($breakpoint)
     {
-        $breakpoint: 'xl';
+        $breakpoint: nth-first($_frame-breakpoints);
     }
 
     @if map-has-key($frame-breakpoints, $breakpoint)
@@ -149,25 +149,14 @@
         @else
         {
             @return warn('frame-breakpoint',
-                         'Unknown value `#{$value}` in `#{$breakpoint}`!');
+                'Unknown value `#{$value}` in `#{$breakpoint}`!');
         }
     }
     @else
     {
         @return warn('frame-breakpoint',
-                     'Unknown breakpoint `#{$breakpoint}`!');
+            'Unknown breakpoint `#{$breakpoint}`!');
     }
-}
-
-///
-/// @todo WIP
-///
-@function frame-wrapper-width()
-{
-    $breakpoint: frame-breakpoint();
-    $key:        if(map-has-key($breakpoint, 'max'), 'max', 'min');
-
-    @return map-get($breakpoint, $key);
 }
 
 ///
@@ -181,26 +170,14 @@
 ///
 /// @todo WIP
 ///
-@function frame-grid-width($breakpoint: 'default', $gridType: false)
+@function frame-container-width($breakpoint: 'default', $gridType: false)
 {
-    @if ($breakpoint == 'default')
+    @if not map-has-key($frame-container-width, $breakpoint)
     {
-        @return map-get($frame-grid-width, $breakpoint);
+        //$breakpoint:
     }
-    @elseif map-has-key($frame-breakpoints, $breakpoint)
-    {
-        @if map-has-key($frame-grid-width, $breakpoint) != true
-        {
-            $breakpoint: 'default';
-        }
 
-        @return map-get($frame-grid-width, $breakpoint);
-    }
-    @else
-    {
-        @return warn('frame-grid-width',
-                     'Unknown breakpoint `#{$breakpoint}`!');
-    }
+    @return map-get($frame-container-width, $breakpoint);
 }
 
 ///
@@ -211,19 +188,39 @@
 
 }
 
-///------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////
 
 ///
 /// @access private
+/// @group private
 ///
-@function _frame-prepare-breakpoints()
+@function _frame-init-breakpoints()
 {
-    $map: ();
-    $min: false;
-    $max: false;
-
+    // make a map with the minimum pixel width of the breakpoint as key so we
+    // can sort the breakpoints from largest to smallest
+    $sortedBreakpoints: ();
     @each $breakpoint, $value in $frame-breakpoints
     {
+        @if is-map($value)
+        {
+            $value: map-get($value, 'min');
+        }
+        $sortedBreakpoints: map-append($sortedBreakpoints, $value, $breakpoint);
+    }
+
+    $sortedBreakpoints:  map-ksort($sortedBreakpoints, 'numeric', true);
+    $_frame-breakpoints: map-values($sortedBreakpoints);
+
+
+    $result: ();
+    $min:    false;
+    $max:    false;
+
+    // loop through the sorted breakpoints, calculate the start and end widths
+    // of the breakpoint, and rearrange the $frame-breakpoints map
+    @each $breakpoint in $_frame-breakpoints
+    {
+        $value: map-get($frame-breakpoints, $breakpoint);
         @if is-map($value)
         {
             $min: map-get($value, 'min');
@@ -234,9 +231,31 @@
             $value: ('min': $min, 'max': $max);
         }
 
-        $map: map-append($map, $breakpoint, $value);
-        $max: ($min - 1);
+        $result: map-append($result, $breakpoint, $value);
+        $max:    ($min - 1);
     }
 
-    @return $map;
+    @return $result;
+}
+
+///
+/// @access private
+/// @group private
+///
+@function _frame-init-breakpoint-settings($values, $defaultValue)
+{
+    $result: ();
+    $value:  $defaultValue;
+
+    @each $breakpoint in $_frame-breakpoints
+    {
+        @if map-has-key($values, $breakpoint)
+        {
+            $value: map-get($values, $breakpoint);
+        }
+
+        $result: map-append($result, $breakpoint, $value);
+    }
+
+    @return $result;
 }

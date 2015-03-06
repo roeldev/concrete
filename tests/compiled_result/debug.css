@@ -1,0 +1,169 @@
+/*
+    frame-scss - Sassy CSS framework
+    Copyright (c) 2014-2015 Roel Schut (roelschut.nl)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+/******************************************************************************/
+/* Number TESTS */
+/* @debug (list|1)
+   (
+      [1] => (number) `1`
+   ) */
+/* @debug (list|1)
+   (
+      [1] => (number|px) `16px`
+   ) */
+/* @debug (list|1)
+   (
+      [1] => (number|%) `100%`
+   ) */
+/******************************************************************************/
+/* String TESTS */
+/* @debug (list|1)
+   (
+      [1] => (string) `string`
+   ) */
+/* @debug (list|1)
+   (
+      [1] => (string) `1`
+   ) */
+/* @debug (list|1)
+   (
+      [1] => (string) `red`
+   ) */
+/* @debug (list|1)
+   (
+      [1] => (string) `#f00`
+   ) */
+/* @debug (list|1)
+   (
+      [1] => (string) `true`
+   ) */
+/* @debug (list|1)
+   (
+      [1] => (string) `false`
+   ) */
+/******************************************************************************/
+/* Color TESTS */
+/* @debug (list|1)
+   (
+      [1] => (color) `red`
+   ) */
+/* @debug (list|1)
+   (
+      [1] => (color) `#f00`
+   ) */
+/* @debug (list|1)
+   (
+      [1] => (color) `#ff0000`
+   ) */
+/* @debug (list|1)
+   (
+      [1] => (color) `#ff0000`
+   ) */
+/******************************************************************************/
+/* Boolean TESTS */
+/* @debug (list|1)
+   (
+      [1] => (bool) `true`
+   ) */
+/* @debug (list|1)
+   (
+      [1] => (bool) `false`
+   ) */
+/* @debug (list|1)
+   (
+      [1] => (bool) `true`
+   ) */
+/* @debug (list|1)
+   (
+      [1] => (bool) `false`
+   ) */
+/* @debug (list|1)
+   (
+      [1] => (bool) `false`
+   ) */
+/******************************************************************************/
+/* List TESTS */
+/* @debug (list|1)
+   (
+      [1] => (list|0) ( )
+   ) */
+/* @debug (list|1)
+   (
+      [1] => (list|6)
+      (
+         [1] => (string) `one`
+         [2] => (color) `red`
+         [3] => (number) `33`
+         [4] => (list|2)
+         (
+            [1] => (string) `test1`
+            [2] => (string) `test2`
+         )
+         [5] => (list|0) ( )
+         [6] => (map|2)
+         {
+            [`key1`] => (string) `value1`
+            [`key2`] => (number) `2`
+         }
+      )
+   ) */
+/******************************************************************************/
+/* Map TESTS */
+/* @debug (list|1)
+   (
+      [1] => (map|5)
+      {
+         [`xl`] => (map|2)
+         {
+            [`min`] => (number|px) `1200px`
+            [`max`] => (number|px) `1440px`
+         }
+         [`lg`] => (map|2)
+         {
+            [`min`] => (number|px) `1024px`
+            [`max`] => (number|px) `1199px`
+         }
+         [`md`] => (map|2)
+         {
+            [`min`] => (number|px) `768px`
+            [`max`] => (number|px) `1023px`
+         }
+         [`sm`] => (map|2)
+         {
+            [`min`] => (number|px) `480px`
+            [`max`] => (number|px) `767px`
+         }
+         [`xs`] => (map|2)
+         {
+            [`min`] => (number|px) `240px`
+            [`max`] => (number|px) `479px`
+         }
+      }
+   ) */
+/* @debug (list|1)
+   (
+      [1] => (map|1)
+      {
+         [`default`] => (map|3)
+         {
+            [`delay`] => (number|s) `0s`
+            [`duration`] => (number|s) `0.2s`
+            [`easing`] => (string) `ease-in-out`
+         }
+      }
+   ) */

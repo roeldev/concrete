@@ -1,6 +1,6 @@
 ////
 /// frame-scss | source/components/_breakpoints.scss
-/// file version: 1.01.004
+/// file version: 1.01.005
 ///
 /// Breakpoint and media query related functions and mixins.
 ////
@@ -11,6 +11,8 @@
 /// @param {string} $type - Valid values are `min`, `max` or `both`.
 ///
 /// @param {bool|number} $scrollbarBuffer [true]
+///
+/// @todo Combine breakpoints min-max values in media query when possible.
 ///
 @mixin add-breakpoint($breakpoint, $type: 'both', $scrollbarBuffer: true)
 {
@@ -106,7 +108,7 @@
         }
         @elseif not is-number($scrollbarBuffer)
         {
-            $scrollbarBuffer: set($scrollbarBuffer, number px);
+            $scrollbarBuffer: set($scrollbarBuffer, 'number' 'px');
         }
 
         // create media query according to extracted min/max values
@@ -116,41 +118,21 @@
             $min:       ($min + $scrollbarBuffer);
             //$min:       rem($min);
             $min:       unquote('and (min-width: #{$min})');
-            $condition: append($condition, $min, space);
+            $condition: append($condition, $min, 'space');
         }
         @if $hasMax
         {
             $max:       ($max + $scrollbarBuffer);
             //$max:       rem($max);
             $max:       unquote('and (max-width: #{$max})');
-            $condition: append($condition, $max, space);
+            $condition: append($condition, $max, 'space');
         }
 
         // make sure that $mq is a list
         //$mq: set($max, list);
         // then add the condition to allow multiple conditions
-        $mq: append($mq, $condition, comma);
+        $mq: append($mq, $condition, 'comma');
     }
 
     @return $mq;
-}
-
-///
-/// @param {bool|number} $scrollbarBuffer
-///
-@mixin frame-display-wrapper-breakpoints($scrollbarBuffer: true)
-{
-    @each $breakpoint, $values in $frame-breakpoints
-    {
-        @if ($breakpoint != 'xl')
-        {
-            @include add-breakpoint($breakpoint, 'both', $scrollbarBuffer)
-            {
-                $width: frame-breakpoint($breakpoint, 'min');
-                //$width: rem($width);
-
-                max-width: $width;
-            }
-        }
-    }
 }
