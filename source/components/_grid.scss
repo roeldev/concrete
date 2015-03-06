@@ -69,7 +69,7 @@
     @else
     {
         @return warn('frame-grid',
-                     'Unable to create grid, unknown type `#{$type}`!');
+            'Unable to create grid, unknown type `#{$type}`!');
     }
 }
 

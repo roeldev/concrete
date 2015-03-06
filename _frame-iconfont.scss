@@ -13,7 +13,8 @@
 //------------------------------------------------------------------------------
 @include add-iconfont('icon-font-name', 'icon-prefix', '/path/to/font-files/')
 {
-    // place your icon classes here
+    // place your icon classes here, or if you plan to use gulp-maelstrom you
+    // can remove this file as it will automatically be created
     .icon-example:before {
       content: "a";
     }
