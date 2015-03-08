@@ -28,10 +28,13 @@
     "iconfont"
   ],
   "ignore": [
-    "bower_components",
     "gulp_tasks",
     "node_modules",
-    "sassdoc",
-    "tests"
+    "tests",
+    ".gitignore",
+    ".sassdocrc",
+    "conemu.bat",
+    "gulpfile.js",
+    "package.json"
   ]
 }
