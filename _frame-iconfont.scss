@@ -1,0 +1,21 @@
+//
+// frame-scss | _frame-iconfont.scss
+// file version: 0.00.001
+//
+
+//------------------------------------------------------------------------------
+// Import frame-sccs icon font related functions/mixins/partials.
+//------------------------------------------------------------------------------
+@import 'source/iconfont';
+
+//------------------------------------------------------------------------------
+// Define your font icons
+//------------------------------------------------------------------------------
+@include add-iconfont('icon-font-name', 'icon-prefix', '/path/to/font-files/')
+{
+    // place your icon classes here, or if you plan to use gulp-maelstrom you
+    // can remove this file as it will automatically be created
+    .icon-example:before {
+      content: "a";
+    }
+}

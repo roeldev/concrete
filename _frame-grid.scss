@@ -1,69 +1,12 @@
 //
 // frame-scss | _frame-grid.scss
-// file version: 0.01.001
+// file version: 0.01.002
 //
 // Basic grid settings
 //------------------------------------------------------------------------------
 // For more information about the available settings, check either the included
 // help documents, examples, or visit the project page: http://git.io/qoNLsw
 //
-
-//------------------------------------------------------------------------------
-// Grid columns
-//------------------------------------------------------------------------------
-// Specify wich columns you would like to use and what alternative sizes they
-// should have when a breakpoint is reached.
-//
-// Arguments
-//------------------------------------------------------------------------------
-// columnName: columnWidth
-// columnName: (columnWidth, (breakpoint1: adaptiveColumnWidth1,
-//                            breakpoint2: adaptiveColumnWidth2, ...))
-//
-// Values types
-//------------------------------------------------------------------------------
-// columnName:          any valid list key/css selector name
-// columnWidth:         a valid number, this can be a fraction or a percentage
-// breakpoint:          the breakpoint key as in $frame-breakpoints
-// adaptiveColumnWidth: same as columnWidth
-//
-// Examples
-//------------------------------------------------------------------------------
-// '25': (25%, (l: 50%, s: 100%))
-//
-// The name for the column is set to .gc-25.
-// The default column width is 25%.
-// On breakpoints <= l the default width is 50%.
-// On breakpoints <= s the default width is 100%.
-//
-// .gc-25 { width: 25% }
-// .gc-l-25, .gc-m-25 { width: 50% }
-// .gc-s-25, .gc-xs-25 { width: 100% }
-//
-//------------------------------------------------------------------------------
-// 'two-third': (66.67%, (m: 100%, s: false))
-//
-// The name for the column is set to .gc-two-third.
-// The default column width is 66.67%.
-// On breakpoints <= m the default width is 100%.
-// No alternative widths are set for breakpoints <= s.
-//
-// .gc-two-third, .gc-l-two-third { width: 66.67% }
-// .gc-m-two-third { width: 100% }
-//
-$frame-grid-columns:
-(
-    '8':   (8.33%,  (s:  50%,  m: 25%)), // 1/12
-    '12':  (12.5%,  (s:  50%,  m: 25%)), // 1.5/12 -> 1/8
-    '16':  (16.66%, (s:  100%, m: 50%)), // 2/12   -> 1/6
-    '25':  (25%,    (xs: 100%, s: 50%)), // 3/12   -> 1/4
-    '33':  (33.33%, (s:  100%)),         // 4/12   -> 1/3
-    '50':  (50%,    (s:  100%)),         // 6/12   -> 1/2
-    '66':  (66.67%, (s:  100%)),         // 8/12   -> 2/3
-    '75':  (75%,    (s:  100%)),         // 9/12   -> 3/4
-    '83':  (83.33,  (l:  100%)),         // 10/12  -> 5/6
-    '100': 100%                          // 12/12  -> 1
-);
 
 //------------------------------------------------------------------------------
 // Import grid specific frame-sccs functions/mixins/partials.
@@ -73,6 +16,57 @@ $frame-grid-columns:
 //
 @import 'source/grid';
 
-.blockgrid { @include frame-grid(block, $frame-grid-columns); }
-//.flexgrid  { @include frame-grid(flex, $frame-grid-columns); }
-//.tablegrid { @include frame-grid(table, $frame-grid-columns); }
+//------------------------------------------------------------------------------
+// Grid columns
+//------------------------------------------------------------------------------
+// Specify wich columns you would like to use and what alternative sizes they
+// should have when a breakpoint is reached.
+//
+// List indexes:
+//------------------------------------------------------------------------------
+// 1: {string} name - any valid list key/css selector name
+// 2: {number} width - a valid number, this can be a fraction or a percentage
+// 3: {map} breakpoints - key: breakpoint, value: alternative width
+//
+// Examples
+//------------------------------------------------------------------------------
+// '25' 25% (lg: 50%, sm: 100%)
+//
+// The name for the column is set to .gc-25.
+// The default column width is 25%.
+// On breakpoints <= lg the default width is 50%.
+// On breakpoints <= sm the default width is 100%.
+//
+// .gc-25 { width: 25% }
+// .gc-lg-25, .gc-md-25 { width: 50% }
+// .gc-sm-25, .gc-xs-25 { width: 100% }
+//
+//------------------------------------------------------------------------------
+// 'two-third' 66.67% (md: 100%, sm: false)
+//
+// The name for the column is set to .gc-two-third.
+// The default column width is 66.67%.
+// On breakpoints <= md the default width is 100%.
+// No alternative widths are set for breakpoints <= s.
+//
+// .gc-two-third, .gc-lg-two-third { width: 66.67% }
+// .gc-md-two-third { width: 100% }
+//
+$frame-grid-columns: frame-grid-columns(
+    '8'   8.33%  ('sm': 50%,  'md': 25%), // 1/12
+    '12'  12.5%  ('sm': 50%,  'md': 25%), // 1.5/12 -> 1/8
+    '16'  16.66% ('sm': 100%, 'md': 50%), // 2/12   -> 1/6
+    '25'  25%    ('xs': 100%, 'sm': 50%), // 3/12   -> 1/4
+    '33'  33.33% ('sm': 100%),            // 4/12   -> 1/3
+    '50'  50%    ('sm': 100%),            // 6/12   -> 1/2
+    '66'  66.67% ('sm': 100%),            // 8/12   -> 2/3
+    '75'  75%    ('sm': 100%),            // 9/12   -> 3/4
+    '83'  83.33  ('lg': 100%),            // 10/12  -> 5/6
+    '100' 100%                            // 12/12  -> 1
+);
+
+//------------------------------------------------------------------------------
+
+.blockgrid { @include frame-grid-create('block', $frame-grid-columns); }
+//.flexgrid  { @include frame-grid-create('flex', $frame-grid-columns); }
+//.tablegrid { @include frame-grid-create('table', $frame-grid-columns); }

@@ -1,9 +1,9 @@
 ////
-/// frame-scss | partials/_default.scss
-/// file version: 1.01.009
+/// frame-scss | source/partials/_default.scss
+/// file version: 1.01.011
 ////
 
-/*! frame-scss v0.1 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
+/*! frame-scss v0.2.0 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
 html, body
 {
     width:      100%;
@@ -26,10 +26,9 @@ html
 *:before,
 *:after
 {
-    @include box-sizing;
-
-    margin:  0;
-    padding: 0;
+    box-sizing: border-box;
+    margin:     0;
+    padding:    0;
 }
 
 //------------------------------------------------------------------------------
@@ -60,7 +59,9 @@ a
 
 button
 {
-    @include appearance;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
 }
 
 //------------------------------------------------------------------------------
@@ -118,7 +119,8 @@ img
 
 //------------------------------------------------------------------------------
 
-ul
+ul,
+ol
 {
     padding-left: 16px;
 }

@@ -1,56 +1,30 @@
 ////
-/// frame-scss | components/_breakpoints.scss
-/// file version: 1.01.003
+/// frame-scss | source/components/_breakpoints.scss
+/// file version: 1.02.000
 ///
 /// Breakpoint and media query related functions and mixins.
-///
-/// @group breakpoints
 ////
 
 ///
-/// @param {string|map|list} $breakpoint
+/// @param {number|string|map|list} $breakpoint
 ///
 /// @param {string} $type - Valid values are `min`, `max` or `both`.
 ///
 /// @param {bool|number} $scrollbarBuffer [true]
 ///
+/// @todo Combine breakpoints min-max values in media query when possible.
+///
 @mixin add-breakpoint($breakpoint, $type: 'both', $scrollbarBuffer: true)
 {
-    $mediaQuery: ();
+    $mediaQuery:     ();
+    $mediaQueryList: media-query-list($breakpoint);
 
-    // single breakpoint key (xl|l), get corresponding map
-    @if is-string($breakpoint)
+    @each $item in $mediaQueryList
     {
-        $breakpoint: frame-breakpoint($breakpoint);
-    }
-    // custom breakpoint map (min: #, max: #)
-    @if is-map($breakpoint)
-    {
-        $mediaQuery: create-media-query($mediaQuery,
-                                        $breakpoint,
+        $mediaQuery: media-query-create($mediaQuery,
+                                        $item,
                                         $type,
                                         $scrollbarBuffer);
-    }
-    // multiple breakpoints in list
-    @elseif is-list($breakpoint)
-    {
-        $mediaQuery:  ();
-        $breakpoints: $breakpoint;
-
-        @each $breakpoint in $breakpoints
-        {
-            @if is-string($breakpoint)
-            {
-                $breakpoint: frame-breakpoint($breakpoint);
-            }
-            @if is-map($breakpoint)
-            {
-                $mediaQuery: create-media-query($mediaQuery,
-                                                $breakpoint,
-                                                $type,
-                                                $scrollbarBuffer);
-            }
-        }
     }
 
     @if is-list($mediaQuery, 1)
@@ -62,8 +36,103 @@
     }
 }
 
+//------------------------------------------------------------------------------
+
 ///
-/// @param {list} $mq - A list, representing the media query.
+/// Combines the arguments into optimized media query ranges where possible
+///
+/// @param {list|string|map} $breakpoints
+///
+/// @return {list}
+///
+@function media-query-list($breakpoints)
+{
+    // when the argslist only has 1 item and that item is also a list, use the
+    // first item as the argslist
+    @if not is-list($breakpoints, 1)
+    {
+        $breakpoints: ($breakpoints);
+    }
+
+    $result: ();
+    $sorted: ();
+
+    @each $item in $breakpoints
+    {
+        @if is-string($item)
+        {
+            $item: frame-breakpoint($item);
+        }
+        @elseif is-number($item)
+        {
+            $item: ($item * 1px);
+            $item:
+            (
+                'max': $item,
+                'min': $item
+            );
+        }
+
+        @if is-map($item) and map-has-key($item, 'min')
+        {
+            $min:    map-get($item, 'min');
+            $sorted: map-append($sorted, $min, $item);
+        }
+    }
+
+    @if (length($sorted) > 1)
+    {
+        $sorted: map-ksort($sorted, 'numeric', true);
+        $sorted: map-values($sorted);
+
+
+        $item:    nth-first($sorted);
+        $highest: map-get($item, 'max');
+        $lowest:  map-get($item, 'min');
+
+        // loop through all sorted breakpoints from high -> low
+        // combine breakpoints that are next to eachother (eg.
+        // (min: 50, max: 99) and (min: 100, max: 200) becomes
+        // (min: 50, max: 200))
+        @for $i from 2 through length($sorted)
+        {
+            $item: nth($sorted, $i);
+
+            $max: map-get($item, 'max');
+            @if (($max + 1) >= $lowest)
+            {
+                $lowest: map-get($item, 'min');
+            }
+            @else
+            {
+                $result: append($result,
+                (
+                    'max': $highest,
+                    'min': $lowest
+                ));
+
+                $lowest:  map-get($item, 'min');
+                $highest: $max;
+            }
+        }
+
+        // add the last lowest + highest values to the result
+        $result: append($result,
+        (
+            'max': $highest,
+            'min': $lowest
+        ));
+    }
+    @else
+    {
+        $result: map-values($sorted);
+    }
+
+    @return $result;
+}
+
+///
+/// @param {list} $mediaQuery - A list, representing the media query.
 ///
 /// @param {map} $breakpoint - A breakpoint map with a min and/or max key.
 ///
@@ -71,77 +140,55 @@
 ///
 /// @param {bool|number} $scrollbarBuffer
 ///
-@function create-media-query($mq, $breakpoint, $type, $scrollbarBuffer)
+@function media-query-create($mediaQuery, $breakpoint, $type, $scrollbarBuffer)
 {
-    $min: false;
     $max: false;
+    $min: false;
 
-    @if map-has-key($breakpoint, 'min') and ($type == 'both' or $type == 'min')
-    {
-        $min: map-get($breakpoint, 'min');
-    }
     @if map-has-key($breakpoint, 'max') and ($type == 'both' or $type == 'max')
     {
         $max: map-get($breakpoint, 'max');
     }
+    @if map-has-key($breakpoint, 'min') and ($type == 'both' or $type == 'min')
+    {
+        $min: map-get($breakpoint, 'min');
+    }
 
-    $hasMin: ($min != null and $min != false);
     $hasMax: ($max != null and $max != false);
+    $hasMin: ($min != null and $min != false);
 
-    @if $hasMin or $hasMax
+    @if $hasMax or $hasMin
     {
         // apply a scrollbar buffer to the min/max values
         @if ($scrollbarBuffer == true)
         {
-            $scrollbarBuffer: 20px;
+            $scrollbarBuffer: 0;
         }
         @elseif not is-number($scrollbarBuffer)
         {
-            $scrollbarBuffer: set($scrollbarBuffer, number px);
+            $scrollbarBuffer: set($scrollbarBuffer, 'number' 'px');
         }
 
         // create media query according to extracted min/max values
         $condition: screen;
-        @if $hasMin
-        {
-            $min:       ($min + $scrollbarBuffer);
-            //$min:       rem($min);
-            $min:       unquote('and (min-width: #{$min})');
-            $condition: append($condition, $min, space);
-        }
         @if $hasMax
         {
             $max:       ($max + $scrollbarBuffer);
             //$max:       rem($max);
             $max:       unquote('and (max-width: #{$max})');
-            $condition: append($condition, $max, space);
+            $condition: append($condition, $max, 'space');
         }
-
-        // make sure that $mq is a list
-        //$mq: set($max, list);
-        // then add the condition to allow multiple conditions
-        $mq: append($mq, $condition, comma);
-    }
-
-    @return $mq;
-}
-
-///
-/// @param {bool|number} $scrollbarBuffer
-///
-@mixin frame-display-wrapper-breakpoints($scrollbarBuffer: true)
-{
-    @each $breakpoint, $values in $frame-breakpoints
-    {
-        @if ($breakpoint != 'xl')
+        @if $hasMin
         {
-            @include add-breakpoint($breakpoint, 'both', $scrollbarBuffer)
-            {
-                $width: frame-breakpoint($breakpoint, 'min');
-                //$width: rem($width);
-
-                max-width: $width;
-            }
+            $min:       ($min + $scrollbarBuffer);
+            //$min:       rem($min);
+            $min:       unquote('and (min-width: #{$min})');
+            $condition: append($condition, $min, 'space');
         }
+
+        // then add the condition to allow multiple conditions
+        $mediaQuery: append($mediaQuery, $condition, 'comma');
     }
+
+    @return $mediaQuery;
 }

@@ -1,8 +1,6 @@
 ////
-/// frame-scss | components/_transition.scss
-/// file version: 1.01.001
-///
-/// @group transition
+/// frame-scss | source/components/_transition.scss
+/// file version: 1.01.003
 ////
 
 ///
@@ -29,6 +27,10 @@
     @if ($delay == false)
     {
         $delay: frame-transition($default, 'delay');
+        @if not is-second($delay)
+        {
+            $delay: 0s;
+        }
     }
 
     $hasPropertyList: is-list($property);
@@ -47,14 +49,11 @@
                 $p: nth($property, $i);
                 $d: nth($duration, $i);
 
-                $transition:  $p $d $easing $delay;
+                $transition:  unquote($p) $d $easing $delay;
                 $transitions: append($transitions, $transition, 'comma');
             }
 
-            -webkit-transition: $transitions;
-               -moz-transition: $transitions;
-                 -o-transition: $transitions;
-                    transition: $transitions;
+            transition: $transitions;
         }
         @else
         {
@@ -71,11 +70,12 @@
             @include transition-property($property);
             $property: null;
         }
+        @else
+        {
+            $property: unquote($property);
+        }
 
-        -webkit-transition: $property $duration $easing $delay;
-           -moz-transition: $property $duration $easing $delay;
-             -o-transition: $property $duration $easing $delay;
-                transition: $property $duration $easing $delay;
+        transition: $property $duration $easing $delay;
     }
 }
 
@@ -88,11 +88,12 @@
     {
         $value: frame-transition($value, 'delay');
     }
+    @if not is-second($value)
+    {
+        $value: 0s;
+    }
 
-    -webkit-transition-delay: $value;
-       -moz-transition-delay: $value;
-         -o-transition-delay: $value;
-            transition-delay: $value;
+    transition-delay: $value;
 }
 
 ///
@@ -100,15 +101,12 @@
 ///
 @mixin transition-duration($value: 'default')
 {
-    @if ($value == default)
+    @if ($value == 'default')
     {
         $value: frame-transition($value, 'duration');
     }
 
-    -webkit-transition-duration: $value;
-       -moz-transition-duration: $value;
-         -o-transition-duration: $value;
-            transition-duration: $value;
+    transition-duration: $value;
 }
 
 ///
@@ -116,10 +114,8 @@
 ///
 @mixin transition-property($value...)
 {
-    -webkit-transition-property: $value;
-       -moz-transition-property: $value;
-         -o-transition-property: $value;
-            transition-property: $value;
+    $value: unquote-all($value);
+    transition-property: $value;
 }
 
 ///
@@ -132,8 +128,5 @@
         $value: frame-transition($value, 'easing');
     }
 
-    -webkit-transition-timing-function: $value;
-       -moz-transition-timing-function: $value;
-         -o-transition-timing-function: $value;
-            transition-timing-function: $value;
+    transition-timing-function: $value;
 }

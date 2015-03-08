@@ -1,6 +1,6 @@
 ////
-/// frame-scss | partials/_placeholders.scss
-/// file version: 0.00.006
+/// frame-scss | source/partials/_placeholders.scss
+/// file version: 0.00.007
 ////
 
 //------------------------------------------------------------------------------
@@ -44,22 +44,21 @@
 }
 
 //------------------------------------------------------------------------------
-// Wrapper and position style classes
+// Wrapper/container and position style classes
 //------------------------------------------------------------------------------
-%frame-wrapper //.wrapper
+%frame-container //.container
 {
     display: block;
-    margin: 0 auto;
+    margin:  0 auto;
 
-    @include _frame-display-wrapper();
+    @include _frame-display-container();
 }
 
 %frame-center-x //.center-x
 {
-    position:  relative;
-    width:     100%;
-    max-width: frame-breakpoint();
-    margin:    0 auto;
+    position: relative;
+    width:    100%;
+    margin:   0 auto;
 }
 
 %frame-center-y //.center-y
@@ -67,7 +66,7 @@
     height:    100%;
     font-size: 0;
 
-    & > %frame-center-valign //.center-valign
+    > %frame-center-valign //.center-valign
     {
         display:        inline-block;
         vertical-align: middle;

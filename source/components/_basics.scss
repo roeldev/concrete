@@ -1,13 +1,13 @@
 ////
-/// frame-scss | components/_basics.scss
-/// file version: 0.00.003
+/// frame-scss | source/components/_basics.scss
+/// file version: 0.00.004
 ///
 /// @group private
 ////
 
 ///
 /// This 'private' function will display all headings, wich are defined in the
-/// $frame-font-sizes setting, in partials/_default.scss.
+/// `$frame-font-sizes` setting, in partials/_default.scss.
 ///
 /// @access private
 ///
@@ -51,37 +51,38 @@
 
 ///
 /// @access private
-/// @todo WIP
 ///
-@mixin _frame-display-wrapper()
+@mixin _frame-display-container()
 {
-    $maxWidth: frame-breakpoint('xl', 'max');
-    @if ($maxWidth == false)
+    $breakpoint:   nth-first($_frame-breakpoints);
+    $defaultWidth: frame-container-width($breakpoint);
+
+    $maxWidth: frame-breakpoint($breakpoint, 'max');
+    @if not $maxWidth
     {
-        $maxWidth: frame-breakpoint('xl', 'min');
+        $maxWidth: frame-breakpoint($breakpoint, 'min');
     }
 
-    width:     frame-grid-width();
+    width:     $defaultWidth;
     max-width: $maxWidth;
 
-    /*@each $breakpoint, $breakpointValues in $frame-breakpoints
+    $widths: ();
+    @for $i from 2 through length($_frame-breakpoints)
     {
-        $bpMin:   map-get($breakpointValues, min);
-        $bpMax:   map-get($breakpointValues, max);
-        $bpWidth: frame-grid-width($breakpoint);
+        $breakpoint: nth($_frame-breakpoints, $i);
+        $width:      frame-container-width($breakpoint);
 
-        @if ($min == false)
+        @if ($width != $defaultWidth)
         {
-            $min: $bpMin;
-            $max: $bpMax;
+            $widths: map-append($widths, $width, $breakpoint);
         }
+    }
 
-        @if ($bpWidth != $width)
+    @each $width, $breakpoints in $widths
+    {
+        @include add-breakpoint($breakpoints, 'max')
         {
-            @include add-custom-breakpoint($min, $max)
-            {
-                width: $width;
-            }
+            width: $width;
         }
-    }*/
+    }
 }

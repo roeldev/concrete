@@ -1,0 +1,22 @@
+////
+/// frame-scss | tests/mediaquery.scss
+/// file version: 0.00.001
+////
+
+@import '../frame';
+
+////////////////////////////////////////////////////////////////////////////////
+
+$breakpoints: media-query-list('xl' 'lg' 'sm' 'xs');
+$x:debug('breakpoints | 1440 - 1024, 767 - 240', $breakpoints);
+
+$custom: media-query-list(('min': 500px, 'max': 999px) ('min': 1000px, 'max': 1200px));
+$x:debug('custom | 1200 - 500', $custom);
+
+$combined: media-query-list(('min': 500px, 'max': 999px) 'xl');
+$x:debug('combined | 1440 - 1200, 999 - 500', $combined);
+
+$overlap: media-query-list(('min': 100px, 'max': 200px) ('min': 150px, 'max': 250px));
+$x:debug('overlap | 250 - 100', $overlap);
+
+@include frame-display-debug();

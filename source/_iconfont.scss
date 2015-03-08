@@ -1,0 +1,11 @@
+////
+/// frame-scss | source/_fontastic.scss
+/// file version: 0.00.001
+///
+/// This file imports all required partials, functions and mixins to create
+/// easily add icon fonts to your project.
+////
+@import 'core';
+@import 'partials/iconfont';
+@import 'components/fonts';
+@import 'components/iconfont';

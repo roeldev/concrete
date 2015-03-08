@@ -1,9 +1,55 @@
 ////
-/// frame-scss | components/_grid.scss
-/// file version: 0.00.003
-///
-/// @group grid
+/// frame-scss | source/components/_grid.scss
+/// file version: 0.01.000
 ////
+
+@function frame-grid-columns($gridSettings...)
+{
+    $result:            ();
+    $resultDefault:     ();
+    $frameBreakpointsL: length($_frame-breakpoints);
+
+    @each $colSettings in $gridSettings
+    {
+        $column: nth($colSettings, 1);
+        $width:  nth($colSettings, 2);
+
+        $resultDefault: map-append($resultDefault, $column, $width);
+
+        @if (length($colSettings) >= 3)
+        {
+            $breakpointWidths: nth($colSettings, 3);
+            @for $i from 2 through $frameBreakpointsL
+            {
+                $breakpoint: nth($_frame-breakpoints, $i);
+                @if map-has-key($breakpointWidths, $breakpoint)
+                {
+                    $width: map-get($breakpointWidths, $breakpoint);
+                }
+
+                $result: _frame-grid-column($result,
+                                            $column,
+                                            $breakpoint,
+                                            $width);
+            }
+        }
+        // no custom breakpoint widths, so all widths are equal on
+        // all breakpoints
+        @else
+        {
+            @for $i from 2 through $frameBreakpointsL
+            {
+                $result: _frame-grid-column($result,
+                                            $column,
+                                            nth($_frame-breakpoints, $i),
+                                            $width);
+            }
+        }
+    }
+
+    $result: map-merge(('default': $resultDefault), $result);
+    @return $result;
+}
 
 ///
 /// @param {string} $type
@@ -15,7 +61,7 @@
 ///
 /// @todo The flex and table grids are still work in progress.
 ///
-@mixin frame-grid($type, $columns: 'default')
+@mixin frame-grid-create($type, $columns: 'default')
 {
     @if ($columns == 'default')
     {
@@ -24,7 +70,6 @@
 
     @if ($type == 'block')
     {
-        $columns: _frame-prepare-blockgrid($columns);
         @include  _frame-display-blockgrid($columns);
     }
     /*@elseif ($type == 'flex')
@@ -40,102 +85,123 @@
     @else
     {
         @return warn('frame-grid',
-                     'Unable to create grid, unknown type `#{$type}`!');
+            'Unable to create grid, unknown type `#{$type}`!');
     }
 }
 
+//------------------------------------------------------------------------------
+// Private functions
+//------------------------------------------------------------------------------
+
 ///
 /// @access private
-/// @param {map} $columnSettings
+/// @group private
+///
+/// @param {map} $result
+/// @param {string} $column - Column name
+/// @param {string} $breakpoint
+/// @param {number} $width - Column width
 /// @return {map}
 ///
-@function _frame-prepare-blockgrid($columnSettings)
+@function _frame-grid-column($result, $column, $breakpoint, $width)
 {
-    $returnColumns:     ();
-    $returnBreakpoints: map-keys($frame-breakpoints);
-    $hasBreakpoints:    false;
-
-    @each $name, $settings in $columnSettings
+    $breakpointWidths: ();
+    @if map-has-key($result, $breakpoint)
     {
-        $width:       100%;
-        $breakpoints: ();
-
-        @if is-list($settings)
-        {
-            $width:       nth($settings, 1);
-            $breakpoints:  nth($settings, 2);
-
-            $hasBreakpoints: true;
-        }
-        @else
-        {
-            $width: $settings;
-        }
-
-        // make sure $width is a percentage value
-        @if ($width <= 1)
-        {
-            $width: ($width * 100%);
-        }
-
-        $returnColumns: map-append($returnColumns, $name,
-        (
-            name:  $name,
-            width: $width
-        ));
+        $breakpointWidths: map-get($result, $breakpoint);
     }
 
-    @return
-    (
-        columns:        $returnColumns,
-        breakpoints:    $returnBreakpoints,
-        hasBreakpoints: $hasBreakpoints
-    );
+    $breakpointWidths: map-append($breakpointWidths, $width, $column);
+    $result: map-merge($result, ($breakpoint: $breakpointWidths));
+
+    @return $result;
 }
 
 ///
 /// @access private
-/// @param {map} $gridSettings
+/// @group private
 ///
-@mixin _frame-display-blockgrid($gridSettings)
+/// @param {list} $selectors
+/// @param {string} $name
+/// @param {bool|string} $breakpoint [false]
+/// @return {list}
+///
+@function _frame-grid-selector($selectors, $name, $breakpoint: false)
 {
-    %frame-blockgrid-cell
+    @if ($breakpoint != false)
     {
-        display: block;
-        float:   left;
+        $name: $breakpoint +'-'+ $name;
     }
 
-    &.gr,
-    & .gr
+    $selector:  '[data-col*="#{$name}"]';
+    $selector:  unquote($selector);
+    $selectors: append($selectors, $selector, 'comma');
+    @return $selectors;
+}
+
+///
+/// @access private
+/// @group private
+///
+/// @param {map} $grid
+///
+@mixin _frame-display-blockgrid($grid)
+{
+    &.grid-row,
+    .grid-row
     {
-        display: block;
-        @include apply-clearfix();
+        @extend %frame-blockgrid-row;
+    }
 
-        $columns:     map-get($gridSettings, columns);
-        $breakpoints: map-get($gridSettings, breakpoints);
+    [data-col]
+    {
+        @extend %frame-blockgrid-column;
+    }
 
-        @each $name, $column in $columns
+    // add the default column widths
+    $defaultColumnWidths: map-get($grid, 'default');
+    @each $name, $width in $defaultColumnWidths
+    {
+        [data-col*="#{$name}"]
         {
-            > .gc-#{$name}
-            {
-                @extend %frame-blockgrid-cell;
-                width: map-get($column, width);
-            }
+            width: $width;
         }
+    }
 
-        @each $breakpoint in $breakpoints
+    // the columns widths per breakpoint
+    @each $breakpoint in $_frame-breakpoints
+    {
+        @if map-has-key($grid, $breakpoint)
         {
-            @include add-breakpoint($breakpoint, max)
+            @include add-breakpoint($breakpoint, 'max')
             {
-                @each $name, $column in $columns
+                $columnWidths: map-get($grid, $breakpoint);
+                @each $width, $names in $columnWidths
                 {
-                    > .gc-#{$breakpoint}-#{$name}
+                    $selectors: ();
+                    @each $name in $names
                     {
-                        width: map-get($column, width);
+                        // when the column width for this breakpoint is
+                        // different from the default column width, add the
+                        // default column (without breakpoint prefix) selector
+                        // to the list of selectors for the new width.
+                        // by doing this, the grid will automatically respond
+                        // to the breakpoint, thus making the grid responsive
+                        @if ($width != map-get($defaultColumnWidths, $name))
+                        {
+                            $defaultColumnWidths: map-merge($defaultColumnWidths, ($name: $width));
+                            $selectors: _frame-grid-selector($selectors, $name);
+                        }
+
+                        $selectors: _frame-grid-selector($selectors, $name, $breakpoint);
+                    }
+
+                    #{$selectors}
+                    {
+                        width: $width;
                     }
                 }
             }
         }
     }
 }
-

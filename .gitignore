@@ -1,3 +1,8 @@
+logs/
+node_modules/
 .sass-cache
+*.css.map
 *.cfg
 *.dmp
+*.log
+Thumbs.db

@@ -1,12 +1,10 @@
 ////
-/// frame-scss | components/_fonts.scss
-/// file version: 1.01.001
-///
-/// @group fonts
+/// frame-scss | source/components/_fonts.scss
+/// file version: 1.01.005
 ////
 
 ///
-/// A function to add new font-families with @font-face.
+/// A function to add new font-families with `@font-face`.
 ///
 /// @param {string} $name
 ///        The name of the font-family.
@@ -36,69 +34,8 @@
     {
         @font-face
         {
-           font-family: $font;
+           font-family: $name;
            src: url("#{$dir}#{$file}.svg##{$name}") format("svg") !important;
         }
-    }
-}
-
-///
-/// You can use this mixin in your main stylesheet. It will make adding icon
-/// fonts made with Fontastic even easier. It includes some fixes over the
-/// normal Fontastic generated CSS.
-///
-/// *Fontastic base CSS from fontastic.me.
-///
-/// @param {string} $font
-///        The name of the font file without file extension.
-///
-/// @param {string} $prefix [icon]
-///        A styleclass prefix for the added icons.
-///
-/// @param {string} $dir [/fonts/]
-///        The folder containing the font files.
-///
-@mixin fontastic($font, $prefix: 'icon', $dir: '/fonts/')
-{
-    @include font-face($font, $dir, $font);
-
-    [data-#{$prefix}]:before
-    {
-        @extend %fontastic;
-        content:     attr(data-icon);
-        font-family: $font !important;
-    }
-
-    [class^="#{$prefix}-"]:before,
-    [class*=" #{$prefix}-"]:before
-    {
-        @extend %fontastic;
-        font-family: $font !important;
-    }
-
-    @content;
-}
-
-//------------------------------------------------------------------------------
-
-%fontastic
-{
-    font-style:     normal !important;
-    font-weight:    normal !important;
-    font-variant:   normal !important;
-    text-transform: none !important;
-    speak:          none;
-    line-height:    1;
-
-    -webkit-font-smoothing:  antialiased;
-    -moz-osx-font-smoothing: grayscale;
-
-    cursor: default;
-    @include user-select;
-
-    @media screen and (-webkit-min-device-pixel-ratio:0)
-    {
-        padding-top: 1px;
-        line-height: 1.15em !important;
     }
 }

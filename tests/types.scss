@@ -1,0 +1,88 @@
+////
+/// frame-scss | tests/types.scss
+/// file version: 0.00.001
+////
+
+@import '../frame';
+
+////////////////////////////////////////////////////////////////////////////////
+
+$functions:
+(
+    'is-number',
+    'is-string',
+    'is-color',
+    'is-bool',
+    'is-null',
+    'is-scalar',
+    'is-list',
+    'is-map',
+    'is-em',
+    'is-rem',
+    'is-percent',
+    'is-pixel',
+    'is-point',
+    'is-inch',
+    'is-second',
+);
+
+$vars:
+(
+    0 1 2.1s 3px 4in 5% 6em 7rem 8pt
+    'first' 2nd "third" fourth-string
+    #f00 #00ff00 rgba(#00ffff, .5) rgba(#ff00ff, 1)
+    true false 0
+    ''
+    () ( ) (()) (0) (0 0)
+);
+
+@each $function in $functions
+{
+/******************************************************************************/
+/* #{$function} */
+
+    $keys:     ();
+    $results:   ();
+    $keyLength: 0;
+
+    @each $var in $vars
+    {
+        $result: call($function, $var);
+        @if $result
+        {
+            @if is-scalar($var)
+            {
+                $key: _frame-debug-scalar($var);
+            }
+            @elseif is-list($var)
+            {
+                $key: _frame-debug-list($var, false);
+            }
+            @elseif is-map($var)
+            {
+                $key: _frame-debug-map($var, false);
+            }
+
+            $keyLength: max($keyLength, str-length($key));
+            $keys:      append($keys, $key);
+            $results:   append($results, $result);
+        }
+    }
+
+    $iL: length($keys);
+    @if ($iL > 0)
+    {
+        @for $i from 1 through $iL
+        {
+            $key:    nth($keys, $i);
+            $result: nth($results, $i);
+
+            @for $j from str-length($key) through $keyLength
+            {
+                $key: $key +' ';
+            }
+
+            /* @test #{$key} => #{$result} */
+        }
+    }
+}

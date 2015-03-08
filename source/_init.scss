@@ -1,32 +1,33 @@
 ////
-/// frame-scss | _init.scss
-/// file version: 1.01.006
+/// frame-scss | source/_init.scss
+/// file version: 1.01.009
 ///
 /// This file imports all required functions and mixins wich you can use while
 /// developing your project.
 ////
-@import 'core/core';
-@import 'core/debug';
-@import 'core/map';
-@import 'core/types';
-
+@import 'core';
 @import 'components/basics';
 @import 'components/breakpoints';
-@import 'components/compatibility';
 @import 'components/effects';
-@import 'components/fonts';
 @import 'components/helpers';
 @import 'components/shapes';
 @import 'components/transition';
 
 //------------------------------------------------------------------------------
 
-$frame-breakpoints: _frame-prepare-breakpoints();
-$frame-debugs:      ();
-$frame-warnings:    ();
+// 'private' framework variables
+$_frame-debugs:      ();
+$_frame-warnings:    ();
+$_frame-breakpoints: ();
+
+// settings that are prepared so they are more easily to use by the framework
+$frame-breakpoints:                 _frame-init-breakpoints();
+$frame-breakpoint-scrollbar-buffer: _frame-init-breakpoint-settings($frame-breakpoint-scrollbar-buffer, 0px);
+$frame-container-width:             _frame-init-breakpoint-settings($frame-container-width, 100%);
+$frame-grid-gap:                    _frame-init-breakpoint-settings($frame-grid-gap, 0px);
 
 /*
-    frame-scss Sassy CSS framework
+    frame-scss - Sassy CSS framework
     Copyright (c) 2014-2015 Roel Schut (roelschut.nl)
 
     This program is free software; you can redistribute it and/or modify

@@ -1,0 +1,24 @@
+////
+/// frame-scss | source/partials/_grid.scss
+/// file version: 0.00.001
+////
+
+%frame-blockgrid-row
+{
+    @include apply-clearfix();
+
+    overflow: hidden;
+    display:  block;
+}
+
+%frame-blockgrid-column
+{
+    display: block;
+    float:   left;
+
+    &.grid-stretch
+    {
+        margin-bottom:  -100%;
+        padding-bottom: 100%;
+    }
+}

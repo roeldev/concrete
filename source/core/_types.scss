@@ -1,13 +1,17 @@
-///
-/// frame-scss | core/_types.scss
-/// file version: 1.00.000
-///
-/// @group types
 ////
+/// frame-scss | source/core/_types.scss
+/// file version: 1.00.003
+///
+/// @group Core
+////
+
+//------------------------------------------------------------------------------
+// Var type related functions
+//------------------------------------------------------------------------------
 
 ///
 /// Returns `true` if $var is a number. If the 2nd parameter $unit is a string,
-/// the function will also check if $var is of that type of unit.
+/// the function will also check if `$var` is of that type of unit.
 ///
 /// @param {mixed} $var
 /// @param {bool|string} $unit [false]
@@ -24,7 +28,7 @@
 }
 
 ///
-/// Returns `true` if $var is a string.
+/// Returns `true` if `$var` is a string.
 ///
 /// @param {mixed} $var
 /// @return {bool}
@@ -35,7 +39,7 @@
 }
 
 ///
-/// Returns `true` if $var is a color.
+/// Returns `true` if `$var` is a color.
 ///
 /// @param {mixed} $var
 /// @return {bool}
@@ -46,7 +50,7 @@
 }
 
 ///
-/// Returns `true` if $var is a boolean.
+/// Returns `true` if `$var` is a boolean.
 ///
 /// @param {mixed} $var
 /// @return {bool}
@@ -57,7 +61,7 @@
 }
 
 ///
-/// Returns `true` if $var is equal to null.
+/// Returns `true` if `$var` is equal to null.
 ///
 /// @param {mixed} $var
 /// @return {bool}
@@ -68,7 +72,7 @@
 }
 
 ///
-/// Returns `true` if $var is a number, string, color, boolean or null.
+/// Returns `true` if `$var` is either a number, string, color, boolean or null.
 ///
 /// @param {mixed} $var
 /// @return {bool}
@@ -83,8 +87,9 @@
 }
 
 ///
-/// Returns `true` if $var is a list with the minimum length of $length. When no
-/// length is given or is not a valid number, the length check is skipped.
+/// Returns `true` if `$var` is a list with the minimum length of `$length`.
+/// When no length is given or is not a valid number, the length check is
+/// skipped.
 ///
 /// @param {mixed} $var
 /// @param {bool|number} $length
@@ -92,7 +97,7 @@
 ///
 @function is-list($var, $length: false)
 {
-    $return: (type-of($var) == 'list');
+    $return: (type-of($var) == 'list' or type-of($var) == 'arglist');
     @if ($return and is-number($length))
     {
         $return: (length($var) >= $length);
@@ -101,7 +106,26 @@
 }
 
 ///
-/// Returns `true` if $var is a map.
+/// Returns `true` if `$var` is an argument list taken from a function, with
+/// the minimum length of `$length`. When no length is given or is not a valid
+/// number, the length check is skipped.
+///
+/// @param {mixed} $var
+/// @param {bool|number} $length
+/// @return {bool}
+///
+@function is-arglist($var, $length: false)
+{
+    $return: (type-of($var) == 'arglist');
+    @if ($return and is-number($length))
+    {
+        $return: (length($var) >= $length);
+    }
+    @return $return;
+}
+
+///
+/// Returns `true` if `$var` is a map.
 ///
 /// @param {mixed} $var
 /// @return {bool}
@@ -112,83 +136,82 @@
 }
 
 //------------------------------------------------------------------------------
-
-///
-/// Checks if a variable is the correct type. If not, the variable will be
-/// overwritten and set to a default value for that type.
-///
-/// @param {mixed} $var - The variable to check.
-///
-/// @param {string|list} $type - The type $var should be.
-///
-/// @param {mixed} $default [null]
-///        The default value to return if type-of($var) != $type.
-///
-/// @return {mixed}
-///
-@function set($var, $type, $default: null)
-{
-    $unit: false;
-    @if is-list($type)
-    {
-        $unit: nth($type, 2);
-        $type: nth($type, 1);
-    }
-
-    @if (type-of($var) != $type and $var != null)
-    {
-        @if ($default == null)
-        {
-            @if ($type == number)
-            {
-                $default: 0;
-            }
-            @elseif ($type == list)
-            {
-                $default: ();
-            }
-        }
-
-        $var: $default;
-    }
-    @return $var;
-}
-
+// Unit type related functions
 //------------------------------------------------------------------------------
 
 ///
-/// Calculates the relative em value compared to the default font-size.
-/// Example taken from http://vvv.tobiassjosten.net/css/px-to-em-with-sass/
+/// Returns `true` if the given number is of unit `em`.
 ///
-/// @param {number} $px - The pixel value to calculate the em value from.
+/// @param {number} $number
+/// @return {bool}
 ///
-/// @param {number|string} $baseFontSize [default]
-///        The font-size to compare the $px value with.
-///
-/// @return {number}
-///
-@function em($px, $baseFontSize: 'default')
+@function is-em($number)
 {
-    @if is-string($baseFontSize)
-    {
-        $baseFontSize: frame-font-size($baseFontSize);
-    }
-
-    $baseFontSize: set($baseFontSize, number px);
-    @return if(($baseFontSize > 0), ($px / $baseFontSize) * 1em, $px);
+    @return (is-number($number) and unit($number) == 'em');
 }
 
 ///
-/// Calculates the relative rem value. The rem units are always relative to the
-/// font-size in the body html element.
+/// Returns `true` if the given number is of unit `rem`.
 ///
-/// @param {number} $px - The pixel value to calculate the rem value from.
-/// @return {number}
+/// @param {number} $number
+/// @return {bool}
 ///
-@function rem($px)
+@function is-rem($number)
 {
-    $baseFontSize: frame-font-size();
-    $baseFontSize: set($baseFontSize, number px);
+    @return (is-number($number) and unit($number) == 'rem');
+}
 
-    @return if(($baseFontSize > 0), ($px / $baseFontSize) * 1rem, $px);
+///
+/// Returns `true` if the given number is of unit `%`.
+///
+/// @param {number} $number
+/// @return {bool}
+///
+@function is-percent($number)
+{
+    @return (is-number($number) and unit($number) == '%');
+}
+
+///
+/// Returns `true` if the given number is of unit `px`.
+///
+/// @param {number} $number
+/// @return {bool}
+///
+@function is-pixel($number)
+{
+    @return (is-number($number) and unit($number) == 'px');
+}
+
+///
+/// Returns `true` if the given number is of unit `pt`.
+///
+/// @param {number} $number
+/// @return {bool}
+///
+@function is-point($number)
+{
+    @return (is-number($number) and unit($number) == 'pt');
+}
+
+///
+/// Returns `true` if the given number is of unit `in`.
+///
+/// @param {number} $number
+/// @return {bool}
+///
+@function is-inch($number)
+{
+    @return (is-number($number) and unit($number) == 'in');
+}
+
+///
+/// Returns `true` if the given number is of unit `s`.
+///
+/// @param {number} $number
+/// @return {bool}
+///
+@function is-second($number)
+{
+    @return (is-number($number) and unit($number) == 's');
 }

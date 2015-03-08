@@ -1,16 +1,11 @@
 ////
-/// frame-scss | _grid.scss
-/// file version: 0.02.001
+/// frame-scss | source/_grid.scss
+/// file version: 0.02.004
 ///
-/// This file imports all required functions and mixins wich you can use while
-/// developing your project.
+/// This file imports all required functions and mixins to create grids.
 ////
-@import 'core/core';
-@import 'core/debug';
-@import 'core/map';
-@import 'core/types';
-
+@import 'core';
 @import 'components/breakpoints';
-@import 'components/compatibility';
 @import 'components/helpers';
 @import 'components/grid';
+@import 'partials/grid';
