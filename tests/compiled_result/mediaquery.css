@@ -1,0 +1,81 @@
+/*
+    frame-scss - Sassy CSS framework
+    Copyright (c) 2014-2015 Roel Schut (roelschut.nl)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+/******************************************************************************/
+/* frame-display-debug(): */
+/* @debug (list|4)
+   (
+      [1] => (arglist|2)
+      (
+         [1] => (string) `breakpoints | 1440 - 1024, 767 - 240`
+         [2] => (list|2)
+         (
+            [1] => (map|2)
+            {
+               [`max`] => (number|px) `1440px`
+               [`min`] => (number|px) `1024px`
+            }
+            [2] => (map|2)
+            {
+               [`max`] => (number|px) `767px`
+               [`min`] => (number|px) `240px`
+            }
+         )
+      )
+      [2] => (arglist|2)
+      (
+         [1] => (string) `custom | 1200 - 500`
+         [2] => (list|1)
+         (
+            [1] => (map|2)
+            {
+               [`max`] => (number|px) `1200px`
+               [`min`] => (number|px) `500px`
+            }
+         )
+      )
+      [3] => (arglist|2)
+      (
+         [1] => (string) `combined | 1440 - 1200, 999 - 500`
+         [2] => (list|2)
+         (
+            [1] => (map|2)
+            {
+               [`max`] => (number|px) `1440px`
+               [`min`] => (number|px) `1200px`
+            }
+            [2] => (map|2)
+            {
+               [`max`] => (number|px) `999px`
+               [`min`] => (number|px) `500px`
+            }
+         )
+      )
+      [4] => (arglist|2)
+      (
+         [1] => (string) `overlap | 250 - 100`
+         [2] => (list|1)
+         (
+            [1] => (map|2)
+            {
+               [`max`] => (number|px) `250px`
+               [`min`] => (number|px) `100px`
+            }
+         )
+      )
+   ) */
