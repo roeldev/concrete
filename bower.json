@@ -4,14 +4,16 @@
   "homepage": "https://github.com/roeldev/frame-scss",
   "version": "0.2.0",
   "license": "GPL-2.0+",
-  "main": ["source/_init.scss"],
+  "main": [
+    "source/_init.scss"
+  ],
   "authors": [
     "Roel Schut (http://roelschut.nl)"
   ],
   "repository": {
-      "type": "git",
-      "url": "https://github.com/roeldev/frame-scss.git"
-    },
+    "type": "git",
+    "url": "https://github.com/roeldev/frame-scss.git"
+  },
   "keywords": [
     "sass",
     "scss",

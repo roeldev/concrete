@@ -1,6 +1,6 @@
 ////
 /// frame-scss | tests/breakpoints.scss
-/// file version: 0.00.002
+/// file version: 0.00.003
 ////
 
 @import '../frame';
@@ -24,8 +24,10 @@ body
         background-color: green;
     }
 
-    @include add-breakpoint('xl' 'lg' 'md', 'max')
+    @include add-breakpoint('xl' 'lg' 'md')
     {
         color: purple;
     }
 }
+
+@include frame-display-debug();

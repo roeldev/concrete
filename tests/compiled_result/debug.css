@@ -18,91 +18,91 @@
  */
 /******************************************************************************/
 /* Number TESTS */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (number) `1`
    ) */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (number|px) `16px`
    ) */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (number|%) `100%`
    ) */
 /******************************************************************************/
 /* String TESTS */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (string) `string`
    ) */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (string) `1`
    ) */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (string) `red`
    ) */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (string) `#f00`
    ) */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (string) `true`
    ) */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (string) `false`
    ) */
 /******************************************************************************/
 /* Color TESTS */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (color) `red`
    ) */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (color) `#f00`
    ) */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (color) `#ff0000`
    ) */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (color) `#ff0000`
    ) */
 /******************************************************************************/
 /* Boolean TESTS */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (bool) `true`
    ) */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (bool) `false`
    ) */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (bool) `true`
    ) */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (bool) `false`
    ) */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (bool) `false`
    ) */
 /******************************************************************************/
 /* List TESTS */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (list|0) ( )
    ) */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (list|6)
       (
@@ -124,38 +124,38 @@
    ) */
 /******************************************************************************/
 /* Map TESTS */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (map|5)
       {
          [`xl`] => (map|2)
          {
-            [`min`] => (number|px) `1200px`
             [`max`] => (number|px) `1440px`
+            [`min`] => (number|px) `1200px`
          }
          [`lg`] => (map|2)
          {
-            [`min`] => (number|px) `1024px`
             [`max`] => (number|px) `1199px`
+            [`min`] => (number|px) `1024px`
          }
          [`md`] => (map|2)
          {
-            [`min`] => (number|px) `768px`
             [`max`] => (number|px) `1023px`
+            [`min`] => (number|px) `768px`
          }
          [`sm`] => (map|2)
          {
-            [`min`] => (number|px) `480px`
             [`max`] => (number|px) `767px`
+            [`min`] => (number|px) `480px`
          }
          [`xs`] => (map|2)
          {
-            [`min`] => (number|px) `240px`
             [`max`] => (number|px) `479px`
+            [`min`] => (number|px) `240px`
          }
       }
    ) */
-/* @debug (list|1)
+/* @debug (arglist|1)
    (
       [1] => (map|1)
       {

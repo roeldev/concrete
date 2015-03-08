@@ -16,7 +16,7 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-/* @debug (list|2)
+/* @debug (arglist|2)
    (
       [1] => (string) `sort numbers`
       [2] => (list|14)
@@ -37,7 +37,7 @@
          [14] => (number) `9`
       )
    ) */
-/* @debug (list|2)
+/* @debug (arglist|2)
    (
       [1] => (string) `sort numbers reversed`
       [2] => (list|14)
@@ -58,7 +58,7 @@
          [14] => (number) `-1`
       )
    ) */
-/* @debug (list|2)
+/* @debug (arglist|2)
    (
       [1] => (string) `sort map values`
       [2] => (map|10)
@@ -75,7 +75,7 @@
          [`nine`] => (number) `9`
       }
    ) */
-/* @debug (list|2)
+/* @debug (arglist|2)
    (
       [1] => (string) `sort map values`
       [2] => (map|10)
@@ -92,7 +92,7 @@
          [`six`] => (number) `0`
       }
    ) */
-/* @debug (list|2)
+/* @debug (arglist|2)
    (
       [1] => (string) `sort map keys`
       [2] => (map|10)
@@ -109,7 +109,7 @@
          [`9`] => (string) `nine`
       }
    ) */
-/* @debug (list|2)
+/* @debug (arglist|2)
    (
       [1] => (string) `sort map keys`
       [2] => (map|10)

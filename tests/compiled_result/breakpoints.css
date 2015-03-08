@@ -16,15 +16,15 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-@media screen and (min-width: 1220px) {
+@media screen and (min-width: 1200px) {
   body {
     background-color: red; } }
-@media screen and (min-width: 1044px) and (max-width: 1219px) {
+@media screen and (max-width: 1199px) and (min-width: 1024px) {
   body {
     background-color: blue; } }
-@media screen and (max-width: 787px) {
+@media screen and (max-width: 767px) {
   body {
     background-color: green; } }
-@media screen and (max-width: 1460px), screen and (max-width: 1219px), screen and (max-width: 1043px) {
+@media screen and (max-width: 1440px) and (min-width: 768px) {
   body {
     color: purple; } }
