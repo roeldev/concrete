@@ -1,38 +1,54 @@
 ////
 /// frame-scss | source/components/_grid.scss
-/// file version: 0.00.004
+/// file version: 0.01.000
 ////
 
-@function frame-grid-columns($settings)
+@function frame-grid-columns($gridSettings...)
 {
-    $return:         ();
-    $breakpointKeys: map-keys($frame-breakpoints);
+    $result:            ();
+    $resultDefault:     ();
+    $frameBreakpointsL: length($_frame-breakpoints);
 
-    @each $entry in $settings
+    @each $colSettings in $gridSettings
     {
-        $name:        nth($entry, 1);
-        $width:       nth($entry, 2);
-        $breakpoints: ();
+        $column: nth($colSettings, 1);
+        $width:  nth($colSettings, 2);
 
-        @if (length($entry) >= 3)
+        $resultDefault: map-append($resultDefault, $column, $width);
+
+        @if (length($colSettings) >= 3)
         {
-            $breakpoints: nth($settings, 3);
-            @if is-list($breakpoints)
+            $breakpointWidths: nth($colSettings, 3);
+            @for $i from 2 through $frameBreakpointsL
             {
-                // xl l m s xs
-               // $x:debug('blaat', $breakpoints);
+                $breakpoint: nth($_frame-breakpoints, $i);
+                @if map-has-key($breakpointWidths, $breakpoint)
+                {
+                    $width: map-get($breakpointWidths, $breakpoint);
+                }
+
+                $result: _frame-grid-column($result,
+                                            $column,
+                                            $breakpoint,
+                                            $width);
             }
         }
-
-        $return: map-append($return, $name,
-        (
-            'name':        $name,
-            'width':       $width,
-            'breakpoints': if(is-list($breakpoints, 1), $breakpoints, false)
-        ));
+        // no custom breakpoint widths, so all widths are equal on
+        // all breakpoints
+        @else
+        {
+            @for $i from 2 through $frameBreakpointsL
+            {
+                $result: _frame-grid-column($result,
+                                            $column,
+                                            nth($_frame-breakpoints, $i),
+                                            $width);
+            }
+        }
     }
 
-    @return $return;
+    $result: map-merge(('default': $resultDefault), $result);
+    @return $result;
 }
 
 ///
@@ -73,12 +89,63 @@
     }
 }
 
+//------------------------------------------------------------------------------
+// Private functions
+//------------------------------------------------------------------------------
+
 ///
 /// @access private
 /// @group private
-/// @param {map} $columns
 ///
-@mixin _frame-display-blockgrid($columns)
+/// @param {map} $result
+/// @param {string} $column - Column name
+/// @param {string} $breakpoint
+/// @param {number} $width - Column width
+/// @return {map}
+///
+@function _frame-grid-column($result, $column, $breakpoint, $width)
+{
+    $breakpointWidths: ();
+    @if map-has-key($result, $breakpoint)
+    {
+        $breakpointWidths: map-get($result, $breakpoint);
+    }
+
+    $breakpointWidths: map-append($breakpointWidths, $width, $column);
+    $result: map-merge($result, ($breakpoint: $breakpointWidths));
+
+    @return $result;
+}
+
+///
+/// @access private
+/// @group private
+///
+/// @param {list} $selectors
+/// @param {string} $name
+/// @param {bool|string} $breakpoint [false]
+/// @return {list}
+///
+@function _frame-grid-selector($selectors, $name, $breakpoint: false)
+{
+    @if ($breakpoint != false)
+    {
+        $name: $breakpoint +'-'+ $name;
+    }
+
+    $selector:  '[data-col*="#{$name}"]';
+    $selector:  unquote($selector);
+    $selectors: append($selectors, $selector, 'comma');
+    @return $selectors;
+}
+
+///
+/// @access private
+/// @group private
+///
+/// @param {map} $grid
+///
+@mixin _frame-display-blockgrid($grid)
 {
     &.grid-row,
     .grid-row
@@ -91,26 +158,50 @@
         @extend %frame-blockgrid-column;
     }
 
-    @each $name, $column in $columns
+    // add the default column widths
+    $defaultColumnWidths: map-get($grid, 'default');
+    @each $name, $width in $defaultColumnWidths
     {
         [data-col*="#{$name}"]
         {
-            width: map-get($column, 'width');
+            width: $width;
         }
     }
 
+    // the columns widths per breakpoint
     @each $breakpoint in $_frame-breakpoints
     {
-        @include add-breakpoint($breakpoint, 'max')
+        @if map-has-key($grid, $breakpoint)
         {
-            @each $name, $column in $columns
+            @include add-breakpoint($breakpoint, 'max')
             {
-                [data-col*="#{$breakpoint}-#{$name}"]
+                $columnWidths: map-get($grid, $breakpoint);
+                @each $width, $names in $columnWidths
                 {
-                    width: map-get($column, 'width');
+                    $selectors: ();
+                    @each $name in $names
+                    {
+                        // when the column width for this breakpoint is
+                        // different from the default column width, add the
+                        // default column (without breakpoint prefix) selector
+                        // to the list of selectors for the new width.
+                        // by doing this, the grid will automatically respond
+                        // to the breakpoint, thus making the grid responsive
+                        @if ($width != map-get($defaultColumnWidths, $name))
+                        {
+                            $defaultColumnWidths: map-merge($defaultColumnWidths, ($name: $width));
+                            $selectors: _frame-grid-selector($selectors, $name);
+                        }
+
+                        $selectors: _frame-grid-selector($selectors, $name, $breakpoint);
+                    }
+
+                    #{$selectors}
+                    {
+                        width: $width;
+                    }
                 }
             }
         }
     }
 }
-

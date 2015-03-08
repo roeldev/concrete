@@ -27,9 +27,6 @@ This project is still work in progress. Some stuff may still change, so use at y
 
 ###To do:
 - Add gaps to blockgrid (high)
-- Optimize `frame-grid-columns` function (high)
-- Optimize blockgrid output, combine selectors/breakpoints with the same width where possible (high)
-- Optimize the output from `create-media-query` (eg. `@include add-breakpoint('xl' 'lg' 'md', 'max')` will now compile to `@media screen and (max-width: 1460px), screen and (max-width: 1219px), screen and (max-width: 1043px)` but must become `@media screen and (max-width: 1460px)`) (high)
 - Add flexgrid grid system (medium priority as <= IE10 does not fully support flexbox)
 - Complete `slice/splice` functions (medium)
 - Complete `_sort-regular` function (medium)

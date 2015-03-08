@@ -209,7 +209,7 @@
         $display: ' ( )';
     }
 
-    @return '(list|'+ $listLength +')'+ $display;
+    @return '('+ type-of($list) +'|'+ $listLength +')'+ $display;
 }
 
 ///

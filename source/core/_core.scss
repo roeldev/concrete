@@ -1,6 +1,6 @@
 ////
 /// frame-scss | source/core/_core.scss
-/// file version: 1.01.007
+/// file version: 1.01.009
 ///
 /// All default frame-scss functions are within this file. Through these
 /// functions you can easily use the variables you have set in your main
@@ -225,12 +225,18 @@
         $value: map-get($frame-breakpoints, $breakpoint);
         @if is-map($value)
         {
-            $min: map-get($value, 'min');
+            @if ($max == false)
+            {
+                $max: map-get($value, 'max')
+            }
+
+            $min:   map-get($value, 'min');
+            $value: ('max': $max, 'min': $min);
         }
         @else
         {
             $min:   $value;
-            $value: ('min': $min, 'max': $max);
+            $value: ('max': $max, 'min': $min);
         }
 
         $result: map-append($result, $breakpoint, $value);

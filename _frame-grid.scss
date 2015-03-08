@@ -53,7 +53,6 @@
 // .gc-md-two-third { width: 100% }
 //
 $frame-grid-columns: frame-grid-columns(
-(
     '8'   8.33%  ('sm': 50%,  'md': 25%), // 1/12
     '12'  12.5%  ('sm': 50%,  'md': 25%), // 1.5/12 -> 1/8
     '16'  16.66% ('sm': 100%, 'md': 50%), // 2/12   -> 1/6
@@ -64,10 +63,9 @@ $frame-grid-columns: frame-grid-columns(
     '75'  75%    ('sm': 100%),            // 9/12   -> 3/4
     '83'  83.33  ('lg': 100%),            // 10/12  -> 5/6
     '100' 100%                            // 12/12  -> 1
-));
+);
 
-//$frame-grid-columns: frame-grid-columns($frame-grid-columns);
-//@include debug($frame-grid-columns);
+//------------------------------------------------------------------------------
 
 .blockgrid { @include frame-grid-create('block', $frame-grid-columns); }
 //.flexgrid  { @include frame-grid-create('flex', $frame-grid-columns); }
