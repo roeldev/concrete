@@ -1,13 +1,13 @@
 ////
 /// frame-scss | source/components/_basics.scss
-/// file version: 0.00.003
+/// file version: 0.00.004
 ///
 /// @group private
 ////
 
 ///
 /// This 'private' function will display all headings, wich are defined in the
-/// $frame-font-sizes setting, in partials/_default.scss.
+/// `$frame-font-sizes` setting, in partials/_default.scss.
 ///
 /// @access private
 ///
@@ -51,7 +51,6 @@
 
 ///
 /// @access private
-/// @todo WIP
 ///
 @mixin _frame-display-container()
 {

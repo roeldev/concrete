@@ -1,6 +1,6 @@
 ////
 /// frame-scss | source/core/_types.scss
-/// file version: 1.00.002
+/// file version: 1.00.003
 ///
 /// @group Core
 ////
@@ -11,7 +11,7 @@
 
 ///
 /// Returns `true` if $var is a number. If the 2nd parameter $unit is a string,
-/// the function will also check if $var is of that type of unit.
+/// the function will also check if `$var` is of that type of unit.
 ///
 /// @param {mixed} $var
 /// @param {bool|string} $unit [false]
@@ -28,7 +28,7 @@
 }
 
 ///
-/// Returns `true` if $var is a string.
+/// Returns `true` if `$var` is a string.
 ///
 /// @param {mixed} $var
 /// @return {bool}
@@ -39,7 +39,7 @@
 }
 
 ///
-/// Returns `true` if $var is a color.
+/// Returns `true` if `$var` is a color.
 ///
 /// @param {mixed} $var
 /// @return {bool}
@@ -50,7 +50,7 @@
 }
 
 ///
-/// Returns `true` if $var is a boolean.
+/// Returns `true` if `$var` is a boolean.
 ///
 /// @param {mixed} $var
 /// @return {bool}
@@ -61,7 +61,7 @@
 }
 
 ///
-/// Returns `true` if $var is equal to null.
+/// Returns `true` if `$var` is equal to null.
 ///
 /// @param {mixed} $var
 /// @return {bool}
@@ -72,7 +72,7 @@
 }
 
 ///
-/// Returns `true` if $var is a number, string, color, boolean or null.
+/// Returns `true` if `$var` is either a number, string, color, boolean or null.
 ///
 /// @param {mixed} $var
 /// @return {bool}
@@ -87,8 +87,9 @@
 }
 
 ///
-/// Returns `true` if $var is a list with the minimum length of $length. When no
-/// length is given or is not a valid number, the length check is skipped.
+/// Returns `true` if `$var` is a list with the minimum length of `$length`.
+/// When no length is given or is not a valid number, the length check is
+/// skipped.
 ///
 /// @param {mixed} $var
 /// @param {bool|number} $length
@@ -105,8 +106,8 @@
 }
 
 ///
-/// Returns `true` if $var is an argument list taken from a function, with the
-/// minimum length of $length. When no length is given or is not a valid
+/// Returns `true` if `$var` is an argument list taken from a function, with
+/// the minimum length of `$length`. When no length is given or is not a valid
 /// number, the length check is skipped.
 ///
 /// @param {mixed} $var
@@ -124,7 +125,7 @@
 }
 
 ///
-/// Returns `true` if $var is a map.
+/// Returns `true` if `$var` is a map.
 ///
 /// @param {mixed} $var
 /// @return {bool}

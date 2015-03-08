@@ -1,6 +1,6 @@
 ////
 /// frame-scss | source/core/_core.scss
-/// file version: 1.01.009
+/// file version: 1.01.010
 ///
 /// All default frame-scss functions are within this file. Through these
 /// functions you can easily use the variables you have set in your main
@@ -20,7 +20,7 @@
 ////
 
 ///
-/// Returns a font-family value from the $frame-fonts setting.
+/// Returns a font-family value from the `$frame-fonts` setting.
 ///
 /// @param {string} $key [default]
 ///        The value of the corresponding key to return.
@@ -39,7 +39,7 @@
 }
 
 ///
-/// Returns a font-size value from the $frame-fontSizes setting.
+/// Returns a font-size value from the `$frame-font-sizes` setting.
 ///
 /// @param {string} $key [default]
 ///        The value of the corresponding key to return.
@@ -57,10 +57,10 @@
 }
 
 ///
-/// Returns a color value from the $frame-colors setting. You can pass keys to
-/// this functions with or withour quotes, eg. frame-color(grey) or
-/// frame-color('grey') as the key will be quoted to make sure the key can be
-/// selected from the $frame-colors map.
+/// Returns a color value from the `$frame-colors` setting. You can pass keys to
+/// this functions with or withour quotes, eg. `frame-color(grey)`  or
+/// `frame-color('grey')` as the key will be quoted to make sure the key can be
+/// selected from the `$frame-colors` map.
 ///
 /// @param {string} $key [default]
 ///        The value of the corresponding key to return.
@@ -113,11 +113,11 @@
 }
 
 ///
-/// When $value is either `min` or `max`, the min/max value is returned from the
-/// breakpoint map inside $frame-breakpoints with key $breakpoint.
-/// If $value has any other value, the whole map (with min and max keys) will
-/// be returned. If the breakpoint map cannot be found, a warning will be stored
-/// in $frame-warnings.
+/// When `$value` is either `min` or `max`, the min/max value is returned from
+/// the breakpoint map inside `$frame-breakpoints` with key `$breakpoint`.
+/// If `$value` has any other value, the whole map (with min and max keys) will
+/// be returned. If the breakpoint map cannot be found, a warning will be
+/// stored in `$frame-warnings`.
 ///
 /// @param {string} $breakpoint [default] - The breakpoint to return.
 ///
@@ -170,13 +170,8 @@
 ///
 /// @todo WIP
 ///
-@function frame-container-width($breakpoint: 'default', $gridType: false)
+@function frame-container-width($breakpoint: 'default')
 {
-    @if not map-has-key($frame-container-width, $breakpoint)
-    {
-        //$breakpoint:
-    }
-
     @return map-get($frame-container-width, $breakpoint);
 }
 

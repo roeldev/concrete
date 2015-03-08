@@ -1,6 +1,6 @@
 ////
 /// frame-scss | source/core/_utils.scss
-/// file version: 1.01.007
+/// file version: 1.01.008
 ///
 /// @group Core
 ////
@@ -47,8 +47,8 @@
 }
 
 ///
-/// Unquotes all strings inside $var if it is a list. Or unquotes $var when it
-/// is only a string. Otherwise it just returns the given variable.
+/// Unquotes all strings inside `$var` if it is a list. Or unquotes `$var` when
+/// it is only a string. Otherwise it just returns the given variable.
 ///
 /// @param {list|string} $var
 /// @return {list|string}

@@ -1,24 +1,24 @@
 ////
 /// frame-scss | source/core/_debug.scss
-/// file version: 0.00.009
+/// file version: 0.00.010
 ///
 /// Debug related functions and mixins. Work in progress!
 ///
 /// @group Core
 ////
 
-//
-// Adds a warning to the $_frame-warnings list and, if available, outputs the
-// warning with the @warn directive.
-// If the 2nd optional parameter is not used, the first parameter should contain
-// the actual warning message.
-//
-// @param {string} $function - The function that created the warning.
-//
-// @param {string} $message [false] - The warning text message.
-//
-// @return {null}
-//
+///
+/// Adds a warning to the `$_frame-warnings` list and, if available, outputs
+/// the warning with the `@warn` directive.
+/// If the 2nd optional parameter is not used, the first parameter should
+/// contain the actual warning message.
+///
+/// @param {string} $function - The function that created the warning.
+///
+/// @param {string} $message [false] - The warning text message.
+///
+/// @return {null}
+///
 @function warn($function, $message: false)
 {
     $message: if($message == false, $function, $function +': '+ $message);
@@ -31,9 +31,9 @@
     @return null;
 }
 
-//
-// Displays the warnings added to the $_frame-warnings list.
-//
+///
+/// Displays the warnings added to the `$_frame-warnings` list.
+///
 @mixin frame-display-warnings()
 {
     $prefix: '@warn';
@@ -96,8 +96,8 @@
 }
 
 ///
-/// Adds the variable $var to the list $_frame-debugs and will be displayed by
-/// the frame-display-debug() mixin.
+/// Adds the variable `$var` to the list `$_frame-debugs` and will be displayed
+/// by the `frame-display-debug()` mixin.
 ///
 /// @param {mixed} $var
 /// @return {null}
@@ -127,6 +127,7 @@
 ///
 /// @access private
 /// @group private
+///
 /// @param {number|string|color|bool|null} $var
 /// @return {string}
 ///
@@ -148,6 +149,7 @@
 ///
 /// @access private
 /// @group private
+///
 /// @param {list} $list
 /// @param {bool|string} $indentLevel [false]
 /// @return {string}
@@ -215,6 +217,7 @@
 ///
 /// @access private
 /// @group private
+///
 /// @param {map} $map
 /// @param {bool|string} $indentLevel [false]
 /// @return {string}

@@ -1,6 +1,6 @@
 ////
 /// frame-scss | source/core/_map.scss
-/// file version: 0.00.004
+/// file version: 0.00.005
 ///
 /// Some extra map related functions.
 ///
@@ -30,7 +30,7 @@
 }
 
 ///
-/// Finds and returns the key of first occurance of $value in $map.
+/// Finds and returns the key of first occurance of `$value` in `$map`.
 ///
 /// @param {map} $map
 /// @param {mixed} $value
