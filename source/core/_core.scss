@@ -1,6 +1,6 @@
 ////
 /// frame-scss | source/core/_core.scss
-/// file version: 1.01.010
+/// file version: 1.01.011
 ///
 /// All default frame-scss functions are within this file. Through these
 /// functions you can easily use the variables you have set in your main
@@ -160,27 +160,15 @@
 }
 
 ///
-/// @todo WIP
+/// Returns a width value from the `$frame-container-width` setting.
 ///
-@function frame-breakpoint-scrollbar-buffer($type: 'default')
-{
-
-}
-
+/// @param {string} $breakpoint [default]
 ///
-/// @todo WIP
+/// @return {number}
 ///
 @function frame-container-width($breakpoint: 'default')
 {
     @return map-get($frame-container-width, $breakpoint);
-}
-
-///
-/// @todo WIP
-///
-@function frame-grid-gap($breakpoint: 'default')
-{
-
 }
 
 //------------------------------------------------------------------------------
