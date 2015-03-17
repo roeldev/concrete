@@ -1,6 +1,6 @@
 ////
 /// frame-scss | source/components/_fonts.scss
-/// file version: 1.00.003
+/// file version: 1.00.004
 ////
 
 ///
@@ -28,14 +28,24 @@
         content: attr(data-icon);
     }
 
-    .#{$prefix}:before,
-    [data-#{$prefix}]:before,
-    [class^="#{$prefix}-"]:before,
-    [class*=" #{$prefix}-"]:before
+    [class^="#{$prefix}-"]:before
     {
         @extend %frame-iconfont;
 
         font-family: $font !important;
+    }
+
+    a[class^="#{$prefix}-"]:before,
+    button[class^="#{$prefix}-"]:before
+    {
+        cursor: pointer;
+    }
+
+    [class*=" #{$prefix}-"]:before,
+    [data-#{$prefix}]:before,
+    .#{$prefix}:before
+    {
+        @extend [class^="#{$prefix}-"]:before;
     }
 
     @content;

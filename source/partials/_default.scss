@@ -39,12 +39,6 @@ button
 {
     cursor: pointer;
 
-    .icon,
-    .icon:before
-    {
-        cursor: pointer;
-    }
-
     &:active,
     &:hover
     {
@@ -59,9 +53,7 @@ a
 
 button
 {
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
+    appearance: none;
 }
 
 //------------------------------------------------------------------------------

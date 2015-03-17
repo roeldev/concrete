@@ -1,6 +1,6 @@
 ////
 /// frame-scss | source/partials/_iconfont.scss
-/// file version: 1.00.000
+/// file version: 1.00.001
 ////
 
 %frame-iconfont
@@ -24,7 +24,8 @@
         line-height: 1.15em !important;
     }
 
-    a &
+    a &,
+    button &
     {
         cursor: pointer;
     }
