@@ -1,5 +1,5 @@
 /*
-    frame-scss - Sassy CSS framework
+    frame-scss - Sassy CSS framework (https://github.com/roeldev/frame-scss/)
     Copyright (c) 2014-2015 Roel Schut (roelschut.nl)
 
     This program is free software; you can redistribute it and/or modify
@@ -177,7 +177,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-/*! frame-scss v0.2.0 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
+/*! frame-scss v0.2.1 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
 /* line 7, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
 html, body {
   width: 100%;
