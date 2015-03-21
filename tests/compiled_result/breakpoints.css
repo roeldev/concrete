@@ -28,3 +28,9 @@
 @media screen and (max-width: 1440px) and (min-width: 768px) {
   body {
     color: purple; } }
+@media screen and (min-width: 300px) {
+  body {
+    color: red; } }
+@media screen and (max-width: 450px) and (min-width: 350px) {
+  body {
+    color: black; } }
