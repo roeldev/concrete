@@ -200,20 +200,15 @@ html {
 a, button {
   cursor: pointer; }
   /* line 43, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
-  a .icon, a .icon:before, button .icon, button .icon:before {
-    cursor: pointer; }
-  /* line 49, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
   a:active, a:hover, button:active, button:hover {
     outline: 0; }
 
-/* line 55, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
+/* line 49, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
 a {
   text-decoration: none; }
 
-/* line 60, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
+/* line 54, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
 button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none; }
 
 /* line 35, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_basics.scss */
@@ -240,31 +235,34 @@ h5, .h5 {
 h6, .h6 {
   font-size: 0.625rem; }
 
-/* line 78, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
+/* line 70, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
 p {
   padding-bottom: 1.6em; }
-  /* line 82, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
+  /* line 74, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
   p:last-child {
     padding-bottom: 0; }
 
-/* line 90, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
+/* line 82, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
 p, address, figcaption {
   line-height: 1.6em; }
 
-/* line 95, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
+/* line 87, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
 address {
   font-style: normal; }
 
-/* line 107, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
+/* line 99, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
 input, select, option, textarea, button {
   font-family: 'some-custom-font', sans-serif; }
+  /* line 103, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
+  input:focus, select:focus, option:focus, textarea:focus, button:focus {
+    outline: none; }
 
-/* line 114, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
+/* line 111, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
 img {
   vertical-align: middle;
   -ms-interpolation-mode: bicubic; }
 
-/* line 123, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
+/* line 120, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_default.scss */
 ul, ol {
   padding-left: 16px; }
 
@@ -377,9 +375,10 @@ ul.float-list li {
 
 /* line 14, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_grid.scss */
 .blockgrid [data-col] {
+  position: relative;
   display: block;
   float: left; }
-  /* line 19, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_grid.scss */
+  /* line 20, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_grid.scss */
   .blockgrid .grid-stretch[data-col] {
     margin-bottom: -100%;
     padding-bottom: 100%; }

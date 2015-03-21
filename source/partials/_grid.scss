@@ -1,6 +1,6 @@
 ////
 /// frame-scss | source/partials/_grid.scss
-/// file version: 0.00.001
+/// file version: 0.00.002
 ////
 
 %frame-blockgrid-row
@@ -13,8 +13,9 @@
 
 %frame-blockgrid-column
 {
-    display: block;
-    float:   left;
+    position: relative;
+    display:  block;
+    float:    left;
 
     &.grid-stretch
     {
