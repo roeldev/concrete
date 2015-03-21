@@ -1,6 +1,6 @@
 ////
 /// frame-scss | source/components/_breakpoints.scss
-/// file version: 1.02.000
+/// file version: 1.02.001
 ///
 /// Breakpoint and media query related functions and mixins.
 ////
@@ -47,15 +47,15 @@
 ///
 @function media-query-list($breakpoints)
 {
+    $result: ();
+    $sorted: ();
+
     // when the argslist only has 1 item and that item is also a list, use the
     // first item as the argslist
     @if not is-list($breakpoints, 1)
     {
-        $breakpoints: ($breakpoints);
+        $breakpoints: append((), $breakpoints);
     }
-
-    $result: ();
-    $sorted: ();
 
     @each $item in $breakpoints
     {
@@ -65,7 +65,7 @@
         }
         @elseif is-number($item)
         {
-            $item: ($item * 1px);
+            $item: set($item, 'number', 'px');
             $item:
             (
                 'max': $item,
@@ -84,7 +84,6 @@
     {
         $sorted: map-ksort($sorted, 'numeric', true);
         $sorted: map-values($sorted);
-
 
         $item:    nth-first($sorted);
         $highest: map-get($item, 'max');

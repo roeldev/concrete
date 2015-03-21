@@ -8,9 +8,12 @@ Includes functions/mixins for media queries/breakpoints, flexible responsive gri
 - 10, 11 or 12 columns? It doesn't matter, you define the widths and how each column reacts to different breakpoints.
 - Cool transition mixin! Just define the easing, time and delay properties in the main `_frame.scss` settings file and you're ready to go. Now all your transitions automatically have the same default properties. You can even create multiple groups for different transitions if you need them.
 - Lots of type check functions, sort functions, and more list/map related functions!
-- Includes [normalize.css v3.0.2](http://git.io/normalize) and more useful style classes.
+- Includes [normalize.css v3.0.2](https://github.com/necolas/normalize.css/) and more useful style classes.
 - Some basic shapes and effects, such as hexagons, triangles, gradients and fancy text shadows.
 - Extended debug functions and mixins. Output variables in the console or the compiled CSS to see what their actual values are. This makes developing your own stuff even easier :)
+
+###Installation
+Either [download the latest release](https://github.com/roeldev/frame-scss/releases) or [install with Bower](http://bower.io): `bower install --save frame-scss`
 
 ###How to use
 1. Copy the `_frame.scss` and `_frame-basics.scss` files into your project folder.

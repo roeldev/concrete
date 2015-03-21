@@ -1,6 +1,6 @@
 ////
 /// frame-scss | source/partials/_iconfont.scss
-/// file version: 1.01.011
+/// file version: 1.00.002
 ////
 
 %frame-iconfont
@@ -23,9 +23,12 @@
         padding-top: 1px;
         line-height: 1.15em !important;
     }
+}
 
-    a &
-    {
-        cursor: pointer;
-    }
+a%frame-iconfont,
+a %frame-iconfont,
+button%frame-iconfont,
+button %frame-iconfont
+{
+    cursor: pointer;
 }

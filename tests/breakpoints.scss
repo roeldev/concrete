@@ -1,6 +1,6 @@
 ////
 /// frame-scss | tests/breakpoints.scss
-/// file version: 0.00.003
+/// file version: 0.00.004
 ////
 
 @import '../frame';
@@ -27,6 +27,16 @@ body
     @include add-breakpoint('xl' 'lg' 'md')
     {
         color: purple;
+    }
+
+    @include add-breakpoint(300px, 'min')
+    {
+        color: red;
+    }
+
+    @include add-breakpoint(('min': 350px, 'max': 450px))
+    {
+        color: black;
     }
 }
 

@@ -1,9 +1,9 @@
 ////
 /// frame-scss | source/partials/_default.scss
-/// file version: 1.01.011
+/// file version: 1.01.012
 ////
 
-/*! frame-scss v0.2.0 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
+/*! frame-scss v0.2.1 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
 html, body
 {
     width:      100%;
@@ -39,12 +39,6 @@ button
 {
     cursor: pointer;
 
-    .icon,
-    .icon:before
-    {
-        cursor: pointer;
-    }
-
     &:active,
     &:hover
     {
@@ -59,9 +53,7 @@ a
 
 button
 {
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
+    appearance: none;
 }
 
 //------------------------------------------------------------------------------
@@ -107,6 +99,11 @@ textarea,
 button
 {
     font-family: frame-font();
+
+    &:focus
+    {
+        outline: none;
+    }
 }
 
 //------------------------------------------------------------------------------

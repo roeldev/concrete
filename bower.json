@@ -2,7 +2,7 @@
   "name": "frame-scss",
   "description": "Sassy CSS framework. Includes functions/mixins for media queries/breakpoints, flexible responsive grids and debugging custom Sass + more!",
   "homepage": "https://github.com/roeldev/frame-scss",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "GPL-2.0+",
   "main": [
     "source/_init.scss"
@@ -28,10 +28,13 @@
     "iconfont"
   ],
   "ignore": [
-    "bower_components",
     "gulp_tasks",
     "node_modules",
-    "sassdoc",
-    "tests"
+    "tests",
+    ".gitignore",
+    ".sassdocrc",
+    "conemu.bat",
+    "gulpfile.js",
+    "package.json"
   ]
 }
