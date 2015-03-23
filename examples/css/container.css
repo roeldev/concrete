@@ -1,0 +1,9 @@
+/* line 1, D:/Projecten/frame-scss/repositories/frame-scss_develop/examples/scss/container.scss */
+header {
+  width: 100%;
+  height: 100px;
+  background-color: red; }
+
+/* line 9, D:/Projecten/frame-scss/repositories/frame-scss_develop/examples/scss/container.scss */
+header, main {
+  margin-bottom: 20px; }

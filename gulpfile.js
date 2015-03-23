@@ -1,40 +1,63 @@
-var gulp       = require('gulp'),
-    plumber    = require('gulp-plumber'),
-    notify     = require('gulp-notify'),
-    sass       = require('gulp-sass'),
-    size       = require('gulp-size');
+var _gulp    = require('gulp'),
+    _plumber = require('gulp-plumber'),
+    _notify  = require('gulp-notify'),
+    _sass    = require('gulp-sass'),
+    _size    = require('gulp-size');
 
 //------------------------------------------------------------------------------
 
-var config =
-{
-    notifyErrorOptions:
+var _compileTasks = [],
+    _config =
     {
-        //title:   '',
-        message: 'Error test: <%= error.message %>',
-        time:    5000,
-        //icon:    ''
-    },
+        'plumberOptions':
+        {
+            'errorHandler': _notify.onError(
+            {
+                'message': 'Error test: <%= error.message %>',
+                'time':    5000
+            })
+        },
 
-    sassOptions:
+        'sassOptions':
+        {
+            'style':          'expanded',
+            'sourceComments': true
+        }
+    };
+
+//------------------------------------------------------------------------------
+
+function _addTasks($name, $src, $dest)
+{
+    var $taskCompile = $name +':compile',
+        $taskWatch   = $name +':watch';
+
+    _compileTasks.push($taskCompile);
+
+    _gulp.task($taskCompile, function()
     {
-        style:          'expanded',
-        sourceComments: true
-    }
+        return _gulp.src($src)
+            .pipe( _plumber(_config.plumberOptions) )
+            .pipe( _sass(_config.sassOptions) )
+            .pipe( _size({ showFiles: true }) )
+            .pipe( _gulp.dest($dest) );
+    });
+
+    _gulp.task($taskWatch, function()
+    {
+        return _gulp.watch(['source/**/*.scss', src], [$taskCompile]);
+    });
 }
 
 //------------------------------------------------------------------------------
 
-gulp.task('tests:compile', function()
-{
-    return gulp.src('tests/*.scss')
-        .pipe( plumber({ errorHandler: notify.onError(config.notifyErrorOptions) }) )
-        .pipe( sass(config.sassOptions) )
-        .pipe( size({ showFiles: true }) )
-        .pipe( gulp.dest('tests/compiled_result') );
-});
+// compiler and watcher for examples only
+_addTasks('examples', 'examples/scss/*.scss', 'examples/css');
+// compiler and watcher for tests only
+_addTasks('tests', 'tests/*.scss', 'tests/css');
 
-gulp.task('tests:watch', function()
+// global file watcher, will watch and compile everything
+_gulp.task('default', function()
 {
-    return gulp.watch('**/*.scss', ['tests:compile']);
+    return _gulp.watch('**/*.scss', _compileTasks);
 });
