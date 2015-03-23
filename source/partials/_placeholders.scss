@@ -1,6 +1,6 @@
 ////
 /// frame-scss | source/partials/_placeholders.scss
-/// file version: 0.00.007
+/// file version: 0.00.008
 ////
 
 //------------------------------------------------------------------------------
@@ -49,6 +49,7 @@
 %frame-container //.container
 {
     display: block;
+    height:  100%;
     margin:  0 auto;
 
     @include _frame-display-container();
@@ -57,7 +58,7 @@
 %frame-center-x //.center-x
 {
     position: relative;
-    width:    100%;
+    height:   100%;
     margin:   0 auto;
 }
 
@@ -84,6 +85,8 @@
     > %frame-center-x
     {
         @include apply-valign-middle(true);
+
+        height:     auto;
         text-align: left;
     }
 }
@@ -93,6 +96,8 @@
 //------------------------------------------------------------------------------
 %frame-float-list
 {
+    @extend %frame-clearfix;
+
     list-style:   none;
     padding-left: 0;
 
