@@ -1,6 +1,6 @@
 ////
 /// frame-scss | source/components/_fonts.scss
-/// file version: 1.00.005
+/// file version: 1.00.006
 ////
 
 ///
@@ -31,7 +31,7 @@
     .#{$prefix}:before,
     [data-#{$prefix}]:before,
     [class^="#{$prefix}-"]:before,
-    [class*=" #{$prefix}-"]:before,
+    [class*=" #{$prefix}-"]:before
     {
         @extend %frame-iconfont;
 
