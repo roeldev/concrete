@@ -1,11 +1,10 @@
 ////
-/// frame-scss | tests/grid_block.scss
-/// file version: 0.00.001
+/// frame-scss | examples/grid_block.scss
+/// file version: 0.00.002
 ////
 
-@import '../frame';
-@import '../frame-basics';
-@import '../frame-grid';
+@import '../../frame';
+@import '../../frame-grid';
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -17,10 +16,3 @@ body       { background-color: grey; }
 .bg-yellow { background-color: yellow; }
 .bg-orange { background-color: orange; }
 .bg-purple { background-color: purple; }
-
-%frame-blockgrid-column
-{
-    padding: 10px;
-}
-
-@include frame-display-debug();

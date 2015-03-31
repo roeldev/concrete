@@ -1,0 +1,23 @@
+html,
+body
+{
+    height: 100%;
+}
+
+header
+{
+    width: 100%;
+    height: 100px;
+    background-color: red;
+}
+
+.center-example
+{
+    height: 200px;
+    margin-top: 20px;
+
+    .center-x
+    {
+        background-color: yellow;
+    }
+}

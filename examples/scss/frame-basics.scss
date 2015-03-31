@@ -1,0 +1,19 @@
+////
+/// frame-scss | examples/frame-basics.scss
+/// file version: 0.00.001
+////
+
+@import '../../frame';
+@import '../../frame-basics';
+
+//------------------------------------------------------------------------------
+
+html, body
+{
+    background-color: #ccc;
+}
+
+.container
+{
+    background-color: #fff;
+}
