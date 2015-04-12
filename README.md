@@ -1,7 +1,5 @@
-#frame-scss
+#frame-scss [![Bower version][bower-version-img]][bower-version-url]
 **Sassy CSS framework**
-
-[![Bower version][bower-version-img]][bower-version-url]
 
 Includes functions/mixins for media queries/breakpoints, flexible responsive grids, effects and shapes. Also included are some functions/mixins to more easily debug your own custom Sass :)
 
