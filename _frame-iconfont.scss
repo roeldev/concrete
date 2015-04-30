@@ -1,6 +1,6 @@
 //
 // frame-scss | _frame-iconfont.scss
-// file version: 0.00.001
+// file version: 0.00.002
 //
 
 //------------------------------------------------------------------------------
@@ -15,7 +15,8 @@
 {
     // place your icon classes here, or if you plan to use gulp-maelstrom you
     // can remove this file as it will automatically be created
-    .icon-example:before {
-      content: "a";
+    .icon-example:before
+    {
+        content: 'a';
     }
 }

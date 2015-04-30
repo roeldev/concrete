@@ -22,9 +22,9 @@ $_frame-breakpoints: ();
 
 // settings that are prepared so they are more easily to use by the framework
 $frame-breakpoints:                 _frame-init-breakpoints();
-$frame-breakpoint-scrollbar-buffer: _frame-init-breakpoint-settings($frame-breakpoint-scrollbar-buffer, 0px);
+$frame-breakpoint-scrollbar-buffer: _frame-init-breakpoint-settings($frame-breakpoint-scrollbar-buffer, 0);
 $frame-container-width:             _frame-init-breakpoint-settings($frame-container-width, 100%);
-$frame-grid-gap:                    _frame-init-breakpoint-settings($frame-grid-gap, 0px);
+$frame-grid-gap:                    _frame-init-breakpoint-settings($frame-grid-gap, 0);
 
 /*
     frame-scss - Sassy CSS framework (https://github.com/roeldev/frame-scss/)

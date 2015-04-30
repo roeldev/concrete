@@ -7,19 +7,19 @@
 {
     @include apply-clearfix();
 
+    display: block;
     overflow: hidden;
-    display:  block;
 }
 
 %frame-blockgrid-column
 {
+    display: block;
     position: relative;
-    display:  block;
-    float:    left;
+    float: left;
 
     &.grid-stretch
     {
-        margin-bottom:  -100%;
+        margin-bottom: -100%;
         padding-bottom: 100%;
     }
 }

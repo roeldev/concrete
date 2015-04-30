@@ -37,6 +37,11 @@ $frame-font-sizes:
     'h6':      10px
 );
 
+$frame-line-heights:
+(
+    'default': 1.6em
+);
+
 //------------------------------------------------------------------------------
 // Colors
 //------------------------------------------------------------------------------
@@ -59,7 +64,7 @@ $frame-transitions:
     'default':
     (
         'delay':    0s,
-        'duration': .2s,
+        'duration': 0.2s,
         'easing':   ease-in-out
     )
 );
@@ -113,8 +118,7 @@ $frame-console-debugs:   false;
 //------------------------------------------------------------------------------
 // You can set any other variables you'd like to use in this section.
 //
-$lineHeight:   1.6em;
-$borderRadius: 3px;
+$example-border-radius: 3px;
 
 //------------------------------------------------------------------------------
 // Import frame-sccs

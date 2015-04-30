@@ -1,13 +1,13 @@
 ////
 /// frame-scss | source/core/_core.scss
-/// file version: 1.01.011
+/// file version: 1.01.012
 ///
 /// All default frame-scss functions are within this file. Through these
 /// functions you can easily use the variables you have set in your main
 /// _frame.scss file.
 ///
 /// SassScript supports seven main data types:
-/// - numbers (e.g. 1.2, 13, 10px, .2s);
+/// - numbers (e.g. 1.2, 13, 10px, 0.2s);
 /// - strings of text, with and without quotes (e.g. "foo", 'bar', baz);
 /// - colors (e.g. blue, #04a3f9, rgba(255, 0, 0, 0.5));
 /// - booleans (e.g. true, false);
@@ -54,6 +54,24 @@
     }
 
     @return warn('frame-font-size', 'Unknown font-size `#{$key}`!');
+}
+
+///
+/// Returns a line-height value from the `$frame-line-heights` setting.
+///
+/// @param {string} $key [default]
+///        The value of the corresponding key to return.
+///
+/// @return {number}
+///
+@function frame-line-height($key: 'default')
+{
+    @if map-has-key($frame-line-heights, $key)
+    {
+        @return map-get($frame-line-heights, $key);
+    }
+
+    @return warn('frame-line-height', 'Unknown line-height `#{$key}`!');
 }
 
 ///
