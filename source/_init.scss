@@ -1,5 +1,5 @@
 ////
-/// frame-scss | source/_init.scss
+/// concrete | source/_init.scss
 /// file version: 1.01.009
 ///
 /// This file imports all required functions and mixins wich you can use while
@@ -16,18 +16,18 @@
 //------------------------------------------------------------------------------
 
 // 'private' framework variables
-$_frame-debugs:      ();
-$_frame-warnings:    ();
-$_frame-breakpoints: ();
+$_concrete-debugs:      ();
+$_concrete-warnings:    ();
+$_concrete-breakpoints: ();
 
 // settings that are prepared so they are more easily to use by the framework
-$frame-breakpoints:                 _frame-init-breakpoints();
-$frame-breakpoint-scrollbar-buffer: _frame-init-breakpoint-settings($frame-breakpoint-scrollbar-buffer, 0);
-$frame-container-width:             _frame-init-breakpoint-settings($frame-container-width, 100%);
-$frame-grid-gap:                    _frame-init-breakpoint-settings($frame-grid-gap, 0);
+$concrete-breakpoints:                 _concrete-init-breakpoints();
+$concrete-breakpoint-scrollbar-buffer: _concrete-init-breakpoint-settings($concrete-breakpoint-scrollbar-buffer, 0);
+$concrete-container-width:             _concrete-init-breakpoint-settings($concrete-container-width, 100%);
+$concrete-grid-gap:                    _concrete-init-breakpoint-settings($concrete-grid-gap, 0);
 
 /*
-    frame-scss - Sassy CSS framework (https://github.com/roeldev/frame-scss/)
+    concrete - Sassy CSS framework (https://github.com/roeldev/concrete/)
     Copyright (c) 2014-2015 Roel Schut (roelschut.nl)
 
     This program is free software; you can redistribute it and/or modify

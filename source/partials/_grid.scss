@@ -1,9 +1,9 @@
 ////
-/// frame-scss | source/partials/_grid.scss
+/// concrete | source/partials/_grid.scss
 /// file version: 0.00.002
 ////
 
-%frame-blockgrid-row
+%concrete-blockgrid-row
 {
     @include apply-clearfix();
 
@@ -11,7 +11,7 @@
     overflow: hidden;
 }
 
-%frame-blockgrid-column
+%concrete-blockgrid-column
 {
     display: block;
     position: relative;

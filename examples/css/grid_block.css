@@ -1,5 +1,5 @@
 /*
-    frame-scss - Sassy CSS framework (https://github.com/roeldev/frame-scss/)
+    concrete - Sassy CSS framework (https://github.com/roeldev/concrete/)
     Copyright (c) 2014-2015 Roel Schut (roelschut.nl)
 
     This program is free software; you can redistribute it and/or modify
@@ -16,141 +16,141 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-/* line 6, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_grid.scss */
+/* line 6, D:/Projecten/_concrete/_concrete_develop/source/partials/_grid.scss */
 .blockgrid.grid-row, .blockgrid .grid-row {
-  overflow: hidden;
-  display: block; }
-
-/* line 14, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_grid.scss */
-.blockgrid [data-col] {
-  position: relative;
   display: block;
+  overflow: hidden; }
+
+/* line 14, D:/Projecten/_concrete/_concrete_develop/source/partials/_grid.scss */
+.blockgrid [data-col] {
+  display: block;
+  position: relative;
   float: left; }
-  /* line 20, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/partials/_grid.scss */
+  /* line 20, D:/Projecten/_concrete/_concrete_develop/source/partials/_grid.scss */
   .blockgrid .grid-stretch[data-col] {
     margin-bottom: -100%;
     padding-bottom: 100%; }
 
-/* line 165, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+/* line 165, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
 .blockgrid [data-col*="8"] {
   width: 8.33%; }
-/* line 165, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+/* line 165, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
 .blockgrid [data-col*="12"] {
   width: 12.5%; }
-/* line 165, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+/* line 165, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
 .blockgrid [data-col*="16"] {
   width: 16.66%; }
-/* line 165, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+/* line 165, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
 .blockgrid [data-col*="25"] {
   width: 25%; }
-/* line 165, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+/* line 165, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
 .blockgrid [data-col*="33"] {
   width: 33.33%; }
-/* line 165, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+/* line 165, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
 .blockgrid [data-col*="50"] {
   width: 50%; }
-/* line 165, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+/* line 165, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
 .blockgrid [data-col*="66"] {
   width: 66.67%; }
-/* line 165, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+/* line 165, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
 .blockgrid [data-col*="75"] {
   width: 75%; }
-/* line 165, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+/* line 165, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
 .blockgrid [data-col*="83"] {
   width: 83.33; }
-/* line 165, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+/* line 165, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
 .blockgrid [data-col*="100"] {
   width: 100%; }
 @media screen and (max-width: 1199px) {
-  /* line 199, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+  /* line 199, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
   .blockgrid [data-col*="lg-8"] {
     width: 8.33%; }
-  /* line 199, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+  /* line 199, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
   .blockgrid [data-col*="lg-12"] {
     width: 12.5%; }
-  /* line 199, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+  /* line 199, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
   .blockgrid [data-col*="lg-16"] {
     width: 16.66%; }
-  /* line 199, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+  /* line 199, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
   .blockgrid [data-col*="lg-25"] {
     width: 25%; }
-  /* line 199, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+  /* line 199, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
   .blockgrid [data-col*="lg-33"] {
     width: 33.33%; }
-  /* line 199, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+  /* line 199, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
   .blockgrid [data-col*="lg-50"] {
     width: 50%; }
-  /* line 199, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+  /* line 199, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
   .blockgrid [data-col*="lg-66"] {
     width: 66.67%; }
-  /* line 199, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+  /* line 199, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
   .blockgrid [data-col*="lg-75"] {
     width: 75%; }
-  /* line 199, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+  /* line 199, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
   .blockgrid [data-col*="83"], .blockgrid [data-col*="lg-83"], .blockgrid [data-col*="lg-100"] {
     width: 100%; } }
 @media screen and (max-width: 1023px) {
-  /* line 199, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+  /* line 199, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
   .blockgrid [data-col*="8"], .blockgrid [data-col*="md-8"], .blockgrid [data-col*="12"], .blockgrid [data-col*="md-12"], .blockgrid [data-col*="md-25"] {
     width: 25%; }
-  /* line 199, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+  /* line 199, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
   .blockgrid [data-col*="md-33"] {
     width: 33.33%; }
-  /* line 199, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+  /* line 199, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
   .blockgrid [data-col*="16"], .blockgrid [data-col*="md-16"], .blockgrid [data-col*="md-50"] {
     width: 50%; }
-  /* line 199, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+  /* line 199, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
   .blockgrid [data-col*="md-66"] {
     width: 66.67%; }
-  /* line 199, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+  /* line 199, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
   .blockgrid [data-col*="md-75"] {
     width: 75%; }
-  /* line 199, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+  /* line 199, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
   .blockgrid [data-col*="md-83"], .blockgrid [data-col*="md-100"] {
     width: 100%; } }
 @media screen and (max-width: 767px) {
-  /* line 199, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+  /* line 199, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
   .blockgrid [data-col*="8"], .blockgrid [data-col*="sm-8"], .blockgrid [data-col*="12"], .blockgrid [data-col*="sm-12"], .blockgrid [data-col*="25"], .blockgrid [data-col*="sm-25"] {
     width: 50%; }
-  /* line 199, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+  /* line 199, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
   .blockgrid [data-col*="16"], .blockgrid [data-col*="sm-16"], .blockgrid [data-col*="33"], .blockgrid [data-col*="sm-33"], .blockgrid [data-col*="50"], .blockgrid [data-col*="sm-50"], .blockgrid [data-col*="66"], .blockgrid [data-col*="sm-66"], .blockgrid [data-col*="75"], .blockgrid [data-col*="sm-75"], .blockgrid [data-col*="sm-83"], .blockgrid [data-col*="sm-100"] {
     width: 100%; } }
 @media screen and (max-width: 479px) {
-  /* line 199, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+  /* line 199, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
   .blockgrid [data-col*="xs-8"], .blockgrid [data-col*="xs-12"] {
     width: 50%; }
-  /* line 199, D:/Projecten/frame-scss/repositories/frame-scss_develop/source/components/_grid.scss */
+  /* line 199, D:/Projecten/_concrete/_concrete_develop/source/components/_grid.scss */
   .blockgrid [data-col*="xs-16"], .blockgrid [data-col*="25"], .blockgrid [data-col*="xs-25"], .blockgrid [data-col*="xs-33"], .blockgrid [data-col*="xs-50"], .blockgrid [data-col*="xs-66"], .blockgrid [data-col*="xs-75"], .blockgrid [data-col*="xs-83"], .blockgrid [data-col*="xs-100"] {
     width: 100%; } }
 
-/* line 11, D:/Projecten/frame-scss/repositories/frame-scss_develop/examples/scss/grid_block.scss */
+/* line 11, D:/Projecten/_concrete/_concrete_develop/examples/scss/grid_block.scss */
 body {
-  background-color: grey; }
+  background-color: gray; }
 
-/* line 12, D:/Projecten/frame-scss/repositories/frame-scss_develop/examples/scss/grid_block.scss */
+/* line 12, D:/Projecten/_concrete/_concrete_develop/examples/scss/grid_block.scss */
 .container {
   background-color: #fff; }
 
-/* line 13, D:/Projecten/frame-scss/repositories/frame-scss_develop/examples/scss/grid_block.scss */
+/* line 13, D:/Projecten/_concrete/_concrete_develop/examples/scss/grid_block.scss */
 .bg-red {
   background-color: red; }
 
-/* line 14, D:/Projecten/frame-scss/repositories/frame-scss_develop/examples/scss/grid_block.scss */
+/* line 14, D:/Projecten/_concrete/_concrete_develop/examples/scss/grid_block.scss */
 .bg-blue {
   background-color: blue; }
 
-/* line 15, D:/Projecten/frame-scss/repositories/frame-scss_develop/examples/scss/grid_block.scss */
+/* line 15, D:/Projecten/_concrete/_concrete_develop/examples/scss/grid_block.scss */
 .bg-green {
   background-color: green; }
 
-/* line 16, D:/Projecten/frame-scss/repositories/frame-scss_develop/examples/scss/grid_block.scss */
+/* line 16, D:/Projecten/_concrete/_concrete_develop/examples/scss/grid_block.scss */
 .bg-yellow {
   background-color: yellow; }
 
-/* line 17, D:/Projecten/frame-scss/repositories/frame-scss_develop/examples/scss/grid_block.scss */
+/* line 17, D:/Projecten/_concrete/_concrete_develop/examples/scss/grid_block.scss */
 .bg-orange {
   background-color: orange; }
 
-/* line 18, D:/Projecten/frame-scss/repositories/frame-scss_develop/examples/scss/grid_block.scss */
+/* line 18, D:/Projecten/_concrete/_concrete_develop/examples/scss/grid_block.scss */
 .bg-purple {
   background-color: purple; }

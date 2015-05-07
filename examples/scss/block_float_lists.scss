@@ -1,9 +1,9 @@
 ////
-/// frame-scss | examples/block_float_lists.scss
+/// concrete | examples/block_float_lists.scss
 /// file version: 0.00.001
 ////
 
-@import 'frame-basics';
+@import 'basics';
 
 //------------------------------------------------------------------------------
 
@@ -20,7 +20,7 @@ ul
 
 nav
 {
-    @extend %frame-clearfix;
+    @extend %concrete-clearfix;
 
     .float-list
     {

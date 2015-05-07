@@ -1,9 +1,9 @@
 ////
-/// frame-scss | tests/breakpoints.scss
+/// concrete | tests/breakpoints.scss
 /// file version: 0.00.004
 ////
 
-@import '../frame';
+@import '../concrete';
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -40,4 +40,4 @@ body
     }
 }
 
-@include frame-display-debug();
+@include display-debug();

@@ -1,5 +1,5 @@
 //
-// frame-scss | _frame-grid.scss
+// concrete | _concrete-grid.scss
 // file version: 0.01.002
 //
 // Basic grid settings
@@ -9,9 +9,9 @@
 //
 
 //------------------------------------------------------------------------------
-// Import grid specific frame-sccs functions/mixins/partials.
+// Import grid specific functions/mixins/partials.
 //------------------------------------------------------------------------------
-// Last but not least, import the frame-scss initializer. This will import all
+// Last but not least, import the concrete initializer. This will import all
 // the needed functions and mixins to get you started :)
 //
 @import 'source/grid';
@@ -53,7 +53,7 @@
 // .gc-md-two-third { width: 100% }
 //
 // scss-lint:disable all
-$frame-grid-columns: frame-grid-columns(
+$concrete-grid-columns: grid-columns(
     '8'   8.33%  ('sm': 50%,  'md': 25%), // 1/12
     '12'  12.5%  ('sm': 50%,  'md': 25%), // 1.5/12 -> 1/8
     '16'  16.66% ('sm': 100%, 'md': 50%), // 2/12   -> 1/6
@@ -69,6 +69,6 @@ $frame-grid-columns: frame-grid-columns(
 
 //------------------------------------------------------------------------------
 
-.blockgrid { @include frame-grid-create('block', $frame-grid-columns); }
-//.flexgrid  { @include frame-grid-create('flex', $frame-grid-columns); }
-//.tablegrid { @include frame-grid-create('table', $frame-grid-columns); }
+.blockgrid { @include grid-create('block', $concrete-grid-columns); }
+//.flexgrid  { @include grid-create('flex', $concrete-grid-columns); }
+//.tablegrid { @include grid-create('table', $concrete-grid-columns); }

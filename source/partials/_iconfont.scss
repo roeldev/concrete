@@ -1,9 +1,9 @@
 ////
-/// frame-scss | source/partials/_iconfont.scss
+/// concrete | source/partials/_iconfont.scss
 /// file version: 1.00.003
 ////
 
-%frame-iconfont
+%concrete-iconfont
 {
     font-style: normal !important;
     font-variant: normal !important;
@@ -23,10 +23,10 @@
     }
 }
 
-a%frame-iconfont,
-a %frame-iconfont,
-button%frame-iconfont,
-button %frame-iconfont
+a%concrete-iconfont,
+a %concrete-iconfont,
+button%concrete-iconfont,
+button %concrete-iconfont
 {
     cursor: pointer;
 }

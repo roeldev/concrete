@@ -1,10 +1,10 @@
 ////
-/// frame-scss | source/partials/_default.scss
+/// concrete | source/partials/_default.scss
 /// file version: 1.01.013
 ////
 
 // scss-lint:disable all
-/*! frame-scss v0.2.2 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
+/*! concrete v0.2.2 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
 // scss-lint:enable all
 
 html,
@@ -66,7 +66,7 @@ button
 // Group heading by font-size. So headings with the same font-sizes are put in
 // a list and displayed together.
 //
-@include _frame-display-headings();
+@include _concrete-display-headings();
 
 //------------------------------------------------------------------------------
 // Paragraphs and text elements
@@ -128,5 +128,5 @@ ol
 
 nav > ul
 {
-    @extend %frame-menu-list;
+    @extend %concrete-menu-list;
 }

@@ -1,14 +1,14 @@
 ////
-/// frame-scss | examples/grid_block.scss
+/// concrete | examples/grid_block.scss
 /// file version: 0.00.002
 ////
 
-@import '../../frame';
-@import '../../frame-grid';
+@import '../../concrete';
+@import '../../concrete-grid';
 
 ////////////////////////////////////////////////////////////////////////////////
 
-body       { background-color: grey; }
+body       { background-color: gray; }
 .container { background-color: #fff; }
 .bg-red    { background-color: red; }
 .bg-blue   { background-color: blue; }

@@ -271,11 +271,11 @@ ul, ol {
   clear: both; }
 
 /* line 17, D:/Projecten/_concrete/_concrete_develop/source/partials/_placeholders.scss */
-ul.float-list:before, .clearfix:before, nav:before, ul.float-list:after, .clearfix:after, nav:after {
+ul.float-list:before, .clearfix:before, ul.float-list:after, .clearfix:after {
   content: " ";
   display: table; }
 /* line 23, D:/Projecten/_concrete/_concrete_develop/source/partials/_placeholders.scss */
-ul.float-list:after, .clearfix:after, nav:after {
+ul.float-list:after, .clearfix:after {
   clear: both; }
 
 /* line 29, D:/Projecten/_concrete/_concrete_develop/source/partials/_placeholders.scss */
@@ -377,30 +377,3 @@ html, body {
 /* line 16, D:/Projecten/_concrete/_concrete_develop/examples/scss/basics.scss */
 .container {
   background-color: #fff; }
-
-/* line 10, D:/Projecten/_concrete/_concrete_develop/examples/scss/block_float_lists.scss */
-ul {
-  background-color: #fff; }
-  /* line 14, D:/Projecten/_concrete/_concrete_develop/examples/scss/block_float_lists.scss */
-  ul li {
-    padding: 5px;
-    background-color: yellow; }
-
-/* line 25, D:/Projecten/_concrete/_concrete_develop/examples/scss/block_float_lists.scss */
-nav .float-list {
-  float: right; }
-  /* line 29, D:/Projecten/_concrete/_concrete_develop/examples/scss/block_float_lists.scss */
-  nav .float-list li {
-    margin: 0 5px; }
-
-/* line 36, D:/Projecten/_concrete/_concrete_develop/examples/scss/block_float_lists.scss */
-.container {
-  margin-top: 20px; }
-  /* line 40, D:/Projecten/_concrete/_concrete_develop/examples/scss/block_float_lists.scss */
-  .container .block-list {
-    width: 100%;
-    max-width: 50%;
-    border: 1px solid red; }
-    /* line 46, D:/Projecten/_concrete/_concrete_develop/examples/scss/block_float_lists.scss */
-    .container .block-list li {
-      border: 1px solid red; }

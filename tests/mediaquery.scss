@@ -1,9 +1,9 @@
 ////
-/// frame-scss | tests/mediaquery.scss
+/// concrete | tests/mediaquery.scss
 /// file version: 0.00.001
 ////
 
-@import '../frame';
+@import '../concrete';
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -19,4 +19,4 @@ $x:debug('combined | 1440 - 1200, 999 - 500', $combined);
 $overlap: media-query-list(('min': 100px, 'max': 200px) ('min': 150px, 'max': 250px));
 $x:debug('overlap | 250 - 100', $overlap);
 
-@include frame-display-debug();
+@include display-debug();
