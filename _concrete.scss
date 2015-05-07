@@ -1,11 +1,12 @@
 //
-// frame-scss | _frame.scss
+// concrete | _concrete.scss
 // file version: 0.01.003
 //
-// Frame settings and variables
+// Settings and variables
 //------------------------------------------------------------------------------
 // For more information about the available settings, check either the included
-// help documents, examples, or visit the project page: http://git.io/qoNLsw
+// help documents, examples, or visit the project page:
+// https://github.com/roeldev/concrete
 //
 
 //------------------------------------------------------------------------------
@@ -15,7 +16,7 @@
 // The default font will automatically be set to the html, input, select,
 // option, textarea and button elements.
 //
-$frame-fonts:
+$concrete-fonts:
 (
     'default': ('some-custom-font', sans-serif)
 );
@@ -26,7 +27,7 @@ $frame-fonts:
 // When set, the font sizes for headings (h1-h6) will automatically be
 // defined in partials/_default.scss.
 //
-$frame-font-sizes:
+$concrete-font-sizes:
 (
     'default': 16px,
     'h1':      32px,
@@ -38,12 +39,20 @@ $frame-font-sizes:
 );
 
 //------------------------------------------------------------------------------
+// Line heights
+//------------------------------------------------------------------------------
+$concrete-line-heights:
+(
+    'default': 1.6em
+);
+
+//------------------------------------------------------------------------------
 // Colors
 //------------------------------------------------------------------------------
 // Define all of your colors here. These can be anything from font colors,
 // background-colors to border-colors.
 //
-$frame-colors:
+$concrete-colors:
 (
     'default': #000
 );
@@ -54,12 +63,12 @@ $frame-colors:
 // If you're using transitions most of the time the duration and easing
 // properties are the same for all transitions. You can
 //
-$frame-transitions:
+$concrete-transitions:
 (
     'default':
     (
         'delay':    0s,
-        'duration': .2s,
+        'duration': 0.2s,
         'easing':   ease-in-out
     )
 );
@@ -67,7 +76,9 @@ $frame-transitions:
 //------------------------------------------------------------------------------
 // Breakpoints
 //------------------------------------------------------------------------------
-$frame-breakpoints:
+// Add all the breakpoints you need.
+//
+$concrete-breakpoints:
 (
     'xl': ('min': 1200px, 'max': 1440px), // desktop >
     'lg': 1024px,                         // tablet landscape
@@ -76,7 +87,7 @@ $frame-breakpoints:
     'xs': 240px,                          // mobile portrait
 );
 
-$frame-breakpoint-scrollbar-buffer:
+$concrete-breakpoint-scrollbar-buffer:
 (
     'xl': 20px,
     'md': 0
@@ -85,13 +96,13 @@ $frame-breakpoint-scrollbar-buffer:
 //------------------------------------------------------------------------------
 // Container and grid
 //------------------------------------------------------------------------------
-$frame-container-width:
+$concrete-container-width:
 (
     'xl': 90%,
     'lg': 95%
 );
 
-$frame-grid-gap:
+$concrete-grid-gap:
 (
     'xl': 15px,
     'lg': 10px,
@@ -105,21 +116,20 @@ $frame-grid-gap:
 // Display warnings and/or debug messages in console. Warnings and debugs are
 // always displayed in the compiled CSS file.
 //
-$frame-console-warnings: false;
-$frame-console-debugs:   false;
+$concrete-console-warnings: false;
+$concrete-console-debugs:   false;
 
 //------------------------------------------------------------------------------
 // Other variables
 //------------------------------------------------------------------------------
 // You can set any other variables you'd like to use in this section.
 //
-$lineHeight:   1.6em;
-$borderRadius: 3px;
+$example-border-radius: 3px;
 
 //------------------------------------------------------------------------------
-// Import frame-sccs
+// Import the concrete framework
 //------------------------------------------------------------------------------
-// Last but not least, import the frame-scss initializer. This will import all
+// Last but not least, import the concrete initializer. This will import all
 // the needed functions and mixins to get you started :)
 //
 @import 'source/init';

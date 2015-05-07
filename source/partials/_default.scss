@@ -1,21 +1,25 @@
 ////
-/// frame-scss | source/partials/_default.scss
-/// file version: 1.01.012
+/// concrete | source/partials/_default.scss
+/// file version: 1.01.013
 ////
 
-/*! frame-scss v0.2.2 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
-html, body
+// scss-lint:disable all
+/*! concrete v0.2.2 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
+// scss-lint:enable all
+
+html,
+body
 {
-    width:      100%;
+    width: 100%;
     min-height: 100%;
 }
 
 html
 {
     font-family: frame-font();
-    font-size:   frame-font-size();
+    font-size: frame-font-size();
 
-    -webkit-font-smoothing:  antialiased;
+    -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
@@ -27,8 +31,8 @@ html
 *:after
 {
     box-sizing: border-box;
-    margin:     0;
-    padding:    0;
+    margin: 0;
+    padding: 0;
 }
 
 //------------------------------------------------------------------------------
@@ -62,14 +66,14 @@ button
 // Group heading by font-size. So headings with the same font-sizes are put in
 // a list and displayed together.
 //
-@include _frame-display-headings();
+@include _concrete-display-headings();
 
 //------------------------------------------------------------------------------
 // Paragraphs and text elements
 //------------------------------------------------------------------------------
 p
 {
-    padding-bottom: $lineHeight;
+    padding-bottom: frame-line-height();
 
     &:last-child
     {
@@ -81,7 +85,7 @@ p,
 address,
 figcaption
 {
-    line-height: $lineHeight;
+    line-height: frame-line-height();
 }
 
 address
@@ -110,7 +114,7 @@ button
 
 img
 {
-    vertical-align:         middle;
+    vertical-align: middle;
     -ms-interpolation-mode: bicubic;
 }
 
@@ -124,5 +128,5 @@ ol
 
 nav > ul
 {
-    @extend %frame-menu-list;
+    @extend %concrete-menu-list;
 }

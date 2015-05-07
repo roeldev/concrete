@@ -1,9 +1,9 @@
 ////
-/// frame-scss | tests/debug.scss
+/// concrete | tests/debug.scss
 /// file version: 0.00.001
 ////
 
-@import '../frame';
+@import '../concrete';
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -44,5 +44,5 @@
 
 /******************************************************************************/
 /* Map TESTS */
-@include debug($frame-breakpoints);
-@include debug($frame-transitions);
+@include debug($concrete-breakpoints);
+@include debug($concrete-transitions);

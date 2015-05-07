@@ -1,9 +1,9 @@
 ////
-/// frame-scss | tests/sort.scss
+/// concrete | tests/sort.scss
 /// file version: 0.00.001
 ////
 
-@import '../frame';
+@import '../concrete';
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -50,4 +50,4 @@ $map-values:
 @include debug('sort map keys', map-ksort($map-keys, 'numeric'));
 @include debug('sort map keys', map-ksort($map-keys, 'numeric', true));
 
-@include frame-display-debug();
+@include display-debug();

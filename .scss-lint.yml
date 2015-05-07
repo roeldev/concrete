@@ -1,0 +1,299 @@
+exclude:
+  - 'node_modules/*'
+  - 'sassdoc/*'
+  - 'source/components/_breakpoints.scss'
+  - 'source/components/_grid.scss'
+  - 'source/components/_shapes.scss'
+  - 'source/components/_transition.scss'
+  - 'source/core/_core.scss'
+  - 'source/core/_debug.scss'
+  - 'source/core/_list.scss'
+  - 'source/core/_utils.scss'
+  - 'source/partials/_normalize.scss'
+  - 'tests/*.scss'
+
+linters:
+  BangFormat:
+    enabled: true
+    space_before_bang: true
+    space_after_bang: false
+
+  BorderZero:
+    enabled: true
+    convention: zero
+
+  ColorKeyword:
+    enabled: true
+
+  ColorVariable:
+    enabled: false
+
+  Comment:
+    enabled: true
+
+  DebugStatement:
+    enabled: true
+
+  DeclarationOrder:
+    enabled: true
+
+  DuplicateProperty:
+    enabled: true
+
+  ElsePlacement:
+    enabled: true
+    style: new_line
+
+  EmptyLineBetweenBlocks:
+    enabled: true
+    ignore_single_line_blocks: true
+
+  EmptyRule:
+    enabled: true
+
+  FinalNewline:
+    enabled: true
+    present: true
+
+  HexLength:
+    enabled: true
+    style: short
+
+  HexNotation:
+    enabled: true
+    style: lowercase
+
+  HexValidation:
+    enabled: true
+
+  IdSelector:
+    enabled: true
+
+  ImportantRule:
+    enabled: false
+
+  ImportPath:
+    enabled: true
+    leading_underscore: false
+    filename_extension: false
+
+  Indentation:
+    enabled: true
+    allow_non_nested_indentation: true
+    character: space
+    width: 4
+
+  LeadingZero:
+    enabled: true
+    style: include_zero
+
+  MergeableSelector:
+    enabled: true
+    force_nesting: true
+
+  NameFormat:
+    enabled: true
+    allow_leading_underscore: true
+    convention: hyphenated_lowercase
+    variable_convention: '(.*)'
+
+  NestingDepth:
+    enabled: true
+    max_depth: 3
+
+  PlaceholderInExtend:
+    enabled: true
+
+  PropertyCount:
+    enabled: false
+    include_nested: false
+    max_properties: 10
+
+  PropertySortOrder:
+    enabled: true
+    order: [
+      'content',
+      'display',
+      'visibility',
+      'overflow',
+      'overflow-x',
+      'overflow-y',
+      'position',
+      'z-index',
+      'top',
+      'bottom',
+      'left',
+      'right',
+      'float',
+      'clear',
+      'table-layout',
+      'border-collapse',
+      'empty-cells',
+      'box-sizing',
+      'width',
+      'min-width',
+      'max-width',
+      'height',
+      'min-height',
+      'max-height',
+      'margin',
+      'margin-top',
+      'margin-bottom',
+      'margin-left',
+      'margin-right',
+      'padding',
+      'padding-top',
+      'padding-bottom',
+      'padding-left',
+      'padding-right',
+      'border',
+      'border-width',
+      'border-style',
+      'border-color',
+      'border-radius',
+      'border-top',
+      'border-top-width',
+      'border-top-style',
+      'border-top-color',
+      'border-bottom',
+      'border-bottom-width',
+      'border-bottom-style',
+      'border-bottom-color',
+      'border-left',
+      'border-left-width',
+      'border-left-style',
+      'border-left-color',
+      'border-right',
+      'border-right-width',
+      'border-right-style',
+      'border-right-color',
+      'border-top-left-radius',
+      'border-top-right-radius',
+      'border-bottom-left-radius',
+      'border-bottom-right-radius',
+      'outline',
+      'outline-width',
+      'outline-style',
+      'outline-color',
+      'white-space',
+      'list-style',
+      'list-style-type',
+      'list-style-position',
+      'list-style-image',
+      'background',
+      'background-color',
+      'background-image',
+      'background-attachment',
+      'background-position',
+      'background-repeat',
+      'background-size',
+      'opacity',
+      'color',
+      'font',
+      'font-family',
+      'font-size',
+      'font-style',
+      'font-variant',
+      'font-weight',
+      'letter-spacing',
+      'line-height',
+      'text-align',
+      'text-decoration',
+      'text-indent',
+      'text-transform',
+      'text-shadow',
+      'box-shadow',
+      'animation',
+      'transform',
+      'transition']
+
+  PropertySpelling:
+    enabled: true
+    extra_properties: []
+
+  PropertyUnits:
+    enabled: true
+    global: ['em', 'ex', '%', 'px', 'ch', 'cm', 'mm', 'in',
+             'pt', 'pc', 'rem', 'vh', 'vw', 'vmin', 'vmax']
+    properties: {}
+
+  QualifyingElement:
+    enabled: true
+    allow_element_with_attribute: true
+    allow_element_with_class: false
+    allow_element_with_id: false
+
+  SelectorDepth:
+    enabled: true
+    max_depth: 3
+
+  SelectorFormat:
+    enabled: true
+    convention: hyphenated_lowercase
+
+  Shorthand:
+    enabled: true
+
+  SingleLinePerProperty:
+    enabled: true
+    allow_single_line_rule_sets: true
+
+  SingleLinePerSelector:
+    enabled: true
+
+  SpaceAfterComma:
+    enabled: true
+
+  SpaceAfterPropertyColon:
+    enabled: true
+    style: one_space
+
+  SpaceAfterPropertyName:
+    enabled: false
+
+  SpaceBeforeBrace:
+    enabled: true
+    style: new_line
+    allow_single_line_padding: true
+
+  SpaceBetweenParens:
+    enabled: true
+    spaces: 0
+
+  StringQuotes:
+    enabled: true
+    style: single_quotes
+
+  TrailingSemicolon:
+    enabled: true
+
+  TrailingZero:
+    enabled: false
+
+  UnnecessaryMantissa:
+    enabled: true
+
+  UnnecessaryParentReference:
+    enabled: true
+
+  UrlFormat:
+    enabled: true
+
+  UrlQuotes:
+    enabled: true
+
+  VariableForProperty:
+    enabled: false
+    properties: []
+
+  VendorPrefix:
+    enabled: true
+    identifier_list: base
+    additional_identifiers: []
+    excluded_identifiers: []
+
+  ZeroUnit:
+    enabled: true
+
+  Compass::*:
+    enabled: false

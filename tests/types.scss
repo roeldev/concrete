@@ -1,9 +1,9 @@
 ////
-/// frame-scss | tests/types.scss
+/// concrete | tests/types.scss
 /// file version: 0.00.001
 ////
 
-@import '../frame';
+@import '../concrete';
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -52,15 +52,15 @@ $vars:
         {
             @if is-scalar($var)
             {
-                $key: _frame-debug-scalar($var);
+                $key: _concrete-debug-scalar($var);
             }
             @elseif is-list($var)
             {
-                $key: _frame-debug-list($var, false);
+                $key: _concrete-debug-list($var, false);
             }
             @elseif is-map($var)
             {
-                $key: _frame-debug-map($var, false);
+                $key: _concrete-debug-map($var, false);
             }
 
             $keyLength: max($keyLength, str-length($key));

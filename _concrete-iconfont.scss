@@ -1,10 +1,10 @@
 //
-// frame-scss | _frame-iconfont.scss
-// file version: 0.00.001
+// concrete | _concrete-iconfont.scss
+// file version: 0.00.002
 //
 
 //------------------------------------------------------------------------------
-// Import frame-sccs icon font related functions/mixins/partials.
+// Import icon font related functions/mixins/partials.
 //------------------------------------------------------------------------------
 @import 'source/iconfont';
 
@@ -15,7 +15,8 @@
 {
     // place your icon classes here, or if you plan to use gulp-maelstrom you
     // can remove this file as it will automatically be created
-    .icon-example:before {
-      content: "a";
+    .icon-example:before
+    {
+        content: 'a';
     }
 }

@@ -1,17 +1,17 @@
 ////
-/// frame-scss | source/partials/_placeholders.scss
-/// file version: 0.00.008
+/// concrete | source/partials/_placeholders.scss
+/// file version: 0.00.009
 ////
 
 //------------------------------------------------------------------------------
 // Helper style classes
 //------------------------------------------------------------------------------
-%frame-clearboth //.clear
+%concrete-clearboth //.clear
 {
     clear: both;
 }
 
-%frame-clearfix //.clearfix
+%concrete-clearfix //.clearfix
 {
     &:before,
     &:after
@@ -26,19 +26,19 @@
     }
 }
 
-%frame-hidden //.hidden
+%concrete-hidden //.hidden
 {
-    display:    none;
+    display: none;
     visibility: hidden;
 }
 
-%frame-visible //.visible
+%concrete-visible //.visible
 {
-    display:    block;
+    display: block;
     visibility: visible;
 }
 
-%frame-nowrap //.nowrap
+%concrete-nowrap //.nowrap
 {
     white-space: nowrap;
 }
@@ -46,47 +46,47 @@
 //------------------------------------------------------------------------------
 // Wrapper/container and position style classes
 //------------------------------------------------------------------------------
-%frame-container //.container
+%concrete-container //.container
 {
     display: block;
-    height:  100%;
-    margin:  0 auto;
+    height: 100%;
+    margin: 0 auto;
 
-    @include _frame-display-container();
+    @include _concrete-display-container();
 }
 
-%frame-center-x //.center-x
+%concrete-center-x //.center-x
 {
     position: relative;
-    height:   100%;
-    margin:   0 auto;
+    height: 100%;
+    margin: 0 auto;
 }
 
-%frame-center-y //.center-y
+%concrete-center-y //.center-y
 {
-    height:    100%;
+    height: 100%;
     font-size: 0;
 
-    > %frame-center-valign //.center-valign
+    > %concrete-center-valign //.center-valign
     {
-        display:        inline-block;
+        display: inline-block;
         vertical-align: middle;
-        height:         100%;
+        height: 100%;
     }
 }
 
-%frame-center-xy //.center-xy
+%concrete-center-xy //.center-xy
 {
-    @extend %frame-center-y;
+    @extend %concrete-center-y;
 
-    width:      100%;
+    width: 100%;
     text-align: center;
 
-    > %frame-center-x
+    > %concrete-center-x
     {
         @include apply-valign-middle(true);
 
-        height:     auto;
+        height: auto;
         text-align: left;
     }
 }
@@ -94,12 +94,12 @@
 //------------------------------------------------------------------------------
 // Lists and menus
 //------------------------------------------------------------------------------
-%frame-float-list
+%concrete-float-list
 {
-    @extend %frame-clearfix;
+    @extend %concrete-clearfix;
 
-    list-style:   none;
     padding-left: 0;
+    list-style: none;
 
     li > a
     {
@@ -107,15 +107,15 @@
     }
 }
 
-%frame-block-list
+%concrete-block-list
 {
-    list-style:   none;
     padding-left: 0;
+    list-style: none;
 
     li
     {
         display: block;
-        width:   100%;
+        width: 100%;
 
         > a
         {
@@ -130,32 +130,32 @@
 img,
 canvas
 {
-    &%frame-img-fill-width, //.fill-width
-    &%frame-img-max-width,  //.max-width
-    %frame-img-fill-width &,
-    %frame-img-max-width &
+    &%concrete-img-fill-width, //.fill-width
+    &%concrete-img-max-width,  //.max-width
+    %concrete-img-fill-width &,
+    %concrete-img-max-width &
     {
-        width:  100%;
+        width: 100%;
         height: auto;
     }
 
-    &%frame-img-fill-height, //.fill-height
-    &%frame-img-max-height,  //.max-height
-    %frame-img-fill-height &,
-    %frame-img-max-height &
+    &%concrete-img-fill-height, //.fill-height
+    &%concrete-img-max-height,  //.max-height
+    %concrete-img-fill-height &,
+    %concrete-img-max-height &
     {
-        width:  auto;
+        width: auto;
         height: 100%;
     }
 
-    &%frame-img-max-width,
-    %frame-img-max-width &
+    &%concrete-img-max-width,
+    %concrete-img-max-width &
     {
-       max-width: 100%;
+        max-width: 100%;
     }
 
-    &%frame-img-max-height,
-    %frame-img-max-height &
+    &%concrete-img-max-height,
+    %concrete-img-max-height &
     {
         max-height: 100%;
     }

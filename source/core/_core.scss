@@ -1,13 +1,13 @@
 ////
-/// frame-scss | source/core/_core.scss
-/// file version: 1.01.011
+/// concrete | source/core/_core.scss
+/// file version: 1.01.012
 ///
-/// All default frame-scss functions are within this file. Through these
+/// All default concrete functions are within this file. Through these
 /// functions you can easily use the variables you have set in your main
-/// _frame.scss file.
+/// _concrete.scss file.
 ///
 /// SassScript supports seven main data types:
-/// - numbers (e.g. 1.2, 13, 10px, .2s);
+/// - numbers (e.g. 1.2, 13, 10px, 0.2s);
 /// - strings of text, with and without quotes (e.g. "foo", 'bar', baz);
 /// - colors (e.g. blue, #04a3f9, rgba(255, 0, 0, 0.5));
 /// - booleans (e.g. true, false);
@@ -20,54 +20,72 @@
 ////
 
 ///
-/// Returns a font-family value from the `$frame-fonts` setting.
+/// Returns a font-family value from the `$concrete-fonts` setting.
 ///
 /// @param {string} $key [default]
 ///        The value of the corresponding key to return.
 ///
 /// @return {string}
 ///
-@function frame-font($key: 'default')
+@function font($key: 'default')
 {
-    @if map-has-key($frame-fonts, $key)
+    @if map-has-key($concrete-fonts, $key)
     {
-        $return: map-get($frame-fonts, $key);
+        $return: map-get($concrete-fonts, $key);
         @return unquote($return);
     }
 
-    @return warn('frame-font', 'Unknown font `#{$key}`!');
+    @return warn('font', 'Unknown font `#{$key}`!');
 }
 
 ///
-/// Returns a font-size value from the `$frame-font-sizes` setting.
+/// Returns a font-size value from the `$concrete-font-sizes` setting.
 ///
 /// @param {string} $key [default]
 ///        The value of the corresponding key to return.
 ///
 /// @return {number}
 ///
-@function frame-font-size($key: 'default')
+@function font-size($key: 'default')
 {
-    @if map-has-key($frame-font-sizes, $key)
+    @if map-has-key($concrete-font-sizes, $key)
     {
-        @return map-get($frame-font-sizes, $key);
+        @return map-get($concrete-font-sizes, $key);
     }
 
-    @return warn('frame-font-size', 'Unknown font-size `#{$key}`!');
+    @return warn('font-size', 'Unknown font-size `#{$key}`!');
 }
 
 ///
-/// Returns a color value from the `$frame-colors` setting. You can pass keys to
-/// this functions with or withour quotes, eg. `frame-color(grey)`  or
-/// `frame-color('grey')` as the key will be quoted to make sure the key can be
-/// selected from the `$frame-colors` map.
+/// Returns a line-height value from the `$concrete-line-heights` setting.
+///
+/// @param {string} $key [default]
+///        The value of the corresponding key to return.
+///
+/// @return {number}
+///
+@function line-height($key: 'default')
+{
+    @if map-has-key($concrete-line-heights, $key)
+    {
+        @return map-get($concrete-line-heights, $key);
+    }
+
+    @return warn('line-height', 'Unknown line-height `#{$key}`!');
+}
+
+///
+/// Returns a color value from the `$concrete-colors` setting. You can pass keys to
+/// this functions with or withour quotes, eg. `color(grey)`  or
+/// `color('grey')` as the key will be quoted to make sure the key can be
+/// selected from the `$concrete-colors` map.
 ///
 /// @param {string} $key [default]
 ///        The value of the corresponding key to return.
 ///
 /// @return {color}
 ///
-@function frame-color($key: 'default')
+@function color($key: 'default')
 {
     @if is-color($key)
     {
@@ -75,12 +93,12 @@
     }
 
     $key: quote($key);
-    @if map-has-key($frame-colors, $key)
+    @if map-has-key($concrete-colors, $key)
     {
-        @return map-get($frame-colors, $key);
+        @return map-get($concrete-colors, $key);
     }
 
-    @return warn('frame-color', 'Unknown color `#{$key}`!');
+    @return warn('color', 'Unknown color `#{$key}`!');
 }
 
 ///
@@ -88,11 +106,11 @@
 /// @param {string} $attr [false]
 /// @return {map|number|string}
 ///
-@function frame-transition($name: 'default', $attr: false)
+@function transition($name: 'default', $attr: false)
 {
-    @if map-has-key($frame-transitions, $name)
+    @if map-has-key($concrete-transitions, $name)
     {
-        $transition: map-get($frame-transitions, $name);
+        $transition: map-get($concrete-transitions, $name);
 
         @if ($attr == false)
         {
@@ -104,20 +122,20 @@
         }
         @else
         {
-            @return warn('frame-transition',
+            @return warn('transition',
                 'Unknown attribute `#{$attr}` for transition `#{$name}`!');
         }
     }
 
-    @return warn('frame-transition', 'Unknown transition set `#{$name}`!');
+    @return warn('transition', 'Unknown transition set `#{$name}`!');
 }
 
 ///
 /// When `$value` is either `min` or `max`, the min/max value is returned from
-/// the breakpoint map inside `$frame-breakpoints` with key `$breakpoint`.
+/// the breakpoint map inside `$concrete-breakpoints` with key `$breakpoint`.
 /// If `$value` has any other value, the whole map (with min and max keys) will
 /// be returned. If the breakpoint map cannot be found, a warning will be
-/// stored in `$frame-warnings`.
+/// stored in `$concrete-warnings`.
 ///
 /// @param {string} $breakpoint [default] - The breakpoint to return.
 ///
@@ -127,16 +145,16 @@
 ///
 /// @return {map|number}
 ///
-@function frame-breakpoint($breakpoint: null, $value: false)
+@function breakpoint($breakpoint: null, $value: false)
 {
     @if is-null($breakpoint)
     {
-        $breakpoint: nth-first($_frame-breakpoints);
+        $breakpoint: nth-first($_concrete-breakpoints);
     }
 
-    @if map-has-key($frame-breakpoints, $breakpoint)
+    @if map-has-key($concrete-breakpoints, $breakpoint)
     {
-        $breakpoint: map-get($frame-breakpoints, $breakpoint);
+        $breakpoint: map-get($concrete-breakpoints, $breakpoint);
 
         @if ($value == false or $value == 'both')
         {
@@ -148,27 +166,27 @@
         }
         @else
         {
-            @return warn('frame-breakpoint',
+            @return warn('breakpoint',
                 'Unknown value `#{$value}` in `#{$breakpoint}`!');
         }
     }
     @else
     {
-        @return warn('frame-breakpoint',
+        @return warn('breakpoint',
             'Unknown breakpoint `#{$breakpoint}`!');
     }
 }
 
 ///
-/// Returns a width value from the `$frame-container-width` setting.
+/// Returns a width value from the `$concrete-container-width` setting.
 ///
 /// @param {string} $breakpoint [default]
 ///
 /// @return {number}
 ///
-@function frame-container-width($breakpoint: 'default')
+@function container-width($breakpoint: 'default')
 {
-    @return map-get($frame-container-width, $breakpoint);
+    @return map-get($concrete-container-width, $breakpoint);
 }
 
 //------------------------------------------------------------------------------
@@ -179,12 +197,12 @@
 /// @access private
 /// @group private
 ///
-@function _frame-init-breakpoints()
+@function _concrete-init-breakpoints()
 {
     // make a map with the minimum pixel width of the breakpoint as key so we
     // can sort the breakpoints from largest to smallest
     $sortedBreakpoints: ();
-    @each $breakpoint, $value in $frame-breakpoints
+    @each $breakpoint, $value in $concrete-breakpoints
     {
         @if is-map($value)
         {
@@ -194,7 +212,7 @@
     }
 
     $sortedBreakpoints:  map-ksort($sortedBreakpoints, 'numeric', true);
-    $_frame-breakpoints: map-values($sortedBreakpoints);
+    $_concrete-breakpoints: map-values($sortedBreakpoints);
 
 
     $result: ();
@@ -202,10 +220,10 @@
     $max:    false;
 
     // loop through the sorted breakpoints, calculate the start and end widths
-    // of the breakpoint, and rearrange the $frame-breakpoints map
-    @each $breakpoint in $_frame-breakpoints
+    // of the breakpoint, and rearrange the $concrete-breakpoints map
+    @each $breakpoint in $_concrete-breakpoints
     {
-        $value: map-get($frame-breakpoints, $breakpoint);
+        $value: map-get($concrete-breakpoints, $breakpoint);
         @if is-map($value)
         {
             @if ($max == false)
@@ -233,12 +251,12 @@
 /// @access private
 /// @group private
 ///
-@function _frame-init-breakpoint-settings($values, $defaultValue)
+@function _concrete-init-breakpoint-settings($values, $defaultValue)
 {
     $result: ();
     $value:  $defaultValue;
 
-    @each $breakpoint in $_frame-breakpoints
+    @each $breakpoint in $_concrete-breakpoints
     {
         @if map-has-key($values, $breakpoint)
         {

@@ -1,13 +1,13 @@
 ////
-/// frame-scss | source/components/_grid.scss
+/// concrete | source/components/_grid.scss
 /// file version: 0.01.000
 ////
 
-@function frame-grid-columns($gridSettings...)
+@function grid-columns($gridSettings...)
 {
     $result:            ();
     $resultDefault:     ();
-    $frameBreakpointsL: length($_frame-breakpoints);
+    $breakpointsLength: length($_concrete-breakpoints);
 
     @each $colSettings in $gridSettings
     {
@@ -19,15 +19,15 @@
         @if (length($colSettings) >= 3)
         {
             $breakpointWidths: nth($colSettings, 3);
-            @for $i from 2 through $frameBreakpointsL
+            @for $i from 2 through $breakpointsLength
             {
-                $breakpoint: nth($_frame-breakpoints, $i);
+                $breakpoint: nth($_concrete-breakpoints, $i);
                 @if map-has-key($breakpointWidths, $breakpoint)
                 {
                     $width: map-get($breakpointWidths, $breakpoint);
                 }
 
-                $result: _frame-grid-column($result,
+                $result: _concrete-grid-column($result,
                                             $column,
                                             $breakpoint,
                                             $width);
@@ -37,11 +37,11 @@
         // all breakpoints
         @else
         {
-            @for $i from 2 through $frameBreakpointsL
+            @for $i from 2 through $breakpointsLength
             {
-                $result: _frame-grid-column($result,
+                $result: _concrete-grid-column($result,
                                             $column,
-                                            nth($_frame-breakpoints, $i),
+                                            nth($_concrete-breakpoints, $i),
                                             $width);
             }
         }
@@ -57,34 +57,34 @@
 ///
 /// @param {string|map} $columns [default]
 ///        A map with grid columns. When `default`, the grid columns in
-///        $frame-grid-columns is used.
+///        $concrete-grid-columns is used.
 ///
 /// @todo The flex and table grids are still work in progress.
 ///
-@mixin frame-grid-create($type, $columns: 'default')
+@mixin grid-create($type, $columns: 'default')
 {
     @if ($columns == 'default')
     {
-        $columns: $frame-grid-columns;
+        $columns: $concrete-grid-columns;
     }
 
     @if ($type == 'block')
     {
-        @include  _frame-display-blockgrid($columns);
+        @include  _concrete-display-blockgrid($columns);
     }
     /*@elseif ($type == 'flex')
     {
-        $columns: _frame-prepare-flexgrid($columns);
-        @include  _frame-display-flexgrid($columns);
+        $columns: _concrete-prepare-flexgrid($columns);
+        @include  _concrete-display-flexgrid($columns);
     }*/
     /*@elseif ($type == 'table')
     {
-        $columns: _frame-prepare-tablegrid($columns);
-        @include  _frame-display-tablegrid($columns);
+        $columns: _concrete-prepare-tablegrid($columns);
+        @include  _concrete-display-tablegrid($columns);
     }*/
     @else
     {
-        @return warn('frame-grid',
+        @return warn('grid',
             'Unable to create grid, unknown type `#{$type}`!');
     }
 }
@@ -103,7 +103,7 @@
 /// @param {number} $width - Column width
 /// @return {map}
 ///
-@function _frame-grid-column($result, $column, $breakpoint, $width)
+@function _concrete-grid-column($result, $column, $breakpoint, $width)
 {
     $breakpointWidths: ();
     @if map-has-key($result, $breakpoint)
@@ -126,7 +126,7 @@
 /// @param {bool|string} $breakpoint [false]
 /// @return {list}
 ///
-@function _frame-grid-selector($selectors, $name, $breakpoint: false)
+@function _concrete-grid-selector($selectors, $name, $breakpoint: false)
 {
     @if ($breakpoint != false)
     {
@@ -145,17 +145,17 @@
 ///
 /// @param {map} $grid
 ///
-@mixin _frame-display-blockgrid($grid)
+@mixin _concrete-display-blockgrid($grid)
 {
     &.grid-row,
     .grid-row
     {
-        @extend %frame-blockgrid-row;
+        @extend %concrete-blockgrid-row;
     }
 
     [data-col]
     {
-        @extend %frame-blockgrid-column;
+        @extend %concrete-blockgrid-column;
     }
 
     // add the default column widths
@@ -169,7 +169,7 @@
     }
 
     // the columns widths per breakpoint
-    @each $breakpoint in $_frame-breakpoints
+    @each $breakpoint in $_concrete-breakpoints
     {
         @if map-has-key($grid, $breakpoint)
         {
@@ -190,10 +190,10 @@
                         @if ($width != map-get($defaultColumnWidths, $name))
                         {
                             $defaultColumnWidths: map-merge($defaultColumnWidths, ($name: $width));
-                            $selectors: _frame-grid-selector($selectors, $name);
+                            $selectors: _concrete-grid-selector($selectors, $name);
                         }
 
-                        $selectors: _frame-grid-selector($selectors, $name, $breakpoint);
+                        $selectors: _concrete-grid-selector($selectors, $name, $breakpoint);
                     }
 
                     #{$selectors}

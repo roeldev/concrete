@@ -1,5 +1,5 @@
 ////
-/// frame-scss | source/components/_helpers.scss
+/// concrete | source/components/_helpers.scss
 /// file version: 1.00.008
 ////
 
@@ -10,7 +10,7 @@
 ///
 @mixin apply-clearfix()
 {
-    @extend %frame-clearfix;
+    @extend %concrete-clearfix;
 }
 
 ///
@@ -18,7 +18,7 @@
 ///
 @mixin apply-float-list($float: 'left')
 {
-    @extend %frame-float-list;
+    @extend %concrete-float-list;
 
     @if is-string($float)
     {

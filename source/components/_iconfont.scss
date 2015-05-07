@@ -1,5 +1,5 @@
 ////
-/// frame-scss | source/components/_fonts.scss
+/// concrete | source/components/_fonts.scss
 /// file version: 1.00.006
 ////
 
@@ -24,7 +24,7 @@
 
     [data-#{$prefix}]:before
     {
-        @extend %frame-iconfont;
+        @extend %concrete-iconfont;
         content: attr(data-icon);
     }
 
@@ -33,7 +33,7 @@
     [class^="#{$prefix}-"]:before,
     [class*=" #{$prefix}-"]:before
     {
-        @extend %frame-iconfont;
+        @extend %concrete-iconfont;
 
         font-family: $font !important;
     }

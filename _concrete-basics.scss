@@ -1,0 +1,40 @@
+//
+// concrete | _concrete-basics.scss
+// file version: 0.00.004
+//
+// Basic styles and optional selectors
+//------------------------------------------------------------------------------
+// For more information about the available settings, check either the included
+// help documents, examples, or visit the project page: http://git.io/qoNLsw
+//
+
+//------------------------------------------------------------------------------
+// Import basics functions/mixins/partials.
+//------------------------------------------------------------------------------
+// Last but not least, import the concrete initializer. This will import all
+// the needed functions and mixins to get you started :)
+//
+@import 'source/basics';
+
+//------------------------------------------------------------------------------
+// Enable/disable basic concrete selectors.
+//------------------------------------------------------------------------------
+.clear         { @extend %concrete-clearboth; }
+.clearfix      { @extend %concrete-clearfix; }
+.hidden        { @extend %concrete-hidden; }
+.visible       { @extend %concrete-visible; }
+.nowrap        { @extend %concrete-nowrap; }
+.container     { @extend %concrete-container; }
+
+.center-y      { @extend %concrete-center-y; }
+.center-valign { @extend %concrete-center-valign; }
+.center-x      { @extend %concrete-center-x; }
+.center-xy     { @extend %concrete-center-xy; }
+
+.fill-width    { @extend %concrete-img-fill-width; }
+.fill-height   { @extend %concrete-img-fill-height; }
+.max-width     { @extend %concrete-img-max-width; }
+.max-height    { @extend %concrete-img-max-height; }
+
+ul.float-list  { @include apply-float-list(left); }
+ul.block-list  { @extend %concrete-block-list; }

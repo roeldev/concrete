@@ -1,5 +1,5 @@
 /*
-    frame-scss - Sassy CSS framework (https://github.com/roeldev/frame-scss/)
+    concrete - Sassy CSS framework (https://github.com/roeldev/concrete/)
     Copyright (c) 2014-2015 Roel Schut (roelschut.nl)
 
     This program is free software; you can redistribute it and/or modify
@@ -17,7 +17,7 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 /******************************************************************************/
-/* frame-display-debug(): */
+/* display-debug(): */
 /* @debug (list|4)
    (
       [1] => (arglist|2)

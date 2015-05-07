@@ -1,25 +1,25 @@
 ////
-/// frame-scss | source/partials/_grid.scss
+/// concrete | source/partials/_grid.scss
 /// file version: 0.00.002
 ////
 
-%frame-blockgrid-row
+%concrete-blockgrid-row
 {
     @include apply-clearfix();
 
+    display: block;
     overflow: hidden;
-    display:  block;
 }
 
-%frame-blockgrid-column
+%concrete-blockgrid-column
 {
+    display: block;
     position: relative;
-    display:  block;
-    float:    left;
+    float: left;
 
     &.grid-stretch
     {
-        margin-bottom:  -100%;
+        margin-bottom: -100%;
         padding-bottom: 100%;
     }
 }

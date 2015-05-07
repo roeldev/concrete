@@ -1,17 +1,17 @@
-/* line 2, D:/Projecten/frame-scss/repositories/frame-scss_develop/examples/scss/align_vertical.scss */
+/* line 7, D:/Projecten/_concrete/_concrete_develop/examples/scss/align_vertical.scss */
 html, body {
   height: 100%; }
 
-/* line 7, D:/Projecten/frame-scss/repositories/frame-scss_develop/examples/scss/align_vertical.scss */
+/* line 12, D:/Projecten/_concrete/_concrete_develop/examples/scss/align_vertical.scss */
 header {
   width: 100%;
   height: 100px;
   background-color: red; }
 
-/* line 14, D:/Projecten/frame-scss/repositories/frame-scss_develop/examples/scss/align_vertical.scss */
+/* line 19, D:/Projecten/_concrete/_concrete_develop/examples/scss/align_vertical.scss */
 .center-example {
   height: 200px;
   margin-top: 20px; }
-  /* line 19, D:/Projecten/frame-scss/repositories/frame-scss_develop/examples/scss/align_vertical.scss */
+  /* line 24, D:/Projecten/_concrete/_concrete_develop/examples/scss/align_vertical.scss */
   .center-example .center-x {
     background-color: yellow; }

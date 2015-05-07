@@ -1,5 +1,5 @@
 ////
-/// frame-scss | source/core/_debug.scss
+/// concrete | source/core/_debug.scss
 /// file version: 0.00.010
 ///
 /// Debug related functions and mixins. Work in progress!
@@ -8,7 +8,7 @@
 ////
 
 ///
-/// Adds a warning to the `$_frame-warnings` list and, if available, outputs
+/// Adds a warning to the `$_concrete-warnings` list and, if available, outputs
 /// the warning with the `@warn` directive.
 /// If the 2nd optional parameter is not used, the first parameter should
 /// contain the actual warning message.
@@ -22,9 +22,9 @@
 @function warn($function, $message: false)
 {
     $message: if($message == false, $function, $function +': '+ $message);
-    $_frame-warnings: append($_frame-warnings, $message, 'comma');
+    $_concrete-warnings: append($_concrete-warnings, $message, 'comma');
 
-    @if ($frame-console-warnings)
+    @if ($concrete-console-warnings)
     {
         @warn($message);
     }
@@ -32,23 +32,23 @@
 }
 
 ///
-/// Displays the warnings added to the `$_frame-warnings` list.
+/// Displays the warnings added to the `$_concrete-warnings` list.
 ///
-@mixin frame-display-warnings()
+@mixin display-warnings()
 {
     $prefix: '@warn';
-    @if is-list($_frame-warnings, 1)
+    @if is-list($_concrete-warnings, 1)
     {
 
 /******************************************************************************/
-/* frame-display-warnings(): */
+/* display-warnings(): */
 
-        @each $message in $_frame-warnings
+        @each $message in $_concrete-warnings
         {
             /* #{$prefix} #{$message} */
         }
 
-        $_frame-warnings: ();
+        $_concrete-warnings: ();
     }
 }
 
@@ -63,8 +63,8 @@
 {
     @if not is-list($var, 1)
     {
-        $var: $_frame-debugs;
-        $_frame-debugs: ();
+        $var: $_concrete-debugs;
+        $_concrete-debugs: ();
     }
 
     $prefix:  '@debug';
@@ -72,22 +72,22 @@
 
     @if is-scalar($var)
     {
-        $display: _frame-debug-scalar($var);
+        $display: _concrete-debug-scalar($var);
     }
     @elseif is-list($var)
     {
-        $display: _frame-debug-list($var);
+        $display: _concrete-debug-list($var);
     }
     @elseif is-map($var)
     {
-        $display: _frame-debug-map($var);
+        $display: _concrete-debug-map($var);
     }
     @else
     {
         $display: '{unknown}';
     }
 
-    @if ($frame-console-debugs)
+    @if ($concrete-console-debugs)
     {
         @debug($display);
     }
@@ -96,25 +96,25 @@
 }
 
 ///
-/// Adds the variable `$var` to the list `$_frame-debugs` and will be displayed
-/// by the `frame-display-debug()` mixin.
+/// Adds the variable `$var` to the list `$_concrete-debugs` and will be displayed
+/// by the `display-debug()` mixin.
 ///
 /// @param {mixed} $var
 /// @return {null}
 ///
 @function debug($var...)
 {
-    $_frame-debugs: append($_frame-debugs, $var, 'comma');
+    $_concrete-debugs: append($_concrete-debugs, $var, 'comma');
     @return null;
 }
 
-@mixin frame-display-debug()
+@mixin display-debug()
 {
-    @if is-list($_frame-debugs, 1)
+    @if is-list($_concrete-debugs, 1)
     {
 
 /******************************************************************************/
-/* frame-display-debug(): */
+/* display-debug(): */
 
         @include debug();
     }
@@ -131,7 +131,7 @@
 /// @param {number|string|color|bool|null} $var
 /// @return {string}
 ///
-@function _frame-debug-scalar($var)
+@function _concrete-debug-scalar($var)
 {
     $type: type-of($var);
     @if is-number($var)
@@ -154,7 +154,7 @@
 /// @param {bool|string} $indentLevel [false]
 /// @return {string}
 ///
-@function _frame-debug-list($list, $inspect: true, $indentLevel: false)
+@function _concrete-debug-list($list, $inspect: true, $indentLevel: false)
 {
     $indent:  '   ';
     $newline: '
@@ -177,15 +177,15 @@
                 $value: nth($list, $i);
                 @if is-scalar($value)
                 {
-                    $value: _frame-debug-scalar($value);
+                    $value: _concrete-debug-scalar($value);
                 }
                 @elseif is-list($value)
                 {
-                    $value: _frame-debug-list($value, true, $indentLevel + $indent);
+                    $value: _concrete-debug-list($value, true, $indentLevel + $indent);
                 }
                 @elseif is-map($value)
                 {
-                    $value: _frame-debug-map($value, true, $indentLevel + $indent);
+                    $value: _concrete-debug-map($value, true, $indentLevel + $indent);
                 }
                 @else
                 {
@@ -222,7 +222,7 @@
 /// @param {bool|string} $indentLevel [false]
 /// @return {string}
 ///
-@function _frame-debug-map($map, $inspect: true, $indentLevel: false)
+@function _concrete-debug-map($map, $inspect: true, $indentLevel: false)
 {
     $indent:  '   ';
     $newline: '
@@ -244,15 +244,15 @@
             {
                 @if is-scalar($value)
                 {
-                    $value: _frame-debug-scalar($value);
+                    $value: _concrete-debug-scalar($value);
                 }
                 @elseif is-list($value)
                 {
-                    $value: _frame-debug-list($value, true, $indentLevel + $indent);
+                    $value: _concrete-debug-list($value, true, $indentLevel + $indent);
                 }
                 @elseif is-map($value)
                 {
-                    $value: _frame-debug-map($value, true, $indentLevel + $indent);
+                    $value: _concrete-debug-map($value, true, $indentLevel + $indent);
                 }
                 @else
                 {

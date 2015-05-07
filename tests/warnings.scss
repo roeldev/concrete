@@ -1,9 +1,9 @@
 ////
-/// frame-scss | tests/warnings.scss
+/// concrete | tests/warnings.scss
 /// file version: 0.00.001
 ////
 
-@import '../frame';
+@import '../concrete';
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -11,7 +11,7 @@ $x:warn('function-name', 'First warning.');
 $x:warn('function-name', 'Second warning!');
 $x:warn('function-name', 'This is your last warning!');
 
-$x:frame-color('unknown-color');
+$x:color('unknown-color');
 
-@include frame-display-warnings();
-@include frame-display-warnings();
+@include display-warnings();
+@include display-warnings();

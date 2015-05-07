@@ -1,63 +1,111 @@
-var _gulp    = require('gulp'),
-    _plumber = require('gulp-plumber'),
-    _notify  = require('gulp-notify'),
-    _sass    = require('gulp-sass'),
-    _size    = require('gulp-size');
+/**
+ * concrete | gulpfile.js
+ * file version: 0.00.004
+ */
+'use strict';
+
+var Gulp                = require('gulp');
+var GulpPlumber         = require('gulp-plumber');
+var GulpNotify          = require('gulp-notify');
+var GulpSass            = require('gulp-sass');
+var GulpScssLint        = require('gulp-scss-lint');
+var GulpScssLintStylish = require('gulp-scss-lint-stylish');
+var GulpSize            = require('gulp-size');
+var Confirge            = require('confirge');
+var Path                = require('path');
+var SassDoc             = require('sassdoc');
+
+////////////////////////////////////////////////////////////////////////////////
+
+var SRC_EXAMPLES = './examples/scss/*.scss';
+var SRC_TESTS    = './tests/*.scss';
+var SRC_SOURCE   = ['./source/**/*.scss', './*.scss',
+                    '!node_modules/*', '!sassdoc/*'];
 
 //------------------------------------------------------------------------------
 
-var _compileTasks = [],
-    _config =
+function compileTask($src, $dest)
+{
+    var $plumberOptions =
     {
-        'plumberOptions':
+        'errorHandler': GulpNotify.onError(
         {
-            'errorHandler': _notify.onError(
-            {
-                'message': 'Error test: <%= error.message %>',
-                'time':    5000
-            })
-        },
-
-        'sassOptions':
-        {
-            'style':          'expanded',
-            'sourceComments': true
-        }
+            'message': 'Error test: <%= error.message %>',
+            'time':    5000
+        })
     };
 
-//------------------------------------------------------------------------------
+    var $sassOptions =
+    {
+        'style':         'expanded',
+        'sourceComments': true
+    };
 
-function _addTasks($name, $src, $dest)
+    return function()
+    {
+        return Gulp.src($src)
+            .pipe( GulpPlumber($plumberOptions) )
+            .pipe( GulpSass($sassOptions) )
+            .pipe( GulpSize({ 'showFiles': true }) )
+            .pipe( Gulp.dest($dest) );
+    };
+}
+
+function watchTask($src, $task)
 {
-    var $taskCompile = $name +':compile',
-        $taskWatch   = $name +':watch';
-
-    _compileTasks.push($taskCompile);
-
-    _gulp.task($taskCompile, function()
+    return function()
     {
-        return _gulp.src($src)
-            .pipe( _plumber(_config.plumberOptions) )
-            .pipe( _sass(_config.sassOptions) )
-            .pipe( _size({ showFiles: true }) )
-            .pipe( _gulp.dest($dest) );
-    });
-
-    _gulp.task($taskWatch, function()
-    {
-        return _gulp.watch(['source/**/*.scss', src], [$taskCompile]);
-    });
+        return Gulp.watch([].concat(SRC_SOURCE, [$src]), $task);
+    };
 }
 
 //------------------------------------------------------------------------------
 
-// compiler and watcher for examples only
-_addTasks('examples', 'examples/scss/*.scss', 'examples/css');
-// compiler and watcher for tests only
-_addTasks('tests', 'tests/*.scss', 'tests/css');
+/*
+    Examples related tasks
+ */
+Gulp.task('compile:examples', compileTask(SRC_EXAMPLES, 'examples/css'));
+Gulp.task('watch:examples',   watchTask(SRC_EXAMPLES, 'compile:examples'));
 
-// global file watcher, will watch and compile everything
-_gulp.task('default', function()
+/*
+    Tests related tasks
+ */
+Gulp.task('compile:tests', compileTask(SRC_TESTS, 'tests/css'));
+Gulp.task('watch:tests',   watchTask(SRC_TESTS, 'compile:tests'));
+
+/*
+    Sass linter
+ */
+Gulp.task('lint', function()
 {
-    return _gulp.watch('**/*.scss', _compileTasks);
+    //var $config  = Confirge.read('./.scss-lint.yml');
+    var $src     = [].concat(SRC_SOURCE, [SRC_EXAMPLES]);
+    var $options =
+    {
+        'bundleExec':   true,
+        'verbose':      false,
+        'customReport': GulpScssLintStylish
+    };
+
+    return Gulp.src(SRC_SOURCE)
+        .pipe( GulpScssLint($options) );
+});
+
+/*
+    File watcher
+ */
+Gulp.task('watch', function()
+{
+    var $src = [].concat(SRC_SOURCE, [SRC_EXAMPLES, SRC_TESTS]);
+    Gulp.watch($src, ['watch:examples', 'watch:tests']);
+    Gulp.watch(SRC_SOURCE, ['lint'])
+});
+
+/*
+    Builder, run before creating new release
+ */
+Gulp.task('build', ['compile:examples', 'compile:tests'], function()
+{
+    Gulp.src(SRC_SOURCE)
+        .pipe( SassDoc() )
 });

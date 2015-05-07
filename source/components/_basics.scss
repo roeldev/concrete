@@ -1,5 +1,5 @@
 ////
-/// frame-scss | source/components/_basics.scss
+/// concrete | source/components/_basics.scss
 /// file version: 0.00.004
 ///
 /// @group private
@@ -7,11 +7,11 @@
 
 ///
 /// This 'private' function will display all headings, wich are defined in the
-/// `$frame-font-sizes` setting, in partials/_default.scss.
+/// `$concrete-font-sizes` setting, in partials/_default.scss.
 ///
 /// @access private
 ///
-@mixin _frame-display-headings()
+@mixin _concrete-display-headings()
 {
     $fontSizes: ();
 
@@ -21,10 +21,10 @@
         $heading: unquote('h'+ $i);
 
         // check if the heading is set in the settings file
-        @if map-has-key($frame-font-sizes, $heading)
+        @if map-has-key($concrete-font-sizes, $heading)
         {
             // group the elements by font-size
-            $fontSize:  frame-font-size($heading);
+            $fontSize:  font-size($heading);
             $fontSizes: map-append($fontSizes, $fontSize, $heading);
         }
     }
@@ -52,25 +52,25 @@
 ///
 /// @access private
 ///
-@mixin _frame-display-container()
+@mixin _concrete-display-container()
 {
-    $breakpoint:   nth-first($_frame-breakpoints);
-    $defaultWidth: frame-container-width($breakpoint);
+    $breakpoint:   nth-first($_concrete-breakpoints);
+    $defaultWidth: container-width($breakpoint);
 
-    $maxWidth: frame-breakpoint($breakpoint, 'max');
+    $maxWidth: breakpoint($breakpoint, 'max');
     @if not $maxWidth
     {
-        $maxWidth: frame-breakpoint($breakpoint, 'min');
+        $maxWidth: breakpoint($breakpoint, 'min');
     }
 
     width:     $defaultWidth;
     max-width: $maxWidth;
 
     $widths: ();
-    @for $i from 2 through length($_frame-breakpoints)
+    @for $i from 2 through length($_concrete-breakpoints)
     {
-        $breakpoint: nth($_frame-breakpoints, $i);
-        $width:      frame-container-width($breakpoint);
+        $breakpoint: nth($_concrete-breakpoints, $i);
+        $width:      container-width($breakpoint);
 
         @if ($width != $defaultWidth)
         {

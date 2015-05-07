@@ -1,5 +1,5 @@
 ////
-/// frame-scss | source/components/_shapes.scss
+/// concrete | source/components/_shapes.scss
 /// file version: 1.01.006
 ////
 
@@ -58,7 +58,7 @@
 {
     @if is-string($color)
     {
-        $color: frame-color($color);
+        $color: color($color);
     }
     @elseif ($size2 == false)
     {

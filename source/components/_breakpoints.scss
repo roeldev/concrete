@@ -1,5 +1,5 @@
 ////
-/// frame-scss | source/components/_breakpoints.scss
+/// concrete | source/components/_breakpoints.scss
 /// file version: 1.02.001
 ///
 /// Breakpoint and media query related functions and mixins.
@@ -61,7 +61,7 @@
     {
         @if is-string($item)
         {
-            $item: frame-breakpoint($item);
+            $item: breakpoint($item);
         }
         @elseif is-number($item)
         {

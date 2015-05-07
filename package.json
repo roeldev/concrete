@@ -1,14 +1,19 @@
 {
   "private": true,
   "devDependencies": {
+    "confirge": "^0.2.0",
     "gulp": "^3.8.11",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^0.6.6",
     "gulp-sass": "^1.3.3",
+    "gulp-scss-lint": "^0.1.12",
+    "gulp-scss-lint-stylish": "^0.1.1",
     "gulp-size": "^1.2.1",
     "sassdoc": "^2.0.9"
   },
   "scripts": {
+    "setup": "npm install && bundle",
+    "start": "npm install && bundle && gulp watch",
     "sassdoc": "sassdoc source/"
   }
 }
