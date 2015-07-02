@@ -1,6 +1,6 @@
 ////
 /// concrete | source/core/_core.scss
-/// file version: 1.01.012
+/// file version: 1.01.013
 ///
 /// All default concrete functions are within this file. Through these
 /// functions you can easily use the variables you have set in your main
@@ -212,9 +212,16 @@
     }
 
     $sortedBreakpoints:  map-ksort($sortedBreakpoints, 'numeric', true);
-    $_concrete-breakpoints: map-values($sortedBreakpoints);
 
+    @return map-values($sortedBreakpoints);
+}
 
+///
+/// @access private
+/// @group private
+///
+@function _concrete-parse-breakpoints()
+{
     $result: ();
     $min:    false;
     $max:    false;

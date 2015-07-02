@@ -4,7 +4,7 @@
 ////
 
 // scss-lint:disable all
-/*! concrete v0.2.2 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
+/*! concrete v0.3.1 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
 // scss-lint:enable all
 
 html,
@@ -16,8 +16,8 @@ body
 
 html
 {
-    font-family: frame-font();
-    font-size: frame-font-size();
+    font-family: font();
+    font-size: font-size();
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -73,7 +73,7 @@ button
 //------------------------------------------------------------------------------
 p
 {
-    padding-bottom: frame-line-height();
+    padding-bottom: line-height();
 
     &:last-child
     {
@@ -85,7 +85,7 @@ p,
 address,
 figcaption
 {
-    line-height: frame-line-height();
+    line-height: line-height();
 }
 
 address
@@ -102,7 +102,7 @@ option,
 textarea,
 button
 {
-    font-family: frame-font();
+    font-family: font();
 
     &:focus
     {
