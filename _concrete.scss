@@ -104,10 +104,13 @@ $concrete-breakpoint-scrollbar-buffer:
 //------------------------------------------------------------------------------
 // Container and grid
 //------------------------------------------------------------------------------
-$concrete-container-width:
+$concrete-containers:
 (
-    'xl': 90%,
-    'lg': 95%
+    'xl':
+    (
+        'width': 90%,
+        'padding': 20px 30px
+    )
 );
 
 $concrete-grid-gap:

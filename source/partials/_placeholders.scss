@@ -45,61 +45,17 @@
 //------------------------------------------------------------------------------
 // Wrapper/container and position style classes
 //------------------------------------------------------------------------------
-///
-/// @access private
-///
-@mixin _concrete-container-breakpoints()
-{
-    @if (length($_concrete-breakpoints) > 0)
-    {
-        $breakpoint:   nth-first($_concrete-breakpoints);
-        $defaultWidth: get-container-width($breakpoint);
-
-        $maxWidth: get-breakpoint($breakpoint, 'max');
-        @if not $maxWidth
-        {
-            $maxWidth: get-breakpoint($breakpoint, 'min');
-        }
-
-        width:     $defaultWidth;
-        max-width: $maxWidth;
-
-        $widths: ();
-        @for $i from 2 through length($_concrete-breakpoints)
-        {
-            $breakpoint: nth($_concrete-breakpoints, $i);
-            $width:      get-container-width($breakpoint);
-
-            @if ($width != $defaultWidth)
-            {
-                $widths: map-append($widths, $width, $breakpoint);
-            }
-        }
-
-        @each $width, $breakpoints in $widths
-        {
-            @include breakpoint($breakpoints, 'max')
-            {
-                width: $width;
-            }
-        }
-    }
-}
-
 %concrete-container //.container
 {
     display: block;
     height: 100%;
     margin: 0 auto;
-
-    @include _concrete-container-breakpoints();
 }
 
 %concrete-container-fluid
 {
     display: block;
     width: 100%;
-    height: 100%;
 }
 
 %concrete-sticky-top

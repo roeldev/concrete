@@ -6,19 +6,17 @@
 /*! concrete v0.3.1 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
 // scss-lint:enable all
 
+html
+{
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 html,
 body
 {
     width: 100%;
     min-height: 100%;
-}
-
-html
-{
-    @include font-style('default');
-
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 //------------------------------------------------------------------------------

@@ -24,6 +24,9 @@
 .visible       { @extend %concrete-visible; }
 .nowrap        { @extend %concrete-nowrap; }
 
+.sticky-top    { @extend %concrete-sticky-top; }
+.sticky-bottom { @extend %concrete-sticky-bottom; }
+
 .center-y      { @extend %concrete-center-y; }
 .center-valign { @extend %concrete-center-valign; }
 .center-x      { @extend %concrete-center-x; }
@@ -36,8 +39,3 @@
 
 .float-list    { @include apply-float-list(left); }
 .block-list    { @extend %concrete-block-list; }
-
-.container
-{
-    @extend %concrete-container;
-}
