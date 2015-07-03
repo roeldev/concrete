@@ -1,6 +1,5 @@
 ////
 /// concrete | source/components/_transition.scss
-/// file version: 1.01.003
 ////
 
 ///
@@ -18,15 +17,15 @@
     // retrieve default values where necessary
     @if ($duration == $default)
     {
-        $duration: transition($default, 'duration');
+        $duration: get-transition($default, 'duration');
     }
     @if ($easing == false)
     {
-        $easing: transition($default, 'easing');
+        $easing: get-transition($default, 'easing');
     }
     @if ($delay == false)
     {
-        $delay: transition($default, 'delay');
+        $delay: get-transition($default, 'delay');
         @if not is-second($delay)
         {
             $delay: 0s;
@@ -86,7 +85,7 @@
 {
     @if ($value == 'default')
     {
-        $value: transition($value, 'delay');
+        $value: get-transition($value, 'delay');
     }
     @if not is-second($value)
     {
@@ -103,7 +102,7 @@
 {
     @if ($value == 'default')
     {
-        $value: transition($value, 'duration');
+        $value: get-transition($value, 'duration');
     }
 
     transition-duration: $value;
@@ -125,7 +124,7 @@
 {
     @if ($value == 'default')
     {
-        $value: transition($value, 'easing');
+        $value: get-transition($value, 'easing');
     }
 
     transition-timing-function: $value;

@@ -1,6 +1,5 @@
 ////
 /// concrete | source/core/_list.scss
-/// file version: 0.00.003
 ///
 /// Some extra list related functions.
 ///
@@ -9,12 +8,26 @@
 
 @function nth-first($list)
 {
-    @return nth($list, 1);
+    @if is-list($list)
+    {
+        @return nth($list, 1);
+    }
+    @else
+    {
+        @return null;
+    }
 }
 
 @function nth-last($list)
 {
-    @return nth($list, length($list));
+    @if is-list($list)
+    {
+        @return nth($list, length($list));
+    }
+    @else
+    {
+        @return null;
+    }
 }
 
 ///

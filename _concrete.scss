@@ -1,6 +1,5 @@
 //
 // concrete | _concrete.scss
-// file version: 0.01.003
 //
 // Settings and variables
 //------------------------------------------------------------------------------
@@ -12,49 +11,49 @@
 //------------------------------------------------------------------------------
 // Fonts and font families
 //------------------------------------------------------------------------------
-// Here is where you can define all of the fonts used by your application.
+// Here is where you can define all of the font styles used in your application.
 // The default font will automatically be set to the html, input, select,
 // option, textarea and button elements.
 //
-$concrete-fonts:
+$concrete-font-styles:
 (
-    'default': ('some-custom-font', sans-serif)
-);
+    'default':
+    (
+        'font-family': ('some-custom-font', sans-serif),
+        'font-size':   16px,
+        'font-weight': 300,
+        'line-height': 1.6em
+    ),
 
-//------------------------------------------------------------------------------
-// Font sizes
-//------------------------------------------------------------------------------
-// When set, the font sizes for headings (h1-h6) will automatically be
-// defined in partials/_default.scss.
-//
-$concrete-font-sizes:
-(
-    'default': 16px,
-    'h1':      32px,
-    'h2':      24px,
-    'h3':      18px,
-    'h4':      16px,
-    'h5':      13px,
-    'h6':      10px
-);
+    'h1':
+    (
+        'font-size': 32px
+    ),
 
-//------------------------------------------------------------------------------
-// Line heights
-//------------------------------------------------------------------------------
-$concrete-line-heights:
-(
-    'default': 1.6em
-);
+    'h2':
+    (
+        'font-size': 24px
+    ),
 
-//------------------------------------------------------------------------------
-// Colors
-//------------------------------------------------------------------------------
-// Define all of your colors here. These can be anything from font colors,
-// background-colors to border-colors.
-//
-$concrete-colors:
-(
-    'default': #000
+    'h3':
+    (
+        'font-size': 18px
+    ),
+
+    'h4':
+    (
+        'font-size': 16px
+    ),
+
+    'h5':
+    (
+        'font-size': 13px
+    ),
+
+    'h6':
+    (
+        'font-size': 10px
+    )
 );
 
 //------------------------------------------------------------------------------
@@ -80,11 +79,20 @@ $concrete-transitions:
 //
 $concrete-breakpoints:
 (
-    'xl': ('min': 1200px, 'max': 1440px), // desktop >
-    'lg': 1024px,                         // tablet landscape
-    'md': 768px,                          // tablet portrait
-    'sm': 480px,                          // mobile landscape
-    'xs': 240px,                          // mobile portrait
+    // desktop >
+    'xl': ('min': 1200px, 'max': 1440px),
+
+    // tablet landscape
+    'lg': 1024px,
+
+    // tablet portrait
+    'md': 768px,
+
+    // mobile landscape
+    'sm': 480px,
+
+    // mobile portrait
+    'xs': 240px
 );
 
 $concrete-breakpoint-scrollbar-buffer:
@@ -111,6 +119,19 @@ $concrete-grid-gap:
 );
 
 //------------------------------------------------------------------------------
+// Imports
+//------------------------------------------------------------------------------
+// By default concrete will include a slightly edited version of Normalize.css
+// and some default styles. If you do not wish to use these, you can set the
+// below import values to false.
+// For use with Bootstrap, it is recommended to not import Normalize.css and
+// the default styles.
+// Please not that the default placeholders are always imported.
+//
+$concrete-import-normalize: true;
+$concrete-import-defaults:  true;
+
+//------------------------------------------------------------------------------
 // Warnings and debug
 //------------------------------------------------------------------------------
 // Display warnings and/or debug messages in console. Warnings and debugs are
@@ -118,13 +139,6 @@ $concrete-grid-gap:
 //
 $concrete-console-warnings: false;
 $concrete-console-debugs:   false;
-
-//------------------------------------------------------------------------------
-// Other variables
-//------------------------------------------------------------------------------
-// You can set any other variables you'd like to use in this section.
-//
-$example-border-radius: 3px;
 
 //------------------------------------------------------------------------------
 // Import the concrete framework

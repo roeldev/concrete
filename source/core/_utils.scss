@@ -1,6 +1,5 @@
 ////
 /// concrete | source/core/_utils.scss
-/// file version: 1.01.008
 ///
 /// @group Core
 ////
@@ -91,7 +90,7 @@
 {
     @if is-string($baseFontSize)
     {
-        $baseFontSize: font-size($baseFontSize);
+        $baseFontSize: get-font-size($baseFontSize);
     }
 
     $baseFontSize: set($baseFontSize, 'number' 'px');
@@ -107,7 +106,7 @@
 ///
 @function rem($px)
 {
-    $baseFontSize: font-size();
+    $baseFontSize: get-font-size();
     $baseFontSize: set($baseFontSize, 'number' 'px');
 
     @return if(($baseFontSize > 0), ($px / $baseFontSize) * 1rem, $px);

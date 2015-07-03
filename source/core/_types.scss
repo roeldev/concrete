@@ -18,12 +18,12 @@
 ///
 @function is-number($var, $unit: false)
 {
-    $return: (type-of($var) == 'number');
-    @if ($return and is-string($unit))
+    $result: (type-of($var) == 'number');
+    @if ($result and is-string($unit))
     {
-        $return: (unit($var) == $unit);
+        $result: (unit($var) == $unit);
     }
-    @return $return;
+    @return $result;
 }
 
 ///
@@ -96,12 +96,12 @@
 ///
 @function is-list($var, $length: false)
 {
-    $return: (type-of($var) == 'list' or type-of($var) == 'arglist');
-    @if ($return and is-number($length))
+    $result: (type-of($var) == 'list' or type-of($var) == 'arglist');
+    @if ($result and is-number($length))
     {
-        $return: (length($var) >= $length);
+        $result: (length($var) >= $length);
     }
-    @return $return;
+    @return $result;
 }
 
 ///
@@ -115,12 +115,12 @@
 ///
 @function is-arglist($var, $length: false)
 {
-    $return: (type-of($var) == 'arglist');
-    @if ($return and is-number($length))
+    $result: (type-of($var) == 'arglist');
+    @if ($result and is-number($length))
     {
-        $return: (length($var) >= $length);
+        $result: (length($var) >= $length);
     }
-    @return $return;
+    @return $result;
 }
 
 ///

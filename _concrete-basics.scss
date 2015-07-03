@@ -1,6 +1,5 @@
 //
 // concrete | _concrete-basics.scss
-// file version: 0.00.004
 //
 // Basic styles and optional selectors
 //------------------------------------------------------------------------------
@@ -24,7 +23,6 @@
 .hidden        { @extend %concrete-hidden; }
 .visible       { @extend %concrete-visible; }
 .nowrap        { @extend %concrete-nowrap; }
-.container     { @extend %concrete-container; }
 
 .center-y      { @extend %concrete-center-y; }
 .center-valign { @extend %concrete-center-valign; }
@@ -36,5 +34,10 @@
 .max-width     { @extend %concrete-img-max-width; }
 .max-height    { @extend %concrete-img-max-height; }
 
-ul.float-list  { @include apply-float-list(left); }
-ul.block-list  { @extend %concrete-block-list; }
+.float-list    { @include apply-float-list(left); }
+.block-list    { @extend %concrete-block-list; }
+
+.container
+{
+    @extend %concrete-container;
+}

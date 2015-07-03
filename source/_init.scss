@@ -1,6 +1,5 @@
 ////
 /// concrete | source/_init.scss
-/// file version: 1.01.010
 ///
 /// This file imports all required functions and mixins wich you can use while
 /// developing your project.
@@ -9,6 +8,7 @@
 @import 'components/basics';
 @import 'components/breakpoints';
 @import 'components/effects';
+@import 'components/fonts';
 @import 'components/helpers';
 @import 'components/shapes';
 @import 'components/transition';
@@ -21,10 +21,16 @@ $_concrete-warnings:    () !global;
 $_concrete-breakpoints: _concrete-init-breakpoints() !global;
 
 // settings that are prepared so they are more easily to use by the framework
-$concrete-breakpoints:                 _concrete-parse-breakpoints();
-$concrete-breakpoint-scrollbar-buffer: _concrete-init-breakpoint-settings($concrete-breakpoint-scrollbar-buffer, 0);
-$concrete-container-width:             _concrete-init-breakpoint-settings($concrete-container-width, 100%);
-$concrete-grid-gap:                    _concrete-init-breakpoint-settings($concrete-grid-gap, 0);
+$concrete-breakpoints: _concrete-parse-breakpoints();
+
+$concrete-breakpoint-scrollbar-buffer:
+    _concrete-init-breakpoint-settings($concrete-breakpoint-scrollbar-buffer, 0);
+
+$concrete-container-width:
+    _concrete-init-breakpoint-settings($concrete-container-width, 100%);
+
+$concrete-grid-gap:
+    _concrete-init-breakpoint-settings($concrete-grid-gap, 0);
 
 /*
     concrete - Sassy CSS framework (https://github.com/roeldev/concrete/)

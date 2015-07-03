@@ -15,8 +15,7 @@ body
 
 html
 {
-    font-family: font();
-    font-size: font-size();
+    @include font-style('default');
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -65,14 +64,14 @@ button
 // Group heading by font-size. So headings with the same font-sizes are put in
 // a list and displayed together.
 //
-@include _concrete-display-headings();
+//@include _concrete-display-headings();
 
 //------------------------------------------------------------------------------
 // Paragraphs and text elements
 //------------------------------------------------------------------------------
 p
 {
-    padding-bottom: line-height();
+    padding-bottom: get-line-height('default');
 
     &:last-child
     {
@@ -84,7 +83,7 @@ p,
 address,
 figcaption
 {
-    line-height: line-height();
+    line-height: get-line-height('default');
 }
 
 address
@@ -101,7 +100,7 @@ option,
 textarea,
 button
 {
-    font-family: font();
+    font-family: get-font-family('default');
 
     &:focus
     {

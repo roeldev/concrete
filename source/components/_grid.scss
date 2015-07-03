@@ -27,9 +27,9 @@
                 }
 
                 $result: _concrete-grid-column($result,
-                                            $column,
-                                            $breakpoint,
-                                            $width);
+                                               $column,
+                                               $breakpoint,
+                                               $width);
             }
         }
         // no custom breakpoint widths, so all widths are equal on
@@ -39,9 +39,9 @@
             @for $i from 2 through $breakpointsLength
             {
                 $result: _concrete-grid-column($result,
-                                            $column,
-                                            nth($_concrete-breakpoints, $i),
-                                            $width);
+                                               $column,
+                                               nth($_concrete-breakpoints, $i),
+                                               $width);
             }
         }
     }
@@ -71,19 +71,9 @@
     {
         @include  _concrete-display-blockgrid($columns);
     }
-    /*@elseif ($type == 'flex')
-    {
-        $columns: _concrete-prepare-flexgrid($columns);
-        @include  _concrete-display-flexgrid($columns);
-    }*/
-    /*@elseif ($type == 'table')
-    {
-        $columns: _concrete-prepare-tablegrid($columns);
-        @include  _concrete-display-tablegrid($columns);
-    }*/
     @else
     {
-        @return warn('grid',
+        @include warn('grid',
             'Unable to create grid, unknown type `#{$type}`!');
     }
 }
@@ -135,6 +125,7 @@
     $selector:  '[data-col*="#{$name}"]';
     $selector:  unquote($selector);
     $selectors: append($selectors, $selector, 'comma');
+
     @return $selectors;
 }
 
@@ -172,7 +163,7 @@
     {
         @if map-has-key($grid, $breakpoint)
         {
-            @include add-breakpoint($breakpoint, 'max')
+            @include breakpoint($breakpoint, 'max')
             {
                 $columnWidths: map-get($grid, $breakpoint);
                 @each $width, $names in $columnWidths

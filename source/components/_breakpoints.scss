@@ -1,6 +1,5 @@
 ////
 /// concrete | source/components/_breakpoints.scss
-/// file version: 1.02.001
 ///
 /// Breakpoint and media query related functions and mixins.
 ////
@@ -14,7 +13,7 @@
 ///
 /// @todo Combine breakpoints min-max values in media query when possible.
 ///
-@mixin add-breakpoint($breakpoint, $type: 'both', $scrollbarBuffer: true)
+@mixin breakpoint($breakpoint, $type: 'both', $scrollbarBuffer: true)
 {
     $mediaQuery:     ();
     $mediaQueryList: media-query-list($breakpoint);
@@ -61,7 +60,7 @@
     {
         @if is-string($item)
         {
-            $item: breakpoint($item);
+            $item: get-breakpoint($item);
         }
         @elseif is-number($item)
         {

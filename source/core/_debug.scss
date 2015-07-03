@@ -20,14 +20,13 @@
 ///
 @function warn($function, $message: false)
 {
-    $message: if($message == false, $function, $function +': '+ $message);
-    $_concrete-warnings: append($_concrete-warnings, $message, 'comma');
-
-    @if ($concrete-console-warnings)
-    {
-        @warn($message);
-    }
+    $message: _concrete-warn($function, $message);
     @return null;
+}
+
+@mixin warn($function, $message: false)
+{
+    $message: _concrete-warn($function, $message);
 }
 
 ///
@@ -122,6 +121,27 @@
 //------------------------------------------------------------------------------
 // Private functions
 //------------------------------------------------------------------------------
+
+///
+/// @access private
+/// @group private
+///
+/// @param {string} $function
+/// @param {string|boolean} $message
+/// @return {string}
+///
+@function _concrete-warn($function, $message)
+{
+    $message: if($message == false, $function, $function +': '+ $message);
+    $_concrete-warnings: append($_concrete-warnings, $message, 'comma');
+
+    @if ($concrete-console-warnings)
+    {
+        @warn($message);
+    }
+
+    @return $message;
+}
 
 ///
 /// @access private

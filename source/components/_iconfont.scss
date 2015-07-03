@@ -1,5 +1,5 @@
 ////
-/// concrete | source/components/_fonts.scss
+/// concrete | source/components/_iconfont.scss
 ////
 
 ///
@@ -17,7 +17,7 @@
 /// @param {string} $dir [/fonts/]
 ///        The folder containing the font files.
 ///
-@mixin add-iconfont($font, $prefix: 'icon', $dir: '/fonts/')
+@mixin iconfont($font, $prefix: 'icon', $dir: '/fonts/')
 {
     @include font-face($font, $dir, $font);
 

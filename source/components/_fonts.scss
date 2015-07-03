@@ -38,3 +38,18 @@
         }
     }
 }
+
+///
+/// Displays all properties from the given font-style.
+///
+@mixin font-style($name, $properties: 'all')
+{
+    $fontStyle: get-font-style($name);
+
+    font-family: get-font-family($name);
+
+    @each $property, $value in $fontStyle
+    {
+        #{$property}: #{$value};
+    }
+}

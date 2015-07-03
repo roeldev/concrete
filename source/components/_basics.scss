@@ -1,6 +1,5 @@
 ////
 /// concrete | source/components/_basics.scss
-/// file version: 0.00.005
 ///
 /// @group private
 ////
@@ -49,43 +48,3 @@
     }
 }
 
-///
-/// @access private
-///
-@mixin _concrete-display-container()
-{
-    @if (length($_concrete-breakpoints) > 0)
-    {
-        $breakpoint:   nth-first($_concrete-breakpoints);
-        $defaultWidth: container-width($breakpoint);
-
-        $maxWidth: breakpoint($breakpoint, 'max');
-        @if not $maxWidth
-        {
-            $maxWidth: breakpoint($breakpoint, 'min');
-        }
-
-        width:     $defaultWidth;
-        max-width: $maxWidth;
-
-        $widths: ();
-        @for $i from 2 through length($_concrete-breakpoints)
-        {
-            $breakpoint: nth($_concrete-breakpoints, $i);
-            $width:      container-width($breakpoint);
-
-            @if ($width != $defaultWidth)
-            {
-                $widths: map-append($widths, $width, $breakpoint);
-            }
-        }
-
-        @each $width, $breakpoints in $widths
-        {
-            @include add-breakpoint($breakpoints, 'max')
-            {
-                width: $width;
-            }
-        }
-    }
-}
