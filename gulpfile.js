@@ -6,6 +6,7 @@
 
 var Gulp                = require('gulp');
 var GulpPlumber         = require('gulp-plumber');
+var GulpMocha           = require('gulp-mocha');
 var GulpNotify          = require('gulp-notify');
 var GulpSass            = require('gulp-sass');
 var GulpScssLint        = require('gulp-scss-lint');
@@ -13,6 +14,7 @@ var GulpScssLintStylish = require('gulp-scss-lint-stylish');
 var GulpSize            = require('gulp-size');
 var Confirge            = require('confirge');
 var Path                = require('path');
+var RunSequence         = require('run-sequence');
 var SassDoc             = require('sassdoc');
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -99,6 +101,24 @@ Gulp.task('watch', function()
     var $src = [].concat(SRC_SOURCE, [SRC_EXAMPLES, SRC_TESTS]);
     Gulp.watch($src, ['watch:examples', 'watch:tests']);
     Gulp.watch(SRC_SOURCE, ['lint'])
+});
+
+Gulp.task('test', function()
+{
+    return Gulp.src('test/*.js', { 'read': false })
+        .pipe( GulpMocha({ 'reporter': 'spec' }) )
+            .on('error', function() { });
+});
+
+Gulp.task('dev', function()
+{
+    process.stdout.write('\u001b[2J');
+    RunSequence('test', 'lint');
+});
+
+Gulp.task('watch:dev', function()
+{
+    Gulp.watch(['source/**/*.scss', 'test/*.scss'], ['test']);
 });
 
 /*

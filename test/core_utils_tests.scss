@@ -1,0 +1,20 @@
+@import 'true';
+
+$concrete-font-styles:
+    (
+        'default':
+        (
+            'font-size': 16px,
+        )
+    );
+
+@import '../source/core/getters';
+@import '../source/core/utils';
+
+@include test-module('core/_utils: rem [function]')
+{
+    @include test('Should return a rem value')
+    {
+        @include assert-equal(rem(16px), 1rem);
+    }
+}

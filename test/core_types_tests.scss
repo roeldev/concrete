@@ -1,0 +1,58 @@
+@import 'true';
+@import '../source/core/types';
+
+////////////////////////////////////////////////////////////////////////////////
+
+@include test-module('core/_types: is-number [function]')
+{
+    @include test('Should return true when using a valid number [1]')
+    {
+        @include assert-equal(is-number(1), true);
+    }
+
+    @include test('Should return true when using a valid number [2]')
+    {
+        @include assert-equal(is-number(1.23), true);
+    }
+
+    @include test('Should return true when using a valid number [3]')
+    {
+        @include assert-equal(is-number(-1), true);
+    }
+
+    @include test('Should return true when using a valid number [4]')
+    {
+        @include assert-equal(is-number(-1.23), true);
+    }
+
+    @include test('Should return false when using a string')
+    {
+        @include assert-equal(is-number('1'), false);
+    }
+
+    @include test('Should return false when using a color')
+    {
+        @include assert-equal(is-number('#fff'), false);
+    }
+
+    @include test('Should return false when using a boolean')
+    {
+        @include assert-equal(is-number(true), false);
+    }
+
+    @include test('Should return false when using null')
+    {
+        @include assert-equal(is-number(null), false);
+    }
+
+    @include test('Should return false when using a list')
+    {
+        @include assert-equal(is-number(1 2 3), false);
+    }
+
+    @include test('Should return false when using a map')
+    {
+        $input: (one: 1, two: 2, three: 3);
+        @include assert-equal(is-number($input), false);
+    }
+}
