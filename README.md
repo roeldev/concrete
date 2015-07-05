@@ -1,7 +1,12 @@
-#concrete [![Bower version][bower-version-img]][bower-version-url]
+#concrete
 
-[bower-version-img]: https://img.shields.io/bower/v/concrete.svg
-[bower-version-url]: https://github.com/roeldev/concrete
+[![Bower version][bower-version-img]][bower-version-url]
+[![Build][travis-img]][travis-url]
+
+[bower-img]: https://img.shields.io/bower/v/concrete.svg
+[bower-url]: https://github.com/roeldev/concrete
+[travis-img]: https://img.shields.io/travis/roeldev/concrete/master.svg
+[travis-url]: https://travis-ci.org/roeldev/concrete
 
 **Sassy CSS framework**
 
@@ -12,7 +17,7 @@ Includes functions/mixins for media queries/breakpoints, flexible responsive gri
 - 10, 11 or 12 columns? It doesn't matter, you define the widths and how each column reacts to different breakpoints.
 - Cool transition mixin! Just define the easing, time and delay properties in the main `_concrete.scss` settings file and you're ready to go. Now all your transitions automatically have the same default properties. You can even create multiple groups for different transitions if you need them.
 - Lots of type check functions, sort functions, and more list/map related functions!
-- Includes [normalize.css v3.0.2][url-normalize] and more useful style classes.
+- Includes [normalize.css v3.0.3][url-normalize] and more useful style classes.
 - Some basic shapes and effects, such as hexagons, triangles, gradients and fancy text shadows.
 - Extended debug functions and mixins. Output variables in the console or the compiled CSS to see what their actual values are. This makes developing your own stuff even easier :)
 
