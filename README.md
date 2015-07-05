@@ -1,6 +1,6 @@
 #concrete
 
-[![Bower version][bower-version-img]][bower-version-url]
+[![Bower version][bower-img]][bower-url]
 [![Build][travis-img]][travis-url]
 
 [bower-img]: https://img.shields.io/bower/v/concrete.svg
