@@ -1,3 +1,9 @@
+////
+/// concrete | test/core_utils_tests.scss
+///
+/// @group tests
+////
+
 @import 'true';
 
 $concrete-font-styles:
@@ -10,6 +16,8 @@ $concrete-font-styles:
 
 @import '../source/core/getters';
 @import '../source/core/utils';
+
+////////////////////////////////////////////////////////////////////////////////
 
 @include test-module('core/_utils: rem [function]')
 {

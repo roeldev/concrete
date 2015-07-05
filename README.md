@@ -28,11 +28,12 @@ bower install --save concrete
 ```
 
 ## How to use
-1. Copy the `_concrete.scss` and `_concrete-basics.scss` files into your project folder.
+1. Copy the `main.scss`, `_concrete.scss` and `_concrete-basics.scss` files into your project folder.
 2. Update the `@import` rules so they point to the right file(s) in the `source/` folder of this package.
 3. Now you can change the default values of the settings variables so it suits your project.
 
 All main variables and settings are placed in `_concrete.scss`. Here you can add colors, fonts, breakpoints, or custom variables specific for you project. Now, if you need any of these values, just call the appropiate function. Check the SassDoc documentation in the `sassdoc/` folder for all available functions.
+You can rename `main.scss` to whatever you want. This file is only used as a small starter for your project.
 > Please note that removing any of the `$concrete-` prefixed variables will break the framework.
 
 In `_concrete-basics.scss` you can remove (by adding comments) any predefined style classes wich you don't plan to use. This will keep the compiled CSS file cleaner and smaller.
