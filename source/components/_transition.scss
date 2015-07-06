@@ -74,7 +74,7 @@
             $property: unquote($property);
         }
 
-        transition: $property $duration $easing $delay;
+        transition: $property $duration unquote($easing) $delay;
     }
 }
 
@@ -125,6 +125,7 @@
     @if ($value == 'default')
     {
         $value: get-transition($value, 'easing');
+        $value: unquote($value);
     }
 
     transition-timing-function: $value;
