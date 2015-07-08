@@ -24,19 +24,19 @@ var SRC_TESTS    = './tests/*.scss';
 var SRC_SOURCE   = ['./source/**/*.scss', './*.scss',
                     '!node_modules/*', '!sassdoc/*'];
 
+var $plumberOptions =
+{
+    'errorHandler': GulpNotify.onError(
+    {
+        'message': 'Error test: <%= error.message %>',
+        'time':    5000
+    })
+};
+
 //------------------------------------------------------------------------------
 
 function compileTask($src, $dest)
 {
-    var $plumberOptions =
-    {
-        'errorHandler': GulpNotify.onError(
-        {
-            'message': 'Error test: <%= error.message %>',
-            'time':    5000
-        })
-    };
-
     var $sassOptions =
     {
         'style':         'expanded',
@@ -105,9 +105,12 @@ Gulp.task('watch', function()
 
 Gulp.task('test', function()
 {
-    return Gulp.src('test/*.js', { 'read': false })
-        .pipe( GulpMocha({ 'reporter': 'spec' }) )
-            .on('error', function() { });
+    setTimeout(function()
+    {
+        Gulp.src('test/*.js', { 'read': false })
+            .pipe( GulpPlumber($plumberOptions) )
+            .pipe( GulpMocha({ 'reporter': 'spec' }) );
+    }, 500);
 });
 
 Gulp.task('dev', function()

@@ -69,7 +69,7 @@
         }
         @elseif is-number($item)
         {
-            $item: set($item, 'number', 'px');
+            $item: set-unit($item, 'px');
             $item:
             (
                 'max': $item,
@@ -169,7 +169,7 @@
         }
         @elseif not is-number($scrollbarBuffer)
         {
-            $scrollbarBuffer: set($scrollbarBuffer, 'number' 'px');
+            $scrollbarBuffer: set-unit($scrollbarBuffer, 'px', 20px);
         }
 
         // create media query according to extracted min/max values

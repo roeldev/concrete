@@ -11,7 +11,7 @@ $files.forEach(function($file)
 {
     if (Path.extname($file) === '.scss')
     {
-        $file = Path.resolve(__dirname, $file);
+        $file = Path.resolve(__dirname, './'+ $file);
         SassTrue.runSass({ 'file': $file }, describe, it);
     }
 });

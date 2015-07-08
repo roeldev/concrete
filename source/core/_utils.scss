@@ -4,6 +4,18 @@
 /// @group Core
 ////
 
+@function equal-types($var1, $var2)
+{
+    @return (type-of($var1) == type-of($var2));
+}
+
+@function equal-units($var1, $var2)
+{
+    @return (is-number($var1) and
+             is-number($var2) and
+             unit($var1) == unit($var2));
+}
+
 ///
 /// Checks if a variable is the correct type. If not, the variable will be
 /// overwritten and set to a default value for that type.
@@ -17,24 +29,34 @@
 ///
 /// @return {mixed}
 ///
-@function set($var, $type, $default: null)
+@function set-type($var, $type, $default: null)
 {
-    $unit: false;
-    @if is-list($type)
+    // type alias
+    @if ($type == 'boolean')
     {
-        $unit: nth($type, 2);
-        $type: nth($type, 1);
+        $type: 'bool';
     }
 
-    @if (type-of($var) != $type and $var != null)
+    $varType:         type-of($var);
+    $isIncorrectType: ($varType != $type);
+
+    // special check for arglists wich are basically lists
+    @if ($isIncorrectType and
+         $type == 'list' and
+         is-list($var))
     {
-        @if ($default == null)
+        $isIncorrectType: false;
+    }
+
+    @if $isIncorrectType
+    {
+        @if is-null($default)
         {
-            @if ($type == number)
+            @if ($type == 'number')
             {
                 $default: 0;
             }
-            @elseif ($type == list)
+            @elseif ($type == 'list')
             {
                 $default: ();
             }
@@ -42,6 +64,23 @@
 
         $var: $default;
     }
+
+    @return $var;
+}
+
+@function set-unit($var, $unit, $default: 0)
+{
+    @if (not is-number($var) or
+         unit($var) != $unit)
+    {
+        @if is-null($default)
+        {
+            $default: 0;
+        }
+
+        $var: $default;
+    }
+
     @return $var;
 }
 
@@ -56,11 +95,13 @@
 {
     @if is-list($var)
     {
-        $list: ();
+        $list:      ();
+        $separator: list-separator($list);
+
         @each $value in $var
         {
             $value: unquote-all($value);
-            $list:  append($list, $value);
+            $list:  append($list, $value, $separator);
         }
 
         $var: $list;
@@ -76,38 +117,41 @@
 //------------------------------------------------------------------------------
 
 ///
-/// Calculates the relative em value compared to the default font-size.
+/// Calculates the relative em value compared to the given base font-size.
 /// Example taken from http://vvv.tobiassjosten.net/css/px-to-em-with-sass/
 ///
-/// @param {number} $px - The pixel value to calculate the em value from.
+/// @param {number} $from - The value to calculate the em value from.
 ///
-/// @param {number|string} $baseFontSize [default]
-///        The font-size to compare the $px value with.
+/// @param {number|string} $base [default]
+///        The font-size to compare the $from value with.
 ///
 /// @return {number}
 ///
-@function em($px, $baseFontSize: 'default')
+@function em($from, $base: 'default')
 {
-    @if is-string($baseFontSize)
+    @if is-string($base)
     {
-        $baseFontSize: get-font-size($baseFontSize);
+        $base: get-font-size($base);
     }
 
-    $baseFontSize: set($baseFontSize, 'number' 'px');
-    @return if(($baseFontSize > 0), ($px / $baseFontSize) * 1em, $px);
+    @return if(equal-units($from, $base),
+               (($from / $base) * 1em),
+               $from);
 }
 
 ///
 /// Calculates the relative rem value. The rem units are always relative to the
 /// font-size in the body html element.
 ///
-/// @param {number} $px - The pixel value to calculate the rem value from.
+/// @param {number} $from - The pixel value to calculate the rem value from.
 /// @return {number}
 ///
-@function rem($px)
+@function rem($from)
 {
-    $baseFontSize: get-font-size();
-    $baseFontSize: set($baseFontSize, 'number' 'px');
+    $base: get-font-size();
+    $base: set-unit($base, 'px', 16px);
 
-    @return if(($baseFontSize > 0), ($px / $baseFontSize) * 1rem, $px);
+    @return if(unit($from) == 'px',
+               (($from / $base) * 1rem),
+               $from);
 }
