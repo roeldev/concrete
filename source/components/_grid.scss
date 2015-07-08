@@ -152,7 +152,7 @@
     $defaultColumnWidths: map-get($grid, 'default');
     @each $name, $width in $defaultColumnWidths
     {
-        [data-col*="#{$name}"]
+        [data-col^="#{$name}"]
         {
             width: $width;
         }
