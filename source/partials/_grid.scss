@@ -16,7 +16,8 @@
     position: relative;
     float: left;
 
-    &.grid-stretch
+    &.grid-stretch,
+    %concrete-blockgrid-row.grid-stretch &
     {
         margin-bottom: -100%;
         padding-bottom: 100%;
