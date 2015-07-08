@@ -140,8 +140,9 @@ $concrete-import-defaults:  true;
 // Display warnings and/or debug messages in console. Warnings and debugs are
 // always displayed in the compiled CSS file.
 //
-$concrete-console-warnings: false;
-$concrete-console-debugs:   false;
+$concrete-console-warnings:  false;
+$concrete-console-debugs:    false;
+$concrete-debug-breakpoints: false;
 
 //------------------------------------------------------------------------------
 // Import the concrete framework

@@ -28,6 +28,11 @@
 
     @if is-list($mediaQuery, 1)
     {
+        @if $concrete-debug-breakpoints
+        {
+            @include debug($breakpoint, $type);
+        }
+
         @media #{$mediaQuery}
         {
             @content;

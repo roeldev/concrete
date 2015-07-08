@@ -119,10 +119,14 @@
 {
     @if ($breakpoint != false)
     {
-        $name: $breakpoint +'-'+ $name;
+        $name:     $breakpoint +'-'+ $name;
+        $selector: '[data-col*="#{$name}"]';
+    }
+    @else
+    {
+        $selector: '[data-col^="#{$name}"]';
     }
 
-    $selector:  '[data-col*="#{$name}"]';
     $selector:  unquote($selector);
     $selectors: append($selectors, $selector, 'comma');
 
