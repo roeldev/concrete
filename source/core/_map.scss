@@ -51,12 +51,12 @@
 ///
 /// @todo Make sorting of maps with multiple equal values possible.
 ///
-@function map-sort($map, $type: 'regular', $reverse: false)
+/*@function map-sort($map, $type: 'regular', $reverse: false)
 {
     $result:     ();
     $keysList:   map-keys($map);
     $valuesList: map-values($map);
-    $values:     sort($valuesList, $type, $reverse);
+    $values:     list-sort($valuesList, $type, $reverse);
 
     @each $value in $values
     {
@@ -66,7 +66,7 @@
     }
 
     @return $result;
-}
+}*/
 
 ///
 /// Sort map according to keys.
@@ -79,7 +79,7 @@
 @function map-ksort($map, $type: 'regular', $reverse: false)
 {
     $result: ();
-    $keys:   sort(map-keys($map), $type, $reverse);
+    $keys:   list-sort(map-keys($map), $type, $reverse);
 
     @each $key in $keys
     {

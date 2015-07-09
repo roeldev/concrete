@@ -1,0 +1,96 @@
+////
+/// concrete | test/core_list_tests.scss
+///
+/// @group tests
+////
+
+@import 'true';
+@import '../source/core';
+
+////////////////////////////////////////////////////////////////////////////////
+
+@include test-module('core/_list: nth-first [function]')
+{
+    @include test('Should return the first value of the list')
+    {
+        $input: ('first' 'second' 'last');
+        @include assert-equal(nth-first($input), 'first');
+    }
+
+    @include test('Should return null on empty list')
+    {
+        @include assert-equal(nth-first(()), null);
+    }
+
+    @include test('Should return null on invalid list var')
+    {
+        @include assert-equal(nth-first(false), null);
+    }
+}
+
+@include test-module('core/_list: nth-last [function]')
+{
+    @include test('Should return the last value of the list')
+    {
+        $input: ('first' 'second' 'last');
+        @include assert-equal(nth-last($input), 'last');
+    }
+
+    @include test('Should return null on empty list')
+    {
+        @include assert-equal(nth-last(()), null);
+    }
+
+    @include test('Should return null on invalid list var')
+    {
+        @include assert-equal(nth-last(false), null);
+    }
+}
+
+@include test-module('core/_list: prepend [function]')
+{
+    @include test('Should prepend the value to the list')
+    {
+        $input:    ('first' 'second' 'last');
+        $actual:   prepend($input, 'prepend');
+        $expected: ('prepend' 'first' 'second' 'last');
+
+        @include assert-equal($actual, $expected);
+    }
+
+    @include test('Should prepend the value to the comma seperated list')
+    {
+        $input:    ('first' 'second' 'last');
+        $actual:   prepend($input, 'prepend', 'comma');
+        $expected: ('prepend', 'first', 'second', 'last');
+
+        @include assert-equal($actual, $expected);
+    }
+
+    @include test('Should prepend the value to the empty list')
+    {
+        $actual:   prepend((), 'prepend');
+        $expected: join(('prepend'), ());
+
+        @include assert-equal($actual, $expected);
+    }
+}
+
+@include test-module('core/_list: list-sort [function]')
+{
+    @include test('Should sort the list on numeric values')
+    {
+        $actual:   list-sort(1 4 5 2 6 3, 'numeric');
+        $expected: (1 2 3 4 5 6);
+
+        @include assert-equal($actual, $expected);
+    }
+
+    @include test('Should reverse sort the list on numeric values')
+    {
+        $actual:   list-sort(1 4 5 2 6 3, 'numeric', true);
+        $expected: (6 5 4 3 2 1);
+
+        @include assert-equal($actual, $expected);
+    }
+}

@@ -6,30 +6,30 @@
 /// @group Core
 ////
 
+///
+/// Returns the first value of the list.
+///
+/// @param {list} $list
+/// @return {mixed}
+///
 @function nth-first($list)
 {
-    @if is-list($list)
-    {
-        @return nth($list, 1);
-    }
-    @else
-    {
-        @return null;
-    }
+    @return if(is-list($list, 1), nth($list, 1), null);
 }
 
+///
+/// Returns the last value of the list.
+///
+/// @param {list} $list
+/// @return {mixed}
+///
 @function nth-last($list)
 {
-    @if is-list($list)
-    {
-        @return nth($list, length($list));
-    }
-    @else
-    {
-        @return null;
-    }
+    @return if(is-list($list, 1), nth($list, length($list)), null);
 }
 
+///
+/// Prepend a value to an existing list.
 ///
 /// @param {list} $list
 /// @param {mixed} $value
@@ -42,27 +42,35 @@
 }
 
 ///
+/// Sort a list according to the given sort type function.
+///
 /// @param {list} $list
 /// @param {string} $type [regular]
 /// @param {bool} $reverse [false]
 /// @return {list}
 ///
-@function sort($list, $type: 'regular', $reverse: false)
+@function list-sort($list, $type: 'regular', $reverse: false)
 {
     @if is-list($list, 2)
     {
-        @if ($type == 'numeric')
+        $func: '_list-sort-'+ $type;
+
+        @if ($reverse == true)
         {
-            @if ($reverse == true)
-            {
-                $list: _sort-numeric-reversed($list);
-            }
-            @else
-            {
-                $list: _sort-numeric($list);
-            }
+            $func: $func +'-reversed';
+        }
+
+        // dynamically call the right sort function
+        @if function-exists($func)
+        {
+            $list: call($func, $list);
+        }
+        @else
+        {
+            @return warn('list-sort', 'Unknown sort type `#{$type}`!');
         }
     }
+
     @return $list;
 }
 
@@ -79,7 +87,7 @@
 /// @access private
 /// @group private
 ///
-@function _sort-numeric($list)
+@function _list-sort-numeric($list)
 {
     $length: length($list);
     @if ($length > 1)
@@ -106,8 +114,8 @@
             }
         }
 
-        $list: join(_sort-numeric($lower), $equal);
-        $list: join($list, _sort-numeric($higher));
+        $list: join(_list-sort-numeric($lower), $equal);
+        $list: join($list, _list-sort-numeric($higher));
     }
     @return $list;
 }
@@ -121,7 +129,7 @@
 /// @access private
 /// @group private
 ///
-@function _sort-numeric-reversed($list)
+@function _list-sort-numeric-reversed($list)
 {
     $length: length($list);
     @if ($length > 1)
@@ -148,8 +156,8 @@
             }
         }
 
-        $list: join(_sort-numeric-reversed($higher), $equal);
-        $list: join($list, _sort-numeric-reversed($lower));
+        $list: join(_list-sort-numeric-reversed($higher), $equal);
+        $list: join($list, _list-sort-numeric-reversed($lower));
     }
     @return $list;
 }
