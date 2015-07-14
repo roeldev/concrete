@@ -6,6 +6,12 @@
 /// @group Core
 ////
 
+@function list-create($value: null)
+{
+    $list: ();
+    @return if(is-empty($value), $list, join(($value), $list));
+}
+
 ///
 /// Returns the first value of the list.
 ///

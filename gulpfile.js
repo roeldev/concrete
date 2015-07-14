@@ -85,7 +85,7 @@ Gulp.task('lint', function()
     var $options =
     {
         'bundleExec':   true,
-        'verbose':      false,
+        'verbose':      true,
         'customReport': GulpScssLintStylish
     };
 

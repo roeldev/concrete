@@ -4,11 +4,25 @@
 /// @group Core
 ////
 
+///
+/// Checks if the given vars are of the same type.
+///
+/// @param {mixed} $var1 - A variable to check.
+/// @param {mixed} $var2 - A second variable to check.
+/// @return {boolean}
+///
 @function equal-types($var1, $var2)
 {
     @return (type-of($var1) == type-of($var2));
 }
 
+///
+/// Checks if the given numbers are of the same unit.
+///
+/// @param {mixed} $var1 - A variable to check.
+/// @param {mixed} $var2 - A second variable to check.
+/// @return {boolean}
+///
 @function equal-units($var1, $var2)
 {
     @return (is-number($var1) and

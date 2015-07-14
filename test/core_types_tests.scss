@@ -176,6 +176,14 @@ $TYPE_MAP:     ('one': 1, 'two': 2, 'three': 3) !global;
     $TYPE_ARGLIST
 ));
 
+@include _type-test('is-empty', '' () null,
+(
+    1,
+    false,
+    0,
+    #000
+));
+
 //------------------------------------------------------------------------------
 
 @include _units-test('is-em', 1em 2343.345em -3452345em,

@@ -134,6 +134,14 @@
     @return (type-of($var) == 'map');
 }
 
+
+@function is-empty($var)
+{
+    @return (is-null($var) or
+             (is-string($var) and $var == '') or
+             (is-list($var) or is-map($var) and length($var) >= 1));
+}
+
 //------------------------------------------------------------------------------
 // Unit type related functions
 //------------------------------------------------------------------------------

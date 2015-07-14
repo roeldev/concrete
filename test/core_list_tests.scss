@@ -9,6 +9,19 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
+@include test-module('core/_list: list-create [function]')
+{
+    @include test('Should return a list with the set value')
+    {
+        @include assert-equal(list-create('test'), join(('test'), ()));
+    }
+
+    @include test('Should return an empty list')
+    {
+        @include assert-equal(list-create(), ());
+    }
+}
+
 @include test-module('core/_list: nth-first [function]')
 {
     @include test('Should return the first value of the list')
