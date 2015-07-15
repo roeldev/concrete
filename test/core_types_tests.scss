@@ -5,7 +5,7 @@
 ////
 
 @import 'true';
-@import '../source/core/types';
+@import '../source/core';
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -28,7 +28,7 @@
         @include test($testTitle)
         {
             $result: call($func, nth($items, $i));
-            @include assert-equal($result, true);
+            @include assert-true($result);
         }
     }
 }
@@ -45,7 +45,7 @@
             @include test('Should return false when using a '+ $type)
             {
                 $result: call($func, $value);
-                @include assert-equal($result, false);
+                @include assert-false($result);
             }
         }
     }
@@ -65,7 +65,7 @@
             @include test('Should return false when using '+ $unit)
             {
                 $result: call($func, $value);
-                @include assert-equal($result, false);
+                @include assert-false($result);
             }
         }
     }

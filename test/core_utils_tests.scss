@@ -23,32 +23,32 @@ $concrete-font-styles:
 {
     @include test('Should succeed when both vars are of equal types [1]')
     {
-        @include assert-equal(equal-types('test1', 'test2'), true);
+        @include assert-true(equal-types('test1', 'test2'));
     }
 
     @include test('Should succeed when both vars are of equal types [2]')
     {
-        @include assert-equal(equal-types(false, true), true);
+        @include assert-true(equal-types(false, true));
     }
 
     @include test('Should succeed when both vars are of equal types [3]')
     {
-        @include assert-equal(equal-types(1%, 3vh), true);
+        @include assert-true(equal-types(1%, 3vh));
     }
 
     @include test('Should fail when both vars are not of equal types [1]')
     {
-        @include assert-equal(not equal-types('test1', true), true);
+        @include assert-true(not equal-types('test1', true));
     }
 
     @include test('Should fail when both vars are not of equal types [2]')
     {
-        @include assert-equal(equal-types(1, true), false);
+        @include assert-false(equal-types(1, true));
     }
 
     @include test('Should fail when both vars are not of equal types [3]')
     {
-        @include assert-equal(equal-types((), null), false);
+        @include assert-false(equal-types((), null));
     }
 }
 
@@ -57,17 +57,17 @@ $concrete-font-styles:
 {
     @include test('Should succeed when both numbers are of equal units')
     {
-        @include assert-equal(equal-units(1px, 2px), true);
+        @include assert-true(equal-units(1px, 2px));
     }
 
     @include test('Should fail when both numbers are not of equal units')
     {
-        @include assert-equal(equal-units(1px, 2%), false);
+        @include assert-false(equal-units(1px, 2%));
     }
 
     @include test('Should fail when a var is not a number')
     {
-        @include assert-equal(equal-units(1px, 'str'), false);
+        @include assert-false(equal-units(1px, 'str'));
     }
 }
 
@@ -81,17 +81,17 @@ $concrete-font-styles:
 
     @include test('Should return the exact same value [2]')
     {
-        @include assert-equal(set-type(true, 'bool', false), true);
+        @include assert-true(set-type(true, 'bool', false));
     }
 
     @include test('Should return the exact same value [3]')
     {
-        @include assert-equal(set-type(false, 'boolean', 2%), false);
+        @include assert-false(set-type(false, 'boolean', 2%));
     }
 
     @include test('Should return the default value [1]')
     {
-        @include assert-equal(set-type(12, 'boolean', true), true);
+        @include assert-true(set-type(12, 'boolean', true));
     }
 
     @include test('Should return the default value [2]')
