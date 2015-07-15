@@ -13,8 +13,7 @@
     $shadows: ();
     @for $i from 1px through $size
     {
-        $shadow:  $i $i $color;
-        $shadows: append($shadows, $shadow, 'comma');
+        $shadows: append($shadows, ($i $i $color), 'comma');
     }
 
     text-shadow: unquote($shadows);

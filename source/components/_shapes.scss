@@ -9,22 +9,22 @@
 ///
 @mixin shape-hexagon($size)
 {
-    position:       relative;
-    display:        inline-block;
+    position: relative;
+    display: inline-block;
     vertical-align: middle;
-    width:          $size;
-    height:         $size * 0.57735;
+    width: $size;
+    height: $size * 0.57735;
 
     &:before,
     &:after
     {
-        content:          '';
-        position:         absolute;
-        z-index:          -1;
-        top:              0;
-        bottom:           0;
-        left:             0;
-        right:            0;
+        content: '';
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         background-color: inherit;
     }
 
@@ -64,56 +64,56 @@
         $size2: $size;
     }
 
-    width:  0;
+    width: 0;
     height: 0;
 
-    @if ($direction == 'up' or $direction == 'u')
+    @if one-of($direction, 'up' 'u')
     {
-        border-left:   $size solid transparent;
-        border-right:  $size solid transparent;
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
         border-bottom: $size2 solid $color;
     }
-    @elseif ($direction == 'down' or $direction == 'd')
+    @elseif one-of($direction, 'down' 'd')
     {
-        border-top:    $size2 solid $color;
-        border-left:   $size solid transparent;
-        border-right:  $size solid transparent;
+        border-top: $size2 solid $color;
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
     }
-    @elseif ($direction == 'left' or $direction == 'l')
+    @elseif one-of($direction, 'left' 'l')
     {
-        border-top:    $size solid transparent;
+        border-top: $size solid transparent;
         border-bottom: $size solid transparent;
-        border-right:  $size2 solid $color;
+        border-right: $size2 solid $color;
     }
-    @elseif ($direction == 'right' or $direction == 'r')
+    @elseif one-of($direction, 'right' 'r')
     {
-        border-top:    $size solid transparent;
+        border-top: $size solid transparent;
         border-bottom: $size solid transparent;
-        border-left:   $size2 solid $color;
+        border-left: $size2 solid $color;
     }
-    @elseif ($direction == 'top-left' or $direction == 'tl')
+    @elseif one-of($direction, 'top-left' 'tl')
     {
-        border-top:    $size2 solid $color;
-        border-right:  $size solid transparent;
+        border-top: $size2 solid $color;
+        border-right: $size solid transparent;
     }
-    @elseif ($direction == 'top-right' or $direction == 'tr')
+    @elseif one-of($direction, 'top-right' 'tr')
     {
-        border-top:    $size2 solid $color;
-        border-left:   $size solid transparent;
+        border-top: $size2 solid $color;
+        border-left: $size solid transparent;
     }
-    @elseif ($direction == 'bottom-left' or $direction == 'bl')
-    {
-        border-bottom: $size2 solid $color;
-        border-right:  $size solid transparent;
-    }
-    @elseif ($direction == 'bottom-right' or $direction == 'br')
+    @elseif one-of($direction, 'bottom-left' 'bl')
     {
         border-bottom: $size2 solid $color;
-        border-left:   $size solid transparent;
+        border-right: $size solid transparent;
+    }
+    @elseif one-of($direction, 'bottom-right' 'br')
+    {
+        border-bottom: $size2 solid $color;
+        border-left: $size solid transparent;
     }
     @else
     {
-        @return warn('shape-triangle',
+        @include warn('shape-triangle',
             'Cannot create triangle, unknown direction `#{$direction}`.');
     }
 }

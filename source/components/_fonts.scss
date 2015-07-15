@@ -16,17 +16,19 @@
 ///
 @mixin font-face($name, $dir, $file)
 {
+    $path: ($dir +''+ $file);
+
     @font-face
     {
         font-family: $name;
         font-weight: normal;
         font-style:  normal;
 
-        src: url("#{$dir}#{$file}.eot");
-        src: url("#{$dir}#{$file}.eot?#iefix") format("embedded-opentype"),
-             url("#{$dir}#{$file}.woff") format("woff"),
-             url("#{$dir}#{$file}.ttf") format("truetype"),
-             url("#{$dir}#{$file}.svg##{$name}") format("svg");
+        src: url('#{$path}.eot');
+        src: url('#{$path}.eot?#iefix') format('embedded-opentype'),
+             url('#{$path}.woff') format('woff'),
+             url('#{$path}.ttf') format('truetype'),
+             url('#{$path}.svg##{$name}') format('svg');
     }
 
     @media screen and (-webkit-min-device-pixel-ratio:0)
@@ -34,20 +36,24 @@
         @font-face
         {
            font-family: $name;
-           src: url("#{$dir}#{$file}.svg##{$name}") format("svg") !important;
+           src: url('#{$path}.svg##{$name}') format('svg') !important;
         }
     }
 }
+
+/*$concrete-font-style-properties:
+(
+    'font-family': true
+);*/
 
 ///
 /// Displays all properties from the given font-style.
 ///
 @mixin font-style($name, $properties: 'all')
 {
-    $fontStyle: get-font-style($name);
-
     font-family: get-font-family($name);
 
+    $fontStyle: get-font-style($name);
     @each $property, $value in $fontStyle
     {
         #{$property}: #{$value};

@@ -6,12 +6,8 @@
 
 ///
 /// @param {number|string|map|list} $breakpoint
-///
 /// @param {string} $type - Valid values are `min`, `max` or `both`.
-///
 /// @param {bool|number} $scrollbarBuffer [true]
-///
-/// @todo Combine breakpoints min-max values in media query when possible.
 ///
 @mixin breakpoint($breakpoint, $type: 'both', $scrollbarBuffer: true)
 {
@@ -46,7 +42,6 @@
 /// Combines the arguments into optimized media query ranges where possible
 ///
 /// @param {list|string|map} $breakpoints
-///
 /// @return {list}
 ///
 @function media-query-list($breakpoints)
@@ -77,7 +72,7 @@
             );
         }
 
-        @if is-map($item) and map-has-key($item, 'min')
+        @if (is-map($item) and map-has-key($item, 'min'))
         {
             $min:    map-get($item, 'min');
             $sorted: map-append($sorted, $min, $item);
@@ -100,8 +95,8 @@
         @for $i from 2 through length($sorted)
         {
             $item: nth($sorted, $i);
+            $max:  map-get($item, 'max');
 
-            $max: map-get($item, 'max');
             @if (($max + 1) >= $lowest)
             {
                 $lowest: map-get($item, 'min');
@@ -136,31 +131,19 @@
 
 ///
 /// @param {list} $mediaQuery - A list, representing the media query.
-///
 /// @param {map} $breakpoint - A breakpoint map with a min and/or max key.
-///
 /// @param {string} $type - Valid values are `min`, `max` or `both`.
-///
 /// @param {bool|number} $scrollbarBuffer
 ///
 @function media-query-create($mediaQuery, $breakpoint, $type, $scrollbarBuffer)
 {
-    $max: false;
-    $min: false;
+    $max: _media-query-get-value($breakpoint, 'max');
+    $min: _media-query-get-value($breakpoint, 'min');
 
-    @if map-has-key($breakpoint, 'max') and ($type == 'both' or $type == 'max')
-    {
-        $max: map-get($breakpoint, 'max');
-    }
-    @if map-has-key($breakpoint, 'min') and ($type == 'both' or $type == 'min')
-    {
-        $min: map-get($breakpoint, 'min');
-    }
+    $hasMax: ($max != false);
+    $hasMin: ($min != false);
 
-    $hasMax: ($max != null and $max != false);
-    $hasMin: ($min != null and $min != false);
-
-    @if $hasMax or $hasMin
+    @if ($hasMax or $hasMin)
     {
         // apply a scrollbar buffer to the min/max values
         @if ($scrollbarBuffer == true)
@@ -173,20 +156,20 @@
         }
 
         // create media query according to extracted min/max values
-        $condition: screen;
+        $condition: list-create(screen, 'space');
         @if $hasMax
         {
-            $max:       ($max + $scrollbarBuffer);
-            //$max:       rem($max);
-            $max:       unquote('and (max-width: #{$max})');
-            $condition: append($condition, $max, 'space');
+            $condition: _media-query-condition-append($condition,
+                                                      'max-width',
+                                                      $max,
+                                                      $scrollbarBuffer);
         }
         @if $hasMin
         {
-            $min:       ($min + $scrollbarBuffer);
-            //$min:       rem($min);
-            $min:       unquote('and (min-width: #{$min})');
-            $condition: append($condition, $min, 'space');
+            $condition: _media-query-condition-append($condition,
+                                                      'min-width',
+                                                      $min,
+                                                      $scrollbarBuffer);
         }
 
         // then add the condition to allow multiple conditions
@@ -194,4 +177,30 @@
     }
 
     @return $mediaQuery;
+}
+
+//------------------------------------------------------------------------------
+
+@function _media-query-get-value($breakpoint, $key)
+{
+    $result: false;
+    @if (map-has-key($breakpoint, $key) and one-of($type, 'both' $key))
+    {
+        $value: map-get($breakpoint, $key);
+        @if not is-empty($result)
+        {
+            $result: $value;
+        }
+    }
+
+    @return $result;
+}
+
+@function _media-query-condition-append($condition, $type, $value, $scrollbarBuffer)
+{
+    $value: ($value + $scrollbarBuffer);
+    //$value: rem($value);
+    $value: unquote('and (#{$type}: #{$value})');
+
+    @return append($condition, $value, 'space');
 }

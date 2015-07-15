@@ -6,10 +6,16 @@
 /// @group Core
 ////
 
-@function list-create($value: null)
+///
+/// Creates a new list with $value as it's first value.
+///
+/// @param {mixed} $value
+/// @return {list}
+///
+@function list-create($value: null, $separator: 'auto')
 {
     $list: ();
-    @return if(is-empty($value), $list, join(($value), $list));
+    @return if(is-empty($value), $list, join(($value), $list, $separator));
 }
 
 ///
@@ -45,6 +51,18 @@
 @function prepend($list, $value, $seperator: 'auto')
 {
     @return join(($value), $list, $seperator);
+}
+
+///
+/// Prepend a value to an existing list.
+///
+/// @param {mixed} $value
+/// @param {list} $list
+/// @return {boolean}
+///
+@function one-of($value, $list)
+{
+    @return not is-null(index($list, $value));
 }
 
 ///

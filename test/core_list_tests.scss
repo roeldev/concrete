@@ -11,9 +11,28 @@
 
 @include test-module('core/_list: list-create [function]')
 {
-    @include test('Should return a list with the set value')
+    @include test('Should return a list with a string value')
     {
-        @include assert-equal(list-create('test'), join(('test'), ()));
+        $result: list-create('test');
+        $actual: (is-list($result, 1) and nth-first($result) == 'test');
+
+        @include assert-true($actual);
+    }
+
+    @include test('Should return a list with a boolean value')
+    {
+        $result: list-create(true);
+        $actual: (is-list($result, 1) and nth-first($result) == true);
+
+        @include assert-true($actual);
+    }
+
+    @include test('Should return a list with a number value')
+    {
+        $result: list-create(1);
+        $actual: (is-list($result, 1) and nth-first($result) == 1);
+
+        @include assert-true($actual);
     }
 
     @include test('Should return an empty list')
@@ -86,6 +105,19 @@
         $expected: join(('prepend'), ());
 
         @include assert-equal($actual, $expected);
+    }
+}
+
+@include test-module('core/_list: one-of [function]')
+{
+    @include test('Should return true when value is in list')
+    {
+        @include assert-true(one-of('test', 1 false 'test' null));
+    }
+
+    @include test('Should return false when value is not in list')
+    {
+        @include assert-false(one-of('fail', 1 false 'test' null));
     }
 }
 
