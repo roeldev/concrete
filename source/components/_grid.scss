@@ -69,7 +69,7 @@
 
     @if ($type == 'block')
     {
-        @include  _concrete-display-blockgrid($columns);
+        @include  _concrete-blockgrid-create($columns);
     }
     @else
     {
@@ -131,71 +131,4 @@
     $selectors: append($selectors, $selector, 'comma');
 
     @return $selectors;
-}
-
-///
-/// @access private
-/// @group private
-///
-/// @param {map} $grid
-///
-@mixin _concrete-display-blockgrid($grid)
-{
-    &.grid-row,
-    .grid-row
-    {
-        @extend %concrete-blockgrid-row;
-    }
-
-    [data-col]
-    {
-        @extend %concrete-blockgrid-column;
-    }
-
-    // add the default column widths
-    $defaultColumnWidths: map-get($grid, 'default');
-    @each $name, $width in $defaultColumnWidths
-    {
-        [data-col^="#{$name}"]
-        {
-            width: $width;
-        }
-    }
-
-    // the columns widths per breakpoint
-    @each $breakpoint in $_concrete-breakpoints
-    {
-        @if map-has-key($grid, $breakpoint)
-        {
-            @include breakpoint($breakpoint, 'max')
-            {
-                $columnWidths: map-get($grid, $breakpoint);
-                @each $width, $names in $columnWidths
-                {
-                    $selectors: ();
-                    @each $name in $names
-                    {
-                        // when the column width for this breakpoint is
-                        // different from the default column width, add the
-                        // default column (without breakpoint prefix) selector
-                        // to the list of selectors for the new width.
-                        // by doing this, the grid will automatically respond
-                        // to the breakpoint, thus making the grid responsive
-                        @if ($width != map-get($defaultColumnWidths, $name))
-                        {
-                            $defaultColumnWidths: map-merge($defaultColumnWidths, ($name: $width));
-                            $selectors: _concrete-grid-selector($selectors, $name);
-                        }
-
-                        $selectors: _concrete-grid-selector($selectors, $name, $breakpoint);
-                    }
-
-                    #{$selectors}
-                    {
-                        width: $width;
-                    }
-                }
-            }
-        }
-    }
 }

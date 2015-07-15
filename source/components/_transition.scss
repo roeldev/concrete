@@ -83,7 +83,7 @@
 ///
 @mixin transition-delay($value: 'default')
 {
-    @if ($value == 'default')
+    @if ($value == 'default' or is-empty($value))
     {
         $value: get-transition($value, 'delay');
     }
@@ -100,7 +100,7 @@
 ///
 @mixin transition-duration($value: 'default')
 {
-    @if ($value == 'default')
+    @if ($value == 'default' or is-empty($value))
     {
         $value: get-transition($value, 'duration');
     }
@@ -122,7 +122,7 @@
 ///
 @mixin transition-timing-function($value: 'default')
 {
-    @if ($value == 'default')
+    @if ($value == 'default' or is-empty($value))
     {
         $value: get-transition($value, 'easing');
         $value: unquote($value);

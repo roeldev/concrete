@@ -29,8 +29,8 @@
 
     .#{$prefix}:before,
     [data-#{$prefix}]:before,
-    [class^="#{$prefix}-"]:before,
-    [class*=" #{$prefix}-"]:before
+    [class^='#{$prefix}-']:before,
+    [class*=' #{$prefix}-']:before
     {
         @extend %concrete-iconfont;
 
@@ -38,4 +38,35 @@
     }
 
     @content;
+}
+
+//------------------------------------------------------------------------------
+// Iconfont placeholders
+//------------------------------------------------------------------------------
+%concrete-iconfont
+{
+    font-style: normal !important;
+    font-variant: normal !important;
+    font-weight: normal !important;
+    line-height: 1;
+    text-transform: none !important;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    speak: none;
+    cursor: default;
+    user-select: none;
+
+    @media screen and (-webkit-min-device-pixel-ratio:0)
+    {
+        padding-top: 1px;
+        line-height: 1.15em !important;
+    }
+}
+
+a%concrete-iconfont,
+a %concrete-iconfont,
+button%concrete-iconfont,
+button %concrete-iconfont
+{
+    cursor: pointer;
 }
