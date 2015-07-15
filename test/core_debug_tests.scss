@@ -1,0 +1,105 @@
+////
+/// concrete | test/core_debug_tests.scss
+///
+/// @group tests
+////
+
+$_concrete-warnings:        ();
+$concrete-console-warnings: false;
+
+@import 'true';
+@import '../source/core';
+
+////////////////////////////////////////////////////////////////////////////////
+
+@include test-module('core/_debug: _concrete-warn [function]')
+{
+    @include test('Should add a message to the global list [1]')
+    {
+        $_concrete-warnings: () !global;
+        $x:_concrete-warn('func', 'msg');
+
+        $expected: list-create('func: msg', 'comma');
+
+        @include assert-equal($_concrete-warnings, $expected);
+    }
+
+    @include test('Should add a message to the global list [2]')
+    {
+        $_concrete-warnings: () !global;
+        $x:_concrete-warn('test msg', '');
+
+        $expected: list-create('test msg', 'comma');
+
+        @include assert-equal($_concrete-warnings, $expected);
+    }
+}
+
+@include test-module('core/_debug: warn [function]')
+{
+    @include test('Should add a message to the global list [1]')
+    {
+        $_concrete-warnings: () !global;
+        $x:warn('func', 'msg');
+
+        $expected: list-create('func: msg', 'comma');
+
+        @include assert-equal($_concrete-warnings, $expected);
+    }
+
+    @include test('Should add a message to the global list [2]')
+    {
+        $_concrete-warnings: () !global;
+        $x:warn('test msg');
+
+        $expected: list-create('test msg', 'comma');
+
+        @include assert-equal($_concrete-warnings, $expected);
+    }
+}
+
+@include test-module('core/_debug: warn [mixin]')
+{
+    @include test('Should add a message to the global list [1]')
+    {
+        $_concrete-warnings: () !global;
+        @include warn('func', 'msg');
+
+        $expected: list-create('func: msg', 'comma');
+
+        @include assert-equal($_concrete-warnings, $expected);
+    }
+
+    @include test('Should add a message to the global list [2]')
+    {
+        $_concrete-warnings: () !global;
+        @include warn('test msg');
+
+        $expected: list-create('test msg', 'comma');
+
+        @include assert-equal($_concrete-warnings, $expected);
+    }
+}
+
+/*@include test-module('core/_debug: display-warnings [mixin]')
+{
+    @include test('Should display the added warning messages')
+    {
+        $_concrete-warnings: () !global;
+
+        @include warn('test msg');
+
+        @include assert('x')
+        {
+            @include input()
+            {
+                @include display-warnings();
+            }
+
+            @include expect()
+            {
+                test: '';
+            }
+        }
+    }
+}*/

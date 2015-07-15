@@ -13,18 +13,26 @@
 /// contain the actual warning message.
 ///
 /// @param {string} $function - The function that created the warning.
-///
-/// @param {string} $message [false] - The warning text message.
-///
+/// @param {string} $message [''] - The warning text message.
 /// @return {null}
 ///
-@function warn($function, $message: false)
+@function warn($function, $message: '')
 {
     $message: _concrete-warn($function, $message);
     @return null;
 }
 
-@mixin warn($function, $message: false)
+///
+/// Adds a warning to the `$_concrete-warnings` list and, if available, outputs
+/// the warning with the `@warn` directive.
+/// If the 2nd optional parameter is not used, the first parameter should
+/// contain the actual warning message.
+///
+/// @param {string} $function - The function that created the warning.
+/// @param {string} $message [''] - The warning text message.
+/// @return {null}
+///
+@mixin warn($function, $message: '')
 {
     $message: _concrete-warn($function, $message);
 }
@@ -46,7 +54,7 @@
             /* #{$prefix} #{$message} */
         }
 
-        $_concrete-warnings: ();
+        $_concrete-warnings: () !global;
     }
 }
 
@@ -62,7 +70,7 @@
     @if not is-list($var, 1)
     {
         $var: $_concrete-debugs;
-        $_concrete-debugs: ();
+        $_concrete-debugs: () !global;
     }
 
     $prefix:  '@debug';
@@ -85,7 +93,7 @@
         $display: '{unknown}';
     }
 
-    @if ($concrete-console-debugs)
+    @if $concrete-console-debugs
     {
         @debug($display);
     }
@@ -102,7 +110,7 @@
 ///
 @function debug($var...)
 {
-    $_concrete-debugs: append($_concrete-debugs, $var, 'comma');
+    $_concrete-debugs: append($_concrete-debugs, $var, 'comma') !global;
     @return null;
 }
 
@@ -127,15 +135,15 @@
 /// @group private
 ///
 /// @param {string} $function
-/// @param {string|boolean} $message
+/// @param {string} $message
 /// @return {string}
 ///
 @function _concrete-warn($function, $message)
 {
-    $message: if($message == false, $function, $function +': '+ $message);
-    $_concrete-warnings: append($_concrete-warnings, $message, 'comma');
+    $message: if(is-empty($message), $function, $function +': '+ $message);
+    $_concrete-warnings: append($_concrete-warnings, $message, 'comma') !global;
 
-    @if ($concrete-console-warnings)
+    @if $concrete-console-warnings
     {
         @warn($message);
     }
@@ -156,7 +164,7 @@
     @if is-number($var)
     {
         $unit: unit($var);
-        @if ($unit != '')
+        @if not is-empty($unit)
         {
             $type: $type +'|'+ $unit;
         }
@@ -180,7 +188,7 @@
 ';
 
     $listLength: length($list);
-    @if($listLength > 0)
+    @if ($listLength > 0)
     {
         @if ($inspect == true)
         {
@@ -200,11 +208,13 @@
                 }
                 @elseif is-list($value)
                 {
-                    $value: _concrete-debug-list($value, true, $indentLevel + $indent);
+                    $value: _concrete-debug-list($value, true,
+                                                 $indentLevel + $indent);
                 }
                 @elseif is-map($value)
                 {
-                    $value: _concrete-debug-map($value, true, $indentLevel + $indent);
+                    $value: _concrete-debug-map($value, true,
+                                                $indentLevel + $indent);
                 }
                 @else
                 {
@@ -248,7 +258,7 @@
 ';
 
     $mapLength: length($map);
-    @if($mapLength > 0)
+    @if ($mapLength > 0)
     {
         @if ($inspect == true)
         {
@@ -267,11 +277,13 @@
                 }
                 @elseif is-list($value)
                 {
-                    $value: _concrete-debug-list($value, true, $indentLevel + $indent);
+                    $value: _concrete-debug-list($value, true,
+                                                 $indentLevel + $indent);
                 }
                 @elseif is-map($value)
                 {
-                    $value: _concrete-debug-map($value, true, $indentLevel + $indent);
+                    $value: _concrete-debug-map($value, true,
+                                                $indentLevel + $indent);
                 }
                 @else
                 {
