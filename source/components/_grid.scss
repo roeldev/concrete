@@ -2,6 +2,10 @@
 /// concrete | source/components/_grid.scss
 ////
 
+@import 'grid-block';
+
+////////////////////////////////////////////////////////////////////////////////
+
 @function grid-columns($gridSettings...)
 {
     $result:            ();

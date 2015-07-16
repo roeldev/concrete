@@ -137,8 +137,8 @@
 ///
 @function media-query-create($mediaQuery, $breakpoint, $type, $scrollbarBuffer)
 {
-    $max: _media-query-get-value($breakpoint, 'max');
-    $min: _media-query-get-value($breakpoint, 'min');
+    $max: _media-query-get-value($breakpoint, $type, 'max');
+    $min: _media-query-get-value($breakpoint, $type, 'min');
 
     $hasMax: ($max != false);
     $hasMin: ($min != false);
@@ -181,7 +181,7 @@
 
 //------------------------------------------------------------------------------
 
-@function _media-query-get-value($breakpoint, $key)
+@function _media-query-get-value($breakpoint, $type, $key)
 {
     $result: false;
     @if (map-has-key($breakpoint, $key) and one-of($type, 'both' $key))
