@@ -29,8 +29,9 @@ bower install --save concrete
 
 ## How to use
 1. Copy the `main.scss`, `_concrete.scss` and `_concrete-basics.scss` files into your project folder.
-2. Update the `@import` rules so they point to the right file(s) in the `source/` folder of this package.
-3. Now you can change the default values of the settings variables so it suits your project.
+2. Update the `@import` rules so they point to the right file(s) in the `src/` folder of this package.
+3. Change the default values of the settings variables in `_concrete.scss` so it suits your project.
+4. You can rename `main.scss` to whatever you want and place your own custom CSS/SCSS in this file.
 
 All main variables and settings are placed in `_concrete.scss`. Here you can add colors, fonts, breakpoints, or custom variables specific for you project. Now, if you need any of these values, just call the appropiate function. Check the SassDoc documentation in the `sassdoc/` folder for all available functions.
 You can rename `main.scss` to whatever you want. This file is only used as a small starter for your project.
@@ -44,32 +45,33 @@ If you plan to use the grid system or the predefined icon fonts functions, you m
 Within the package you'll find the following folder structure:
 ```
 concrete/
+├── docs/
 ├── examples/
 │   ├── css/
 │   └── scss/
-├── sassdoc/
-├── source/
+├── src/
 │   ├── components/
 │   ├── core/
 │   └── partials/
-├── tests/
-│    └── css/
+├── test/
 ├── _concrete-basics.scss
 ├── _concrete-grid.scss
 ├── _concrete-iconfont.scss
-└── _concrete.scss
+├── _concrete.scss
+└── main.scss
 ```
+All framework related sources files are located in the `src/` folder. It is recommended to check the source to see how the framework works from the inside.
+
 In `examples/` and `examples/scss/` you'll find some basic usage examples. The folder `examples/css/` contains the CSS files wich are compiled from the SCSS files in the `examples/scss/` folder.
 
-The documentation is generated with [SassDoc][url-sassdoc]. Just open the `sassdoc/index.html` file the see a description and wich arguments are expected per function.
+The documentation is generated with [SassDoc][url-sassdoc]. Just open the `docs/index.html` file the see a description and wich arguments are expected per function.
 
-All framework related sources files are located in the `source/` folder. It is recommended the check the source to see how the framework works from the inside.
-
-Some basic tests are available in `tests/`. The compiled results from these tests are saved to `tests/css/`.
-
+Pretty much all functions and mixins have tests in the `test/` dir. Tests are performed with [True][url-true] and [Mocha][url-mocha].
 
 [url-project-main]: https://github.com/roeldev/concrete
 [url-project-releases]: https://github.com/roeldev/concrete/releases
 [url-normalize]: https://github.com/necolas/normalize.css/
 [url-bower-install]: http://bower.io/
 [url-sassdoc]: http://sassdoc.com/
+[url-true]: http://www.ericsuzanne.com/true/
+[url-mocha]: http://mochajs.org/
