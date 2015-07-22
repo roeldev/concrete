@@ -25,11 +25,11 @@ $concrete-breakpoints: _concrete-parse-breakpoints();
 $concrete-breakpoint-scrollbar-buffer:
     _concrete-init-breakpoint-settings($concrete-breakpoint-scrollbar-buffer, 0);
 
-$concrete-container-width:
-    _concrete-init-breakpoint-settings($concrete-container-width, 100%);
+//$concrete-container-width:
+//    _concrete-init-breakpoint-settings($concrete-container-width, 100%);
 
-$concrete-grid-gap:
-    _concrete-init-breakpoint-settings($concrete-grid-gap, 0);
+//$concrete-grid-gap:
+//    _concrete-init-breakpoint-settings($concrete-grid-gap, 0);
 
 /*
     concrete - Sassy CSS framework (https://github.com/roeldev/concrete/)
