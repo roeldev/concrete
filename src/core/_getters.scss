@@ -96,6 +96,18 @@
 }
 
 ///
+/// Returns the font-weight property from a font-style in the
+/// `$concrete-font-styles` setting.
+///
+/// @param {string} $name [default] The name of the font-style
+/// @return {string}
+///
+@function get-font-weight($name: 'default')
+{
+    @return get-font-style-property($name, 'font-weight', 'get-font-weight');
+}
+
+///
 /// Returns the line-height property from a font-style in the
 /// `$concrete-font-styles` setting.
 ///
