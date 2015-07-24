@@ -1,0 +1,18 @@
+////
+/// concrete | source/_basics.scss
+///
+/// This file imports all basic normalized styles for your application.
+/// Only import this file once in your main stylesheet.
+////
+
+@if $concrete-import-normalize
+{
+    @import 'partials/normalize';
+}
+
+@if $concrete-import-defaults
+{
+    @import 'partials/defaults';
+}
+
+@import 'components/helpers';

@@ -1,0 +1,61 @@
+////
+/// concrete | source/components/_fonts.scss
+////
+
+///
+/// A function to add new font-families with `@font-face`.
+///
+/// @param {string} $name
+///        The name of the font-family.
+///
+/// @param {string} $dir
+///        The folder where the folders should be loaded from.
+///
+/// @param {string} $file
+///        The name of the font file without file extension.
+///
+@mixin font-face($name, $dir, $file)
+{
+    $path: ($dir +''+ $file);
+
+    @font-face
+    {
+        font-family: $name;
+        font-weight: normal;
+        font-style:  normal;
+
+        src: url('#{$path}.eot');
+        src: url('#{$path}.eot?#iefix') format('embedded-opentype'),
+             url('#{$path}.woff') format('woff'),
+             url('#{$path}.ttf') format('truetype'),
+             url('#{$path}.svg##{$name}') format('svg');
+    }
+
+    @media screen and (-webkit-min-device-pixel-ratio:0)
+    {
+        @font-face
+        {
+           font-family: $name;
+           src: url('#{$path}.svg##{$name}') format('svg') !important;
+        }
+    }
+}
+
+/*$concrete-font-style-properties:
+(
+    'font-family': true
+);*/
+
+///
+/// Displays all properties from the given font-style.
+///
+@mixin font-style($name, $properties: 'all')
+{
+    font-family: get-font-family($name);
+
+    $fontStyle: get-font-style($name);
+    @each $property, $value in $fontStyle
+    {
+        #{$property}: #{$value};
+    }
+}

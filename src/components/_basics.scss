@@ -1,0 +1,50 @@
+////
+/// concrete | source/components/_basics.scss
+///
+/// @group private
+////
+
+///
+/// This 'private' function will display all headings, wich are defined in the
+/// `$concrete-font-sizes` setting, in partials/_default.scss.
+///
+/// @access private
+///
+@mixin _concrete-display-headings()
+{
+    $fontSizes: ();
+
+    // loop through h1-h6
+    @for $i from 1 through 6
+    {
+        $heading: unquote('h'+ $i);
+
+        // check if the heading is set in the settings file
+        @if map-has-key($concrete-font-sizes, $heading)
+        {
+            // group the elements by font-size
+            $fontSize:  font-size($heading);
+            $fontSizes: map-append($fontSizes, $fontSize, $heading);
+        }
+    }
+
+    // loop through all grouped headings
+    @each $fontSize, $headings in $fontSizes
+    {
+        #{$headings}
+        {
+            font-size: rem($fontSize);
+        }
+
+        // by extending the heading elements, any custom rules to h1-h6 will
+        // also be available to the .h1-.h6 classes
+        @each $heading in $headings
+        {
+            .#{$heading}
+            {
+                @extend #{$heading};
+            }
+        }
+    }
+}
+

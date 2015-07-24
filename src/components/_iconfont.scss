@@ -1,0 +1,72 @@
+////
+/// concrete | source/components/_iconfont.scss
+////
+
+///
+/// You can use this mixin in your main stylesheet. It will make adding icon
+/// fonts, made with for example Fontastic, even easier.
+///
+/// *Iconfont base CSS from fontastic.me.
+///
+/// @param {string} $font
+///        The name of the font file without file extension.
+///
+/// @param {string} $prefix [icon]
+///        A styleclass prefix for the added icons.
+///
+/// @param {string} $dir [/fonts/]
+///        The folder containing the font files.
+///
+@mixin iconfont($font, $prefix: 'icon', $dir: '/fonts/')
+{
+    @include font-face($font, $dir, $font);
+
+    [data-#{$prefix}]:before
+    {
+        @extend %concrete-iconfont;
+        content: attr(data-icon);
+    }
+
+    .#{$prefix}:before,
+    [data-#{$prefix}]:before,
+    [class^='#{$prefix}-']:before,
+    [class*=' #{$prefix}-']:before
+    {
+        @extend %concrete-iconfont;
+
+        font-family: $font !important;
+    }
+
+    @content;
+}
+
+//------------------------------------------------------------------------------
+// Iconfont placeholders
+//------------------------------------------------------------------------------
+%concrete-iconfont
+{
+    font-style: normal !important;
+    font-variant: normal !important;
+    font-weight: normal !important;
+    line-height: 1;
+    text-transform: none !important;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    speak: none;
+    cursor: default;
+    user-select: none;
+
+    @media screen and (-webkit-min-device-pixel-ratio:0)
+    {
+        padding-top: 1px;
+        line-height: 1.15em !important;
+    }
+}
+
+a%concrete-iconfont,
+a %concrete-iconfont,
+button%concrete-iconfont,
+button %concrete-iconfont
+{
+    cursor: pointer;
+}

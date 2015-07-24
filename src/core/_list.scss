@@ -1,0 +1,187 @@
+////
+/// concrete | source/core/_list.scss
+///
+/// Some extra list related functions.
+///
+/// @group Core
+////
+
+///
+/// Creates a new list with $value as it's first value.
+///
+/// @param {mixed} $value
+/// @return {list}
+///
+@function list-create($value: null, $separator: 'auto')
+{
+    $list: ();
+    @return if(is-empty($value), $list, join(($value), $list, $separator));
+}
+
+///
+/// Returns the first value of the list.
+///
+/// @param {list} $list
+/// @return {mixed}
+///
+@function nth-first($list)
+{
+    @return if(is-list($list, 1), nth($list, 1), null);
+}
+
+///
+/// Returns the last value of the list.
+///
+/// @param {list} $list
+/// @return {mixed}
+///
+@function nth-last($list)
+{
+    @return if(is-list($list, 1), nth($list, length($list)), null);
+}
+
+///
+/// Prepend a value to an existing list.
+///
+/// @param {list} $list
+/// @param {mixed} $value
+/// @param {string} $seperator [auto]
+/// @return {list}
+///
+@function prepend($list, $value, $seperator: 'auto')
+{
+    @return join(($value), $list, $seperator);
+}
+
+///
+/// Prepend a value to an existing list.
+///
+/// @param {mixed} $value
+/// @param {list} $list
+/// @return {boolean}
+///
+@function one-of($value, $list)
+{
+    @return not is-null(index($list, $value));
+}
+
+///
+/// Sort a list according to the given sort type function.
+///
+/// @param {list} $list
+/// @param {string} $type [regular]
+/// @param {bool} $reverse [false]
+/// @return {list}
+///
+@function list-sort($list, $type: 'regular', $reverse: false)
+{
+    @if is-list($list, 2)
+    {
+        $func: '_list-sort-'+ $type;
+
+        @if ($reverse == true)
+        {
+            $func: $func +'-reversed';
+        }
+
+        // dynamically call the right sort function
+        @if function-exists($func)
+        {
+            $list: call($func, $list);
+        }
+        @else
+        {
+            @return warn('list-sort', 'Unknown sort type `#{$type}`!');
+        }
+    }
+
+    @return $list;
+}
+
+//------------------------------------------------------------------------------
+// Sort related 'private' functions
+//------------------------------------------------------------------------------
+
+///
+/// Sorts a list of numbers from low to high (0 -> 9).
+///
+/// *Example code taken from Sam Richards' quick-sort function.
+///  https://css-tricks.com/snippets/sass/sorting-function/
+///
+/// @access private
+/// @group private
+///
+@function _list-sort-numeric($list)
+{
+    $length: length($list);
+    @if ($length > 1)
+    {
+        $lower:  ();
+        $equal:  ();
+        $higher: ();
+
+        $middle: nth($list, ceil($length / 2));
+
+        @each $item in $list
+        {
+            @if ($item == $middle)
+            {
+                $equal: append($equal, $item);
+            }
+            @elseif ($item < $middle)
+            {
+                $lower: append($lower, $item);
+            }
+            @else
+            {
+                $higher: append($higher, $item);
+            }
+        }
+
+        $list: join(_list-sort-numeric($lower), $equal);
+        $list: join($list, _list-sort-numeric($higher));
+    }
+    @return $list;
+}
+
+///
+/// Sorts a list of numbers from high to low (9 -> 0).
+///
+/// *Example code taken from Sam Richards' quick-sort function.
+///  https://css-tricks.com/snippets/sass/sorting-function/
+///
+/// @access private
+/// @group private
+///
+@function _list-sort-numeric-reversed($list)
+{
+    $length: length($list);
+    @if ($length > 1)
+    {
+        $lower:  ();
+        $equal:  ();
+        $higher: ();
+
+        $middle: nth($list, ceil($length / 2));
+
+        @each $item in $list
+        {
+            @if ($item == $middle)
+            {
+                $equal: prepend($equal, $item);
+            }
+            @elseif ($item < $middle)
+            {
+                $lower: prepend($lower, $item);
+            }
+            @else
+            {
+                $higher: prepend($higher, $item);
+            }
+        }
+
+        $list: join(_list-sort-numeric-reversed($higher), $equal);
+        $list: join($list, _list-sort-numeric-reversed($lower));
+    }
+    @return $list;
+}

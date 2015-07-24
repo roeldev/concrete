@@ -1,0 +1,264 @@
+////
+/// concrete | test/core_types_tests.scss
+///
+/// @group tests
+////
+
+@import 'true';
+@import '../src/core';
+
+////////////////////////////////////////////////////////////////////////////////
+
+@function _create-arglist($list...)
+{
+    @return $list;
+}
+
+@mixin _test-valids($func, $items)
+{
+    $iL: length($items);
+    @for $i from 1 through $iL
+    {
+        $testTitle: 'Should return true when valid';
+        @if ($iL > 1)
+        {
+            $testTitle: $testTitle +' ['+ $i +']';
+        }
+
+        @include test($testTitle)
+        {
+            $result: call($func, nth($items, $i));
+            @include assert-true($result);
+        }
+    }
+}
+
+@mixin _type-test($func, $valids, $invalids)
+{
+    @include test-module('core/_types: '+ $func +' [function]')
+    {
+        @include _test-valids($func, $valids);
+
+        @each $value in $invalids
+        {
+            $type: type-of($value);
+            @include test('Should return false when using a '+ $type)
+            {
+                $result: call($func, $value);
+                @include assert-false($result);
+            }
+        }
+    }
+}
+
+@mixin _units-test($func, $valids, $invalids)
+{
+    @include test-module('core/_types: '+ $func +' [function]')
+    {
+        @include _test-valids($func, $valids);
+
+        @each $value in $invalids
+        {
+            $unit: unit($value);
+            $unit: if($unit == '', 'no unit', 'unit `'+ $unit +'`');
+
+            @include test('Should return false when using '+ $unit)
+            {
+                $result: call($func, $value);
+                @include assert-false($result);
+            }
+        }
+    }
+}
+
+//------------------------------------------------------------------------------
+
+$TYPE_LIST:    1 2 3 !global;
+$TYPE_ARGLIST: _create-arglist(4 5 6) !global;
+$TYPE_MAP:     ('one': 1, 'two': 2, 'three': 3) !global;
+
+////////////////////////////////////////////////////////////////////////////////
+
+@include _type-test('is-number', 1 1.23em -1% -1.23vh,
+(
+    '1rem',
+    #fff,
+    true,
+    null,
+    $TYPE_LIST,
+    $TYPE_ARGLIST,
+    $TYPE_MAP
+));
+
+@include _type-test('is-string', 'str' '1' 'true' '#ff0',
+(
+    1,
+    #fff,
+    true,
+    null,
+    $TYPE_LIST,
+    $TYPE_ARGLIST,
+    $TYPE_MAP
+));
+
+@include _type-test('is-color', #000 rgb(0, 1, 2) rgba(4, 5, 6, 0.8),
+(
+    0,
+    '#ff0',
+    true,
+    null,
+    $TYPE_LIST,
+    $TYPE_ARGLIST,
+    $TYPE_MAP
+));
+
+@include _type-test('is-bool', true false,
+(
+    1,
+    'true',
+    #000,
+    null,
+    $TYPE_LIST,
+    $TYPE_ARGLIST,
+    $TYPE_MAP
+));
+
+@include _type-test('is-null', null,
+(
+    0,
+    'null',
+    #000,
+    false,
+    $TYPE_LIST,
+    $TYPE_ARGLIST,
+    $TYPE_MAP
+));
+
+@include _type-test('is-scalar', 1 'str' #f00 true null,
+(
+    $TYPE_LIST,
+    $TYPE_ARGLIST,
+    $TYPE_MAP
+));
+
+@include _type-test('is-list', $TYPE_LIST $TYPE_ARGLIST,
+(
+    1,
+    '()',
+    #000,
+    false,
+    null,
+    $TYPE_MAP
+));
+
+// use the same arglist twice, or the arglist will be treated as a list
+// by the _type-test mixin
+@include _type-test('is-arglist', $TYPE_ARGLIST $TYPE_ARGLIST,
+(
+    1,
+    '()',
+    #000,
+    false,
+    null,
+    $TYPE_LIST,
+    $TYPE_MAP
+));
+
+// use same map twice, same reason as above test
+@include _type-test('is-map', $TYPE_MAP $TYPE_MAP,
+(
+    1,
+    '()',
+    #000,
+    false,
+    null,
+    $TYPE_LIST,
+    $TYPE_ARGLIST
+));
+
+@include _type-test('is-empty', '' () null,
+(
+    1,
+    false,
+    0,
+    #000
+));
+
+//------------------------------------------------------------------------------
+
+@include _units-test('is-em', 1em 2343.345em -3452345em,
+(
+    0,
+    2rem,
+    3%,
+    4px,
+    5pt,
+    6in,
+    7s
+));
+
+@include _units-test('is-rem', 1rem 2343.345rem -3452345rem,
+(
+    0,
+    1em,
+    3%,
+    4px,
+    5pt,
+    6in,
+    7s
+));
+
+@include _units-test('is-percent', 1% 2343.345% -3452345%,
+(
+    0,
+    1em,
+    2rem,
+    4px,
+    5pt,
+    6in,
+    7s
+));
+
+@include _units-test('is-pixel', 1px 2343.345px -3452345px,
+(
+    0,
+    1em,
+    2rem,
+    3%,
+    5pt,
+    6in,
+    7s
+));
+
+@include _units-test('is-point', 1pt 2343.345pt -3452345pt,
+(
+    0,
+    1em,
+    2rem,
+    3%,
+    4px,
+    6in,
+    7s
+));
+
+@include _units-test('is-inch', 1in 2343.345in -3452345in,
+(
+    0,
+    1em,
+    2rem,
+    3%,
+    4px,
+    5pt,
+    7s
+));
+
+@include _units-test('is-second', 1s 2343.345s -3452345s,
+(
+    0,
+    1em,
+    2rem,
+    3%,
+    4px,
+    5pt,
+    6in
+));

@@ -1,0 +1,92 @@
+////
+/// concrete | source/core/_init.scss
+///
+/// @group private
+////
+
+//------------------------------------------------------------------------------
+// Private functions
+//------------------------------------------------------------------------------
+
+///
+/// @access private
+/// @group private
+///
+@function _concrete-init-breakpoints()
+{
+    // make a map with the minimum pixel width of the breakpoint as key so we
+    // can sort the breakpoints from largest to smallest
+    $sortedBreakpoints: ();
+    @each $breakpoint, $value in $concrete-breakpoints
+    {
+        @if is-map($value)
+        {
+            $value: map-get($value, 'min');
+        }
+        $sortedBreakpoints: map-append($sortedBreakpoints, $value, $breakpoint);
+    }
+
+    $sortedBreakpoints:  map-ksort($sortedBreakpoints, 'numeric', true);
+
+    @return map-values($sortedBreakpoints);
+}
+
+///
+/// @access private
+/// @group private
+///
+@function _concrete-parse-breakpoints()
+{
+    $result: ();
+    $min:    false;
+    $max:    false;
+
+    // loop through the sorted breakpoints, calculate the start and end widths
+    // of the breakpoint, and rearrange the $concrete-breakpoints map
+    @each $breakpoint in $_concrete-breakpoints
+    {
+        $value: map-get($concrete-breakpoints, $breakpoint);
+        @if is-map($value)
+        {
+            @if ($max == false)
+            {
+                $max: map-get($value, 'max')
+            }
+
+            $min:   map-get($value, 'min');
+            $value: ('max': $max, 'min': $min);
+        }
+        @else
+        {
+            $min:   $value;
+            $value: ('max': $max, 'min': $min);
+        }
+
+        $result: map-append($result, $breakpoint, $value);
+        $max:    ($min - 1);
+    }
+
+    @return $result;
+}
+
+///
+/// @access private
+/// @group private
+///
+@function _concrete-init-breakpoint-settings($values, $defaultValue)
+{
+    $result: ();
+    $value:  $defaultValue;
+
+    @each $breakpoint in $_concrete-breakpoints
+    {
+        @if map-has-key($values, $breakpoint)
+        {
+            $value: map-get($values, $breakpoint);
+        }
+
+        $result: map-append($result, $breakpoint, $value);
+    }
+
+    @return $result;
+}

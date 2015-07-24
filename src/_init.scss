@@ -1,0 +1,51 @@
+////
+/// concrete | source/_init.scss
+///
+/// This file imports all required functions and mixins wich you can use while
+/// developing your project.
+////
+@import 'core';
+@import 'components/basics';
+@import 'components/breakpoints';
+@import 'components/effects';
+@import 'components/fonts';
+@import 'components/shapes';
+@import 'components/transition';
+
+//------------------------------------------------------------------------------
+
+// 'private' framework variables
+$_concrete-debugs:      () !global;
+$_concrete-warnings:    () !global;
+$_concrete-breakpoints: _concrete-init-breakpoints() !global;
+
+// settings that are prepared so they are more easily to use by the framework
+$concrete-breakpoints: _concrete-parse-breakpoints();
+
+$concrete-breakpoint-scrollbar-buffer:
+    _concrete-init-breakpoint-settings($concrete-breakpoint-scrollbar-buffer, 0);
+
+//$concrete-container-width:
+//    _concrete-init-breakpoint-settings($concrete-container-width, 100%);
+
+//$concrete-grid-gap:
+//    _concrete-init-breakpoint-settings($concrete-grid-gap, 0);
+
+/*
+    concrete - Sassy CSS framework (https://github.com/roeldev/concrete/)
+    Copyright (c) 2014-2015 Roel Schut (roelschut.nl)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */

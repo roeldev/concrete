@@ -1,0 +1,25 @@
+//------------------------------------------------------------------------------
+// Required files
+//------------------------------------------------------------------------------
+// All required files to start developing.
+//
+@import 'concrete';
+@import 'concrete-basics';
+//@import 'concrete-grid';
+//@import 'concrete-iconfont';
+
+//------------------------------------------------------------------------------
+
+html
+{
+    // include the default font-style set in `_concrete.scss` to the html doc.
+    @include font-style('default');
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container
+{
+    @extend %concrete-container;
+}

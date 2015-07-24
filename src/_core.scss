@@ -1,0 +1,12 @@
+////
+/// concrete | source/_core.scss
+///
+/// This file imports all core functions used by the framework.
+////
+@import 'core/getters';
+@import 'core/init';
+@import 'core/debug';
+@import 'core/list';
+@import 'core/map';
+@import 'core/types';
+@import 'core/utils';

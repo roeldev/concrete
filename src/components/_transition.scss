@@ -1,0 +1,132 @@
+////
+/// concrete | source/components/_transition.scss
+////
+
+///
+/// @param {list|string} $property
+/// @param {string|number} $duration [default]
+/// @param {bool|string} $easing [false]
+/// @param {bool|number} $delay [false]
+///
+@mixin transition($property, $duration: 'default', $easing: false, $delay: false)
+{
+    // determin the default transition setting group
+    $default: (is-string($duration) and $duration != 'default');
+    $default: if($default, $duration, 'default');
+
+    // retrieve default values where necessary
+    @if ($duration == $default)
+    {
+        $duration: get-transition($default, 'duration');
+    }
+    @if ($easing == false)
+    {
+        $easing: get-transition($default, 'easing');
+    }
+    @if ($delay == false)
+    {
+        $delay: get-transition($default, 'delay');
+        @if not is-second($delay)
+        {
+            $delay: 0s;
+        }
+    }
+
+    $hasPropertyList: is-list($property);
+    $hasDurationList: is-list($duration);
+
+    @if ($hasPropertyList and $hasDurationList)
+    {
+        $propertyListLength: length($property);
+        $durationListLength: length($duration);
+
+        @if ($propertyListLength == $durationListLength)
+        {
+            $transitions: ();
+            @for $i from 1 through $propertyListLength
+            {
+                $p: nth($property, $i);
+                $d: nth($duration, $i);
+
+                $transition:  unquote($p) $d $easing $delay;
+                $transitions: append($transitions, $transition, 'comma');
+            }
+
+            transition: $transitions;
+        }
+        @else
+        {
+            @include transition-property($property);
+            @include transition-duration($duration);
+            @include transition-timing-function($easing);
+            @include transition-delay($delay);
+        }
+    }
+    @else
+    {
+        @if $hasPropertyList
+        {
+            @include transition-property($property);
+            $property: null;
+        }
+        @else
+        {
+            $property: unquote($property);
+        }
+
+        transition: $property $duration unquote($easing) $delay;
+    }
+}
+
+///
+/// @param {string|number} $value [default]
+///
+@mixin transition-delay($value: 'default')
+{
+    @if ($value == 'default' or is-empty($value))
+    {
+        $value: get-transition($value, 'delay');
+    }
+    @if not is-second($value)
+    {
+        $value: 0s;
+    }
+
+    transition-delay: $value;
+}
+
+///
+/// @param {string|number} $value [default]
+///
+@mixin transition-duration($value: 'default')
+{
+    @if ($value == 'default' or is-empty($value))
+    {
+        $value: get-transition($value, 'duration');
+    }
+
+    transition-duration: $value;
+}
+
+///
+/// @param {list|string} $value
+///
+@mixin transition-property($value...)
+{
+    $value: unquote-all($value);
+    transition-property: $value;
+}
+
+///
+/// @param {string} $value
+///
+@mixin transition-timing-function($value: 'default')
+{
+    @if ($value == 'default' or is-empty($value))
+    {
+        $value: get-transition($value, 'easing');
+        $value: unquote($value);
+    }
+
+    transition-timing-function: $value;
+}

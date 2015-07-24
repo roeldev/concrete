@@ -1,0 +1,85 @@
+////
+/// concrete | test/core_map_tests.scss
+///
+/// @group tests
+////
+
+@import 'true';
+@import '../src/core';
+
+////////////////////////////////////////////////////////////////////////////////
+
+@include test-module('core/_map: map-append [function]')
+{
+    @include test('Should add the key and value to the map')
+    {
+        $actual:   map-append(('test': true), 'test2', true);
+        $expected: ('test': true, 'test2': true);
+
+        @include assert-equal($actual, $expected);
+    }
+
+    @include test('Should add the value to existing key in the map [1]')
+    {
+        $actual:   map-append(('test': 1), 'test', 2);
+        $expected: ('test': (1, 2));
+
+        @include assert-equal($actual, $expected);
+    }
+
+    @include test('Should add the value to existing key in the map [2]')
+    {
+        $actual:   map-append(('test': 1), 'test', 2, 'space');
+        $expected: ('test': (1 2));
+
+        @include assert-equal($actual, $expected);
+    }
+}
+
+@include test-module('core/_map: map-get-key [function]')
+{
+    @include test('Should return the first found key from the map [1]')
+    {
+        $input: ('a': 1, 'b': 2, 'c': 3);
+        @include assert-equal(map-get-key($input, 2), 'b');
+    }
+
+    @include test('Should return the first found key from the map [2]')
+    {
+        $input: ('a': 2, 'b': 2, 'c': 3);
+        @include assert-equal(map-get-key($input, 2), 'a');
+    }
+
+    @include test('Should return the first found key from the map [3]')
+    {
+        $input: (1: 'a', 2: 'b', 'a': 1, 'b': 2);
+        @include assert-equal(map-get-key($input, 2), 'b');
+    }
+
+    @include test('Should return null when the key is not found')
+    {
+        $input: ('a': 1, 'b': 2, 'c': 3);
+        @include assert-equal(map-get-key($input, 4), null);
+    }
+}
+
+@include test-module('core/_map: map-ksort [function]')
+{
+    @include test('Should sort the map in numeric order')
+    {
+        $input:    (3: 'a', 4: 'b', 1: 'c', 2: 'd');
+        $actual:   map-ksort($input, 'numeric');
+        $expected: (1: 'c', 2: 'd', 3: 'a', 4: 'b');
+
+        @include assert-equal($actual, $expected);
+    }
+
+    @include test('Should sort the map in reverse numeric order')
+    {
+        $input:    (3: 'a', 4: 'b', 1: 'c', 2: 'd');
+        $actual:   map-ksort($input, 'numeric', true);
+        $expected: (4: 'b', 3: 'a', 2: 'd', 1: 'c');
+
+        @include assert-equal($actual, $expected);
+    }
+}

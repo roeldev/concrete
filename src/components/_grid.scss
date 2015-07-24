@@ -1,0 +1,138 @@
+////
+/// concrete | source/components/_grid.scss
+////
+
+@import 'grid-block';
+
+//------------------------------------------------------------------------------
+
+@function grid-columns($gridSettings...)
+{
+    $result:            ();
+    $resultDefault:     ();
+    $breakpointsLength: length($_concrete-breakpoints);
+
+    @each $colSettings in $gridSettings
+    {
+        $column: nth($colSettings, 1);
+        $width:  nth($colSettings, 2);
+
+        $resultDefault: map-append($resultDefault, $column, $width);
+
+        @if (length($colSettings) >= 3)
+        {
+            $breakpointWidths: nth($colSettings, 3);
+            @for $i from 2 through $breakpointsLength
+            {
+                $breakpoint: nth($_concrete-breakpoints, $i);
+                @if map-has-key($breakpointWidths, $breakpoint)
+                {
+                    $width: map-get($breakpointWidths, $breakpoint);
+                }
+
+                $result: _concrete-grid-column($result,
+                                               $column,
+                                               $breakpoint,
+                                               $width);
+            }
+        }
+        // no custom breakpoint widths, so all widths are equal on
+        // all breakpoints
+        @else
+        {
+            @for $i from 2 through $breakpointsLength
+            {
+                $result: _concrete-grid-column($result,
+                                               $column,
+                                               nth($_concrete-breakpoints, $i),
+                                               $width);
+            }
+        }
+    }
+
+    $result: map-merge(('default': $resultDefault), $result);
+    @return $result;
+}
+
+///
+/// @param {string} $type
+///        Available grid types are `block`, `flex` and `table`.
+///
+/// @param {string|map} $columns [default]
+///        A map with grid columns. When `default`, the grid columns in
+///        $concrete-grid-columns is used.
+///
+/// @todo The flex and table grids are still work in progress.
+///
+@mixin grid-create($type, $columns: 'default')
+{
+    @if ($columns == 'default')
+    {
+        $columns: $concrete-grid-columns;
+    }
+
+    @if ($type == 'block')
+    {
+        @include  _concrete-blockgrid-create($columns);
+    }
+    @else
+    {
+        @include warn('grid',
+            'Unable to create grid, unknown type `#{$type}`!');
+    }
+}
+
+//------------------------------------------------------------------------------
+// Private functions
+//------------------------------------------------------------------------------
+
+///
+/// @access private
+/// @group private
+///
+/// @param {map} $result
+/// @param {string} $column - Column name
+/// @param {string} $breakpoint
+/// @param {number} $width - Column width
+/// @return {map}
+///
+@function _concrete-grid-column($result, $column, $breakpoint, $width)
+{
+    $breakpointWidths: ();
+    @if map-has-key($result, $breakpoint)
+    {
+        $breakpointWidths: map-get($result, $breakpoint);
+    }
+
+    $breakpointWidths: map-append($breakpointWidths, $width, $column);
+    $result: map-merge($result, ($breakpoint: $breakpointWidths));
+
+    @return $result;
+}
+
+///
+/// @access private
+/// @group private
+///
+/// @param {list} $selectors
+/// @param {string} $name
+/// @param {bool|string} $breakpoint [false]
+/// @return {list}
+///
+@function _concrete-grid-selector($selectors, $name, $breakpoint: false)
+{
+    @if ($breakpoint != false)
+    {
+        $name:     $breakpoint +'-'+ $name;
+        $selector: '[data-col*="#{$name}"]';
+    }
+    @else
+    {
+        $selector: '[data-col^="#{$name}"]';
+    }
+
+    $selector:  unquote($selector);
+    $selectors: append($selectors, $selector, 'comma');
+
+    @return $selectors;
+}

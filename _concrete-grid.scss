@@ -1,6 +1,5 @@
 //
 // concrete | _concrete-grid.scss
-// file version: 0.01.002
 //
 // Basic grid settings
 //------------------------------------------------------------------------------
@@ -14,7 +13,7 @@
 // Last but not least, import the concrete initializer. This will import all
 // the needed functions and mixins to get you started :)
 //
-@import 'source/grid';
+@import 'src/grid';
 
 //------------------------------------------------------------------------------
 // Grid columns
@@ -52,6 +51,7 @@
 // .gc-two-third, .gc-lg-two-third { width: 66.67% }
 // .gc-md-two-third { width: 100% }
 //
+
 // scss-lint:disable all
 $concrete-grid-columns: grid-columns(
     '8'   8.33%  ('sm': 50%,  'md': 25%), // 1/12

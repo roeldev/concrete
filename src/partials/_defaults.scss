@@ -1,0 +1,128 @@
+////
+/// concrete | source/partials/_defaults.scss
+////
+
+// scss-lint:disable all
+/*! concrete v0.4.0 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
+// scss-lint:enable all
+
+html
+{
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body
+{
+    width: 100%;
+    min-height: 100%;
+}
+
+//------------------------------------------------------------------------------
+// Use box-sizing: border-box on all element.
+//------------------------------------------------------------------------------
+*,
+*:before,
+*:after
+{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+//------------------------------------------------------------------------------
+// Default button and hyperlink styles
+//------------------------------------------------------------------------------
+a,
+button
+{
+    cursor: pointer;
+
+    &:active,
+    &:hover
+    {
+        outline: 0;
+    }
+}
+
+a
+{
+    text-decoration: none;
+}
+
+button
+{
+    appearance: none;
+}
+
+//------------------------------------------------------------------------------
+// Headings
+//------------------------------------------------------------------------------
+// Group heading by font-size. So headings with the same font-sizes are put in
+// a list and displayed together.
+//
+//@include _concrete-display-headings();
+
+//------------------------------------------------------------------------------
+// Paragraphs and text elements
+//------------------------------------------------------------------------------
+p
+{
+    padding-bottom: get-line-height('default');
+
+    &:last-child
+    {
+        padding-bottom: 0;
+    }
+}
+
+p,
+address,
+figcaption
+{
+    line-height: get-line-height('default');
+}
+
+address
+{
+    font-style: normal;
+}
+
+//------------------------------------------------------------------------------
+// Default styles for other elements
+//------------------------------------------------------------------------------
+input,
+select,
+option,
+textarea,
+button
+{
+    font-family: get-font-family('default');
+
+    &:focus
+    {
+        outline: none;
+    }
+}
+
+//------------------------------------------------------------------------------
+
+img
+{
+    vertical-align: middle;
+    -ms-interpolation-mode: bicubic;
+}
+
+//------------------------------------------------------------------------------
+
+ul,
+ol
+{
+    padding-left: 20px;
+}
+
+nav > ul
+{
+    @extend %concrete-menu-list;
+}

@@ -1,0 +1,95 @@
+////
+/// concrete | source/components/_grid-block.scss
+////
+
+///
+/// @access private
+/// @group private
+///
+/// @param {map} $grid
+///
+@mixin _concrete-blockgrid-create($grid)
+{
+    &.grid-row,
+    .grid-row
+    {
+        @extend %concrete-blockgrid-row;
+    }
+
+    [data-col]
+    {
+        @extend %concrete-blockgrid-column;
+    }
+
+    // add the default column widths
+    $defaultColumnWidths: map-get($grid, 'default');
+    @each $name, $width in $defaultColumnWidths
+    {
+        [data-col^="#{$name}"]
+        {
+            width: $width;
+        }
+    }
+
+    // the columns widths per breakpoint
+    @each $breakpoint in $_concrete-breakpoints
+    {
+        @if map-has-key($grid, $breakpoint)
+        {
+            @include breakpoint($breakpoint, 'max')
+            {
+                $columnWidths: map-get($grid, $breakpoint);
+                @each $width, $names in $columnWidths
+                {
+                    $selectors: ();
+                    @each $name in $names
+                    {
+                        // when the column width for this breakpoint is
+                        // different from the default column width, add the
+                        // default column (without breakpoint prefix) selector
+                        // to the list of selectors for the new width.
+                        // by doing this, the grid will automatically respond
+                        // to the breakpoint, thus making the grid responsive
+                        @if ($width != map-get($defaultColumnWidths, $name))
+                        {
+                            $defaultColumnWidths: map-merge($defaultColumnWidths, ($name: $width));
+                            $selectors: _concrete-grid-selector($selectors, $name);
+                        }
+
+                        $selectors: _concrete-grid-selector($selectors, $name, $breakpoint);
+                    }
+
+                    #{$selectors}
+                    {
+                        width: $width;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//------------------------------------------------------------------------------
+// Blockgrid placeholders
+//------------------------------------------------------------------------------
+%concrete-blockgrid-row
+{
+    @extend %concrete-clearfix;
+
+    display: block;
+    overflow: hidden;
+}
+
+%concrete-blockgrid-column
+{
+    display: block;
+    position: relative;
+    float: left;
+
+    &.grid-stretch,
+    %concrete-blockgrid-row.grid-stretch &
+    {
+        margin-bottom: -100%;
+        padding-bottom: 100%;
+    }
+}
