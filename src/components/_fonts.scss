@@ -41,21 +41,20 @@
     }
 }
 
-/*$concrete-font-style-properties:
-(
-    'font-family': true
-);*/
-
 ///
 /// Displays all properties from the given font-style.
 ///
 @mixin font-style($name, $properties: 'all')
 {
-    font-family: get-font-family($name);
-
     $fontStyle: get-font-style($name);
     @each $property, $value in $fontStyle
     {
+        $func: 'get-'+ $property;
+        @if (function-exists($func))
+        {
+            $value: call($func, $name);
+        }
+
         #{$property}: #{$value};
     }
 }
