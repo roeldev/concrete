@@ -218,7 +218,11 @@
         @if (is-map($fontStyle) and map-has-key($fontStyle, $property))
         {
             $result: map-get($fontStyle, $property);
-            $result: if($quote == true, quote($result), unquote($result));
+
+            @if is-string($result)
+            {
+                $result: if($quote == true, quote($result), unquote($result));
+            }
 
             @return $result;
         }

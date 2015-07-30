@@ -35,11 +35,9 @@
 /// overwritten and set to a default value for that type.
 ///
 /// @param {mixed} $var - The variable to check.
-///
 /// @param {string|list} $type - The type $var should be.
-///
-/// @param {mixed} $default [null]
-///        The default value to return if type-of($var) != $type.
+/// @param {mixed} $default [null] - The default value to return if
+///                                  type-of($var) != $type.
 ///
 /// @return {mixed}
 ///
@@ -135,9 +133,8 @@
 /// Example taken from http://vvv.tobiassjosten.net/css/px-to-em-with-sass/
 ///
 /// @param {number} $from - The value to calculate the em value from.
-///
-/// @param {number|string} $base [default]
-///        The font-size to compare the $from value with.
+/// @param {number|string} $base [default] - The font-size to compare the
+///                                          $from value with.
 ///
 /// @return {number}
 ///
@@ -158,12 +155,14 @@
 /// font-size in the body html element.
 ///
 /// @param {number} $from - The pixel value to calculate the rem value from.
+/// @param {number} $baseFallback - Fallback base pixel value when the default
+///                                 font-size cannot be retrieved.
 /// @return {number}
 ///
-@function rem($from)
+@function rem($from, $baseFallback: 16px)
 {
     $base: get-font-size();
-    $base: set-unit($base, 'px', 16px);
+    $base: set-unit($base, 'px', $baseFallback);
 
     @return if(unit($from) == 'px',
                (($from / $base) * 1rem),

@@ -2,7 +2,7 @@
   "name": "concrete",
   "description": "Sassy CSS framework. Includes functions/mixins for media queries/breakpoints, flexible responsive grids and debugging custom Sass + more!",
   "homepage": "https://github.com/roeldev/concrete",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "license": "GPL-2.0+",
   "main": [
     "source/_init.scss"
