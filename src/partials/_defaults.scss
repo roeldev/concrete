@@ -51,21 +51,6 @@ a
     text-decoration: none;
 }
 
-button
-{
-    appearance: none;
-    background: none;
-    border: 0;
-}
-
-//------------------------------------------------------------------------------
-// Headings
-//------------------------------------------------------------------------------
-// Group heading by font-size. So headings with the same font-sizes are put in
-// a list and displayed together.
-//
-//@include _concrete-display-headings();
-
 //------------------------------------------------------------------------------
 // Paragraphs and text elements
 //------------------------------------------------------------------------------

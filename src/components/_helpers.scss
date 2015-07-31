@@ -241,3 +241,13 @@ canvas
         max-height: 100%;
     }
 }
+
+//------------------------------------------------------------------------------
+// Default button and hyperlink placeholders
+//------------------------------------------------------------------------------
+%concrete-button-reset
+{
+    appearance: none;
+    background: none;
+    border: 0;
+}
