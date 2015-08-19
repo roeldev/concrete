@@ -15,9 +15,10 @@
 //------------------------------------------------------------------------------
 
 // 'private' framework variables
-$_concrete-debugs:      () !global;
-$_concrete-warnings:    () !global;
-$_concrete-breakpoints: _concrete-init-breakpoints() !global;
+$_concrete-debugs:        () !global;
+$_concrete-warnings:      () !global;
+$_concrete-breakpoints:   _concrete-init-breakpoints() !global;
+$_concrete-in-breakpoint: null !global;
 
 // settings that are prepared so they are more easily to use by the framework
 $concrete-breakpoints: _concrete-parse-breakpoints();

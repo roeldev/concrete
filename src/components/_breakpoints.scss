@@ -24,16 +24,34 @@
 
     @if is-list($mediaQuery, 1)
     {
+        // show debug info about the current breakpoint
         @if $concrete-debug-breakpoints
         {
             @include debug($breakpoint, $type);
         }
 
+        // update current active breakpoint
+        $previousBreakpoint: $_concrete-in-breakpoint;
+        $_concrete-in-breakpoint: $breakpoint !global;
+
         @media #{$mediaQuery}
         {
             @content;
         }
+
+        // update active breakpoint to previous value
+        $_concrete-in-breakpoint: $previousBreakpoint !global;
     }
+}
+
+///
+/// The current breakpoint used with the breakpoint() mixin.
+///
+/// @return {string|null}
+///
+@function current-breakpoint()
+{
+    @return $_concrete-in-breakpoint;
 }
 
 //------------------------------------------------------------------------------
