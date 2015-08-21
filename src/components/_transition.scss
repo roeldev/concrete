@@ -114,6 +114,8 @@
 @mixin transition-property($value...)
 {
     $value: unquote-all($value);
+    $value: join($value, (), 'comma');
+
     transition-property: $value;
 }
 
