@@ -243,9 +243,17 @@ canvas
 }
 
 //------------------------------------------------------------------------------
-// Default button and hyperlink placeholders
+// Input and button reset placeholders
 //------------------------------------------------------------------------------
-%concrete-button-reset
+%concrete-reset-input,
+%concrete-reset-textarea
+{
+    appearance: none;
+    background-color: #fff;
+    border-radius: 0;
+}
+
+%concrete-reset-button
 {
     appearance: none;
     background: none;
