@@ -20,6 +20,16 @@
 }
 
 ///
+/// @param {string} $type
+/// @param {list|color} $start
+/// @param {list|color|null} $end [null]
+///
+@mixin fx-gradient($type, start, $end: null)
+{
+
+}
+
+///
 /// *Mixin taken from Bootstrap
 ///
 /// @param {color} $startColor
@@ -67,4 +77,22 @@
 
     // IE9 and down
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($startColor)}', endColorstr='#{ie-hex-str($endColor)}', GradientType=0);
+}
+
+///
+/// @param {color} $startColor
+/// @param {color} $endColor
+/// @param {number} $startPercent [0%]
+/// @param {number} $endPercent [100%]
+///
+@mixin fx-gradient-radial($startColor,
+                          $endColor,
+                          $startPercent: 0%,
+                          $endPercent: 100%)
+{
+    // Chrome10+, Safari5.1+
+    background: -webkit-radial-gradient(center, ellipse cover, $startColor $startPercent, $endColor $endPercent);
+    // Opera 12+
+    background: -o-radial-gradient(center, ellipse cover, $startColor $startPercent, $endColor $endPercent);
+    background: radial-gradient(ellipse at center,  $startColor $startPercent, $endColor $endPercent);
 }
