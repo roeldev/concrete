@@ -6,12 +6,29 @@ var SassTrue   = require('sass-true');
 
 ////////////////////////////////////////////////////////////////////////////////
 
-var $files = FileSystem.readdirSync(__dirname);
-$files.forEach(function($file)
+function readDir($dir)
 {
-    if (Path.extname($file) === '.scss' && $file.substr(0, 1) !== '_')
+    var $items = FileSystem.readdirSync($dir);
+    $items.forEach(function($item)
     {
-        $file = Path.resolve(__dirname, './'+ $file);
-        SassTrue.runSass({ 'file': $file }, describe, it);
-    }
-});
+        // ignore dirs and files starting with _
+        if ($item.substr(0, 1) == '_') return;
+
+        // when subdir
+        if (!Path.extname($item))
+        {
+            $item = Path.join($dir, $item);
+            readDir($item);
+        }
+        // when scss file
+        else if (Path.extname($item) === '.scss')
+        {
+            $item = Path.resolve($dir, './'+ $item);
+            SassTrue.runSass({ 'file': $item }, describe, it);
+        }
+    });
+}
+
+//------------------------------------------------------------------------------
+
+readDir(__dirname);
