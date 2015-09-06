@@ -1,0 +1,212 @@
+////
+/// concrete | test/components_effects.scss
+///
+/// @group tests
+////
+
+@import 'true';
+@import '../../src/core';
+@import '../../src/components/effects';
+
+////////////////////////////////////////////////////////////////////////////////
+
+@include test-module('components/_effects: fx-text-shadow [mixin]')
+{
+    @include test('Should output a red 2px text-shadow')
+    {
+        @include assert('')
+        {
+            @include input
+            {
+                @include fx-text-shadow(red, 2px);
+            }
+
+            @include expect
+            {
+                text-shadow: 1px 1px red, 2px 2px red;
+            }
+        }
+    }
+}
+
+@include test-module('components/_effects: _fx-gradient-param [function]')
+{
+    @include test('Should return a list with both values')
+    {
+        $actual: _fx-gradient-param(red, 0%);
+
+        @include assert-equal($actual, (red 0%));
+    }
+
+    @include test('Should return the same input value')
+    {
+        $input:  (red 45%);
+        $actual: _fx-gradient-param($input, 0%);
+
+        @include assert-equal($actual, $input);
+    }
+
+    @include test('Should return a list with the color and position')
+    {
+        $actual: _fx-gradient-param((45% red), 0%);
+
+        @include assert-equal($actual, (red 45%));
+    }
+
+    @include test('Should return a list with color from default param [1]')
+    {
+        $color:   red; // 100% alpha
+        $default: ($color 45%);
+        $actual:  _fx-gradient-param(false, 10%, $default);
+        $color:   rgba($color, 0);
+
+        @include assert-equal($actual, ($color 10%));
+    }
+
+    @include test('Should return a list with color from default param [2]')
+    {
+        $color:   rgba(blue, 0); // 0% alpha = transparant
+        $default: ($color 95%);
+        $actual:  _fx-gradient-param(false, 25%, $default);
+        $color:   rgba($color, 1);
+
+        @include assert-equal($actual, ($color 25%));
+    }
+}
+
+@include test-module('components/_effects: fx-gradient-horizontal [mixin]')
+{
+    @include test('Should create a linear horizontal gradient')
+    {
+        @include assert('')
+        {
+            @include input
+            {
+                @include fx-gradient-horizontal(#000, #fff);
+            }
+
+            @include expect
+            {
+                background: -webkit-linear-gradient(left, #000 0%, #fff 100%);
+                background: -o-linear-gradient(left, #000 0%, #fff 100%);
+                background: linear-gradient(to right, #000 0%, #fff 100%);
+                background-repeat: repeat-x;
+                filter: progid:DXImageTransform.Microsoft.gradient(
+                            startColorstr='#FF000000',
+                            endColorstr='#FFFFFFFF',
+                            GradientType=1 );
+            }
+        }
+    }
+
+    @include test('Should create a linear horizontal gradient to transparant')
+    {
+        @include assert('')
+        {
+            @include input
+            {
+                @include fx-gradient-horizontal(#f00 5%);
+            }
+
+            @include expect
+            {
+                background: -webkit-linear-gradient(left, #f00 5%, rgba(255, 0, 0, 0) 100%);
+                background: -o-linear-gradient(left, #f00 5%, rgba(255, 0, 0, 0) 100%);
+                background: linear-gradient(to right, #f00 5%, rgba(255, 0, 0, 0) 100%);
+                background-repeat: repeat-x;
+                filter: progid:DXImageTransform.Microsoft.gradient(
+                            startColorstr='#FFFF0000',
+                            endColorstr='#00FF0000',
+                            GradientType=1 );
+            }
+        }
+    }
+}
+
+@include test-module('components/_effects: fx-gradient-vertical [mixin]')
+{
+    @include test('Should create a linear vertical gradient')
+    {
+        @include assert('')
+        {
+            @include input
+            {
+                @include fx-gradient-vertical(#000 33%, #fff);
+            }
+
+            @include expect
+            {
+                background: -webkit-linear-gradient(top, #000 33%, #fff 100%);
+                background: -o-linear-gradient(top, #000 33%, #fff 100%);
+                background: linear-gradient(to bottom, #000 33%, #fff 100%);
+                background-repeat: repeat-x;
+                filter: progid:DXImageTransform.Microsoft.gradient(
+                            startColorstr='#FF000000',
+                            endColorstr='#FFFFFFFF',
+                            GradientType=0 );
+            }
+        }
+    }
+
+    @include test('Should create a linear vertical gradient to transparant')
+    {
+        @include assert('')
+        {
+            @include input
+            {
+                @include fx-gradient-vertical(#f00 5%);
+            }
+
+            @include expect
+            {
+                background: -webkit-linear-gradient(top, #f00 5%, rgba(255, 0, 0, 0) 100%);
+                background: -o-linear-gradient(top, #f00 5%, rgba(255, 0, 0, 0) 100%);
+                background: linear-gradient(to bottom, #f00 5%, rgba(255, 0, 0, 0) 100%);
+                background-repeat: repeat-x;
+                filter: progid:DXImageTransform.Microsoft.gradient(
+                            startColorstr='#FFFF0000',
+                            endColorstr='#00FF0000',
+                            GradientType=0 );
+            }
+        }
+    }
+}
+
+@include test-module('components/_effects: fx-gradient-radial [mixin]')
+{
+    @include test('Should create a radial gradient')
+    {
+        @include assert('')
+        {
+            @include input
+            {
+                @include fx-gradient-radial(#000 100%, #f00 5%);
+            }
+
+            @include expect
+            {
+                background: -webkit-radial-gradient(center, ellipse cover, #000 100%, #f00 5%);
+                background: -o-radial-gradient(center, ellipse cover, #000 100%, #f00 5%);
+                background: radial-gradient(ellipse at center, #000 100%, #f00 5%);
+            }
+        }
+    }
+
+    @include test('Should create a radial gradient to transparent')
+    {
+        @include assert('')
+        {
+            @include input
+            {
+                @include fx-gradient-radial(#000);
+            }
+
+            @include expect
+            {
+                background: -webkit-radial-gradient(center, ellipse cover, #000 0%, transparent 100%);
+                background: -o-radial-gradient(center, ellipse cover, #000 0%, transparent 100%);
+                background: radial-gradient(ellipse at center, #000 0%, transparent 100%);
+            }
+        }
+    }
+}

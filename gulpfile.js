@@ -16,7 +16,7 @@ var SassDoc             = require('sassdoc');
 ////////////////////////////////////////////////////////////////////////////////
 
 var SRC_EXAMPLES = './examples/scss/*.scss';
-var SRC_TESTS    = './test/*.scss';
+var SRC_TESTS    = './test/**/*.scss';
 var SRC_SOURCE   = ['./src/**/*.scss', './*.scss',
                     '!node_modules/*', '!docs/*'];
 

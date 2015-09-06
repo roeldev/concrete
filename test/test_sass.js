@@ -14,16 +14,16 @@ function readDir($dir)
         // ignore dirs and files starting with _
         if ($item.substr(0, 1) == '_') return;
 
+        $item = Path.join($dir, $item);
+
         // when subdir
         if (!Path.extname($item))
         {
-            $item = Path.join($dir, $item);
             readDir($item);
         }
         // when scss file
         else if (Path.extname($item) === '.scss')
         {
-            $item = Path.resolve($dir, './'+ $item);
             SassTrue.runSass({ 'file': $item }, describe, it);
         }
     });
