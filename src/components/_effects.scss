@@ -2,13 +2,15 @@
 /// concrete | source/components/_effects.scss
 ///
 /// Some easy to use and pretty cool effects!
+///
+/// @group effects
 ////
 
 ///
 /// Creates a text-shadow effect
 ///
-/// @param {color} $color - Color of the text shadow effect
-/// @param {number} $size - Size of the text shadow effect
+/// @param {color} $color - Color of the text shadow effect.
+/// @param {number} $size - Size of the text shadow effect.
 ///
 @mixin fx-text-shadow($color, $size)
 {
@@ -38,8 +40,8 @@
 /// fx-gradient-horizontal(red 5%, blue 95%);
 /// Creates a red to blue gradient from positions 0% to 100%;
 ///
-/// @param {color|list} $start - Starting color/position
-/// @param {color|list|null} $end [null] - Ending color/position
+/// @param {color|list} $start - Starting color/position.
+/// @param {color|list|null} $end [null] - Ending color/position.
 ///
 @mixin fx-gradient-horizontal($start, $end: null)
 {
@@ -54,8 +56,8 @@
 ///
 /// Creates a vertical gradient. See fx-gradient-horizontal for further details.
 ///
-/// @param {color|list} $start - Starting color/position
-/// @param {color|list|null} $end [null] - Ending color/position
+/// @param {color|list} $start - Starting color/position.
+/// @param {color|list|null} $end [null] - Ending color/position.
 ///
 @mixin fx-gradient-vertical($start, $end: null)
 {
@@ -70,8 +72,8 @@
 ///
 /// Creates a radial gradient. See fx-gradient-horizontal for further details.
 ///
-/// @param {color|list} $start - Starting color/position
-/// @param {color|list|null} $end [null] - Ending color/position
+/// @param {color|list} $start - Starting color/position.
+/// @param {color|list|null} $end [null] - Ending color/position.
 ///
 @mixin fx-gradient-radial($start, $end: null)
 {
@@ -116,10 +118,10 @@
 /// @access private
 /// @group private
 ///
-/// @param {color|list} $param - Starting/ending color and position
-/// @param {number} $position - The fallback position percent value
+/// @param {color|list} $param - Starting/ending color and position.
+/// @param {number} $position - The fallback position percent value.
 /// @param {list|boolean} $defaultParam [false] - Already parsed color and
-///         position list wich are used as fallback
+///         position list wich are used as fallback.
 /// @return {list|boolean}
 ///
 @function _fx-gradient-param($param, $position, $defaultParam: false)
@@ -140,7 +142,7 @@
 
             $result: ($nth1 $position);
         }
-        @else if is-color($nth2)
+        @elseif is-color($nth2)
         {
             @if is-percent($nth1)
             {
@@ -150,13 +152,13 @@
             $result: ($nth2 $position);
         }
     }
-    @else if is-color($param)
+    @elseif is-color($param)
     {
         $result: ($param $position);
     }
     // the param to parse is neither a color or list, so treat it as an invalid
     // value. use the first value (color) from the default parameter
-    @else if is-list($defaultParam)
+    @elseif is-list($defaultParam)
     {
         @if is-percent($param)
         {
@@ -180,12 +182,12 @@
 /// @access private
 /// @group private
 ///
-/// @param {string} $function - The fx-gradient-* function wich is used
-/// @param {string} $direction1 - Direction of the gradient (old spec)
-/// @param {string} $direction2 - Direction of the gradient (current spec)
-/// @param {number} $ieGradientType - IE <=9 GradientType value
-/// @param {color|list} $start - Starting color/position
-/// @param {color|list|null} $end [null] - Ending color/position
+/// @param {string} $function - The fx-gradient-* function wich is used.
+/// @param {string} $direction1 - Direction of the gradient (old spec).
+/// @param {string} $direction2 - Direction of the gradient (current spec).
+/// @param {number} $ieGradientType - IE <=9 GradientType value.
+/// @param {color|list} $start - Starting color/position.
+/// @param {color|list|null} $end [null] - Ending color/position.
 ///
 @mixin _fx-gradient-linear($function,
                            $direction1,

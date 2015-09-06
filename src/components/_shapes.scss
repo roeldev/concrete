@@ -1,5 +1,7 @@
 ////
 /// concrete | source/components/_shapes.scss
+///
+/// @group shapes
 ////
 
 ///
@@ -42,15 +44,12 @@
 ///
 /// *Created using example from http://css-tricks.com/examples/ShapesOfCSS/
 ///
-/// @param {string} $direction
-///        The direction of the triangle point. Valid values are `up`/`u`,
-///        `down`/`d`, `left`/`l`, `right`/`r`, `top-left`/`tl`,
-///        `top-right`/`tr`, `bottom-left`/`bl` or `bottom-right`/`br`.
-///
+/// @param {string} $direction - The direction of the triangle point. Valid
+///         values are `up`/`u`, `down`/`d`, `left`/`l`, `right`/`r`,
+///         `top-left`/`tl`, `top-right`/`tr`, `bottom-left`/`bl` or
+///         `bottom-right`/`br`.
 /// @param {color} $color - The color of the triangle.
-///
 /// @param {number} $size - The size of the triangle.
-///
 /// @param {number} $size2 [false]
 ///
 @mixin shape-triangle($direction, $color, $size, $size2: false)

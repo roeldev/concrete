@@ -21,7 +21,7 @@
 ///
 /// Returns a font-style list from the `$concrete-font-styles` setting.
 ///
-/// @param {string} $name [default] The name of the font-style
+/// @param {string} $name [default] The name of the font-style.
 /// @return {map}
 ///
 @function get-font-style($name: 'default')
@@ -38,9 +38,9 @@
 /// Returns a font-style property from a font-style in the
 /// `$concrete-font-styles` setting.
 ///
-/// @param {string} $name [default] The name of the font-style
-/// @param {string} $property The name of the property of the font-style
-/// @param {boolean} $quote Quote the returned value?
+/// @param {string} $name - The name of the font-style.
+/// @param {string} $property - The name of the property of the font-style.
+/// @param {boolean} $quote - Quote the returned value?.
 ///
 /// @return {mixed}
 ///
@@ -56,7 +56,7 @@
 /// Returns the font-family property from a font-style in the
 /// `$concrete-font-styles` setting.
 ///
-/// @param {string} $name [default] The name of the font-style
+/// @param {string} $name [default] - The name of the font-style.
 /// @return {string}
 ///
 @function get-font-family($name: 'default')
@@ -68,7 +68,7 @@
 /// Returns the font-size property from a font-style in the
 /// `$concrete-font-styles` setting.
 ///
-/// @param {string} $name [default] The name of the font-style
+/// @param {string} $name [default] - The name of the font-style.
 /// @return {string}
 ///
 @function get-font-size($name: 'default')
@@ -80,7 +80,7 @@
 /// Returns the font-weight property from a font-style in the
 /// `$concrete-font-styles` setting.
 ///
-/// @param {string} $name [default] The name of the font-style
+/// @param {string} $name [default] - The name of the font-style.
 /// @return {string}
 ///
 @function get-font-weight($name: 'default')
@@ -92,7 +92,7 @@
 /// Returns the line-height property from a font-style in the
 /// `$concrete-font-styles` setting.
 ///
-/// @param {string} $name [default] The name of the font-style
+/// @param {string} $name [default] - The name of the font-style.
 /// @return {string}
 ///
 @function get-line-height($name: 'default')
@@ -137,11 +137,8 @@
 /// stored in `$concrete-warnings`.
 ///
 /// @param {string} $breakpoint [default] - The breakpoint to return.
-///
-/// @param {bool|string} $value [false]
-///        The value of the breakpoint to return. This can be either `min`,
-///        `max`, `false` or `both`.
-///
+/// @param {bool|string} $value [false] - The value of the breakpoint to return.
+///         This can be either `min`, `max`, `false` or `both`.
 /// @return {map|number}
 ///
 @function get-breakpoint($breakpoint: null, $value: false)
@@ -180,7 +177,6 @@
 /// Returns a width value from the `$concrete-container-width` setting.
 ///
 /// @param {string} $breakpoint [default]
-///
 /// @return {number}
 ///
 @function get-container-width($breakpoint: 'default')
@@ -194,11 +190,13 @@
 /// Returns a font-style property from a font-style in the
 /// `$concrete-font-styles` setting.
 ///
-/// @param {string} $name The name of the font-style
-/// @param {string} $property The name of the property of the font-style
-/// @param {boolean} $quote [false] Quote the returned value?
-/// @param {string} $errorFnName [''] Name of the function that is used
+/// @access private
+/// @group private
 ///
+/// @param {string} $name - The name of the font-style.
+/// @param {string} $property - The name of the property of the font-style.
+/// @param {boolean} $quote [false] - Quote the returned value?
+/// @param {string} $errorFnName [''] - Name of the function that is used.
 /// @return {mixed}
 ///
 @function _get-font-style-property($name,

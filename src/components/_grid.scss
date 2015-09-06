@@ -1,5 +1,7 @@
 ////
 /// concrete | source/components/_grid.scss
+///
+/// @group grid
 ////
 
 @import 'grid-block';
@@ -55,12 +57,10 @@
 }
 
 ///
-/// @param {string} $type
-///        Available grid types are `block`, `flex` and `table`.
-///
-/// @param {string|map} $columns [default]
-///        A map with grid columns. When `default`, the grid columns in
-///        $concrete-grid-columns is used.
+/// @param {string} $type - Available grid types are `block`, `flex` and
+///         `table`.
+/// @param {string|map} $columns [default] - A map with grid columns. When
+///         `default`, the grid columns in $concrete-grid-columns is used.
 ///
 /// @todo The flex and table grids are still work in progress.
 ///
