@@ -77,6 +77,8 @@ Gulp.task('test', function($callback)
 {
     GulpDelayTask(500, function()
     {
+        process.stdout.write('\u001b[2J');
+
         Gulp.src('test/*.js', { 'read': false })
             .pipe( GulpPlumber($plumberOptions) )
             .pipe( GulpMocha({ 'reporter': 'spec' }) );
