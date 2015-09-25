@@ -134,6 +134,11 @@
         vertical-align: middle;
         height: 100%;
     }
+
+    > %concrete-center-middle //.center-middle
+    {
+        @include apply-valign-middle(true);
+    }
 }
 
 %concrete-center-xy //.center-xy
