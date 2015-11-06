@@ -121,14 +121,12 @@
 ///
 @function _concrete-grid-selector($selectors, $name, $breakpoint: false)
 {
+    $selector: '[data-col^="#{$name}"]';
+
     @if ($breakpoint != false)
     {
         $name:     $breakpoint +'-'+ $name;
         $selector: '[data-col*="#{$name}"]';
-    }
-    @else
-    {
-        $selector: '[data-col^="#{$name}"]';
     }
 
     $selector:  unquote($selector);
