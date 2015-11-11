@@ -2,11 +2,14 @@
 
 [![Bower version][bower-img]][bower-url]
 [![Build][travis-img]][travis-url]
+[![Dependency Status][david-img]][david-url]
 
-[bower-img]: https://img.shields.io/bower/v/concrete.svg
-[bower-url]: https://github.com/roeldev/concrete
-[travis-img]: https://img.shields.io/travis/roeldev/concrete/master.svg
-[travis-url]: https://travis-ci.org/roeldev/concrete
+  [bower-img]: https://img.shields.io/bower/v/concrete.svg
+  [bower-url]: https://github.com/roeldev/concrete
+  [travis-img]: https://img.shields.io/travis/roeldev/concrete/master.svg
+  [travis-url]: https://travis-ci.org/roeldev/concrete
+  [david-img]: https://david-dm.org/roeldev/concrete/dev-status.svg
+  [david-url]: https://david-dm.org/roeldev/concrete#info=devDependencies
 
 **Sassy CSS framework**
 
