@@ -1,4 +1,4 @@
-/* line 7, stdin */
+/* line 6, stdin */
 html,
 body {
   height: 100%; }
@@ -14,6 +14,5 @@ header {
   height: 200px;
   margin-top: 20px; }
   /* line 24, stdin */
-  .center-example
-.center-x {
+  .center-example .center-x {
     background-color: yellow; }

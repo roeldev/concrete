@@ -17,12 +17,12 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-/* line 15, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 15, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%; }
 
-/* line 51, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 39, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 article,
 aside,
 details,
@@ -38,7 +38,7 @@ section,
 summary {
   display: block; }
 
-/* line 63, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 60, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 audio,
 canvas,
 progress,
@@ -46,48 +46,48 @@ video {
   display: inline-block;
   vertical-align: baseline; }
 
-/* line 73, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 73, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 audio:not([controls]) {
   display: none;
   height: 0; }
 
-/* line 84, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 83, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 [hidden],
 template {
   display: none; }
 
-/* line 95, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 95, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 a {
   background-color: transparent; }
 
-/* line 105, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 104, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 a:active,
 a:hover {
   outline: 0; }
 
-/* line 116, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 116, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 abbr[title] {
   border-bottom: 1px dotted; }
 
-/* line 125, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 124, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 b,
 strong {
   font-weight: bold; }
 
-/* line 133, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 133, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 dfn {
   font-style: italic; }
 
-/* line 151, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 151, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 mark {
   background: #ff0;
   color: #000; }
 
-/* line 160, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 160, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 small {
   font-size: 80%; }
 
-/* line 169, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 168, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 sub,
 sup {
   font-size: 75%;
@@ -95,36 +95,36 @@ sup {
   position: relative;
   vertical-align: baseline; }
 
-/* line 176, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 176, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 sup {
   top: -0.5em; }
 
-/* line 180, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 180, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 sub {
   bottom: -0.25em; }
 
-/* line 191, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 191, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 img {
   border: 0; }
 
-/* line 199, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 199, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 svg:not(:root) {
   overflow: hidden; }
 
-/* line 210, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 210, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 figure {
   margin: 1em 40px; }
 
-/* line 218, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 218, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 hr {
   box-sizing: content-box;
   height: 0; }
 
-/* line 227, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 227, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 pre {
   overflow: auto; }
 
-/* line 238, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 235, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 code,
 kbd,
 pre,
@@ -132,7 +132,7 @@ samp {
   font-family: monospace, monospace;
   font-size: 1em; }
 
-/* line 262, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 258, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 button,
 input,
 optgroup,
@@ -142,87 +142,88 @@ textarea {
   font: inherit;
   margin: 0; }
 
-/* line 272, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 272, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 button {
   overflow: visible; }
 
-/* line 284, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 283, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 button,
 select {
   text-transform: none; }
 
-/* line 299, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 296, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 button,
-html input[type="button"], input[type="reset"],
+html input[type="button"],
+input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button;
   cursor: pointer; }
 
-/* line 309, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 308, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 button[disabled],
 html input[disabled] {
   cursor: default; }
 
-/* line 318, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 317, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
   padding: 0; }
 
-/* line 328, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 328, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 input {
   line-height: normal; }
 
-/* line 353, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 352, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   height: auto; }
 
-/* line 362, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 362, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 input[type="search"] {
   -webkit-appearance: textfield; }
 
-/* line 374, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 373, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none; }
 
-/* line 382, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 382, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 fieldset {
   border: 1px solid #c0c0c0;
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em; }
 
-/* line 393, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 393, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 legend {
   border: 0; }
 
-/* line 402, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 402, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 textarea {
   overflow: auto; }
 
-/* line 411, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 411, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 optgroup {
   font-weight: bold; }
 
-/* line 422, D:/Projecten/_concrete/_concrete_develop/src/partials/_normalize.scss */
+/* line 422, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0; }
 
 /*! concrete v0.4.1 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
-/* line 9, D:/Projecten/_concrete/_concrete_develop/src/partials/_defaults.scss */
+/* line 9, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-/* line 16, D:/Projecten/_concrete/_concrete_develop/src/partials/_defaults.scss */
+/* line 15, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
 html,
 body {
   width: 100%;
   min-height: 100%; }
 
-/* line 27, D:/Projecten/_concrete/_concrete_develop/src/partials/_defaults.scss */
+/* line 25, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
 *,
 *:before,
 *:after {
@@ -230,129 +231,127 @@ body {
   margin: 0;
   padding: 0; }
 
-/* line 38, D:/Projecten/_concrete/_concrete_develop/src/partials/_defaults.scss */
+/* line 37, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
 a,
 button {
   cursor: pointer; }
-  /* line 43, D:/Projecten/_concrete/_concrete_develop/src/partials/_defaults.scss */
-  a:active,
-  a:hover
-,
+  /* line 42, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
+  a:active, a:hover,
   button:active,
   button:hover {
     outline: 0; }
 
-/* line 49, D:/Projecten/_concrete/_concrete_develop/src/partials/_defaults.scss */
+/* line 49, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
 a {
   text-decoration: none; }
 
-/* line 57, D:/Projecten/_concrete/_concrete_develop/src/partials/_defaults.scss */
+/* line 57, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
 p {
   padding-bottom: 1.6em; }
-  /* line 61, D:/Projecten/_concrete/_concrete_develop/src/partials/_defaults.scss */
+  /* line 61, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
   p:last-child {
     padding-bottom: 0; }
 
-/* line 69, D:/Projecten/_concrete/_concrete_develop/src/partials/_defaults.scss */
+/* line 67, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
 p,
 address,
 figcaption {
   line-height: 1.6em; }
 
-/* line 74, D:/Projecten/_concrete/_concrete_develop/src/partials/_defaults.scss */
+/* line 74, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
 address {
   font-style: normal; }
 
-/* line 86, D:/Projecten/_concrete/_concrete_develop/src/partials/_defaults.scss */
+/* line 82, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
 input,
 select,
 option,
 textarea,
 button {
   font-family: "some-custom-font", sans-serif; }
-  /* line 90, D:/Projecten/_concrete/_concrete_develop/src/partials/_defaults.scss */
-  input:focus
-,
-  select:focus
-,
-  option:focus
-,
-  textarea:focus
-,
+  /* line 90, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
+  input:focus,
+  select:focus,
+  option:focus,
+  textarea:focus,
   button:focus {
     outline: none; }
 
-/* line 98, D:/Projecten/_concrete/_concrete_develop/src/partials/_defaults.scss */
+/* line 98, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
 img {
   vertical-align: middle;
   -ms-interpolation-mode: bicubic; }
 
-/* line 107, D:/Projecten/_concrete/_concrete_develop/src/partials/_defaults.scss */
+/* line 106, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
 ul,
 ol {
   padding-left: 20px; }
 
-/* line 51, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
+/* line 51, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
 .clear {
   clear: both; }
 
-/* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
-.float-list:before, .clearfix:before,
-.float-list:after, .clearfix:after {
+/* line 59, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
+.float-list:before, .clearfix:before, .float-list:after, .clearfix:after {
   content: " ";
   display: table; }
 
-/* line 66, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
+/* line 66, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
 .float-list:after, .clearfix:after {
   clear: both; }
 
-/* line 72, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
+/* line 72, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
 .hidden {
   display: none;
   visibility: hidden; }
 
-/* line 78, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
+/* line 78, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
 .visible {
   display: block;
   visibility: visible; }
 
-/* line 84, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
+/* line 84, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
 .nowrap {
   white-space: nowrap; }
 
-/* line 105, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
+/* line 105, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
 .sticky-top {
   position: fixed;
   top: 0;
   bottom: auto; }
 
-/* line 112, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
+/* line 112, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
 .sticky-bottom {
   position: fixed;
   top: auto;
   bottom: 0; }
 
-/* line 119, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
+/* line 119, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
 .center-x {
   position: relative;
   height: 100%;
   margin: 0 auto; }
 
-/* line 126, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
+/* line 126, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
 .center-xy, .center-y {
   height: 100%;
   font-size: 0; }
-  /* line 131, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
+  /* line 131, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
   .center-xy > .center-valign, .center-y > .center-valign {
     display: inline-block;
     vertical-align: middle;
     height: 100%; }
+  /* line 138, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
+  .center-xy > .center-middle, .center-y > .center-middle {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1rem; }
 
-/* line 139, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
+/* line 144, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
 .center-xy {
   width: 100%;
   text-align: center; }
-  /* line 146, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
+  /* line 151, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
   .center-xy > .center-x {
     display: inline-block;
     vertical-align: middle;
@@ -360,67 +359,64 @@ ol {
     height: auto;
     text-align: left; }
 
-/* line 158, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
+/* line 163, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
 .float-list {
   padding-left: 0;
   list-style: none; }
-  /* line 165, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
+  /* line 170, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
   .float-list li > a {
     display: block; }
 
-/* line 175, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
+/* line 180, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
 .float-list li {
   float: left; }
 
-/* line 191, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
+/* line 196, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
 .block-list {
   padding-left: 0;
   list-style: none; }
-  /* line 196, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
+  /* line 201, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
   .block-list li {
     display: block;
     width: 100%; }
-    /* line 201, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
-    .block-list li
-> a {
+    /* line 206, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
+    .block-list li > a {
       display: block; }
 
-/* line 217, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
-img.fill-width,
-img.max-width,
-.fill-width img,
-.max-width img
-,
-canvas.fill-width, canvas.max-width, .fill-width canvas,
-.max-width canvas {
+/* line 219, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
+img.fill-width, img.max-width, .fill-width img, .max-width img,
+canvas.fill-width,
+canvas.max-width,
+.fill-width
+canvas,
+.max-width
+canvas {
   width: 100%;
   height: auto; }
 
-/* line 226, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
-img.fill-height,
-img.max-height,
-.fill-height img,
-.max-height img
-,
-canvas.fill-height, canvas.max-height, .fill-height canvas,
-.max-height canvas {
+/* line 228, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
+img.fill-height, img.max-height, .fill-height img, .max-height img,
+canvas.fill-height,
+canvas.max-height,
+.fill-height
+canvas,
+.max-height
+canvas {
   width: auto;
   height: 100%; }
 
-/* line 233, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
-img.max-width,
-.max-width img
-,
+/* line 237, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
+img.max-width, .max-width img,
 canvas.max-width,
-.max-width canvas {
+.max-width
+canvas {
   max-width: 100%; }
 
-/* line 239, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
-img.max-height,
-.max-height img
-,
+/* line 243, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
+img.max-height, .max-height img,
 canvas.max-height,
-.max-height canvas {
+.max-height
+canvas {
   max-height: 100%; }
 
 /* line 11, stdin */

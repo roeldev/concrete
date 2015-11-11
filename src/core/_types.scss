@@ -105,25 +105,6 @@
 }
 
 ///
-/// Returns `true` if `$var` is an argument list taken from a function, with
-/// the minimum length of `$length`. When no length is given or is not a valid
-/// number, the length check is skipped.
-///
-/// @param {mixed} $var
-/// @param {bool|number} $length
-/// @return {bool}
-///
-@function is-arglist($var, $length: false)
-{
-    $result: (type-of($var) == 'arglist');
-    @if ($result and is-number($length))
-    {
-        $result: (length($var) >= $length);
-    }
-    @return $result;
-}
-
-///
 /// Returns `true` if `$var` is a map.
 ///
 /// @param {mixed} $var

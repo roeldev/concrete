@@ -20,7 +20,7 @@
         $shadows: append($shadows, ($i $i $color), 'comma');
     }
 
-    text-shadow: unquote($shadows);
+    text-shadow: $shadows;
 }
 
 ///
