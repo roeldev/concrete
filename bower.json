@@ -1,19 +1,20 @@
 {
+  "title": "concrete",
   "name": "concrete",
-  "description": "Sassy CSS framework. Includes functions/mixins for media queries/breakpoints, flexible responsive grids and debugging custom Sass + more!",
-  "homepage": "https://github.com/roeldev/concrete",
   "version": "0.4.1",
-  "license": "GPL-2.0+",
-  "main": [
-    "source/_init.scss"
-  ],
+  "homepage": "https://github.com/roeldev/concrete",
   "authors": [
     "Roel Schut (http://roelschut.nl)"
+  ],
+  "license": "GPL-2.0+",
+  "main": [
+    "src/_init.scss"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/roeldev/concrete.git"
   },
+  "bugs": "https://github.com/roeldev/aide/issues",
   "keywords": [
     "concrete",
     "sass",
@@ -31,12 +32,15 @@
     "iconfont"
   ],
   "ignore": [
-    "gulp_tasks",
+    "**/.*",
+    "**/*.bat",
+    "bower_components",
+    "build",
     "node_modules",
+    "test",
     "tests",
-    ".gitignore",
-    ".sassdocrc",
-    "conemu.bat",
+    "Gemfile",
+    "Gemfile.lock",
     "gulpfile.js",
     "package.json"
   ]

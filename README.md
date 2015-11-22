@@ -71,6 +71,11 @@ The documentation is generated with [SassDoc][url-sassdoc]. Just open the `docs/
 
 Pretty much all functions and mixins have tests in the `test/` dir. Tests are performed with [True][url-true] and [Mocha][url-mocha].
 
+
+## License
+[GPL-2.0+](LICENSE) © 2014-2015 [Roel Schut](http://roelschut.nl)
+
+
 [url-project-main]: https://github.com/roeldev/concrete
 [url-project-releases]: https://github.com/roeldev/concrete/releases
 [url-normalize]: https://github.com/necolas/normalize.css/
