@@ -81,5 +81,5 @@ Pretty much all functions and mixins have tests in the `test/` dir. Tests are pe
 [url-normalize]: https://github.com/necolas/normalize.css/
 [url-bower-install]: http://bower.io/
 [url-sassdoc]: http://sassdoc.com/
-[url-true]: http://www.ericsuzanne.com/true/
+[url-true]: https://github.com/ericam/true
 [url-mocha]: http://mochajs.org/
