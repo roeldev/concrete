@@ -1,9 +1,9 @@
 ////
 /// concrete | source/components/_helpers.scss
+///
+/// @group helpers
 ////
 
-///
-///
 ///
 /// @param {string} $float [left] - Float value for the float-list.
 ///
@@ -134,6 +134,11 @@
         vertical-align: middle;
         height: 100%;
     }
+
+    > %concrete-center-middle //.center-middle
+    {
+        @include apply-valign-middle(true);
+    }
 }
 
 %concrete-center-xy //.center-xy
@@ -240,4 +245,22 @@ canvas
     {
         max-height: 100%;
     }
+}
+
+//------------------------------------------------------------------------------
+// Input and button reset placeholders
+//------------------------------------------------------------------------------
+%concrete-reset-input,
+%concrete-reset-textarea
+{
+    appearance: none;
+    background-color: #fff;
+    border-radius: 0;
+}
+
+%concrete-reset-button
+{
+    appearance: none;
+    background: none;
+    border: 0;
 }

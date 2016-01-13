@@ -8,14 +8,9 @@
 ///
 /// *Iconfont base CSS from fontastic.me.
 ///
-/// @param {string} $font
-///        The name of the font file without file extension.
-///
-/// @param {string} $prefix [icon]
-///        A styleclass prefix for the added icons.
-///
-/// @param {string} $dir [/fonts/]
-///        The folder containing the font files.
+/// @param {string} $font - The name of the font file without file extension.
+/// @param {string} $prefix [icon] - A styleclass prefix for the added icons.
+/// @param {string} $dir [/fonts/] - The folder containing the font files.
 ///
 @mixin iconfont($font, $prefix: 'icon', $dir: '/fonts/')
 {

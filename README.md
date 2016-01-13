@@ -2,11 +2,14 @@
 
 [![Bower version][bower-img]][bower-url]
 [![Build][travis-img]][travis-url]
+[![Dependency Status][david-img]][david-url]
 
-[bower-img]: https://img.shields.io/bower/v/concrete.svg
-[bower-url]: https://github.com/roeldev/concrete
-[travis-img]: https://img.shields.io/travis/roeldev/concrete/master.svg
-[travis-url]: https://travis-ci.org/roeldev/concrete
+  [bower-img]: https://img.shields.io/bower/v/concrete.svg
+  [bower-url]: https://github.com/roeldev/concrete
+  [travis-img]: https://img.shields.io/travis/roeldev/concrete/master.svg
+  [travis-url]: https://travis-ci.org/roeldev/concrete
+  [david-img]: https://david-dm.org/roeldev/concrete/dev-status.svg
+  [david-url]: https://david-dm.org/roeldev/concrete#info=devDependencies
 
 **Sassy CSS framework**
 
@@ -68,10 +71,15 @@ The documentation is generated with [SassDoc][url-sassdoc]. Just open the `docs/
 
 Pretty much all functions and mixins have tests in the `test/` dir. Tests are performed with [True][url-true] and [Mocha][url-mocha].
 
+
+## License
+[GPL-2.0+](LICENSE) © 2014-2015 [Roel Schut](http://roelschut.nl)
+
+
 [url-project-main]: https://github.com/roeldev/concrete
 [url-project-releases]: https://github.com/roeldev/concrete/releases
 [url-normalize]: https://github.com/necolas/normalize.css/
 [url-bower-install]: http://bower.io/
 [url-sassdoc]: http://sassdoc.com/
-[url-true]: http://www.ericsuzanne.com/true/
+[url-true]: https://github.com/ericam/true
 [url-mocha]: http://mochajs.org/

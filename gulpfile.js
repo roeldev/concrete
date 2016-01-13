@@ -16,7 +16,7 @@ var SassDoc             = require('sassdoc');
 ////////////////////////////////////////////////////////////////////////////////
 
 var SRC_EXAMPLES = './examples/scss/*.scss';
-var SRC_TESTS    = './test/*.scss';
+var SRC_TESTS    = './test/**/*.scss';
 var SRC_SOURCE   = ['./src/**/*.scss', './*.scss',
                     '!node_modules/*', '!docs/*'];
 
@@ -77,6 +77,8 @@ Gulp.task('test', function($callback)
 {
     GulpDelayTask(500, function()
     {
+        process.stdout.write('\u001b[2J');
+
         Gulp.src('test/*.js', { 'read': false })
             .pipe( GulpPlumber($plumberOptions) )
             .pipe( GulpMocha({ 'reporter': 'spec' }) );

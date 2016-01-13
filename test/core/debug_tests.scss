@@ -1,5 +1,5 @@
 ////
-/// concrete | test/core_debug_tests.scss
+/// concrete | test/core/debug_tests.scss
 ///
 /// @group tests
 ////
@@ -8,7 +8,7 @@ $_concrete-warnings:        ();
 $concrete-console-warnings: false;
 
 @import 'true';
-@import '../src/core';
+@import '../../src/core';
 
 ////////////////////////////////////////////////////////////////////////////////
 

@@ -5,19 +5,51 @@
 /// developing your project.
 ////
 @import 'core';
-@import 'components/basics';
-@import 'components/breakpoints';
-@import 'components/effects';
-@import 'components/fonts';
-@import 'components/shapes';
-@import 'components/transition';
+@include register-imported('core');
+
+@if not is-imported('components/basics')
+{
+    @import 'components/basics';
+    @include register-imported('components/basics');
+}
+
+@if not is-imported('components/breakpoints')
+{
+    @import 'components/breakpoints';
+    @include register-imported('components/breakpoints');
+}
+
+@if not is-imported('components/effects')
+{
+    @import 'components/effects';
+    @include register-imported('components/effects');
+}
+
+@if not is-imported('components/fonts')
+{
+    @import 'components/fonts';
+    @include register-imported('components/fonts');
+}
+
+@if not is-imported('components/shapes')
+{
+    @import 'components/shapes';
+    @include register-imported('components/shapes');
+}
+
+@if not is-imported('components/transition')
+{
+    @import 'components/transition';
+    @include register-imported('components/transition');
+}
 
 //------------------------------------------------------------------------------
 
 // 'private' framework variables
-$_concrete-debugs:      () !global;
-$_concrete-warnings:    () !global;
-$_concrete-breakpoints: _concrete-init-breakpoints() !global;
+$_concrete-debugs:        () !global;
+$_concrete-warnings:      () !global;
+$_concrete-breakpoints:   _concrete-init-breakpoints() !global;
+$_concrete-in-breakpoint: null !global;
 
 // settings that are prepared so they are more easily to use by the framework
 $concrete-breakpoints: _concrete-parse-breakpoints();

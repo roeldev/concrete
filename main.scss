@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 // Required files
 //------------------------------------------------------------------------------
-// All required files to start developing.
+// All required files to start developing. Add as many import rules as you need.
 //
 @import 'concrete';
 @import 'concrete-basics';
@@ -9,10 +9,31 @@
 //@import 'concrete-iconfont';
 
 //------------------------------------------------------------------------------
+// Placeholders
+//------------------------------------------------------------------------------
+//%h1 { @include font-style('h1'); }
+//%h2 { @include font-style('h2'); }
+//%h3 { @include font-style('h3'); }
+//%h4 { @include font-style('h4'); }
+//%h5 { @include font-style('h5'); }
+//%h6 { @include font-style('h6'); }
 
+//------------------------------------------------------------------------------
+// Button and hyperlink styles
+//------------------------------------------------------------------------------
+button
+{
+    // Reset the look of buttons by removing the background, border and default
+    // appearance. Very useful if you're using custom designed buttons.
+    @extend %concrete-button-reset;
+}
+
+//------------------------------------------------------------------------------
+// Main layout elements
+//------------------------------------------------------------------------------
 html
 {
-    // include the default font-style set in `_concrete.scss` to the html doc.
+    // Include the default font-style set in `_concrete.scss` to the html doc.
     @include font-style('default');
 
     -webkit-font-smoothing: antialiased;

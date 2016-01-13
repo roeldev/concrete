@@ -1,7 +1,3 @@
-/*$concrete-font-style-properties:
-(
-    'font-family': true
-);*/
 /*
     concrete - Sassy CSS framework (https://github.com/roeldev/concrete/)
     Copyright (c) 2014-2015 Roel Schut (roelschut.nl)
@@ -20,155 +16,168 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-/* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
+/* line 59, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
 .blockgrid.grid-row:before,
-.blockgrid
-.grid-row:before, .blockgrid.grid-row:after,
-.blockgrid
-.grid-row:after {
+.blockgrid .grid-row:before, .blockgrid.grid-row:after,
+.blockgrid .grid-row:after {
   content: " ";
   display: table; }
 
-/* line 66, D:/Projecten/_concrete/_concrete_develop/src/components/_helpers.scss */
+/* line 66, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
 .blockgrid.grid-row:after,
-.blockgrid
-.grid-row:after {
+.blockgrid .grid-row:after {
   clear: both; }
 
-/* line 75, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+/* line 75, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
 .blockgrid.grid-row,
-.blockgrid
-.grid-row {
+.blockgrid .grid-row {
   display: block;
   overflow: hidden; }
 
-/* line 83, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
-.blockgrid
-[data-col] {
+/* line 83, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+.blockgrid [data-col] {
   display: block;
   position: relative;
   float: left; }
-  /* line 90, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
-  .blockgrid
-.grid-stretch[data-col],
-  .grid-stretch.blockgrid.grid-row [data-col],
-  .blockgrid
-.grid-stretch.grid-row [data-col] {
+  /* line 89, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+  .blockgrid .grid-stretch[data-col], .grid-stretch.blockgrid.grid-row [data-col], .blockgrid .grid-stretch.grid-row [data-col] {
     margin-bottom: -100%;
     padding-bottom: 100%; }
 
-/* line 28, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
-.blockgrid
-[data-col^="8"] {
+/* line 30, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="8"] {
   width: 8.33%; }
 
-/* line 28, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
-.blockgrid
-[data-col^="12"] {
+/* line 30, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="12"] {
   width: 12.5%; }
 
-/* line 28, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
-.blockgrid
-[data-col^="16"] {
+/* line 30, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="16"] {
   width: 16.66%; }
 
-/* line 28, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
-.blockgrid
-[data-col^="25"] {
+/* line 30, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="25"] {
   width: 25%; }
 
-/* line 28, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
-.blockgrid
-[data-col^="33"] {
+/* line 30, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="33"] {
   width: 33.33%; }
 
-/* line 28, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
-.blockgrid
-[data-col^="50"] {
+/* line 30, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="50"] {
   width: 50%; }
 
-/* line 28, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
-.blockgrid
-[data-col^="66"] {
+/* line 30, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="66"] {
   width: 66.67%; }
 
-/* line 28, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
-.blockgrid
-[data-col^="75"] {
+/* line 30, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="75"] {
   width: 75%; }
 
-/* line 28, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
-.blockgrid
-[data-col^="83"] {
+/* line 30, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="83"] {
   width: 83.33; }
 
-/* line 28, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
-.blockgrid
-[data-col^="100"] {
+/* line 30, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="100"] {
   width: 100%; }
 
+@media screen and (max-width: 1439px) {
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-8"] {
+    width: 8.33%; }
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-12"] {
+    width: 12.5%; }
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-16"] {
+    width: 16.66%; }
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-25"] {
+    width: 25%; }
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-33"] {
+    width: 33.33%; }
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-50"] {
+    width: 50%; }
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-66"] {
+    width: 66.67%; }
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-75"] {
+    width: 75%; }
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-83"] {
+    width: 83.33; }
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-100"] {
+    width: 100%; } }
+
 @media screen and (max-width: 1199px) {
-  /* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
   .blockgrid [data-col*="lg-8"] {
     width: 8.33%; }
-  /* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
   .blockgrid [data-col*="lg-12"] {
     width: 12.5%; }
-  /* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
   .blockgrid [data-col*="lg-16"] {
     width: 16.66%; }
-  /* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
   .blockgrid [data-col*="lg-25"] {
     width: 25%; }
-  /* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
   .blockgrid [data-col*="lg-33"] {
     width: 33.33%; }
-  /* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
   .blockgrid [data-col*="lg-50"] {
     width: 50%; }
-  /* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
   .blockgrid [data-col*="lg-66"] {
     width: 66.67%; }
-  /* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
   .blockgrid [data-col*="lg-75"] {
     width: 75%; }
-  /* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
   .blockgrid [data-col^="83"], .blockgrid [data-col*="lg-83"], .blockgrid [data-col*="lg-100"] {
     width: 100%; } }
 
-@media screen and (max-width: 1023px) {
-  /* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+@media screen and (max-width: 959px) {
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
   .blockgrid [data-col^="8"], .blockgrid [data-col*="md-8"], .blockgrid [data-col^="12"], .blockgrid [data-col*="md-12"], .blockgrid [data-col*="md-25"] {
     width: 25%; }
-  /* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
   .blockgrid [data-col*="md-33"] {
     width: 33.33%; }
-  /* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
   .blockgrid [data-col^="16"], .blockgrid [data-col*="md-16"], .blockgrid [data-col*="md-50"] {
     width: 50%; }
-  /* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
   .blockgrid [data-col*="md-66"] {
     width: 66.67%; }
-  /* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
   .blockgrid [data-col*="md-75"] {
     width: 75%; }
-  /* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
   .blockgrid [data-col*="md-83"], .blockgrid [data-col*="md-100"] {
     width: 100%; } }
 
 @media screen and (max-width: 767px) {
-  /* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
   .blockgrid [data-col^="8"], .blockgrid [data-col*="sm-8"], .blockgrid [data-col^="12"], .blockgrid [data-col*="sm-12"], .blockgrid [data-col^="25"], .blockgrid [data-col*="sm-25"] {
     width: 50%; }
-  /* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
   .blockgrid [data-col^="16"], .blockgrid [data-col*="sm-16"], .blockgrid [data-col^="33"], .blockgrid [data-col*="sm-33"], .blockgrid [data-col^="50"], .blockgrid [data-col*="sm-50"], .blockgrid [data-col^="66"], .blockgrid [data-col*="sm-66"], .blockgrid [data-col^="75"], .blockgrid [data-col*="sm-75"], .blockgrid [data-col*="sm-83"], .blockgrid [data-col*="sm-100"] {
     width: 100%; } }
 
 @media screen and (max-width: 479px) {
-  /* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
   .blockgrid [data-col*="xs-8"], .blockgrid [data-col*="xs-12"] {
     width: 50%; }
-  /* line 60, D:/Projecten/_concrete/_concrete_develop/src/components/_grid-block.scss */
+  /* line 63, D:/Projecten/_roeldev/_concrete/src/components/_grid-block.scss */
   .blockgrid [data-col*="xs-16"], .blockgrid [data-col^="25"], .blockgrid [data-col*="xs-25"], .blockgrid [data-col*="xs-33"], .blockgrid [data-col*="xs-50"], .blockgrid [data-col*="xs-66"], .blockgrid [data-col*="xs-75"], .blockgrid [data-col*="xs-83"], .blockgrid [data-col*="xs-100"] {
     width: 100%; } }
 

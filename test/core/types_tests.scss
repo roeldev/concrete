@@ -1,11 +1,11 @@
 ////
-/// concrete | test/core_types_tests.scss
+/// concrete | test/core/types_tests.scss
 ///
 /// @group tests
 ////
 
 @import 'true';
-@import '../src/core';
+@import '../../src/core';
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -86,7 +86,6 @@ $TYPE_MAP:     ('one': 1, 'two': 2, 'three': 3) !global;
     true,
     null,
     $TYPE_LIST,
-    $TYPE_ARGLIST,
     $TYPE_MAP
 ));
 
@@ -97,7 +96,6 @@ $TYPE_MAP:     ('one': 1, 'two': 2, 'three': 3) !global;
     true,
     null,
     $TYPE_LIST,
-    $TYPE_ARGLIST,
     $TYPE_MAP
 ));
 
@@ -108,7 +106,6 @@ $TYPE_MAP:     ('one': 1, 'two': 2, 'three': 3) !global;
     true,
     null,
     $TYPE_LIST,
-    $TYPE_ARGLIST,
     $TYPE_MAP
 ));
 
@@ -119,7 +116,6 @@ $TYPE_MAP:     ('one': 1, 'two': 2, 'three': 3) !global;
     #000,
     null,
     $TYPE_LIST,
-    $TYPE_ARGLIST,
     $TYPE_MAP
 ));
 
@@ -130,14 +126,12 @@ $TYPE_MAP:     ('one': 1, 'two': 2, 'three': 3) !global;
     #000,
     false,
     $TYPE_LIST,
-    $TYPE_ARGLIST,
     $TYPE_MAP
 ));
 
 @include _type-test('is-scalar', 1 'str' #f00 true null,
 (
     $TYPE_LIST,
-    $TYPE_ARGLIST,
     $TYPE_MAP
 ));
 
@@ -151,19 +145,6 @@ $TYPE_MAP:     ('one': 1, 'two': 2, 'three': 3) !global;
     $TYPE_MAP
 ));
 
-// use the same arglist twice, or the arglist will be treated as a list
-// by the _type-test mixin
-@include _type-test('is-arglist', $TYPE_ARGLIST $TYPE_ARGLIST,
-(
-    1,
-    '()',
-    #000,
-    false,
-    null,
-    $TYPE_LIST,
-    $TYPE_MAP
-));
-
 // use same map twice, same reason as above test
 @include _type-test('is-map', $TYPE_MAP $TYPE_MAP,
 (
@@ -172,8 +153,7 @@ $TYPE_MAP:     ('one': 1, 'two': 2, 'three': 3) !global;
     #000,
     false,
     null,
-    $TYPE_LIST,
-    $TYPE_ARGLIST
+    $TYPE_LIST
 ));
 
 @include _type-test('is-empty', '' () null,

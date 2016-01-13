@@ -75,15 +75,20 @@ $concrete-transitions:
 //------------------------------------------------------------------------------
 // Breakpoints
 //------------------------------------------------------------------------------
-// Add all the breakpoints you need.
+// Add all the (extra) breakpoints you need. The px value you specify will be
+// used as the minimum width value of the media query. The maximum value will
+// be the minimum value of the next breakpoint, minus 1px.
 //
 $concrete-breakpoints:
 (
-    // desktop >
-    'xl': ('min': 1200px, 'max': 1440px),
+    // huge desktops
+    'xxl': ('min': 1440px, 'max': 9999px),
 
-    // tablet landscape
-    'lg': 1024px,
+    // large desktops
+    'xl': 1200px,
+
+    // tablet landscape & small desktops
+    'lg': 960px,
 
     // tablet portrait
     'md': 768px,

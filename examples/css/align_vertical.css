@@ -1,17 +1,18 @@
-/* line 7, D:/Projecten/_roeldev/_concrete_develop/examples/scss/align_vertical.scss */
-html, body {
+/* line 6, stdin */
+html,
+body {
   height: 100%; }
 
-/* line 12, D:/Projecten/_roeldev/_concrete_develop/examples/scss/align_vertical.scss */
+/* line 12, stdin */
 header {
   width: 100%;
   height: 100px;
   background-color: red; }
 
-/* line 19, D:/Projecten/_roeldev/_concrete_develop/examples/scss/align_vertical.scss */
+/* line 19, stdin */
 .center-example {
   height: 200px;
   margin-top: 20px; }
-  /* line 24, D:/Projecten/_roeldev/_concrete_develop/examples/scss/align_vertical.scss */
+  /* line 24, stdin */
   .center-example .center-x {
     background-color: yellow; }
