@@ -48,7 +48,7 @@
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     speak: none;
-    cursor: default;
+    cursor: inherit;
     user-select: none;
 
     @media screen and (-webkit-min-device-pixel-ratio:0)
@@ -56,12 +56,4 @@
         padding-top: 1px;
         line-height: 1.15em !important;
     }
-}
-
-a%concrete-iconfont,
-a %concrete-iconfont,
-button%concrete-iconfont,
-button %concrete-iconfont
-{
-    cursor: pointer;
 }
