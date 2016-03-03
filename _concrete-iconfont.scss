@@ -2,15 +2,15 @@
 // concrete | _concrete-iconfont.scss
 //
 
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Import icon font related functions/mixins/partials.
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 @import 'src/iconfont';
 
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Define your font icons
-//------------------------------------------------------------------------------
-@include add-iconfont('icon-font-name', 'icon-prefix', '/path/to/font-files/')
+// -----------------------------------------------------------------------------
+@include iconfont('icon-font-name', 'icon-prefix', '/path/to/font-files/')
 {
     // place your icon classes here, or if you plan to use gulp-maelstrom you
     // can remove this file as it will automatically be created

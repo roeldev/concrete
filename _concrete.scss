@@ -2,15 +2,15 @@
 // concrete | _concrete.scss
 //
 // Settings and variables
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // For more information about the available settings, check either the included
 // help documents, examples, or visit the project page:
 // https://github.com/roeldev/concrete
 //
 
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Fonts and font families
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Here is where you can define all of the font styles used in your application.
 // The default font will automatically be set to the html, input, select,
 // option, textarea and button elements.
@@ -56,9 +56,9 @@ $concrete-font-styles:
     )
 );
 
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Transitions
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // If you're using transitions most of the time the duration and easing
 // properties are the same for all transitions. You can
 //
@@ -72,9 +72,9 @@ $concrete-transitions:
     )
 );
 
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Breakpoints
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Add all the (extra) breakpoints you need. The px value you specify will be
 // used as the minimum width value of the media query. The maximum value will
 // be the minimum value of the next breakpoint, minus 1px.
@@ -106,9 +106,9 @@ $concrete-breakpoint-scrollbar-buffer:
     'md': 0
 );
 
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Container and grid
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 $concrete-containers:
 (
     'xl':
@@ -126,9 +126,9 @@ $concrete-grid-gap:
     'xs': 5px
 );
 
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Imports
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // By default concrete will include a slightly edited version of Normalize.css
 // and some default styles. If you do not wish to use these, you can set the
 // below import values to false.
@@ -139,9 +139,9 @@ $concrete-grid-gap:
 $concrete-import-normalize: true;
 $concrete-import-defaults:  true;
 
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Warnings and debug
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Display warnings and/or debug messages in console. Warnings and debugs are
 // always displayed in the compiled CSS file.
 //
@@ -149,9 +149,9 @@ $concrete-console-warnings:  false;
 $concrete-console-debugs:    false;
 $concrete-debug-breakpoints: false;
 
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Import the concrete framework
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Last but not least, import the concrete initializer. This will import all
 // the needed functions and mixins to get you started :)
 //

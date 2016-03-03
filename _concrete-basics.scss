@@ -2,22 +2,22 @@
 // concrete | _concrete-basics.scss
 //
 // Basic styles and optional selectors
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // For more information about the available settings, check either the included
 // help documents, examples, or visit the project page: http://git.io/qoNLsw
 //
 
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Import basics functions/mixins/partials.
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Last but not least, import the concrete initializer. This will import all
 // the needed functions and mixins to get you started :)
 //
 @import 'src/basics';
 
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Enable/disable basic concrete selectors.
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 .clear         { @extend %concrete-clearboth; }
 .clearfix      { @extend %concrete-clearfix; }
 .hidden        { @extend %concrete-hidden; }

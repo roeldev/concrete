@@ -2,33 +2,33 @@
 // concrete | _concrete-grid.scss
 //
 // Basic grid settings
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // For more information about the available settings, check either the included
 // help documents, examples, or visit the project page: http://git.io/qoNLsw
 //
 
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Import grid specific functions/mixins/partials.
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Last but not least, import the concrete initializer. This will import all
 // the needed functions and mixins to get you started :)
 //
 @import 'src/grid';
 
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Grid columns
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Specify wich columns you would like to use and what alternative sizes they
 // should have when a breakpoint is reached.
 //
 // List indexes:
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // 1: {string} name - any valid list key/css selector name
 // 2: {number} width - a valid number, this can be a fraction or a percentage
 // 3: {map} breakpoints - key: breakpoint, value: alternative width
 //
 // Examples
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // '25' 25% (lg: 50%, sm: 100%)
 //
 // The name for the column is set to .gc-25.
@@ -40,7 +40,7 @@
 // .gc-lg-25, .gc-md-25 { width: 50% }
 // .gc-sm-25, .gc-xs-25 { width: 100% }
 //
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // 'two-third' 66.67% (md: 100%, sm: false)
 //
 // The name for the column is set to .gc-two-third.
@@ -67,7 +67,7 @@ $concrete-grid-columns: grid-columns(
 );
 // scss-lint:enable
 
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 .blockgrid { @include grid-create('block', $concrete-grid-columns); }
 //.flexgrid  { @include grid-create('flex', $concrete-grid-columns); }
