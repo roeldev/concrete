@@ -246,11 +246,21 @@ canvas
 // Input and button reset placeholders
 // -----------------------------------------------------------------------------
 %concrete-reset-input,
+%concrete-reset-select,
 %concrete-reset-textarea
 {
     appearance: none;
-    background-color: #fff;
+    background: none;
     border-radius: 0;
+}
+
+// https://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh465742.aspx
+%concrete-reset-select
+{
+    &::-ms-expand
+    {
+        display: none;
+    }
 }
 
 %concrete-reset-button
