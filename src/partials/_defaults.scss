@@ -108,8 +108,3 @@ ol
 {
     padding-left: 20px;
 }
-
-nav > ul
-{
-    @extend %concrete-menu-list;
-}
