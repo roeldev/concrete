@@ -1,5 +1,5 @@
 ////
-/// concrete | source/components/_grid-block.scss
+/// concrete | source/components/_grid-flex.scss
 ///
 /// @group grid
 ////
@@ -10,17 +10,17 @@
 ///
 /// @param {map} $grid
 ///
-@mixin _concrete-blockgrid-create($grid)
+@mixin _concrete-flexgrid-create($grid)
 {
     &.grid-row,
     .grid-row
     {
-        @extend %concrete-blockgrid-row;
+        @extend %concrete-flexgrid-row;
     }
 
     [data-col]
     {
-        @extend %concrete-blockgrid-column;
+        @extend %concrete-flexgrid-column;
     }
 
     // add the default column widths
@@ -72,31 +72,30 @@
 }
 
 // -----------------------------------------------------------------------------
-// Blockgrid placeholders
+// flexgrid placeholders
 // -----------------------------------------------------------------------------
-%concrete-blockgrid-row
+%concrete-flexgrid-row
 {
-    @extend %concrete-clearfix;
+    display: flex;
+    flex-wrap: wrap;
 
-    display: block;
-    overflow: hidden;
+    &.grid-stretch
+    {
+        align-items: stretch;
+    }
 }
 
-ul%concrete-blockgrid-row
+ul%concrete-flexgrid-row
 {
     @extend %concrete-reset-list;
 }
 
-%concrete-blockgrid-column
+%concrete-flexgrid-column
 {
-    display: block;
-    position: relative;
-    float: left;
+    flex: 1 1 auto;
 
-    &.grid-stretch,
-    %concrete-blockgrid-row.grid-stretch &
+    %concrete-flexgrid-row.grid-stretch &
     {
-        margin-bottom: -100%;
-        padding-bottom: 100%;
+        display: flex;
     }
 }

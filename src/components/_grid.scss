@@ -5,6 +5,7 @@
 ////
 
 @import 'grid-block';
+@import 'grid-flex';
 
 // -----------------------------------------------------------------------------
 
@@ -74,6 +75,10 @@
     @if ($type == 'block')
     {
         @include  _concrete-blockgrid-create($columns);
+    }
+    @elseif ($type == 'flex')
+    {
+        @include  _concrete-flexgrid-create($columns);
     }
     @else
     {
