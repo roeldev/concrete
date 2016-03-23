@@ -13,6 +13,12 @@
     @include register-imported('components/basics');
 }
 
+@if not is-imported('components/resets')
+{
+    @import 'components/resets';
+    @include register-imported('components/resets');
+}
+
 @if not is-imported('components/breakpoints')
 {
     @import 'components/breakpoints';

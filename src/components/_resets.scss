@@ -1,0 +1,39 @@
+////
+/// concrete | source/components/_resets.scss
+///
+/// @group resets
+////
+
+%concrete-reset-list
+{
+    list-style: none;
+    padding: 0;
+}
+
+// -----------------------------------------------------------------------------
+// Input and button reset placeholders
+// -----------------------------------------------------------------------------
+%concrete-reset-input,
+%concrete-reset-select,
+%concrete-reset-textarea
+{
+    appearance: none;
+    background: none;
+    border-radius: 0;
+}
+
+// https://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh465742.aspx
+%concrete-reset-select
+{
+    &::-ms-expand
+    {
+        display: none;
+    }
+}
+
+%concrete-reset-button
+{
+    appearance: none;
+    background: none;
+    border: 0;
+}

@@ -163,9 +163,7 @@
 %concrete-float-list
 {
     @extend %concrete-clearfix;
-
-    padding-left: 0;
-    list-style: none;
+    @extend %concrete-reset-list;
 
     li > a
     {
@@ -195,8 +193,7 @@
 
 %concrete-block-list
 {
-    padding-left: 0;
-    list-style: none;
+    @extend %concrete-reset-list;
 
     li
     {
@@ -240,32 +237,4 @@ canvas
     {
         max-height: 100%;
     }
-}
-
-// -----------------------------------------------------------------------------
-// Input and button reset placeholders
-// -----------------------------------------------------------------------------
-%concrete-reset-input,
-%concrete-reset-select,
-%concrete-reset-textarea
-{
-    appearance: none;
-    background: none;
-    border-radius: 0;
-}
-
-// https://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh465742.aspx
-%concrete-reset-select
-{
-    &::-ms-expand
-    {
-        display: none;
-    }
-}
-
-%concrete-reset-button
-{
-    appearance: none;
-    background: none;
-    border: 0;
 }
