@@ -17,6 +17,12 @@
     @include register-imported('partials/defaults');
 }
 
+@if not is-imported('components/resets')
+{
+    @import 'components/resets';
+    @include register-imported('components/resets');
+}
+
 @if not is-imported('components/helpers')
 {
     @import 'components/helpers';
