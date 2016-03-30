@@ -1,15 +1,6 @@
 exclude:
   - 'node_modules/*'
   - 'sassdoc/*'
-  - 'source/components/_breakpoints.scss'
-  - 'source/components/_grid.scss'
-  - 'source/components/_shapes.scss'
-  - 'source/components/_transition.scss'
-  - 'source/core/_core.scss'
-  - 'source/core/_debug.scss'
-  - 'source/core/_list.scss'
-  - 'source/core/_utils.scss'
-  - 'source/partials/_normalize.scss'
   - 'tests/*.scss'
 
 linters:

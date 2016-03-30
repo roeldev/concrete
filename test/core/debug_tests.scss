@@ -10,7 +10,7 @@ $concrete-console-warnings: false;
 @import 'true';
 @import '../../src/core';
 
-////////////////////////////////////////////////////////////////////////////////
+// // // // // // // // // // // // // // // // // // // // // // // // // // //
 
 @include test-module('core/_debug: _concrete-warn [function]')
 {
@@ -35,6 +35,7 @@ $concrete-console-warnings: false;
     }
 }
 
+
 @include test-module('core/_debug: warn [function]')
 {
     @include test('Should add a message to the global list [1]')
@@ -58,6 +59,7 @@ $concrete-console-warnings: false;
     }
 }
 
+
 @include test-module('core/_debug: warn [mixin]')
 {
     @include test('Should add a message to the global list [1]')
@@ -80,6 +82,7 @@ $concrete-console-warnings: false;
         @include assert-equal($_concrete-warnings, $expected);
     }
 }
+
 
 /*@include test-module('core/_debug: display-warnings [mixin]')
 {

@@ -8,7 +8,7 @@
 @import '../../src/core';
 @import '../../src/components/effects';
 
-////////////////////////////////////////////////////////////////////////////////
+// // // // // // // // // // // // // // // // // // // // // // // // // // //
 
 @include test-module('components/_effects: fx-text-shadow [mixin]')
 {
@@ -28,6 +28,7 @@
         }
     }
 }
+
 
 @include test-module('components/_effects: _fx-gradient-param [function]')
 {
@@ -73,6 +74,7 @@
         @include assert-equal($actual, ($color 25%));
     }
 }
+
 
 @include test-module('components/_effects: fx-gradient-horizontal [mixin]')
 {
@@ -123,6 +125,7 @@
     }
 }
 
+
 @include test-module('components/_effects: fx-gradient-vertical [mixin]')
 {
     @include test('Should create a linear vertical gradient')
@@ -171,6 +174,7 @@
         }
     }
 }
+
 
 @include test-module('components/_effects: fx-gradient-radial [mixin]')
 {

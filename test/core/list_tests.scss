@@ -7,7 +7,7 @@
 @import 'true';
 @import '../../src/core';
 
-////////////////////////////////////////////////////////////////////////////////
+// // // // // // // // // // // // // // // // // // // // // // // // // // //
 
 @include test-module('core/_list: list-create [function]')
 {
@@ -41,6 +41,7 @@
     }
 }
 
+
 @include test-module('core/_list: nth-first [function]')
 {
     @include test('Should return the first value of the list')
@@ -60,6 +61,7 @@
     }
 }
 
+
 @include test-module('core/_list: nth-last [function]')
 {
     @include test('Should return the last value of the list')
@@ -78,6 +80,7 @@
         @include assert-equal(nth-last(false), null);
     }
 }
+
 
 @include test-module('core/_list: prepend [function]')
 {
@@ -108,6 +111,7 @@
     }
 }
 
+
 @include test-module('core/_list: one-of [function]')
 {
     @include test('Should return true when value is in list')
@@ -120,6 +124,7 @@
         @include assert-false(one-of('fail', 1 false 'test' null));
     }
 }
+
 
 @include test-module('core/_list: list-sort [function]')
 {

@@ -7,7 +7,7 @@
 @import 'true';
 @import '../../src/core';
 
-////////////////////////////////////////////////////////////////////////////////
+// // // // // // // // // // // // // // // // // // // // // // // // // // //
 
 @include test-module('core/_map: map-append [function]')
 {
@@ -36,6 +36,7 @@
     }
 }
 
+
 @include test-module('core/_map: map-get-key [function]')
 {
     @include test('Should return the first found key from the map [1]')
@@ -62,6 +63,7 @@
         @include assert-equal(map-get-key($input, 4), null);
     }
 }
+
 
 @include test-module('core/_map: map-ksort [function]')
 {
