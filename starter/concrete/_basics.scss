@@ -1,19 +1,9 @@
-//
-// concrete | _concrete-basics.scss
-//
+// -----------------------------------------------------------------------------
 // Basic styles and optional selectors
 // -----------------------------------------------------------------------------
 // For more information about the available settings, check either the included
 // help documents, examples, or visit the project page: http://git.io/qoNLsw
 //
-
-// -----------------------------------------------------------------------------
-// Import basics functions/mixins/partials.
-// -----------------------------------------------------------------------------
-// Last but not least, import the concrete initializer. This will import all
-// the needed functions and mixins to get you started :)
-//
-@import 'src/basics';
 
 // -----------------------------------------------------------------------------
 // Enable/disable basic concrete selectors.
@@ -27,11 +17,11 @@
 .sticky-top    { @extend %concrete-sticky-top; }
 .sticky-bottom { @extend %concrete-sticky-bottom; }
 
+.center-x      { @extend %concrete-center-x; }
 .center-y      { @extend %concrete-center-y; }
+.center-xy     { @extend %concrete-center-xy; }
 .center-valign { @extend %concrete-center-valign; }
 .center-middle { @extend %concrete-center-middle; }
-.center-x      { @extend %concrete-center-x; }
-.center-xy     { @extend %concrete-center-xy; }
 
 .fill-width    { @extend %concrete-img-fill-width; }
 .fill-height   { @extend %concrete-img-fill-height; }

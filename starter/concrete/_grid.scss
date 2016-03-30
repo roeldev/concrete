@@ -1,6 +1,4 @@
-//
-// concrete | _concrete-grid.scss
-//
+// -----------------------------------------------------------------------------
 // Basic grid settings
 // -----------------------------------------------------------------------------
 // For more information about the available settings, check either the included
@@ -8,12 +6,24 @@
 //
 
 // -----------------------------------------------------------------------------
-// Import grid specific functions/mixins/partials.
+// Container and grid
 // -----------------------------------------------------------------------------
-// Last but not least, import the concrete initializer. This will import all
-// the needed functions and mixins to get you started :)
-//
-@import 'src/grid';
+$concrete-containers:
+(
+    'xl':
+    (
+        'width':   90%,
+        'padding': 20px 30px
+    )
+);
+
+$concrete-grid-gap:
+(
+    'xl': 15px,
+    'lg': 10px,
+    'sm': 8px,
+    'xs': 5px
+);
 
 // -----------------------------------------------------------------------------
 // Grid columns
@@ -70,5 +80,4 @@ $concrete-grid-columns: grid-columns(
 // -----------------------------------------------------------------------------
 
 .blockgrid { @include grid-create('block', $concrete-grid-columns); }
-//.flexgrid  { @include grid-create('flex', $concrete-grid-columns); }
-//.tablegrid { @include grid-create('table', $concrete-grid-columns); }
+.flexgrid  { @include grid-create('flex',  $concrete-grid-columns); }

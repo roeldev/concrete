@@ -1,0 +1,15 @@
+// -----------------------------------------------------------------------------
+// Transitions
+// -----------------------------------------------------------------------------
+// If you're using transitions most of the time the duration and easing
+// properties are the same for all transitions.
+//
+$concrete-transitions:
+(
+    'default':
+    (
+        'delay':    0s,
+        'duration': 0.2s,
+        'easing':   ease-in-out
+    )
+);

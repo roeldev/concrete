@@ -4,9 +4,6 @@
 // All required files to start developing. Add as many import rules as you need.
 //
 @import 'concrete';
-@import 'concrete-basics';
-//@import 'concrete-grid';
-//@import 'concrete-iconfont';
 
 // -----------------------------------------------------------------------------
 // Placeholders
@@ -25,7 +22,7 @@ button
 {
     // Reset the look of buttons by removing the background, border and default
     // appearance. Very useful if you're using custom designed buttons.
-    @extend %concrete-button-reset;
+    @extend %concrete-reset-button;
 }
 
 // -----------------------------------------------------------------------------
