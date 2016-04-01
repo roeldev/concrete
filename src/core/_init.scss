@@ -14,6 +14,11 @@
 ///
 @function _concrete-init-breakpoints()
 {
+    @if not global-variable-exists('concrete-breakpoints')
+    {
+        @return ();
+    }
+
     // make a map with the minimum pixel width of the breakpoint as key so we
     // can sort the breakpoints from largest to smallest
     $sortedBreakpoints: ();
