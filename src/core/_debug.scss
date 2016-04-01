@@ -108,6 +108,7 @@
 ///
 @function _concrete-debug-list($list, $inspect: true, $indentLevel: false)
 {
+    $display: '';
     $indent:  '   ';
     $newline: '
 ';
@@ -117,7 +118,6 @@
     {
         @if ($inspect == true)
         {
-            $display: '';
 
             @if ($indentLevel == false)
             {
