@@ -7,22 +7,24 @@
 @import 'core';
 @include register-imported('core');
 
-@if not is-imported('components/basics')
-{
-    @import 'components/basics';
-    @include register-imported('components/basics');
-}
-
 @if not is-imported('components/resets')
 {
     @import 'components/resets';
     @include register-imported('components/resets');
 }
 
+// -----------------------------------------------------------------------------
+
 @if not is-imported('components/breakpoints')
 {
     @import 'components/breakpoints';
     @include register-imported('components/breakpoints');
+}
+
+@if not is-imported('components/center')
+{
+    @import 'components/center';
+    @include register-imported('components/center');
 }
 
 @if not is-imported('components/effects')
@@ -37,10 +39,28 @@
     @include register-imported('components/fonts');
 }
 
-@if not is-imported('components/shapes')
+@if not is-imported('components/gradients')
 {
-    @import 'components/shapes';
-    @include register-imported('components/shapes');
+    @import 'components/gradients';
+    @include register-imported('components/gradients');
+}
+
+@if not is-imported('components/ratio')
+{
+    @import 'components/ratio';
+    @include register-imported('components/ratio');
+}
+
+@if not is-imported('components/shape-hexagon')
+{
+    @import 'components/shape-hexagon';
+    @include register-imported('components/shape-hexagon');
+}
+
+@if not is-imported('components/shape-triangle')
+{
+    @import 'components/shape-triangle';
+    @include register-imported('components/shape-triangle');
 }
 
 @if not is-imported('components/transition')
