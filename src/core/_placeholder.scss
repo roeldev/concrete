@@ -1,0 +1,66 @@
+////
+/// concrete | source/core/_extend.scss
+///
+/// Dynamic placeholders
+///
+/// @group Core
+////
+
+$_concrete-placeholders: () !global;
+
+// -----------------------------------------------------------------------------
+
+// example taken from
+// http://alistapart.com/article/dry-ing-out-your-sass-mixins
+@mixin dynamic-placeholder($name, $extend: true)
+{
+    // @debug 'extend: ' + $name + ', ' + $extend;
+
+    @if $extend
+    {
+        $placeholder-id: placeholder-id($name);
+
+        // create a real placeholder for the placeholder mixin's content so it
+        // can be shared and re-used by different components
+        @if not map-has-key($_concrete-placeholders, $name)
+        {
+            $placeholder-id: unique-id();
+            $_concrete-placeholders: map-append($_concrete-placeholders,
+                                                $name,
+                                                $placeholder-id) !global;
+
+            // @debug '  create placeholder ' + $placeholder-id;
+
+            // create the placeholder at root level
+            @at-root %#{$placeholder-id}
+            {
+                @content;
+
+                -debug: '#{$name} | #{$placeholder-id}';
+            }
+        }
+
+        // let the component extend the real placeholder
+        @extend %#{$placeholder-id};
+    }
+    // when not extending a placeholder, echo the placeholder mixin's content
+    @else
+    {
+        // @debug '  echo content';
+        @content;
+    }
+}
+
+// -----------------------------------------------------------------------------
+
+@function placeholder-id($name)
+{
+    @return map-get($_concrete-placeholders, $name);
+}
+
+@mixin placeholder-extend($name)
+{
+    $placeholder-id: placeholder-id($name);
+
+    @extend %#{$placeholder-id};
+}
