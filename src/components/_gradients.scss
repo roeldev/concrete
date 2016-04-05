@@ -1,0 +1,219 @@
+////
+/// concrete | source/components/_gradients.scss
+///
+/// Some easy to use and pretty cool gradients!
+///
+/// @group gradients
+////
+
+///
+/// Creates a horizontal gradient. Both start and end values can be either a
+/// color or a list with a color and a start/end position percentage. The
+/// default starting position is at 0% and end position at 100%.
+/// When the end color is not defined, the starting color will be used with
+/// 0% alpha, creating a gradient from a solid color to transparent.
+///
+/// Examples:
+/// gradient-horizontal(red);
+/// Creates a red to transparent gradient from positions 0% to 100%.
+///
+/// gradient-horizontal(red, blue);
+/// Creates a red to blue gradient from positions 0% to 100%.
+///
+/// gradient-horizontal(red 5%, blue 95%);
+/// Creates a red to blue gradient from positions 0% to 100%;
+///
+/// @param {color|list} $start - Starting color/position.
+/// @param {color|list|null} $end [null] - Ending color/position.
+///
+@mixin gradient-horizontal($start, $end: null)
+{
+    @include _gradient-linear('gradient-horizontal',
+                              left,
+                              to right,
+                              1,
+                              $start,
+                              $end);
+}
+
+///
+/// Creates a vertical gradient. See gradient-horizontal for further details.
+///
+/// @param {color|list} $start - Starting color/position.
+/// @param {color|list|null} $end [null] - Ending color/position.
+///
+@mixin gradient-vertical($start, $end: null)
+{
+    @include _gradient-linear('gradient-vertical',
+                              top,
+                              to bottom,
+                              0,
+                              $start,
+                              $end);
+}
+
+///
+/// Creates a radial gradient. See gradient-horizontal for further details.
+///
+/// @param {color|list} $start - Starting color/position.
+/// @param {color|list|null} $end [null] - Ending color/position.
+///
+@mixin gradient-radial($start, $end: null)
+{
+    $origStart: $start;
+    $origEnd:   $end;
+
+    $start: _gradient-param($start, 0%);
+    @if is-list($start)
+    {
+        $end: _gradient-param($end, 100%, $start);
+        @if is-list($end)
+        {
+            // Chrome10+, Safari5.1+
+            background: -webkit-radial-gradient(center, ellipse cover, $start, $end);
+
+            // Opera 12
+            background: -o-radial-gradient(center, ellipse cover, $start, $end);
+
+            // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+            background: radial-gradient(ellipse at center,  $start, $end);
+        }
+        @else
+        {
+            @include warn('gradient-radial',
+                          'Invalid end value `"#{$origEnd}"`');
+        }
+    }
+    @else
+    {
+        @include warn('gradient-radial',
+                      'Invalid start value `"#{$origStart}"`');
+    }
+}
+
+// -----------------------------------------------------------------------------
+
+///
+/// Parses a start/end value param passed to one of the gradient-* mixins.
+/// Creates a list with a color and a position from where the gradient will
+/// start or end.
+///
+/// @access private
+/// @group private
+///
+/// @param {color|list} $param - Starting/ending color and position.
+/// @param {number} $position - The fallback position percent value.
+/// @param {list|boolean} $defaultParam [false] - Already parsed color and
+///         position list wich are used as fallback.
+/// @return {list|boolean}
+///
+@function _gradient-param($param, $position, $defaultParam: false)
+{
+    $result: false;
+    @if is-list($param, 2)
+    {
+        $nth1: nth($param, 1);
+        $nth2: nth($param, 2);
+
+        // the list can be either (color position) or (position color)
+        @if is-color($nth1)
+        {
+            @if is-percent($nth2)
+            {
+                $position: $nth2;
+            }
+
+            $result: ($nth1 $position);
+        }
+        @elseif is-color($nth2)
+        {
+            @if is-percent($nth1)
+            {
+                $position: $nth1;
+            }
+
+            $result: ($nth2 $position);
+        }
+    }
+    @elseif is-color($param)
+    {
+        $result: ($param $position);
+    }
+    // the param to parse is neither a color or list, so treat it as an invalid
+    // value. use the first value (color) from the default parameter
+    @elseif is-list($defaultParam)
+    {
+        @if is-percent($param)
+        {
+            $position: $param;
+        }
+
+        $color: nth($defaultParam, 1);
+        $alpha: alpha($color);
+        $alpha: if(($alpha == 0), 1, 0);
+
+        $color: rgba($color, $alpha);
+        $result: ($color $position);
+    }
+
+    @return $result;
+}
+
+///
+/// *Original mixin taken from Bootstrap
+///
+/// @access private
+/// @group private
+///
+/// @param {string} $function - The gradient-* function wich is used.
+/// @param {string} $direction1 - Direction of the gradient (old spec).
+/// @param {string} $direction2 - Direction of the gradient (current spec).
+/// @param {number} $ieGradientType - IE <=9 GradientType value.
+/// @param {color|list} $start - Starting color/position.
+/// @param {color|list|null} $end [null] - Ending color/position.
+///
+@mixin _gradient-linear($function,
+                        $direction1,
+                        $direction2,
+                        $ieGradientType,
+                        $start,
+                        $end)
+{
+    $origStart: $start;
+    $origEnd:   $end;
+
+    $start: _gradient-param($start, 0%);
+    @if is-list($start)
+    {
+        $end: _gradient-param($end, 100%, $start);
+        @if is-list($end)
+        {
+            // Chrome10+, Safari5.1+
+            background: -webkit-linear-gradient($direction1, $start, $end);
+
+            // Opera 12
+            background: -o-linear-gradient($direction1, $start, $end);
+
+            // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+            background: linear-gradient($direction2, $start, $end);
+            background-repeat: repeat-x;
+
+            // IE9 and down
+            $startColor: ie-hex-str(nth($start, 1));
+            $endColor:   ie-hex-str(nth($end, 1));
+
+            filter: progid:DXImageTransform.Microsoft.gradient(
+                       startColorstr='#{$startColor}',
+                       endColorstr='#{$endColor}',
+                       GradientType=#{$ieGradientType} );
+        }
+        @else
+        {
+            @include warn($function, 'Invalid end value `"#{$origEnd}"`');
+        }
+    }
+    @else
+    {
+        @include warn($function, 'Invalid start value `"#{$origStart}"`');
+    }
+}
