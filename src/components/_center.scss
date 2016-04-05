@@ -1,0 +1,123 @@
+////
+/// concrete | source/components/_center.scss
+///
+/// @group center
+////
+
+@mixin center-x($extend: true)
+{
+    position: relative;
+    height: 100%;
+    margin: 0 auto;
+}
+
+@mixin center-y($selectorMiddle: true, $resetFontSize: true, $extend: true)
+{
+    @include dynamic-placeholder('center-y', $extend)
+    {
+        height: 100%;
+        font-size: 0;
+    }
+
+    &::before
+    {
+        @include center-push-placeholder($extend);
+    }
+
+    @if $selectorMiddle
+    {
+        @if ($selectorMiddle == true)
+        {
+            $selectorMiddle: 'middle';
+        }
+
+        @at-root & > &__#{$selectorMiddle}
+        {
+            @include center-y-middle-placeholder($resetFontSize, $extend);
+        }
+    }
+}
+
+@mixin center-xy($selectorMiddle: true, $resetFontSize: true, $extend: true)
+{
+    @include dynamic-placeholder('center-xy', $extend)
+    {
+        width: 100%;
+        height: 100%;
+        font-size: 0;
+        text-align: center;
+    }
+
+    &::before
+    {
+        @include center-push-placeholder($extend);
+    }
+
+    @if $selectorMiddle
+    {
+        @if ($selectorMiddle == true)
+        {
+            $selectorMiddle: 'middle';
+        }
+
+        @at-root &__#{$selectorMiddle}
+        {
+            @include center-xy-middle-placeholder($resetFontSize, $extend);
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+
+@mixin center-push-placeholder($extend: true)
+{
+    @include dynamic-placeholder('center-push', $extend)
+    {
+        content: '';
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%;
+    }
+}
+
+@mixin center-y-middle-placeholder($resetFontSize: true, $extend: true)
+{
+    @include dynamic-placeholder('center-y-middle', $extend)
+    {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    @if $resetFontSize
+    {
+        font-size: 1rem;
+    }
+}
+
+@mixin center-xy-middle-placeholder($resetFontSize: true, $extend: true)
+{
+    @include dynamic-placeholder('center-xy-middle', $extend)
+    {
+        display: inline-block;
+        vertical-align: middle;
+        height: auto;
+    }
+
+    @if $resetFontSize
+    {
+        font-size: 1rem;
+    }
+}
+
+// -----------------------------------------------------------------------------
+
+@mixin _center-middle($parent, $selectorMiddle)
+{
+    @if $selectorMiddle
+    {
+        & > #{$selectorMiddle}
+        {
+            @content;
+        }
+    }
+}
