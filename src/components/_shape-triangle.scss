@@ -1,45 +1,8 @@
 ////
-/// concrete | source/components/_shapes.scss
+/// concrete | source/components/_shape-triangle.scss
 ///
 /// @group shapes
 ////
-
-///
-/// *Created using example from http://jsfiddle.net/tzi/awt33/
-///
-/// @param {number} $size
-///
-@mixin shape-hexagon($size)
-{
-    position: relative;
-    display: inline-block;
-    vertical-align: middle;
-    width: $size;
-    height: $size * 0.57735;
-
-    &:before,
-    &:after
-    {
-        content: '';
-        position: absolute;
-        z-index: -1;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: inherit;
-    }
-
-    &:before
-    {
-        transform: rotateZ(60deg);
-    }
-
-    &:after
-    {
-        transform: rotateZ(120deg);
-    }
-}
 
 ///
 /// *Created using example from http://css-tricks.com/examples/ShapesOfCSS/
@@ -52,7 +15,7 @@
 /// @param {number} $size - The size of the triangle.
 /// @param {number} $size2 [false]
 ///
-@mixin shape-triangle($direction, $color, $size, $size2: false)
+@mixin triangle($direction, $color, $size, $size2: false)
 {
     @if is-string($color)
     {
@@ -112,7 +75,7 @@
     }
     @else
     {
-        @include warn('shape-triangle',
+        @include warn('triangle',
             'Cannot create triangle, unknown direction `#{$direction}`.');
     }
 }
