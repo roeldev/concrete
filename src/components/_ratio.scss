@@ -1,0 +1,39 @@
+////
+/// concrete | source/components/_ratio.scss
+///
+/// @group ratio
+////
+
+// example taken from
+// http://alistapart.com/article/creating-intrinsic-ratios-for-video
+@mixin ratio($width, $height, $selectorBody: 'body', $selectorRatio: 'ratio')
+{
+    // use BEM style
+    $selectorBody:  selector-append(&, '__', $selectorBody);
+    $selectorRatio: selector-append(&, '__', $selectorRatio);
+
+    @at-root #{$selectorRatio}
+    {
+        position: relative;
+        height: 0;
+        padding-bottom: (($height / $width) * 100%);
+    }
+
+    @at-root #{$selectorBody}
+    {
+        @include ratio-body-placeholder;
+    }
+}
+
+@mixin ratio-body-placeholder($extend: true)
+{
+    @include dynamic-placeholder('ratio-body', $extend)
+    {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
