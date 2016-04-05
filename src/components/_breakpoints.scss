@@ -224,3 +224,29 @@
 
     @return append($condition, $value, 'space');
 }
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // //
+
+@if not global-variable-exists('concrete-debug-breakpoints')
+{
+    $concrete-debug-breakpoints: false !global;
+}
+
+@if not global-variable-exists('concrete-breakpoints')
+{
+    $concrete-breakpoints: () !global;
+}
+
+@if not global-variable-exists('concrete-breakpoint-scrollbar-buffer')
+{
+    $concrete-breakpoint-scrollbar-buffer: () !global;
+}
+
+$_concrete-breakpoints:   _concrete-init-breakpoints() !global;
+$_concrete-in-breakpoint: null !global;
+
+// settings that are prepared so they are more easily to use by the framework
+$concrete-breakpoints: _concrete-parse-breakpoints();
+
+// $concrete-breakpoint-scrollbar-buffer:
+    // _concrete-init-breakpoint-settings($concrete-breakpoint-scrollbar-buffer, 0);

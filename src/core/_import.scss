@@ -1,10 +1,6 @@
 ////
 /// concrete | source/_import.scss
 ////
-@if not global-variable-exists('_concrete-imported')
-{
-    $_concrete-imported: ();
-}
 
 ///
 /// Checks if the specified file is already registered as imported.
@@ -26,4 +22,21 @@
 @mixin register-imported($file)
 {
     $_concrete-imported: append($_concrete-imported, $file) !global;
+}
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // //
+
+@if not global-variable-exists('_concrete-imported')
+{
+    $_concrete-imported: ();
+}
+
+@if not global-variable-exists('concrete-import-normalize')
+{
+    $concrete-import-normalize: true !global;
+}
+
+@if not global-variable-exists('concrete-import-defaults')
+{
+    $concrete-import-defaults: true !global;
 }

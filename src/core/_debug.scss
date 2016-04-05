@@ -236,3 +236,17 @@
 
     @return '(map|'+ $mapLength +')'+ $display;
 }
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // //
+
+$_concrete-debugs: () !global;
+
+@if not global-variable-exists('concrete-console-warnings')
+{
+    $concrete-console-warnings: false !global;
+}
+
+@if not global-variable-exists('concrete-console-debugs')
+{
+    $concrete-console-debugs: false !global;
+}

@@ -8,62 +8,13 @@
 @import 'core/types';
 @import 'core/utils';
 @import 'core/getters';
+@import 'core/placeholder';
 @import 'core/import';
 @import 'core/init';
 @import 'core/log';
 @import 'core/debug';
 
 // -----------------------------------------------------------------------------
-
-@if not global-variable-exists('concrete-import-normalize')
-{
-    $concrete-import-normalize: true !global;
-}
-
-@if not global-variable-exists('concrete-import-defaults')
-{
-    $concrete-import-defaults: true !global;
-}
-
-@if not global-variable-exists('concrete-console-warnings')
-{
-    $concrete-console-warnings: false !global;
-}
-
-@if not global-variable-exists('concrete-console-debugs')
-{
-    $concrete-console-debugs: false !global;
-}
-
-@if not global-variable-exists('concrete-debug-breakpoints')
-{
-    $concrete-debug-breakpoints: false !global;
-}
-
-@if not global-variable-exists('concrete-breakpoints')
-{
-    $concrete-breakpoints: () !global;
-}
-
-@if not global-variable-exists('concrete-breakpoint-scrollbar-buffer')
-{
-    $concrete-breakpoint-scrollbar-buffer: () !global;
-}
-
-// -----------------------------------------------------------------------------
-
-// 'private' framework variables
-$_concrete-debugs:        () !global;
-$_concrete-warnings:      () !global;
-$_concrete-placeholders:  () !global;
-$_concrete-breakpoints:   _concrete-init-breakpoints() !global;
-$_concrete-in-breakpoint: null !global;
-
-// settings that are prepared so they are more easily to use by the framework
-$concrete-breakpoints: _concrete-parse-breakpoints();
-
-// $concrete-breakpoint-scrollbar-buffer:
-    // _concrete-init-breakpoint-settings($concrete-breakpoint-scrollbar-buffer, 0);
 
 //$concrete-container-width:
 //    _concrete-init-breakpoint-settings($concrete-container-width, 100%);
