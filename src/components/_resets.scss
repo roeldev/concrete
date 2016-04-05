@@ -4,44 +4,78 @@
 /// @group resets
 ////
 
-%concrete-reset-heading
-{
-    font-size: inherit;
-    font-style: normal;
-    font-weight: normal;
-    line-height: inherit;
-}
-
-%concrete-reset-list
-{
-    list-style: none;
-    padding: 0;
-}
-
 // -----------------------------------------------------------------------------
-// Input and button reset placeholders
+// Heading and typography reset placeholders
 // -----------------------------------------------------------------------------
-%concrete-reset-input,
-%concrete-reset-select,
-%concrete-reset-textarea
+@mixin reset-heading-placeholder($extend: true)
 {
-    appearance: none;
-    background: none;
-    border-radius: 0;
-}
-
-// https://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh465742.aspx
-%concrete-reset-select
-{
-    &::-ms-expand
+    @include dynamic-placeholder('reset-heading', $extend)
     {
-        display: none;
+        font-size: inherit;
+        font-style: normal;
+        font-weight: normal;
+        line-height: inherit;
     }
 }
 
-%concrete-reset-button
+// -----------------------------------------------------------------------------
+// Button and hyperlink reset placeholders
+// -----------------------------------------------------------------------------
+@mixin reset-button-placeholder($extend: true)
 {
-    appearance: none;
-    background: none;
-    border: 0;
+    @include dynamic-placeholder('reset-button', $extend)
+    {
+        appearance: none;
+        background: none;
+        border: 0;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Form elements reset placeholders
+// -----------------------------------------------------------------------------
+@mixin reset-input-placeholder($extend: true)
+{
+    @include _reset-form-elements-placeholder($extend);
+}
+
+@mixin reset-textarea-placeholder($extend: true)
+{
+    @include _reset-form-elements-placeholder($extend);
+}
+
+// https://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh465742.aspx
+@mixin reset-select-placeholder($extend: true)
+{
+    @include dynamic-placeholder('reset-select', $extend)
+    {
+        @include _reset-form-elements-placeholder($extend);
+
+        &::-ms-expand
+        {
+            display: none;
+        }
+    }
+}
+
+@mixin _reset-form-elements-placeholder($extend)
+{
+    @include dynamic-placeholder('_reset-form-elements', $extend)
+    {
+        appearance: none;
+        background: none;
+        border-radius: 0;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Common elements reset placeholders
+// -----------------------------------------------------------------------------
+@mixin reset-list-placeholder($extend: true)
+{
+    @include dynamic-placeholder('reset-list', $extend)
+    {
+        list-style: none;
+        padding: 0;
+    }
 }

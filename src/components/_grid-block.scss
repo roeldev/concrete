@@ -84,7 +84,7 @@
 
 ul%concrete-blockgrid-row
 {
-    @extend %concrete-reset-list;
+    @include reset-list-placeholder;
 }
 
 %concrete-blockgrid-column

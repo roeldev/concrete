@@ -87,7 +87,7 @@
 
 ul%concrete-flexgrid-row
 {
-    @extend %concrete-reset-list;
+    @include reset-list-placeholder;
 }
 
 %concrete-flexgrid-column

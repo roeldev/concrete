@@ -2,6 +2,8 @@
 /// concrete | source/components/_iconfont.scss
 ////
 
+$_concrete-iconfonts: () !global;
+
 ///
 /// You can use this mixin in your main stylesheet. It will make adding icon
 /// fonts, made with for example Fontastic, even easier.
@@ -9,51 +11,117 @@
 /// *Iconfont base CSS from fontastic.me.
 ///
 /// @param {string} $font - The name of the font file without file extension.
-/// @param {string} $prefix [icon] - A styleclass prefix for the added icons.
+/// @param {string} $iconGroup [icon] - A styleclass name for the added icons.
 /// @param {string} $dir [/fonts/] - The folder containing the font files.
 ///
-@mixin iconfont($font, $prefix: 'icon', $dir: '/fonts/')
+@mixin iconfont($font, $iconGroup: 'icon', $dir: '/fonts/', $glyphs: ())
 {
     @include font-face($font, $dir, $font);
 
-    [data-#{$prefix}]:before
+    [data-#{$iconGroup}]::before
     {
-        @extend %concrete-iconfont;
-        content: attr(data-icon);
+        @include iconfont-placeholder;
+        @include iconfont-attr-placeholder;
     }
 
-    .#{$prefix}:before,
-    [data-#{$prefix}]:before,
-    [class^='#{$prefix}-']:before,
-    [class*=' #{$prefix}-']:before
+    [data-#{$iconGroup}]::before,
+    [class^='#{$iconGroup}-']::before,
+    [class*=' #{$iconGroup}-']::before
     {
-        @extend %concrete-iconfont;
-
-        font-family: $font !important;
+        @include iconfont-font-placeholder($iconGroup, $font);
     }
 
-    @content;
+    @if is-map($glyphs)
+    {
+        @each $glyphName, $unicode in $glyphs
+        {
+            $className: _iconfont-classname($iconGroup, $glyphName);
+
+            @at-root .#{$className}::before
+            {
+                @include iconfont-glyph-placeholder($className, $unicode);
+            }
+        }
+    }
+    @else
+    {
+        @content;
+    }
+}
+
+// wanneer geen icongroup, pak laatst gebruikte
+@mixin iconfont-extend($iconGroup, $glyphName: false, $extend: true)
+{
+    @include iconfont-font-placeholder($iconGroup, '', $extend);
+
+    @if $glyphName
+    {
+        @include iconfont-glyph-extend($iconGroup, $glyphName, $extend);
+    }
+}
+
+// wanneer geen icongroup, pak laatst gebruikte
+@mixin iconfont-glyph-extend($iconGroup, $glyphName, $extend: true)
+{
+    $className: _iconfont-classname($iconGroup, $glyphName);
+
+    @include iconfont-glyph-placeholder($className, '', $extend);
 }
 
 // -----------------------------------------------------------------------------
-// Iconfont placeholders
-// -----------------------------------------------------------------------------
-%concrete-iconfont
-{
-    font-style: normal !important;
-    font-variant: normal !important;
-    font-weight: normal !important;
-    line-height: 1;
-    text-transform: none !important;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    speak: none;
-    cursor: inherit;
-    user-select: none;
 
-    @media screen and (-webkit-min-device-pixel-ratio:0)
+@mixin iconfont-placeholder($extend: true)
+{
+    @include dynamic-placeholder('iconfont', $extend)
     {
-        padding-top: 1px;
-        line-height: 1.15em !important;
+        font-style: normal !important;
+        font-variant: normal !important;
+        font-weight: normal !important;
+        line-height: 1;
+        text-transform: none !important;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        speak: none;
+        cursor: inherit;
+        user-select: none;
+
+        @media screen and (-webkit-min-device-pixel-ratio:0)
+        {
+            padding-top: 1px;
+            line-height: 1.15em !important;
+        }
     }
+}
+
+@mixin iconfont-attr-placeholder($extend: true)
+{
+    @include dynamic-placeholder('iconfont-attr', $extend)
+    {
+        content: attr(data-icon);
+    }
+}
+
+@mixin iconfont-font-placeholder($iconGroup, $font, $extend: true)
+{
+    @include dynamic-placeholder($iconGroup, $extend)
+    {
+        @include iconfont-placeholder($extend);
+
+        font-family: $font !important;
+    }
+}
+
+@mixin iconfont-glyph-placeholder($className, $unicode, $extend: true)
+{
+    @include dynamic-placeholder($className, $extend)
+    {
+        content: unicode($unicode) !important;
+    }
+}
+
+// -----------------------------------------------------------------------------
+
+@function _iconfont-classname($iconGroup, $glyphName)
+{
+    @return $iconGroup + '-' + $glyphName;
 }

@@ -31,20 +31,6 @@
     }
 }
 
-///
-/// @param {bool} $resetFontSize [true] - Apply a font-size reset to 1rem.
-///
-@mixin apply-valign-middle($resetFontSize: true)
-{
-    display:        inline-block;
-    vertical-align: middle;
-
-    @if $resetFontSize
-    {
-        font-size: 1rem;
-    }
-}
-
 // -----------------------------------------------------------------------------
 // Helper placeholders
 // -----------------------------------------------------------------------------
@@ -54,18 +40,21 @@
 }
 
 // *Clearfix helper taken from http://nicolasgallagher.com/micro-clearfix-hack/
-%concrete-clearfix //.clearfix
+@mixin clearfix($extend: true)
 {
-    &:before,
-    &:after
+    @include dynamic-placeholder('clearfix', $extend)
     {
-        content: " ";
-        display: table;
-    }
+        &::before,
+        &::after
+        {
+            content: ' ';
+            display: table;
+        }
 
-    &:after
-    {
-        clear: both;
+        &::after
+        {
+            clear: both;
+        }
     }
 }
 
@@ -116,54 +105,13 @@
     bottom: 0;
 }
 
-%concrete-center-x //.center-x
-{
-    position: relative;
-    height: 100%;
-    margin: 0 auto;
-}
-
-%concrete-center-y //.center-y
-{
-    height: 100%;
-    font-size: 0;
-
-    > %concrete-center-valign //.center-valign
-    {
-        display: inline-block;
-        vertical-align: middle;
-        height: 100%;
-    }
-
-    > %concrete-center-middle //.center-middle
-    {
-        @include apply-valign-middle(true);
-    }
-}
-
-%concrete-center-xy //.center-xy
-{
-    @extend %concrete-center-y;
-
-    width: 100%;
-    text-align: center;
-
-    > %concrete-center-x
-    {
-        @include apply-valign-middle(true);
-
-        height: auto;
-        text-align: left;
-    }
-}
-
 // -----------------------------------------------------------------------------
 // Lists and menu placeholders
 // -----------------------------------------------------------------------------
 %concrete-float-list
 {
-    @extend %concrete-clearfix;
-    @extend %concrete-reset-list;
+    @include reset-list-placeholder;
+    @include clearfix;
 
     li > a
     {
@@ -193,48 +141,11 @@
 
 %concrete-block-list
 {
-    @extend %concrete-reset-list;
+    @include reset-list-placeholder;
 
     li
     {
         display: block;
         width: 100%;
-    }
-}
-
-// -----------------------------------------------------------------------------
-// Images and canvas placeholders
-// -----------------------------------------------------------------------------
-img,
-canvas
-{
-    &%concrete-img-fill-width, //.fill-width
-    &%concrete-img-max-width,  //.max-width
-    %concrete-img-fill-width &,
-    %concrete-img-max-width &
-    {
-        width: 100%;
-        height: auto;
-    }
-
-    &%concrete-img-fill-height, //.fill-height
-    &%concrete-img-max-height,  //.max-height
-    %concrete-img-fill-height &,
-    %concrete-img-max-height &
-    {
-        width: auto;
-        height: 100%;
-    }
-
-    &%concrete-img-max-width,
-    %concrete-img-max-width &
-    {
-        max-width: 100%;
-    }
-
-    &%concrete-img-max-height,
-    %concrete-img-max-height &
-    {
-        max-height: 100%;
     }
 }
