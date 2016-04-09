@@ -4,10 +4,6 @@
 /// @group Core
 ////
 
-// -----------------------------------------------------------------------------
-// Var type related functions
-// -----------------------------------------------------------------------------
-
 ///
 /// Returns `true` if $var is a number. If the 2nd parameter $unit is a string,
 /// the function will also check if `$var` is of that type of unit.
@@ -96,13 +92,25 @@
 ///
 @function is-list($var, $length: false)
 {
-    $result: (type-of($var) == 'list' or type-of($var) == 'arglist');
+    $result: (type-of($var) == 'list' or is-arglist($var));
     @if ($result and is-number($length))
     {
         $result: (length($var) >= $length);
     }
     @return $result;
 }
+
+///
+/// Returns `true` if `$var` is an arglist.
+///
+/// @param {mixed} $var
+/// @return {bool}
+///
+@function is-arglist($var)
+{
+    @return (type-of($var) == 'arglist');
+}
+
 
 ///
 /// Returns `true` if `$var` is a map.
