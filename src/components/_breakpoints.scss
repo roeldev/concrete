@@ -225,8 +225,9 @@
     @return append($condition, $value, 'space');
 }
 
-// // // // // // // // // // // // // // // // // // // // // // // // // // //
-
+// -----------------------------------------------------------------------------
+// Global variables and settings
+// -----------------------------------------------------------------------------
 @if not global-variable-exists('concrete-debug-breakpoints')
 {
     $concrete-debug-breakpoints: false !global;

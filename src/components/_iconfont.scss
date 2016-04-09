@@ -2,8 +2,6 @@
 /// concrete | source/components/_iconfont.scss
 ////
 
-$_concrete-iconfonts: () !global;
-
 ///
 /// You can use this mixin in your main stylesheet. It will make adding icon
 /// fonts, made with for example Fontastic, even easier.
@@ -85,11 +83,11 @@ $_concrete-iconfonts: () !global;
         cursor: inherit;
         user-select: none;
 
-        @media screen and (-webkit-min-device-pixel-ratio:0)
-        {
-            padding-top: 1px;
-            line-height: 1.15em !important;
-        }
+        // @media screen and (-webkit-min-device-pixel-ratio:0)
+        // {
+        //     padding-top: 1px;
+        //     line-height: 1.15em !important;
+        // }
     }
 }
 
@@ -124,4 +122,12 @@ $_concrete-iconfonts: () !global;
 @function _iconfont-classname($iconGroup, $glyphName)
 {
     @return $iconGroup + '-' + $glyphName;
+}
+
+// -----------------------------------------------------------------------------
+// Global variables and settings
+// -----------------------------------------------------------------------------
+@if not global-variable-exists('_concrete-iconfonts')
+{
+    $_concrete-iconfonts: () !global;
 }

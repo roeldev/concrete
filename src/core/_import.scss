@@ -24,11 +24,12 @@
     $_concrete-imported: append($_concrete-imported, $file) !global;
 }
 
-// // // // // // // // // // // // // // // // // // // // // // // // // // //
-
+// -----------------------------------------------------------------------------
+// Global variables and settings
+// -----------------------------------------------------------------------------
 @if not global-variable-exists('_concrete-imported')
 {
-    $_concrete-imported: ();
+    $_concrete-imported: () !global;
 }
 
 @if not global-variable-exists('concrete-import-normalize')

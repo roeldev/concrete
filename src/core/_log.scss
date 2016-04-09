@@ -82,6 +82,10 @@
     @return $message;
 }
 
-// // // // // // // // // // // // // // // // // // // // // // // // // // //
-
-$_concrete-warnings: () !global;
+// -----------------------------------------------------------------------------
+// Global variables and settings
+// -----------------------------------------------------------------------------
+@if not global-variable-exists('_concrete-warnings')
+{
+    $_concrete-warnings: () !global;
+}
