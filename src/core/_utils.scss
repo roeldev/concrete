@@ -4,6 +4,23 @@
 /// @group Core
 ////
 
+@function keyword($args, $keyword, $default: null)
+{
+    @if is-arglist($args)
+    {
+        $args: keywords($args);
+    }
+
+    $result: $default;
+
+    @if map-has-key($args, $keyword)
+    {
+        $result: map-get($args, $keyword);
+    }
+
+    @return $result;
+}
+
 ///
 /// Checks if the given vars are of the same type.
 ///
