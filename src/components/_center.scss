@@ -31,7 +31,7 @@
             $selectorMiddle: 'middle';
         }
 
-        @at-root & > &__#{$selectorMiddle}
+        @at-root &__#{$selectorMiddle}
         {
             @include center-y-middle-placeholder($resetFontSize, $extend);
         }
@@ -106,18 +106,5 @@
     @if $resetFontSize
     {
         font-size: 1rem;
-    }
-}
-
-// -----------------------------------------------------------------------------
-
-@mixin _center-middle($parent, $selectorMiddle)
-{
-    @if $selectorMiddle
-    {
-        & > #{$selectorMiddle}
-        {
-            @content;
-        }
     }
 }
