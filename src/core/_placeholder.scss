@@ -6,16 +6,10 @@
 /// @group Core
 ////
 
-$_concrete-placeholders: () !global;
-
-// -----------------------------------------------------------------------------
-
 // example taken from
 // http://alistapart.com/article/dry-ing-out-your-sass-mixins
 @mixin dynamic-placeholder($name, $extend: true)
 {
-    // @debug 'extend: ' + $name + ', ' + $extend;
-
     @if $extend
     {
         $placeholder-id: placeholder-id($name);
@@ -29,14 +23,15 @@ $_concrete-placeholders: () !global;
                                                 $name,
                                                 $placeholder-id) !global;
 
-            // @debug '  create placeholder ' + $placeholder-id;
-
             // create the placeholder at root level
             @at-root %#{$placeholder-id}
             {
                 @content;
 
-                -debug: '#{$name} | #{$placeholder-id}';
+                @if $concrete-debug-dynamic-placeholders
+                {
+                    -debug: '#{$name} | #{$placeholder-id}';
+                }
             }
         }
 
@@ -46,7 +41,6 @@ $_concrete-placeholders: () !global;
     // when not extending a placeholder, echo the placeholder mixin's content
     @else
     {
-        // @debug '  echo content';
         @content;
     }
 }
@@ -63,4 +57,17 @@ $_concrete-placeholders: () !global;
     $placeholder-id: placeholder-id($name);
 
     @extend %#{$placeholder-id};
+}
+
+// -----------------------------------------------------------------------------
+// Global variables and settings
+// -----------------------------------------------------------------------------
+@if not global-variable-exists('_concrete-placeholders')
+{
+    $_concrete-placeholders: () !global;
+}
+
+@if not global-variable-exists('concrete-debug-dynamic-placeholders')
+{
+    $concrete-debug-dynamic-placeholders: false !global;
 }
