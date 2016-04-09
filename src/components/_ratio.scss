@@ -6,22 +6,23 @@
 
 // example taken from
 // http://alistapart.com/article/creating-intrinsic-ratios-for-video
-@mixin ratio($width, $height, $selectorBody: 'body', $selectorRatio: 'ratio')
+@mixin ratio($width, $height, $selectorBody: true)
 {
-    // use BEM style
-    $selectorBody:  selector-append(&, '__', $selectorBody);
-    $selectorRatio: selector-append(&, '__', $selectorRatio);
+    position: relative;
+    height: 0;
+    padding-bottom: (($height / $width) * 100%);
 
-    @at-root #{$selectorRatio}
+    @if $selectorBody
     {
-        position: relative;
-        height: 0;
-        padding-bottom: (($height / $width) * 100%);
-    }
+        @if ($selectorBody == true)
+        {
+            $selctorBody: 'body';
+        }
 
-    @at-root #{$selectorBody}
-    {
-        @include ratio-body-placeholder;
+        &__#{$selectorBody}
+        {
+            @include ratio-body-placeholder;
+        }
     }
 }
 
