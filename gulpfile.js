@@ -3,32 +3,32 @@
  */
 'use strict';
 
-var Gulp                = require('gulp');
-var GulpPlumber         = require('gulp-plumber');
-var GulpMocha           = require('gulp-mocha');
-var GulpNotify          = require('gulp-notify');
-var GulpSass            = require('gulp-sass');
-var GulpScssLint        = require('gulp-scss-lint');
-var GulpScssLintStylish = require('gulp-scss-lint-stylish');
-var GulpSize            = require('gulp-size');
-var SassDoc             = require('sassdoc');
+const Gulp                = require('gulp');
+const GulpPlumber         = require('gulp-plumber');
+const GulpMocha           = require('gulp-mocha');
+const GulpNotify          = require('gulp-notify');
+const GulpSass            = require('gulp-sass');
+const GulpScssLint        = require('gulp-scss-lint');
+const GulpScssLintStylish = require('gulp-scss-lint-stylish');
+const GulpSize            = require('gulp-size');
+const SassDoc             = require('sassdoc');
 
 ////////////////////////////////////////////////////////////////////////////////
 
-var SRC_EXAMPLES = './examples/scss/*.scss';
-var SRC_TESTS    = './test/**/*.scss';
-var SRC_SOURCE   = ['./src/**/*.scss', './*.scss',
+const SRC_EXAMPLES = './examples/scss/*.scss';
+const SRC_TESTS    = './test/**/*.scss';
+const SRC_SOURCE   = ['./src/**/*.scss', './*.scss',
                     '!node_modules/*', '!docs/*'];
 
 //------------------------------------------------------------------------------
 
-var $sassOptions =
+const $sassOptions =
 {
     'style':         'expanded',
     'sourceComments': true
 };
 
-var $plumberOptions =
+const $plumberOptions =
 {
     'errorHandler': GulpNotify.onError(
     {
@@ -66,7 +66,7 @@ Gulp.task('compile:examples', function($callback)
 
 Gulp.task('watch:examples', function()
 {
-    var $src = [].concat(SRC_SOURCE, [SRC_EXAMPLES]);
+    let $src = [].concat(SRC_SOURCE, [SRC_EXAMPLES]);
     Gulp.watch($src, ['compile:examples']);
 });
 
@@ -89,7 +89,7 @@ Gulp.task('test', function($callback)
 
 Gulp.task('watch:tests', function()
 {
-    var $src = [].concat(SRC_SOURCE, [SRC_TESTS]);
+    let $src = [].concat(SRC_SOURCE, [SRC_TESTS]);
     Gulp.watch($src, ['test']);
 });
 
@@ -98,7 +98,7 @@ Gulp.task('watch:tests', function()
  */
 Gulp.task('watch', function()
 {
-    var $src = [].concat(SRC_SOURCE, [SRC_EXAMPLES, SRC_TESTS]);
+    let $src = [].concat(SRC_SOURCE, [SRC_EXAMPLES, SRC_TESTS]);
     Gulp.watch($src, ['watch:examples', 'watch:tests']);
     //Gulp.watch(SRC_SOURCE, ['lint'])
 });
