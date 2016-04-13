@@ -7,7 +7,7 @@
 // -----------------------------------------------------------------------------
 // Heading and typography reset placeholders
 // -----------------------------------------------------------------------------
-@mixin reset-heading-placeholder($extend: true)
+@mixin reset-heading($extend: true)
 {
     @include dynamic-placeholder('reset-heading', $extend)
     {
@@ -21,7 +21,7 @@
 // -----------------------------------------------------------------------------
 // Button and hyperlink reset placeholders
 // -----------------------------------------------------------------------------
-@mixin reset-button-placeholder($extend: true)
+@mixin reset-button($extend: true)
 {
     @include dynamic-placeholder('reset-button', $extend)
     {
@@ -34,22 +34,22 @@
 // -----------------------------------------------------------------------------
 // Form elements reset placeholders
 // -----------------------------------------------------------------------------
-@mixin reset-input-placeholder($extend: true)
+@mixin reset-input($extend: true)
 {
-    @include _reset-form-elements-placeholder($extend);
+    @include _reset-form-elements($extend);
 }
 
-@mixin reset-textarea-placeholder($extend: true)
+@mixin reset-textarea($extend: true)
 {
-    @include _reset-form-elements-placeholder($extend);
+    @include _reset-form-elements($extend);
 }
 
 // https://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh465742.aspx
-@mixin reset-select-placeholder($extend: true)
+@mixin reset-select($extend: true)
 {
     @include dynamic-placeholder('reset-select', $extend)
     {
-        @include _reset-form-elements-placeholder($extend);
+        @include _reset-form-elements($extend);
 
         &::-ms-expand
         {
@@ -58,7 +58,7 @@
     }
 }
 
-@mixin _reset-form-elements-placeholder($extend)
+@mixin _reset-form-elements($extend)
 {
     @include dynamic-placeholder('_reset-form-elements', $extend)
     {
@@ -71,7 +71,7 @@
 // -----------------------------------------------------------------------------
 // Common elements reset placeholders
 // -----------------------------------------------------------------------------
-@mixin reset-list-placeholder($extend: true)
+@mixin reset-list($extend: true)
 {
     @include dynamic-placeholder('reset-list', $extend)
     {
