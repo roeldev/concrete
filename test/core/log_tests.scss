@@ -1,18 +1,15 @@
 ////
-/// concrete | test/core/debug_tests.scss
+/// concrete | test/core/log_tests.scss
 ///
 /// @group tests
 ////
-
-$_concrete-warnings:        ();
-$concrete-console-warnings: false;
 
 @import 'true';
 @import '../../src/core';
 
 // // // // // // // // // // // // // // // // // // // // // // // // // // //
 
-@include test-module('core/_debug: _concrete-warn [function]')
+@include test-module('core/_log: _concrete-warn [function]')
 {
     @include test('Should add a message to the global list [1]')
     {
@@ -36,7 +33,7 @@ $concrete-console-warnings: false;
 }
 
 
-@include test-module('core/_debug: warn [function]')
+@include test-module('core/_log: warn [function]')
 {
     @include test('Should add a message to the global list [1]')
     {
@@ -60,7 +57,7 @@ $concrete-console-warnings: false;
 }
 
 
-@include test-module('core/_debug: warn [mixin]')
+@include test-module('core/_log: warn [mixin]')
 {
     @include test('Should add a message to the global list [1]')
     {
@@ -82,27 +79,3 @@ $concrete-console-warnings: false;
         @include assert-equal($_concrete-warnings, $expected);
     }
 }
-
-
-/*@include test-module('core/_debug: display-warnings [mixin]')
-{
-    @include test('Should display the added warning messages')
-    {
-        $_concrete-warnings: () !global;
-
-        @include warn('test msg');
-
-        @include assert('x')
-        {
-            @include input()
-            {
-                @include display-warnings();
-            }
-
-            @include expect()
-            {
-                test: '';
-            }
-        }
-    }
-}*/
