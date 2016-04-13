@@ -55,10 +55,10 @@
                         @if ($width != map-get($defaultColumnWidths, $name))
                         {
                             $defaultColumnWidths: map-merge($defaultColumnWidths, ($name: $width));
-                            $selectors: _concrete-grid-selector($selectors, $name);
+                            $selectors: _grid-selector($selectors, $name);
                         }
 
-                        $selectors: _concrete-grid-selector($selectors, $name, $breakpoint);
+                        $selectors: _grid-selector($selectors, $name, $breakpoint);
                     }
 
                     #{$selectors}
@@ -87,7 +87,7 @@
 
 ul%concrete-flexgrid-row
 {
-    @include reset-list-placeholder;
+    @include reset-list;
 }
 
 %concrete-flexgrid-column

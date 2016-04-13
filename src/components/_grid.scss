@@ -33,10 +33,7 @@
                     $width: map-get($breakpointWidths, $breakpoint);
                 }
 
-                $result: _concrete-grid-column($result,
-                                               $column,
-                                               $breakpoint,
-                                               $width);
+                $result: _grid-column($result, $column, $breakpoint, $width);
             }
         }
         // no custom breakpoint widths, so all widths are equal on
@@ -45,10 +42,8 @@
         {
             @for $i from 2 through $breakpointsLength
             {
-                $result: _concrete-grid-column($result,
-                                               $column,
-                                               nth($_concrete-breakpoints, $i),
-                                               $width);
+                $breakpoint: nth($_concrete-breakpoints, $i);
+                $result: _grid-column($result, $column, $breakpoint, $width);
             }
         }
     }
@@ -101,7 +96,7 @@
 /// @param {number} $width - Column width
 /// @return {map}
 ///
-@function _concrete-grid-column($result, $column, $breakpoint, $width)
+@function _grid-column($result, $column, $breakpoint, $width)
 {
     $breakpointWidths: ();
     @if map-has-key($result, $breakpoint)
@@ -124,7 +119,7 @@
 /// @param {bool|string} $breakpoint [false]
 /// @return {list}
 ///
-@function _concrete-grid-selector($selectors, $name, $breakpoint: false)
+@function _grid-selector($selectors, $name, $breakpoint: false)
 {
     $selector: '[data-col^="#{$name}"]';
 
