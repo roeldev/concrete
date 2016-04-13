@@ -1,18 +1,18 @@
-/* line 6, stdin */
+/* line 5, stdin */
 html,
 body {
   height: 100%; }
 
-/* line 12, stdin */
+/* line 11, stdin */
 header {
   width: 100%;
   height: 100px;
   background-color: red; }
 
-/* line 19, stdin */
+/* line 18, stdin */
 .center-example {
   height: 200px;
   margin-top: 20px; }
-  /* line 24, stdin */
+  /* line 23, stdin */
   .center-example .center-x {
     background-color: yellow; }

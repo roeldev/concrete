@@ -1,10 +1,10 @@
-/* line 6, stdin */
+/* line 5, stdin */
 header {
   width: 100%;
   height: 100px;
   background-color: red; }
 
-/* line 13, stdin */
+/* line 12, stdin */
 header,
 main {
   margin-bottom: 20px; }

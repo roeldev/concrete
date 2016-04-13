@@ -1,6 +1,6 @@
 /*
     concrete - Sassy CSS framework (https://github.com/roeldev/concrete/)
-    Copyright (c) 2014-2015 Roel Schut (roelschut.nl)
+    Copyright (c) 2014-2016 Roel Schut (roelschut.nl)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,13 +16,18 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-/* line 15, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/*! normalize.css v4.0.0 | MIT License | github.com/necolas/normalize.css */
+/* line 7, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 html {
+  font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%; }
 
-/* line 39, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 16, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+body {
+  margin: 0; }
+
+/* line 28, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 article,
 aside,
 details,
@@ -30,7 +35,6 @@ figcaption,
 figure,
 footer,
 header,
-hgroup,
 main,
 menu,
 nav,
@@ -38,56 +42,71 @@ section,
 summary {
   display: block; }
 
-/* line 60, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 46, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 audio,
 canvas,
 progress,
 video {
-  display: inline-block;
-  vertical-align: baseline; }
+  display: inline-block; }
 
-/* line 73, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 56, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 audio:not([controls]) {
   display: none;
   height: 0; }
 
-/* line 83, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
-[hidden],
-template {
+/* line 64, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+progress {
+  vertical-align: baseline; }
+
+/* line 72, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+template,
+[hidden] {
   display: none; }
 
-/* line 95, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 83, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 a {
   background-color: transparent; }
 
-/* line 104, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 91, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 a:active,
 a:hover {
-  outline: 0; }
+  outline-width: 0; }
 
-/* line 116, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 103, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 abbr[title] {
-  border-bottom: 1px dotted; }
+  border-bottom: none;
+  text-decoration: underline;
+  text-decoration: underline dotted; }
 
-/* line 124, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 112, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 b,
 strong {
-  font-weight: bold; }
+  font-weight: inherit; }
 
-/* line 133, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 120, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+b,
+strong {
+  font-weight: bolder; }
+
+/* line 128, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 dfn {
   font-style: italic; }
 
-/* line 151, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 136, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+/* line 144, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 mark {
-  background: #ff0;
+  background-color: #ff0;
   color: #000; }
 
-/* line 160, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 152, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 small {
   font-size: 80%; }
 
-/* line 168, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 160, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 sub,
 sup {
   font-size: 75%;
@@ -95,36 +114,23 @@ sup {
   position: relative;
   vertical-align: baseline; }
 
-/* line 176, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
-sup {
-  top: -0.5em; }
-
-/* line 180, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 168, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 sub {
   bottom: -0.25em; }
 
-/* line 191, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
-img {
-  border: 0; }
+/* line 172, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+sup {
+  top: -0.5em; }
 
-/* line 199, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 182, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+img {
+  border-style: none; }
+
+/* line 189, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 svg:not(:root) {
   overflow: hidden; }
 
-/* line 210, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
-figure {
-  margin: 1em 40px; }
-
-/* line 218, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
-hr {
-  box-sizing: content-box;
-  height: 0; }
-
-/* line 227, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
-pre {
-  overflow: auto; }
-
-/* line 235, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 200, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 code,
 kbd,
 pre,
@@ -132,144 +138,173 @@ samp {
   font-family: monospace, monospace;
   font-size: 1em; }
 
-/* line 258, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
-button,
-input,
-optgroup,
-select,
-textarea {
-  color: inherit;
-  font: inherit;
-  margin: 0; }
+/* line 211, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+figure {
+  margin: 1em 40px; }
 
-/* line 272, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
-button {
+/* line 219, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+hr {
+  box-sizing: content-box;
+  height: 0;
   overflow: visible; }
 
-/* line 283, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 231, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+button,
+input,
+select,
+textarea {
+  font: inherit; }
+
+/* line 241, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+optgroup {
+  font-weight: bold; }
+
+/* line 250, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+button,
+input,
+select {
+  overflow: visible; }
+
+/* line 260, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+button,
+input,
+select,
+textarea {
+  margin: 0; }
+
+/* line 271, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 button,
 select {
   text-transform: none; }
 
-/* line 296, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 279, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 button,
-html input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-  -webkit-appearance: button;
+[type="button"],
+[type="reset"],
+[type="submit"] {
   cursor: pointer; }
 
-/* line 308, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
-button[disabled],
-html input[disabled] {
+/* line 289, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+[disabled] {
   cursor: default; }
 
-/* line 317, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 298, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+button,
+html [type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button; }
+
+/* line 308, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
   padding: 0; }
 
-/* line 328, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
-input {
-  line-height: normal; }
+/* line 317, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+button:-moz-focusring,
+input:-moz-focusring {
+  outline: 1px dotted ButtonText; }
 
-/* line 352, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  height: auto; }
-
-/* line 362, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
-input[type="search"] {
-  -webkit-appearance: textfield; }
-
-/* line 373, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none; }
-
-/* line 382, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 325, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 fieldset {
   border: 1px solid #c0c0c0;
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em; }
 
-/* line 393, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 337, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 legend {
-  border: 0; }
+  box-sizing: border-box;
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal; }
 
-/* line 402, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
+/* line 349, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
 textarea {
   overflow: auto; }
 
-/* line 411, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
-optgroup {
-  font-weight: bold; }
+/* line 357, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  padding: 0; }
 
-/* line 422, D:/Projecten/_roeldev/_concrete/src/partials/_normalize.scss */
-table {
-  border-collapse: collapse;
-  border-spacing: 0; }
+/* line 366, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto; }
 
-/*! concrete v0.4.2 | GNU GPL v2.0 License | http://git.io/qoNLsw | (c) 2014-2015 Roel Schut | roelschut.nl */
-/* line 9, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
+/* line 374, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+[type="search"] {
+  -webkit-appearance: textfield; }
+
+/* line 382, D:/Projecten/_roeldev/concrete/src/partials/_normalize.scss */
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/*! concrete v0.4.4 | GNU GPL v2.0 License | github.com/roeldev/concrete */
+/* line 9, D:/Projecten/_roeldev/concrete/src/partials/_defaults.scss */
 html {
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box; }
 
-/* line 15, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
+/* line 16, D:/Projecten/_roeldev/concrete/src/partials/_defaults.scss */
 html,
 body {
   width: 100%;
   min-height: 100%; }
 
-/* line 25, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
+/* line 26, D:/Projecten/_roeldev/concrete/src/partials/_defaults.scss */
 *,
 *:before,
 *:after {
-  box-sizing: border-box;
+  box-sizing: inherit;
   margin: 0;
   padding: 0; }
 
-/* line 37, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
+/* line 38, D:/Projecten/_roeldev/concrete/src/partials/_defaults.scss */
 a,
 button {
   cursor: pointer; }
-  /* line 42, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
+  /* line 43, D:/Projecten/_roeldev/concrete/src/partials/_defaults.scss */
   a:active, a:hover,
   button:active,
   button:hover {
     outline: 0; }
 
-/* line 49, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
+/* line 50, D:/Projecten/_roeldev/concrete/src/partials/_defaults.scss */
 a {
   text-decoration: none; }
 
-/* line 57, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
+/* line 58, D:/Projecten/_roeldev/concrete/src/partials/_defaults.scss */
 p {
-  padding-bottom: 1.6em; }
-  /* line 61, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
+  padding-bottom: 1.4em; }
+  /* line 62, D:/Projecten/_roeldev/concrete/src/partials/_defaults.scss */
   p:last-child {
     padding-bottom: 0; }
 
-/* line 67, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
+/* line 68, D:/Projecten/_roeldev/concrete/src/partials/_defaults.scss */
 p,
 address,
 figcaption {
-  line-height: 1.6em; }
+  line-height: 1.4em; }
 
-/* line 74, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
+/* line 75, D:/Projecten/_roeldev/concrete/src/partials/_defaults.scss */
 address {
   font-style: normal; }
 
-/* line 82, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
+/* line 83, D:/Projecten/_roeldev/concrete/src/partials/_defaults.scss */
 input,
 select,
 option,
 textarea,
 button {
-  font-family: "some-custom-font", sans-serif; }
-  /* line 90, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
+  font-family: "open-sans", sans-serif; }
+  /* line 91, D:/Projecten/_roeldev/concrete/src/partials/_defaults.scss */
   input:focus,
   select:focus,
   option:focus,
@@ -277,179 +312,484 @@ button {
   button:focus {
     outline: none; }
 
-/* line 98, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
+/* line 99, D:/Projecten/_roeldev/concrete/src/partials/_defaults.scss */
 img {
   vertical-align: middle;
   -ms-interpolation-mode: bicubic; }
 
-/* line 106, D:/Projecten/_roeldev/_concrete/src/partials/_defaults.scss */
+/* line 107, D:/Projecten/_roeldev/concrete/src/partials/_defaults.scss */
 ul,
 ol {
   padding-left: 20px; }
 
-/* line 51, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-.clear {
-  clear: both; }
-
-/* line 59, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-.float-list:before, .clearfix:before, nav:before, .float-list:after, .clearfix:after, nav:after {
-  content: " ";
-  display: table; }
-
-/* line 66, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-.float-list:after, .clearfix:after, nav:after {
-  clear: both; }
-
-/* line 72, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-.hidden {
-  display: none;
-  visibility: hidden; }
-
-/* line 78, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-.visible {
+/* line 75, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+.blockgrid.grid-row,
+.blockgrid .grid-row {
   display: block;
-  visibility: visible; }
+  overflow: hidden; }
+  /* line 15, D:/Projecten/_roeldev/concrete/src/components/_helpers.scss */
+  .blockgrid.grid-row::before,
+  .blockgrid .grid-row::before, .clearfix::before, .float-list::before, .blockgrid.grid-row::after,
+  .blockgrid .grid-row::after, .clearfix::after, .float-list::after {
+    content: ' ';
+    display: table; }
+  /* line 22, D:/Projecten/_roeldev/concrete/src/components/_helpers.scss */
+  .blockgrid.grid-row::after,
+  .blockgrid .grid-row::after, .clearfix::after, .float-list::after {
+    clear: both; }
 
-/* line 84, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-.nowrap {
-  white-space: nowrap; }
+/* line 27, D:/Projecten/_roeldev/concrete/src/core/_placeholder.scss */
+ul.blockgrid.grid-row,
+.blockgrid ul.grid-row, ul.flexgrid.grid-row,
+.flexgrid ul.grid-row, .float-list, .block-list {
+  list-style: none;
+  padding: 0; }
 
-/* line 105, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
+/* line 88, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+.blockgrid [data-col] {
+  display: block;
+  position: relative;
+  float: left; }
+  /* line 94, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid .grid-stretch[data-col], .grid-stretch.blockgrid.grid-row [data-col], .blockgrid .grid-stretch.grid-row [data-col] {
+    margin-bottom: -100%;
+    padding-bottom: 100%; }
+
+/* line 75, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+.flexgrid.grid-row,
+.flexgrid .grid-row {
+  display: flex;
+  flex-wrap: wrap; }
+  /* line 80, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .grid-stretch.flexgrid.grid-row,
+  .flexgrid .grid-stretch.grid-row {
+    align-items: stretch; }
+
+/* line 91, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+.flexgrid [data-col] {
+  flex: 1 1 auto; }
+  /* line 95, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .grid-stretch.flexgrid.grid-row [data-col], .flexgrid .grid-stretch.grid-row [data-col] {
+    display: flex; }
+
+/* line 27, D:/Projecten/_roeldev/concrete/src/core/_placeholder.scss */
 .sticky-top {
   position: fixed;
   top: 0;
   bottom: auto; }
 
-/* line 112, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
+/* line 27, D:/Projecten/_roeldev/concrete/src/core/_placeholder.scss */
 .sticky-bottom {
   position: fixed;
   top: auto;
   bottom: 0; }
 
-/* line 119, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
+/* line 81, D:/Projecten/_roeldev/concrete/src/components/_helpers.scss */
+.float-list li > a {
+  display: block; }
+
+/* line 89, D:/Projecten/_roeldev/concrete/src/components/_helpers.scss */
+.float-list li {
+  float: left; }
+
+/* line 102, D:/Projecten/_roeldev/concrete/src/components/_helpers.scss */
+.block-list li {
+  display: block;
+  width: 100%; }
+
+/* line 20, D:/Projecten/_roeldev/concrete/starter/concrete/_basics.scss */
 .center-x {
   position: relative;
   height: 100%;
   margin: 0 auto; }
 
-/* line 126, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-.center-xy, .center-y {
+/* line 27, D:/Projecten/_roeldev/concrete/src/core/_placeholder.scss */
+.center-y {
   height: 100%;
   font-size: 0; }
-  /* line 131, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-  .center-xy > .center-valign, .center-y > .center-valign {
-    display: inline-block;
-    vertical-align: middle;
-    height: 100%; }
-  /* line 138, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-  .center-xy > .center-middle, .center-y > .center-middle {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 1rem; }
 
-/* line 144, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-.center-xy {
-  width: 100%;
-  text-align: center; }
-  /* line 151, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-  .center-xy > .center-x {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 1rem;
-    height: auto;
-    text-align: left; }
-
-/* line 163, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-.float-list {
-  padding-left: 0;
-  list-style: none; }
-  /* line 170, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-  .float-list li > a {
-    display: block; }
-
-/* line 180, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-.float-list li {
-  float: left; }
-
-/* line 196, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-.block-list {
-  padding-left: 0;
-  list-style: none; }
-  /* line 201, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-  .block-list li {
-    display: block;
-    width: 100%; }
-    /* line 206, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-    .block-list li > a {
-      display: block; }
-
-/* line 219, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-img.fill-width, img.max-width, .fill-width img, .max-width img,
-canvas.fill-width,
-canvas.max-width,
-.fill-width
-canvas,
-.max-width
-canvas {
-  width: 100%;
-  height: auto; }
-
-/* line 228, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-img.fill-height, img.max-height, .fill-height img, .max-height img,
-canvas.fill-height,
-canvas.max-height,
-.fill-height
-canvas,
-.max-height
-canvas {
-  width: auto;
+/* line 27, D:/Projecten/_roeldev/concrete/src/core/_placeholder.scss */
+.center-y::before, .center-xy::before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
   height: 100%; }
 
-/* line 237, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-img.max-width, .max-width img,
-canvas.max-width,
-.max-width
-canvas {
-  max-width: 100%; }
+/* line 29, D:/Projecten/_roeldev/concrete/starter/concrete/_basics.scss */
+.center-y > .center-middle {
+  font-size: 1rem; }
+  /* line 27, D:/Projecten/_roeldev/concrete/src/core/_placeholder.scss */
+  .center-y > .center-middle {
+    display: inline-block;
+    vertical-align: middle; }
 
-/* line 243, D:/Projecten/_roeldev/_concrete/src/components/_helpers.scss */
-img.max-height, .max-height img,
-canvas.max-height,
-.max-height
-canvas {
-  max-height: 100%; }
+/* line 27, D:/Projecten/_roeldev/concrete/src/core/_placeholder.scss */
+.center-xy {
+  width: 100%;
+  height: 100%;
+  font-size: 0;
+  text-align: center; }
 
-/* line 11, D:/Projecten/_roeldev/_concrete/examples/scss/basics.scss */
+/* line 39, D:/Projecten/_roeldev/concrete/starter/concrete/_basics.scss */
+.center-xy > .center-middle {
+  font-size: 1rem; }
+  /* line 27, D:/Projecten/_roeldev/concrete/src/core/_placeholder.scss */
+  .center-xy > .center-middle {
+    display: inline-block;
+    vertical-align: middle;
+    height: auto; }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="8"] {
+  width: 8.33%; }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="12"] {
+  width: 12.5%; }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="16"] {
+  width: 16.66%; }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="25"] {
+  width: 25%; }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="33"] {
+  width: 33.33%; }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="50"] {
+  width: 50%; }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="66"] {
+  width: 66.67%; }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="75"] {
+  width: 75%; }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="83"] {
+  width: 83.33; }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+.blockgrid [data-col^="100"] {
+  width: 100%; }
+
+@media screen and (max-width: 1919px) {
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-8"] {
+    width: 8.33%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-12"] {
+    width: 12.5%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-16"] {
+    width: 16.66%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-25"] {
+    width: 25%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-33"] {
+    width: 33.33%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-50"] {
+    width: 50%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-66"] {
+    width: 66.67%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-75"] {
+    width: 75%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-83"] {
+    width: 83.33; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xl-100"] {
+    width: 100%; } }
+
+@media screen and (max-width: 1199px) {
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="lg-8"] {
+    width: 8.33%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="lg-12"] {
+    width: 12.5%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="lg-16"] {
+    width: 16.66%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="lg-25"] {
+    width: 25%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="lg-33"] {
+    width: 33.33%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="lg-50"] {
+    width: 50%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="lg-66"] {
+    width: 66.67%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="lg-75"] {
+    width: 75%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col^="83"], .blockgrid [data-col*="lg-83"], .blockgrid [data-col*="lg-100"] {
+    width: 100%; } }
+
+@media screen and (max-width: 1023px) {
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col^="8"], .blockgrid [data-col*="md-8"], .blockgrid [data-col^="12"], .blockgrid [data-col*="md-12"], .blockgrid [data-col*="md-25"] {
+    width: 25%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="md-33"] {
+    width: 33.33%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col^="16"], .blockgrid [data-col*="md-16"], .blockgrid [data-col*="md-50"] {
+    width: 50%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="md-66"] {
+    width: 66.67%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="md-75"] {
+    width: 75%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="md-83"], .blockgrid [data-col*="md-100"] {
+    width: 100%; } }
+
+@media screen and (max-width: 767px) {
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col^="8"], .blockgrid [data-col*="sm-8"], .blockgrid [data-col^="12"], .blockgrid [data-col*="sm-12"], .blockgrid [data-col^="25"], .blockgrid [data-col*="sm-25"] {
+    width: 50%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col^="16"], .blockgrid [data-col*="sm-16"], .blockgrid [data-col^="33"], .blockgrid [data-col*="sm-33"], .blockgrid [data-col^="50"], .blockgrid [data-col*="sm-50"], .blockgrid [data-col^="66"], .blockgrid [data-col*="sm-66"], .blockgrid [data-col^="75"], .blockgrid [data-col*="sm-75"], .blockgrid [data-col*="sm-83"], .blockgrid [data-col*="sm-100"] {
+    width: 100%; } }
+
+@media screen and (max-width: 479px) {
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xs-8"], .blockgrid [data-col*="xs-12"] {
+    width: 50%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-block.scss */
+  .blockgrid [data-col*="xs-16"], .blockgrid [data-col^="25"], .blockgrid [data-col*="xs-25"], .blockgrid [data-col*="xs-33"], .blockgrid [data-col*="xs-50"], .blockgrid [data-col*="xs-66"], .blockgrid [data-col*="xs-75"], .blockgrid [data-col*="xs-83"], .blockgrid [data-col*="xs-100"] {
+    width: 100%; } }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+.flexgrid [data-col^="8"] {
+  width: 8.33%; }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+.flexgrid [data-col^="12"] {
+  width: 12.5%; }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+.flexgrid [data-col^="16"] {
+  width: 16.66%; }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+.flexgrid [data-col^="25"] {
+  width: 25%; }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+.flexgrid [data-col^="33"] {
+  width: 33.33%; }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+.flexgrid [data-col^="50"] {
+  width: 50%; }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+.flexgrid [data-col^="66"] {
+  width: 66.67%; }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+.flexgrid [data-col^="75"] {
+  width: 75%; }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+.flexgrid [data-col^="83"] {
+  width: 83.33; }
+
+/* line 30, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+.flexgrid [data-col^="100"] {
+  width: 100%; }
+
+@media screen and (max-width: 1919px) {
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="xl-8"] {
+    width: 8.33%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="xl-12"] {
+    width: 12.5%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="xl-16"] {
+    width: 16.66%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="xl-25"] {
+    width: 25%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="xl-33"] {
+    width: 33.33%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="xl-50"] {
+    width: 50%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="xl-66"] {
+    width: 66.67%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="xl-75"] {
+    width: 75%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="xl-83"] {
+    width: 83.33; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="xl-100"] {
+    width: 100%; } }
+
+@media screen and (max-width: 1199px) {
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="lg-8"] {
+    width: 8.33%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="lg-12"] {
+    width: 12.5%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="lg-16"] {
+    width: 16.66%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="lg-25"] {
+    width: 25%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="lg-33"] {
+    width: 33.33%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="lg-50"] {
+    width: 50%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="lg-66"] {
+    width: 66.67%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="lg-75"] {
+    width: 75%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col^="83"], .flexgrid [data-col*="lg-83"], .flexgrid [data-col*="lg-100"] {
+    width: 100%; } }
+
+@media screen and (max-width: 1023px) {
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col^="8"], .flexgrid [data-col*="md-8"], .flexgrid [data-col^="12"], .flexgrid [data-col*="md-12"], .flexgrid [data-col*="md-25"] {
+    width: 25%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="md-33"] {
+    width: 33.33%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col^="16"], .flexgrid [data-col*="md-16"], .flexgrid [data-col*="md-50"] {
+    width: 50%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="md-66"] {
+    width: 66.67%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="md-75"] {
+    width: 75%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="md-83"], .flexgrid [data-col*="md-100"] {
+    width: 100%; } }
+
+@media screen and (max-width: 767px) {
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col^="8"], .flexgrid [data-col*="sm-8"], .flexgrid [data-col^="12"], .flexgrid [data-col*="sm-12"], .flexgrid [data-col^="25"], .flexgrid [data-col*="sm-25"] {
+    width: 50%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col^="16"], .flexgrid [data-col*="sm-16"], .flexgrid [data-col^="33"], .flexgrid [data-col*="sm-33"], .flexgrid [data-col^="50"], .flexgrid [data-col*="sm-50"], .flexgrid [data-col^="66"], .flexgrid [data-col*="sm-66"], .flexgrid [data-col^="75"], .flexgrid [data-col*="sm-75"], .flexgrid [data-col*="sm-83"], .flexgrid [data-col*="sm-100"] {
+    width: 100%; } }
+
+@media screen and (max-width: 479px) {
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="xs-8"], .flexgrid [data-col*="xs-12"] {
+    width: 50%; }
+  /* line 63, D:/Projecten/_roeldev/concrete/src/components/_grid-flex.scss */
+  .flexgrid [data-col*="xs-16"], .flexgrid [data-col^="25"], .flexgrid [data-col*="xs-25"], .flexgrid [data-col*="xs-33"], .flexgrid [data-col*="xs-50"], .flexgrid [data-col*="xs-66"], .flexgrid [data-col*="xs-75"], .flexgrid [data-col*="xs-83"], .flexgrid [data-col*="xs-100"] {
+    width: 100%; } }
+
+@font-face {
+  font-family: "icon-font-name";
+  font-weight: normal;
+  font-style: normal;
+  src: url("/path/to/font-files/icon-font-name.eot");
+  src: url("/path/to/font-files/icon-font-name.eot?#iefix") format("embedded-opentype"), url("/path/to/font-files/icon-font-name.woff") format("woff"), url("/path/to/font-files/icon-font-name.ttf") format("truetype"), url("/path/to/font-files/icon-font-name.svg#icon-font-name") format("svg"); }
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: "icon-font-name";
+    src: url("/path/to/font-files/icon-font-name.svg#icon-font-name") format("svg") !important; } }
+
+/* line 27, D:/Projecten/_roeldev/concrete/src/core/_placeholder.scss */
+[data-icon-prefix]::before,
+[class^='icon-prefix-']::before,
+[class*=' icon-prefix-']::before {
+  font-style: normal !important;
+  font-variant: normal !important;
+  font-weight: normal !important;
+  line-height: 1;
+  text-transform: none !important;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  speak: none;
+  cursor: inherit;
+  user-select: none; }
+
+/* line 27, D:/Projecten/_roeldev/concrete/src/core/_placeholder.scss */
+[data-icon-prefix]::before {
+  content: attr(data-icon); }
+
+/* line 27, D:/Projecten/_roeldev/concrete/src/core/_placeholder.scss */
+[data-icon-prefix]::before,
+[class^='icon-prefix-']::before,
+[class*=' icon-prefix-']::before {
+  font-family: "icon-font-name" !important; }
+
+/* line 31, D:/Projecten/_roeldev/concrete/starter/main.scss */
+html {
+  font-family: open-sans, sans-serif;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: 1.4em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+/* line 9, D:/Projecten/_roeldev/concrete/examples/scss/basics.scss */
 html, body {
   background-color: #ccc; }
 
-/* line 16, D:/Projecten/_roeldev/_concrete/examples/scss/basics.scss */
+/* line 14, D:/Projecten/_roeldev/concrete/examples/scss/basics.scss */
 .container {
   background-color: #fff; }
 
-/* line 10, stdin */
+/* line 9, stdin */
 ul {
   background-color: #fff; }
-  /* line 14, stdin */
+  /* line 13, stdin */
   ul li {
     padding: 5px;
     background-color: yellow; }
 
-/* line 25, stdin */
+/* line 24, stdin */
 nav .float-list {
   float: right; }
-  /* line 29, stdin */
+  /* line 28, stdin */
   nav .float-list li {
     margin: 0 5px; }
 
-/* line 36, stdin */
+/* line 35, stdin */
 .container {
   margin-top: 20px; }
-  /* line 40, stdin */
+  /* line 39, stdin */
   .container .block-list {
     width: 100%;
     max-width: 50%;
     border: 1px solid red; }
-    /* line 46, stdin */
+    /* line 45, stdin */
     .container .block-list li {
       border: 1px solid red; }
