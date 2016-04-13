@@ -8,15 +8,11 @@
 // -----------------------------------------------------------------------------
 // Enable/disable basic concrete selectors.
 // -----------------------------------------------------------------------------
-.clear         { @include clearboth; }
 .clearfix      { @include clearfix; }
-.hidden        { @include hidden; }
-.visible       { @include visible; }
-.nowrap        { @include nowrap; }
 
 .sticky-top    { @include sticky-top; }
 .sticky-bottom { @include sticky-bottom; }
-.float-list    { @include float-list('left'); }
+.float-list    { @include float-list; }
 .block-list    { @include block-list; }
 
 // -----------------------------------------------------------------------------

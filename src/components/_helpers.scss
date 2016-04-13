@@ -4,41 +4,9 @@
 /// @group helpers
 ////
 
-///
-/// @param {string} $float [left] - Float value for the float-list.
-///
-@mixin apply-float-list($float: 'left')
-{
-    @if ($float == 'left')
-    {
-        @extend %concrete-float-list-left;
-    }
-    @elseif ($float == 'right')
-    {
-        @extend %concrete-float-list-right;
-    }
-    @else
-    {
-        @extend %concrete-float-list;
-
-        @if is-string($float)
-        {
-            li
-            {
-                float: unquote($float);
-            }
-        }
-    }
-}
-
 // -----------------------------------------------------------------------------
 // Helper placeholders
 // -----------------------------------------------------------------------------
-%concrete-clearboth //.clear
-{
-    clear: both;
-}
-
 // *Clearfix helper taken from http://nicolasgallagher.com/micro-clearfix-hack/
 @mixin clearfix($extend: true)
 {
@@ -58,94 +26,83 @@
     }
 }
 
-%concrete-hidden //.hidden
-{
-    display: none;
-    visibility: hidden;
-}
-
-%concrete-visible //.visible
-{
-    display: block;
-    visibility: visible;
-}
-
-%concrete-nowrap //.nowrap
-{
-    white-space: nowrap;
-}
-
 // -----------------------------------------------------------------------------
 // Wrapper/container and position placeholders
 // -----------------------------------------------------------------------------
-%concrete-container //.container
+@mixin container($extend: true) //.container
 {
-    display: block;
-    height: 100%;
-    margin: 0 auto;
+    @include dynamic-placeholder('container', $extend)
+    {
+        display: block;
+        height: 100%;
+        margin: 0 auto;
+    }
 }
 
-%concrete-container-fluid
+@mixin container-fluid($extend: true)
 {
-    display: block;
-    width: 100%;
+    @include dynamic-placeholder('container-fluid', $extend)
+    {
+        display: block;
+        width: 100%;
+    }
 }
 
-%concrete-sticky-top
+@mixin sticky-top($extend: true)
 {
-    position: fixed;
-    top: 0;
-    bottom: auto;
+    @include dynamic-placeholder('sticky-top', $extend)
+    {
+        position: fixed;
+        top: 0;
+        bottom: auto;
+    }
 }
 
-%concrete-sticky-bottom
+@mixin sticky-bottom($extend: true)
 {
-    position: fixed;
-    top: auto;
-    bottom: 0;
+    @include dynamic-placeholder('sticky-bottom', $extend)
+    {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+    }
 }
 
 // -----------------------------------------------------------------------------
 // Lists and menu placeholders
 // -----------------------------------------------------------------------------
-%concrete-float-list
+@mixin float-list($float: left, $extend: true)
 {
-    @include reset-list-placeholder;
-    @include clearfix;
-
-    li > a
+    @include dynamic-placeholder('float-list', $extend)
     {
-        display: block;
+        @include reset-list;
+        @include clearfix;
+
+        li > a
+        {
+            display: block;
+        }
+    }
+
+    @if $float
+    {
+        li
+        {
+            float: #{$float};
+        }
     }
 }
 
-%concrete-float-list-left
+@mixin block-list($extend: true)
 {
-    @extend %concrete-float-list;
-
-    li
+    @include dynamic-placeholder('block-list', $extend)
     {
-        float: left;
-    }
-}
+        @include reset-list;
 
-%concrete-float-list-right
-{
-    @extend %concrete-float-list;
-
-    li
-    {
-        float: right;
-    }
-}
-
-%concrete-block-list
-{
-    @include reset-list-placeholder;
-
-    li
-    {
-        display: block;
-        width: 100%;
+        li
+        {
+            display: block;
+            width: 100%;
+        }
     }
 }
