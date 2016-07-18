@@ -1,0 +1,38 @@
+////
+/// concrete | source/_export.scss
+///
+/// @group Core
+////
+
+///
+/// This mixin helps making sure a module is imported once and only once.
+/// inspired by https://github.com/wilsonpage/sass-import-once
+///
+/// @param {string} $name - Name of exported module
+/// @param {boolean} $warn [true] - Warn when module has been already imported
+///
+@mixin export($name)
+{
+    @if not in-list($_concrete-exported, $name)
+    {
+        $_concrete-exported: append($_concrete-exported, $name) !global;
+        @content;
+    }
+    @elseif $warn or $_concrete-exported-warning
+    {
+        @return warn('export', 'Module `#{$name}` has already been exported!');
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Global variables and settings
+// -----------------------------------------------------------------------------
+@if not global-variable-exists('_concrete-exported')
+{
+    $_concrete-exported: () !global;
+}
+
+@if not global-variable-exists('_concrete-exported-warning')
+{
+    $_concrete-exported-warning: false !global;
+}

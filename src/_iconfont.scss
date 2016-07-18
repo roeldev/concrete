@@ -4,17 +4,7 @@
 /// This file imports all required partials, functions and mixins to create
 /// easily add icon fonts to your project.
 ////
+
 @import 'core';
-@include register-imported('core');
-
-@if not is-imported('components/fonts')
-{
-    @import 'components/fonts';
-    @include register-imported('components/fonts');
-}
-
-@if not is-imported('components/iconfont')
-{
-    @import 'components/iconfont';
-    @include register-imported('components/iconfont');
-}
+@import 'components/fonts';
+@import 'components/iconfont';

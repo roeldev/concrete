@@ -3,23 +3,8 @@
 ///
 /// This file imports all required functions and mixins to create grids.
 ////
+
 @import 'core';
-@include register-imported('core');
-
-@if not is-imported('components/breakpoints')
-{
-    @import 'components/breakpoints';
-    @include register-imported('components/breakpoints');
-}
-
-@if not is-imported('components/helpers')
-{
-    @import 'components/helpers';
-    @include register-imported('components/helpers');
-}
-
-@if not is-imported('components/grid')
-{
-    @import 'components/grid';
-    @include register-imported('components/grid');
-}
+@import 'components/breakpoints';
+@import 'components/helpers';
+@import 'components/grid';

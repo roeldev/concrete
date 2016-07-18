@@ -3,13 +3,14 @@
 ///
 /// This file imports all core functions used by the framework.
 ////
+
 @import 'core/list';
 @import 'core/map';
 @import 'core/types';
 @import 'core/utils';
 @import 'core/getters';
 @import 'core/placeholder';
-@import 'core/import';
+@import 'core/export';
 @import 'core/init';
 @import 'core/log';
 @import 'core/debug';

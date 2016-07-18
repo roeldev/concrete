@@ -5,26 +5,6 @@
 /// Only import this file once in your main stylesheet.
 ////
 
-@if (not is-imported('partials/normalize') and $concrete-import-normalize)
-{
-    @import 'partials/normalize';
-    @include register-imported('partials/normalize');
-}
-
-@if (not is-imported('partials/defaults') and $concrete-import-defaults)
-{
-    @import 'partials/defaults';
-    @include register-imported('partials/defaults');
-}
-
-@if not is-imported('components/resets')
-{
-    @import 'components/resets';
-    @include register-imported('components/resets');
-}
-
-@if not is-imported('components/helpers')
-{
-    @import 'components/helpers';
-    @include register-imported('components/helpers');
-}
+@import 'core';
+@import 'components/resets';
+@import 'components/helpers';
