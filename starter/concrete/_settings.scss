@@ -1,23 +1,10 @@
 // -----------------------------------------------------------------------------
-// Settings and variables
+// Settings
 // -----------------------------------------------------------------------------
 // For more information about the available settings, check either the included
 // help documents, examples, or visit the project page:
 // https://github.com/roeldev/concrete
 //
-
-// -----------------------------------------------------------------------------
-// Imports
-// -----------------------------------------------------------------------------
-// By default concrete will include a slightly edited version of Normalize.css
-// and some default styles. If you do not wish to use these, you can set the
-// below import values to false.
-// For use with Bootstrap, it is recommended to not import Normalize.css and
-// the default styles.
-// Please not that the default placeholders are always imported.
-//
-$concrete-import-normalize: true;
-$concrete-import-defaults:  true;
 
 // -----------------------------------------------------------------------------
 // Warnings and debug

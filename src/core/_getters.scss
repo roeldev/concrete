@@ -179,10 +179,10 @@
 /// @param {string} $breakpoint [default]
 /// @return {number}
 ///
-@function get-container-width($breakpoint: 'default')
-{
-    @return map-get($concrete-container-width, $breakpoint);
-}
+// @function get-container-width($breakpoint: 'default')
+// {
+//     @return map-get($concrete-container-width, $breakpoint);
+// }
 
 // -----------------------------------------------------------------------------
 

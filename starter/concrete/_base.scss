@@ -1,0 +1,178 @@
+// -----------------------------------------------------------------------------
+// Basic styles and optional selectors
+// -----------------------------------------------------------------------------
+// For more information about the available settings, check either the included
+// help documents, examples, or visit the project page: http://git.io/qoNLsw
+//
+@include export('starter/concrete/_base')
+{
+    // scss-lint:disable all
+    /*! concrete v0.4.4 | GNU GPL v2.0 License | github.com/roeldev/concrete */
+    // scss-lint:enable all
+
+    html
+    {
+        // include the default font-style set in `_font-styles.scss`
+        @include font-style('default');
+
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        box-sizing: border-box;
+    }
+
+    html,
+    body
+    {
+        width: 100%;
+        min-height: 100%;
+    }
+
+    // -------------------------------------------------------------------------
+    // Use box-sizing: border-box on all element.
+    // -------------------------------------------------------------------------
+    *,
+    *::before,
+    *::after
+    {
+        box-sizing: inherit;
+        margin: 0;
+        padding: 0;
+    }
+
+    // -------------------------------------------------------------------------
+    // Headings
+    // -------------------------------------------------------------------------
+    // %h1, .h1 { @include font-style('h1'); }
+    // %h2, .h2 { @include font-style('h2'); }
+    // %h3, .h3 { @include font-style('h3'); }
+    // %h4, .h4 { @include font-style('h4'); }
+    // %h5, .h5 { @include font-style('h5'); }
+    // %h6, .h6 { @include font-style('h6'); }
+
+    // -------------------------------------------------------------------------
+    // Paragraphs and text elements
+    // -------------------------------------------------------------------------
+    p
+    {
+        padding-bottom: get-line-height('default');
+
+        &:last-child
+        {
+            padding-bottom: 0;
+        }
+    }
+
+    p,
+    address,
+    figcaption
+    {
+        line-height: get-line-height('default');
+    }
+
+    address
+    {
+        font-style: normal;
+    }
+
+    // -------------------------------------------------------------------------
+    // Button and hyperlinks
+    // -------------------------------------------------------------------------
+    a,
+    button
+    {
+        cursor: pointer;
+
+        &:active,
+        &:hover
+        {
+            outline: 0;
+        }
+    }
+
+    a
+    {
+        text-decoration: none;
+    }
+
+    button
+    {
+        // Reset the look of buttons by removing the background, border and
+        // default appearance. Very useful if you're using custom
+        // designed buttons.
+        @include reset-button;
+    }
+
+    // -------------------------------------------------------------------------
+    // Form elements
+    // -------------------------------------------------------------------------
+    input,
+    select,
+    option,
+    textarea,
+    button
+    {
+        font-family: get-font-family('default');
+
+        &:focus
+        {
+            outline: none;
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // Images
+    // -------------------------------------------------------------------------
+    img
+    {
+        vertical-align: middle;
+        -ms-interpolation-mode: bicubic;
+    }
+
+    // -------------------------------------------------------------------------
+    // Lists
+    // -------------------------------------------------------------------------
+    ul,
+    ol
+    {
+        padding-left: 20px;
+    }
+
+    // -------------------------------------------------------------------------
+    // Enable/disable basic concrete helpers.
+    // -------------------------------------------------------------------------
+    // .clearfix      { @include clearfix; }
+    // .sticky-top    { @include sticky-top; }
+    // .sticky-bottom { @include sticky-bottom; }
+    // .float-list    { @include float-list; }
+    // .block-list    { @include block-list; }
+
+    .center-x
+    {
+        @include center-x;
+    }
+
+    .center-y
+    {
+        @include center-y(false);
+
+        > .center-middle
+        {
+            @include center-y-middle-placeholder;
+        }
+    }
+
+    .center-xy
+    {
+        @include center-xy(false);
+
+        > .center-middle
+        {
+            @include center-xy-middle-placeholder;
+        }
+    }
+
+    // .container
+    // {
+    //     @extend %concrete-container;
+    // }
+};

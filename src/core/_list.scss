@@ -3,6 +3,8 @@
 ///
 /// Some extra list related functions.
 ///
+/// ✓ tests
+///
 /// @group Core
 ////
 
@@ -64,6 +66,19 @@
 @function one-of($value, $list)
 {
     @return not is-null(index($list, $value));
+}
+
+///
+/// Returns true if $value exists in the $list. This is basically an alias for
+/// the one-of() function.
+///
+/// @param {list} $list
+/// @param {mixed} $value
+/// @return {boolean}
+///
+@function in-list($list, $value)
+{
+    @return one-of($value, $list);
 }
 
 ///
