@@ -16,7 +16,7 @@
     {
         @if ($selectorBody == true)
         {
-            $selctorBody: 'body';
+            $selectorBody: 'body';
         }
 
         &__#{$selectorBody}
