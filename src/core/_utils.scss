@@ -150,6 +150,23 @@
 
 // -----------------------------------------------------------------------------
 
+@function em-base-value($newBaseValue)
+{
+    @if is-string($newBaseValue)
+    {
+        $newBaseValue: get-font-size($newBaseValue);
+    }
+
+    $_concrete-em-base-value: $newBaseValue !global;
+
+    @return $newBaseValue;
+}
+
+@mixin em-base-value($newBaseValue)
+{
+    $x: em-base-value($newBaseValue);
+}
+
 ///
 /// Calculates the relative em value compared to the given base font-size.
 /// Example taken from http://vvv.tobiassjosten.net/css/px-to-em-with-sass/
@@ -159,8 +176,12 @@
 ///         $from value with.
 /// @return {number}
 ///
-@function em($from, $base: 'default')
+@function em($from, $base: null)
 {
+    @if is-null($base)
+    {
+        $base: $_concrete-em-base-value;
+    }
     @if is-string($base)
     {
         $base: get-font-size($base);
@@ -188,4 +209,14 @@
     @return if(unit($from) == 'px',
                (($from / $base) * 1rem),
                $from);
+}
+
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Global variables and settings
+// -----------------------------------------------------------------------------
+@if not global-variable-exists('_concrete-em-base-value')
+{
+    $_concrete-em-base-value: 'default' !global;
 }
