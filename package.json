@@ -3,19 +3,14 @@
   "scripts": {
     "setup": "npm install && bundle",
     "start": "npm run setup && bundle && gulp watch",
-    "test": "mocha --reporter spec"
+    "test": "mocha --reporter spec",
+    "depcheck": "depcheck"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
-    "gulp-mocha": "^2.1.3",
-    "gulp-notify": "^2.2.0",
-    "gulp-plumber": "^1.0.1",
-    "gulp-sass": "^2.0.4",
-    "gulp-scss-lint": "^0.3.8",
-    "gulp-scss-lint-stylish": "^1.0.0",
-    "gulp-size": "^2.0.0",
-    "mocha": "^2.3.3",
-    "sass-true": "^2.0.2",
+    "gulp-mocha": "^3.0.0",
+    "maelstrom": "^0.3.0",
+    "maelstrom-sass": "^0.1.1",
     "sassdoc": "^2.1.15"
   }
 }

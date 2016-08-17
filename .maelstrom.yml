@@ -1,0 +1,9 @@
+src:
+  sass:
+    - 'src/**/*.scss'
+    - 'examples/*.scss'
+
+dest:
+  css: 'examples/css'
+
+verbose: true
