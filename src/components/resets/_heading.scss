@@ -1,0 +1,16 @@
+////
+/// concrete | src/components/resets/_heading.scss
+///
+/// @group resets
+////
+
+@mixin reset-heading($extend: true)
+{
+    @include dynamic-placeholder('reset-heading', $extend)
+    {
+        font-size: inherit;
+        font-style: normal;
+        font-weight: normal;
+        line-height: inherit;
+    }
+}

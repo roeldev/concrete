@@ -1,0 +1,19 @@
+////
+/// concrete | src/components/resets/_select.scss
+///
+/// @group resets
+////
+
+// https://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh465742.aspx
+@mixin reset-select($extend: true)
+{
+    @include dynamic-placeholder('reset-select', $extend)
+    {
+        @include reset-form-element($extend);
+
+        &::-ms-expand
+        {
+            display: none;
+        }
+    }
+}

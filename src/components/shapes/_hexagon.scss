@@ -1,5 +1,5 @@
 ////
-/// concrete | source/components/_shape-hexagon.scss
+/// concrete | src/components/shapes/_hexagon.scss
 ///
 /// @group shapes
 ////
@@ -17,9 +17,13 @@
     height: $size * 0.57735;
 }
 
+// -----------------------------------------------------------------------------
+// Dynamic placeholders
+// -----------------------------------------------------------------------------
+
 @mixin hexagon-placeholder($extend: true)
 {
-    @include extend-placeholder('hexagon', $extend)
+    @include dynamic-placeholder('hexagon', $extend)
     {
         position: relative;
         display: inline-block;

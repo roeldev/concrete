@@ -1,108 +1,13 @@
 ////
-/// concrete | source/components/_helpers.scss
+/// concrete | src/components/_helpers.scss
 ///
 /// @group helpers
 ////
 
-// -----------------------------------------------------------------------------
-// Helper placeholders
-// -----------------------------------------------------------------------------
-// *Clearfix helper taken from http://nicolasgallagher.com/micro-clearfix-hack/
-@mixin clearfix($extend: true)
-{
-    @include dynamic-placeholder('clearfix', $extend)
-    {
-        &::before,
-        &::after
-        {
-            content: ' ';
-            display: table;
-        }
+@import 'helpers/clearfix';
+@import 'helpers/block-list';
+@import 'helpers/float-list';
 
-        &::after
-        {
-            clear: both;
-        }
-    }
-}
-
-// -----------------------------------------------------------------------------
-// Wrapper/container and position placeholders
-// -----------------------------------------------------------------------------
-@mixin container($extend: true) //.container
-{
-    @include dynamic-placeholder('container', $extend)
-    {
-        display: block;
-        height: 100%;
-        margin: 0 auto;
-    }
-}
-
-@mixin container-fluid($extend: true)
-{
-    @include dynamic-placeholder('container-fluid', $extend)
-    {
-        display: block;
-        width: 100%;
-    }
-}
-
-@mixin sticky-top($extend: true)
-{
-    @include dynamic-placeholder('sticky-top', $extend)
-    {
-        position: fixed;
-        top: 0;
-        bottom: auto;
-    }
-}
-
-@mixin sticky-bottom($extend: true)
-{
-    @include dynamic-placeholder('sticky-bottom', $extend)
-    {
-        position: fixed;
-        top: auto;
-        bottom: 0;
-    }
-}
-
-// -----------------------------------------------------------------------------
-// Lists and menu placeholders
-// -----------------------------------------------------------------------------
-@mixin float-list($float: left, $extend: true)
-{
-    @include dynamic-placeholder('float-list', $extend)
-    {
-        @include reset-list;
-        @include clearfix;
-
-        li > a
-        {
-            display: block;
-        }
-    }
-
-    @if $float
-    {
-        li
-        {
-            float: #{$float};
-        }
-    }
-}
-
-@mixin block-list($extend: true)
-{
-    @include dynamic-placeholder('block-list', $extend)
-    {
-        @include reset-list;
-
-        li
-        {
-            display: block;
-            width: 100%;
-        }
-    }
-}
+// deprecated
+@import 'helpers/container';
+@import 'helpers/sticky';

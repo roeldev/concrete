@@ -1,81 +1,13 @@
 ////
-/// concrete | source/components/_resets.scss
+/// concrete | src/components/_resets.scss
 ///
 /// @group resets
 ////
 
-// -----------------------------------------------------------------------------
-// Heading and typography reset placeholders
-// -----------------------------------------------------------------------------
-@mixin reset-heading($extend: true)
-{
-    @include dynamic-placeholder('reset-heading', $extend)
-    {
-        font-size: inherit;
-        font-style: normal;
-        font-weight: normal;
-        line-height: inherit;
-    }
-}
-
-// -----------------------------------------------------------------------------
-// Button and hyperlink reset placeholders
-// -----------------------------------------------------------------------------
-@mixin reset-button($extend: true)
-{
-    @include dynamic-placeholder('reset-button', $extend)
-    {
-        appearance: none;
-        background: none;
-        border: 0;
-    }
-}
-
-// -----------------------------------------------------------------------------
-// Form elements reset placeholders
-// -----------------------------------------------------------------------------
-@mixin reset-input($extend: true)
-{
-    @include _reset-form-elements($extend);
-}
-
-@mixin reset-textarea($extend: true)
-{
-    @include _reset-form-elements($extend);
-}
-
-// https://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh465742.aspx
-@mixin reset-select($extend: true)
-{
-    @include dynamic-placeholder('reset-select', $extend)
-    {
-        @include _reset-form-elements($extend);
-
-        &::-ms-expand
-        {
-            display: none;
-        }
-    }
-}
-
-@mixin _reset-form-elements($extend)
-{
-    @include dynamic-placeholder('_reset-form-elements', $extend)
-    {
-        appearance: none;
-        background: none;
-        border-radius: 0;
-    }
-}
-
-// -----------------------------------------------------------------------------
-// Common elements reset placeholders
-// -----------------------------------------------------------------------------
-@mixin reset-list($extend: true)
-{
-    @include dynamic-placeholder('reset-list', $extend)
-    {
-        list-style: none;
-        padding: 0;
-    }
-}
+@import 'resets/button';
+@import 'resets/form-element';
+@import 'resets/heading';
+@import 'resets/input';
+@import 'resets/list';
+@import 'resets/select';
+@import 'resets/textarea';

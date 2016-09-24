@@ -1,0 +1,19 @@
+////
+/// concrete | src/components/helpers/_block-list.scss
+///
+/// @group helpers
+////
+
+@mixin block-list($extend: true)
+{
+    @include dynamic-placeholder('block-list', $extend)
+    {
+        @include reset-list;
+
+        li
+        {
+            display: block;
+            width: 100%;
+        }
+    }
+}

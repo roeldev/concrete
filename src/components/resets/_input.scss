@@ -1,0 +1,10 @@
+////
+/// concrete | src/components/resets/_input.scss
+///
+/// @group resets
+////
+
+@mixin reset-input($extend: true)
+{
+    @include reset-form-element($extend);
+}

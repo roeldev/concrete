@@ -1,0 +1,14 @@
+////
+/// concrete | src/components/resets/_list.scss
+///
+/// @group resets
+////
+
+@mixin reset-list($extend: true)
+{
+    @include dynamic-placeholder('reset-list', $extend)
+    {
+        list-style: none;
+        padding: 0;
+    }
+}

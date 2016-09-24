@@ -1,0 +1,15 @@
+////
+/// concrete | src/components/resets/_form-element.scss
+///
+/// @group resets
+////
+
+@mixin reset-form-element($extend)
+{
+    @include dynamic-placeholder('reset-form-element', $extend)
+    {
+        appearance: none;
+        background: none;
+        border-radius: 0;
+    }
+}

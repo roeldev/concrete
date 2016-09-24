@@ -1,0 +1,27 @@
+////
+/// concrete | src/components/helpers/_float-list.scss
+///
+/// @group helpers
+////
+
+@mixin float-list($float: left, $extend: true)
+{
+    @include dynamic-placeholder('float-list', $extend)
+    {
+        @include reset-list;
+        @include clearfix;
+
+        li > a
+        {
+            display: block;
+        }
+    }
+
+    @if $float
+    {
+        li
+        {
+            float: #{$float};
+        }
+    }
+}

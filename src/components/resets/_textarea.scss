@@ -1,0 +1,10 @@
+////
+/// concrete | src/components/resets/_textarea.scss
+///
+/// @group resets
+////
+
+@mixin reset-textarea($extend: true)
+{
+    @include reset-form-element($extend);
+}
