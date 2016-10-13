@@ -1,5 +1,5 @@
 ////
-/// concrete | source/components/_iconfont.scss
+/// concrete | src/components/_iconfont.scss
 ////
 
 ///
@@ -12,21 +12,21 @@
 /// @param {string} $iconGroup [icon] - A styleclass name for the added icons.
 /// @param {string} $dir [/fonts/] - The folder containing the font files.
 ///
-@mixin iconfont($font, $iconGroup: 'icon', $dir: '/fonts/', $glyphs: ())
+@mixin iconfont-create($font, $iconGroup: 'icon', $dir: '/fonts/', $glyphs: ())
 {
     @include font-face($font, $dir, $font);
 
     [data-#{$iconGroup}]::before
     {
-        @include iconfont-placeholder;
-        @include iconfont-attr-placeholder;
+        @include iconfont-placeholder-basic;
+        @include iconfont-placeholder-attr;
     }
 
     [data-#{$iconGroup}]::before,
     [class^='#{$iconGroup}-']::before,
     [class*=' #{$iconGroup}-']::before
     {
-        @include iconfont-font-placeholder($iconGroup, $font);
+        @include iconfont-placeholder-font($iconGroup, $font);
     }
 
     @if is-map($glyphs)
@@ -37,7 +37,7 @@
 
             @at-root .#{$className}::before
             {
-                @include iconfont-glyph-placeholder($className, $unicode);
+                @include iconfont-placeholder-glyph($className, $unicode);
             }
         }
     }
@@ -48,27 +48,29 @@
 }
 
 // wanneer geen icongroup, pak laatst gebruikte
-@mixin iconfont-extend($iconGroup, $glyphName: false, $extend: true)
+@mixin iconfont($iconGroup, $glyphName: false, $extend: true)
 {
-    @include iconfont-font-placeholder($iconGroup, '', $extend);
+    @include iconfont-placeholder-font($iconGroup, '', $extend);
 
     @if $glyphName
     {
-        @include iconfont-glyph-extend($iconGroup, $glyphName, $extend);
+        @include iconfont-glyph($iconGroup, $glyphName, $extend);
     }
 }
 
 // wanneer geen icongroup, pak laatst gebruikte
-@mixin iconfont-glyph-extend($iconGroup, $glyphName, $extend: true)
+@mixin iconfont-glyph($iconGroup, $glyphName, $extend: true)
 {
     $className: _iconfont-classname($iconGroup, $glyphName);
 
-    @include iconfont-glyph-placeholder($className, '', $extend);
+    @include iconfont-placeholder-glyph($className, '', $extend);
 }
 
 // -----------------------------------------------------------------------------
+// Dynamic placeholders
+// -----------------------------------------------------------------------------
 
-@mixin iconfont-placeholder($extend: true)
+@mixin iconfont-placeholder-basic($extend: true)
 {
     @include dynamic-placeholder('iconfont', $extend)
     {
@@ -91,7 +93,7 @@
     }
 }
 
-@mixin iconfont-attr-placeholder($extend: true)
+@mixin iconfont-placeholder-attr($extend: true)
 {
     @include dynamic-placeholder('iconfont-attr', $extend)
     {
@@ -99,17 +101,17 @@
     }
 }
 
-@mixin iconfont-font-placeholder($iconGroup, $font, $extend: true)
+@mixin iconfont-placeholder-font($iconGroup, $font, $extend: true)
 {
     @include dynamic-placeholder($iconGroup, $extend)
     {
-        @include iconfont-placeholder($extend);
+        @include iconfont-placeholder-basic($extend);
 
         font-family: $font !important;
     }
 }
 
-@mixin iconfont-glyph-placeholder($className, $unicode, $extend: true)
+@mixin iconfont-placeholder-glyph($className, $unicode, $extend: true)
 {
     @include dynamic-placeholder($className, $extend)
     {
@@ -117,6 +119,8 @@
     }
 }
 
+// -----------------------------------------------------------------------------
+// Private functions
 // -----------------------------------------------------------------------------
 
 @function _iconfont-classname($iconGroup, $glyphName)

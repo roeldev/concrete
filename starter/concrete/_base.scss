@@ -4,12 +4,8 @@
 // For more information about the available settings, check either the included
 // help documents, examples, or visit the project page: http://git.io/qoNLsw
 //
-@include export('starter/concrete/_base')
+@include export-once('starter/concrete/_base')
 {
-    // scss-lint:disable all
-    /*! concrete v0.4.4 | GNU GPL v2.0 License | github.com/roeldev/concrete */
-    // scss-lint:enable all
-
     html
     {
         // include the default font-style set in `_font-styles.scss`
@@ -157,7 +153,7 @@
 
         > .center-middle
         {
-            @include center-y-middle-placeholder;
+            @include center-placeholder-y-middle;
         }
     }
 
@@ -167,7 +163,7 @@
 
         > .center-middle
         {
-            @include center-xy-middle-placeholder;
+            @include center-placeholder-xy-middle;
         }
     }
 

@@ -1,0 +1,26 @@
+////
+/// concrete | src/core/_string.scss
+///
+/// @group Core
+////
+
+// https://css-tricks.com/snippets/sass/str-replace-function/
+@function str-replace($str, $search, $replace)
+{
+
+}
+
+@function str-split($str, $seperator: ' ', $limit: 1)
+{
+
+}
+
+@function ends-with($str, $target, $position: null)
+{
+
+}
+
+@function trim($str, $chars: ' ')
+{
+
+}

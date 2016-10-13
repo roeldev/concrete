@@ -1,7 +1,7 @@
 ////
-/// concrete | source/_export.scss
+/// concrete | src/_export.scss
 ///
-/// @group Core
+/// @group core
 ////
 
 ///
@@ -11,7 +11,7 @@
 /// @param {string} $name - Name of exported module
 /// @param {boolean} $warn [true] - Warn when module has been already imported
 ///
-@mixin export($name)
+@mixin export-once($name)
 {
     @if not in-list($_concrete-exported, $name)
     {

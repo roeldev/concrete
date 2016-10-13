@@ -2,11 +2,12 @@
   "private": true,
   "scripts": {
     "setup": "npm install && bundle",
-    "start": "npm run setup && bundle && gulp watch",
+    "start": "gulp watch",
     "test": "mocha --reporter spec",
     "depcheck": "depcheck"
   },
   "devDependencies": {
+    "depcheck": "^0.6.4",
     "gulp": "^3.9.0",
     "gulp-mocha": "^3.0.0",
     "maelstrom": "^0.3.0",

@@ -1,6 +1,17 @@
+// scss-lint:disable all
+/*! (c) 2016 Your Name | yourdomain.com */
+// scss-lint:enable
+
 // -----------------------------------------------------------------------------
-// Required files
+// Framework related files
 // -----------------------------------------------------------------------------
-// All required files to start developing. Add as many import rules as you need.
+// Import all basic required files to get you started. Typically these are
+// frameworks, mixins, functions, resets etc.
 //
+// @import 'normalize';
 @import 'concrete';
+
+// -----------------------------------------------------------------------------
+// Your project files
+// -----------------------------------------------------------------------------
+// Add all the remaining imports needed by your project.

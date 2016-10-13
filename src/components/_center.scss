@@ -1,5 +1,5 @@
 ////
-/// concrete | source/components/_center.scss
+/// concrete | src/components/_center.scss
 ///
 /// @group center
 ////
@@ -21,7 +21,7 @@
 
     &::before
     {
-        @include center-push-placeholder($extend);
+        @include center-placeholder-push($extend);
     }
 
     @if $selectorMiddle
@@ -33,7 +33,7 @@
 
         @at-root &__#{$selectorMiddle}
         {
-            @include center-y-middle-placeholder($resetFontSize, $extend);
+            @include center-placeholder-y-middle($resetFontSize, $extend);
         }
     }
 }
@@ -50,7 +50,7 @@
 
     &::before
     {
-        @include center-push-placeholder($extend);
+        @include center-placeholder-push($extend);
     }
 
     @if $selectorMiddle
@@ -62,14 +62,16 @@
 
         @at-root &__#{$selectorMiddle}
         {
-            @include center-xy-middle-placeholder($resetFontSize, $extend);
+            @include center-placeholder-xy-middle($resetFontSize, $extend);
         }
     }
 }
 
 // -----------------------------------------------------------------------------
+// Dynamic placeholders
+// -----------------------------------------------------------------------------
 
-@mixin center-push-placeholder($extend: true)
+@mixin center-placeholder-push($extend: true)
 {
     @include dynamic-placeholder('center-push', $extend)
     {
@@ -80,7 +82,7 @@
     }
 }
 
-@mixin center-y-middle-placeholder($resetFontSize: true, $extend: true)
+@mixin center-placeholder-y-middle($resetFontSize: true, $extend: true)
 {
     @include dynamic-placeholder('center-y-middle', $extend)
     {
@@ -94,7 +96,7 @@
     }
 }
 
-@mixin center-xy-middle-placeholder($resetFontSize: true, $extend: true)
+@mixin center-placeholder-xy-middle($resetFontSize: true, $extend: true)
 {
     @include dynamic-placeholder('center-xy-middle', $extend)
     {

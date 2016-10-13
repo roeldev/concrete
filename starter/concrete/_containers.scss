@@ -1,0 +1,24 @@
+// -----------------------------------------------------------------------------
+// Containers
+// -----------------------------------------------------------------------------
+// Add all the (extra) breakpoints you need. The px value you specify will be
+// used as the minimum width value of the media query. The maximum value will
+// be the minimum value of the next breakpoint, minus 1px.
+//
+
+@include set-container('default',
+(
+    position: relative,
+    width: 100%,
+    max-width: 1920px,
+    margin: 0 auto
+));
+
+@include set-container('text',
+(
+    position: relative,
+    width: 100%,
+    max-width: 800px,
+    margin: 0 auto
+    padding: 0 30px;
+));

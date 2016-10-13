@@ -1,5 +1,5 @@
 ////
-/// concrete | source/components/_ratio.scss
+/// concrete | src/components/_ratio.scss
 ///
 /// @group ratio
 ////
@@ -8,12 +8,13 @@
 // http://alistapart.com/article/creating-intrinsic-ratios-for-video
 @mixin ratio($width, $height, $selectorBody: true)
 {
-    position: relative;
     height: 0;
     padding-bottom: (($height / $width) * 100%);
 
     @if $selectorBody
     {
+        position: relative;
+
         @if ($selectorBody == true)
         {
             $selectorBody: 'body';
@@ -21,12 +22,12 @@
 
         &__#{$selectorBody}
         {
-            @include ratio-body-placeholder;
+            @include ratio-placeholder-body;
         }
     }
 }
 
-@mixin ratio-body-placeholder($extend: true)
+@mixin ratio-placeholder-body($extend: true)
 {
     @include dynamic-placeholder('ratio-body', $extend)
     {

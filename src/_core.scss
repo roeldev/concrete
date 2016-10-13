@@ -1,5 +1,5 @@
 ////
-/// concrete | source/_core.scss
+/// concrete | src/_core.scss
 ///
 /// This file imports all core functions used by the framework.
 ////
@@ -8,12 +8,22 @@
 @import 'core/map';
 @import 'core/types';
 @import 'core/utils';
-@import 'core/getters';
 @import 'core/placeholder';
 @import 'core/export';
-@import 'core/init';
 @import 'core/log';
 @import 'core/debug';
+
+// vervangen
+@import 'core/init';
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // //
+
+@include export-once('concrete/copyright-info')
+{
+    // scss-lint:disable all
+    /*! concrete v0.4.4 | GNU GPL v2.0 License | github.com/roeldev/concrete */
+    // scss-lint:enable all
+}
 
 // -----------------------------------------------------------------------------
 

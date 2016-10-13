@@ -1,5 +1,5 @@
 ////
-/// concrete | source/_init.scss
+/// concrete | src/_init.scss
 ///
 /// This file imports all required functions and mixins wich you can use while
 /// developing your project.
@@ -10,14 +10,14 @@
 @import 'components/breakpoints';
 @import 'components/center';
 @import 'components/effects';
-@import 'components/fonts';
+@import 'components/font-face';
+@import 'components/font-style';
 @import 'components/gradients';
 @import 'components/ratio';
-@import 'components/shape-hexagon';
-@import 'components/shape-triangle';
-@import 'components/transition';
+@import 'components/shapes';
+@import 'components/transition'
 
-// -----------------------------------------------------------------------------
+// // // // // // // // // // // // // // // // // // // // // // // // // // //
 
 /*
     concrete - Sassy CSS framework (https://github.com/roeldev/concrete/)

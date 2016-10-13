@@ -1,9 +1,9 @@
 ////
-/// concrete | source/core/_debug.scss
+/// concrete | src/core/_debug.scss
 ///
 /// Debug related functions and mixins.
 ///
-/// @group Core
+/// @group core
 ////
 
 ///
@@ -76,6 +76,34 @@
 // Private functions
 // -----------------------------------------------------------------------------
 
+@function _concrete-debug-parse($key, $value, $indent)
+{
+    $newline: '
+';
+
+    @if is-scalar($value)
+    {
+        $value: _concrete-debug-scalar($value);
+    }
+    @elseif is-list($value)
+    {
+        $value: _concrete-debug-list($value, true, $indent);
+    }
+    @elseif is-map($value)
+    {
+        $value: _concrete-debug-map($value, true, $indent);
+    }
+    @else
+    {
+        $value: '{unknown} ['+ type-of($value) +'] '+ $value;
+    }
+
+    $value: '['+ $key +'] => '+ $value;
+    $value: $newline + $indent + $indentLevel + $value;
+
+    @return unquote($value);
+}
+
 ///
 /// @access private
 /// @group private
@@ -110,8 +138,6 @@
 {
     $display: '';
     $indent:  '   ';
-    $newline: '
-';
 
     $listLength: length($list);
     @if ($listLength > 0)
@@ -126,29 +152,11 @@
 
             @for $i from 1 through $listLength
             {
-                $value: nth($list, $i);
-                @if is-scalar($value)
-                {
-                    $value: _concrete-debug-scalar($value);
-                }
-                @elseif is-list($value)
-                {
-                    $value: _concrete-debug-list($value, true,
-                                                 $indentLevel + $indent);
-                }
-                @elseif is-map($value)
-                {
-                    $value: _concrete-debug-map($value, true,
-                                                $indentLevel + $indent);
-                }
-                @else
-                {
-                    $value: '{unknown} ['+ type-of($value) +'] '+ $value;
-                }
+                $value: _concrete-debug-parse($i,
+                                              nth($list, $i),
+                                              $indentLevel + $indent);
 
-                $value:   '['+ $i +'] => '+ $value;
-                $value:   $newline + $indent + $indentLevel + $value;
-                $display: $display + unquote($value);
+                $display: $display + $value;
             }
 
             $tagOpen:  $indentLevel +'(';
@@ -179,8 +187,6 @@
 @function _concrete-debug-map($map, $inspect: true, $indentLevel: false)
 {
     $indent:  '   ';
-    $newline: '
-';
 
     $mapLength: length($map);
     @if ($mapLength > 0)
@@ -196,28 +202,11 @@
 
             @each $key, $value in $map
             {
-                @if is-scalar($value)
-                {
-                    $value: _concrete-debug-scalar($value);
-                }
-                @elseif is-list($value)
-                {
-                    $value: _concrete-debug-list($value, true,
-                                                 $indentLevel + $indent);
-                }
-                @elseif is-map($value)
-                {
-                    $value: _concrete-debug-map($value, true,
-                                                $indentLevel + $indent);
-                }
-                @else
-                {
-                    $value: '{unknown} ['+ type-of($value) +'] '+ $value;
-                }
+                $value: _concrete-debug-parse('`'+ $key +'`',
+                                              $value,
+                                              $indentLevel + $indent);
 
-                $value:   '[`'+ $key +'`] => '+ $value;
-                $value:   $newline + $indent + $indentLevel + $value;
-                $display: $display + unquote($value);
+                $display: $display + $value;
             }
 
             $tagOpen:  $indentLevel +'{';

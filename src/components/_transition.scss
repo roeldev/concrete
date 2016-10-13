@@ -1,5 +1,5 @@
 ////
-/// concrete | source/components/_transition.scss
+/// concrete | src/components/_transition.scss
 ///
 /// @group transition
 ////
@@ -33,7 +33,6 @@
             $delay: 0s;
         }
     }
-
 
     $hasPropertyList: is-list($property);
     $hasDurationList: is-list($duration);
@@ -142,4 +141,63 @@
     }
 
     transition-timing-function: $value;
+}
+
+// -----------------------------------------------------------------------------
+// Setter functions and mixins
+// -----------------------------------------------------------------------------
+
+@function set-transition($name, $options)
+{
+    $concrete-transitions: map-append($concrete-transitions,
+                                      $name,
+                                      $options) !global;
+
+    @return $concrete-transitions;
+}
+
+@mixin set-transition($name, $options)
+{
+    $x: set-font-style($name, $options);
+}
+
+// -----------------------------------------------------------------------------
+// Getter functions
+// -----------------------------------------------------------------------------
+
+///
+/// @param {string} $name [default]
+/// @param {string} $attr [false]
+/// @return {map|number|string}
+///
+@function get-transition($name: 'default', $attr: false)
+{
+    @if map-has-key($concrete-transitions, $name)
+    {
+        $transition: map-get($concrete-transitions, $name);
+
+        @if ($attr == false)
+        {
+            @return $transition;
+        }
+        @elseif map-has-key($transition, $attr)
+        {
+            @return map-get($transition, $attr);
+        }
+        @else
+        {
+            @return warn('get-transition',
+                'Unknown attribute `#{$attr}` for transition `#{$name}`!');
+        }
+    }
+
+    @return warn('get-transition', 'Unknown transition set `#{$name}`!');
+}
+
+// -----------------------------------------------------------------------------
+// Global variables and settings
+// -----------------------------------------------------------------------------
+@if not global-variable-exists('concrete-transitions')
+{
+    $concrete-transitions: () !global;
 }

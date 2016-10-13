@@ -1,5 +1,5 @@
 ////
-/// concrete | source/components/_gradients.scss
+/// concrete | src/components/_gradients.scss
 ///
 /// Some easy to use and pretty cool gradients!
 ///
@@ -92,6 +92,8 @@
 }
 
 // -----------------------------------------------------------------------------
+// Private functions
+// -----------------------------------------------------------------------------
 
 ///
 /// Parses a start/end value param passed to one of the gradient-* mixins.
@@ -99,7 +101,6 @@
 /// start or end.
 ///
 /// @access private
-/// @group private
 ///
 /// @param {color|list} $param - Starting/ending color and position.
 /// @param {number} $position - The fallback position percent value.
@@ -163,7 +164,6 @@
 /// *Original mixin taken from Bootstrap
 ///
 /// @access private
-/// @group private
 ///
 /// @param {string} $function - The gradient-* function wich is used.
 /// @param {string} $direction1 - Direction of the gradient (old spec).

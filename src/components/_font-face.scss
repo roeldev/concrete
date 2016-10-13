@@ -1,5 +1,5 @@
 ////
-/// concrete | source/components/_fonts.scss
+/// concrete | src/components/_font-face.scss
 ///
 /// @group fonts
 ////
@@ -35,23 +35,5 @@
            font-family: $name;
            src: url('#{$path}.svg##{$name}') format('svg') !important;
         }
-    }
-}
-
-///
-/// Displays all properties from the given font-style.
-///
-@mixin font-style($name, $properties: 'all')
-{
-    $fontStyle: get-font-style($name);
-    @each $property, $value in $fontStyle
-    {
-        $func: 'get-'+ $property;
-        @if (function-exists($func))
-        {
-            $value: call($func, $name);
-        }
-
-        #{$property}: #{$value};
     }
 }

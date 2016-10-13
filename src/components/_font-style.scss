@@ -1,22 +1,48 @@
 ////
-/// concrete | source/core/_getters.scss
+/// concrete | src/components/_font-style.scss
 ///
-/// All default concrete get functions are within this file. Through these
-/// functions you can easily use the variables you have set in your main
-/// _concrete.scss file.
-///
-/// SassScript supports seven main data types:
-/// - numbers (e.g. 1.2, 13, 10px, 0.2s);
-/// - strings of text, with and without quotes (e.g. "foo", 'bar', baz);
-/// - colors (e.g. blue, #04a3f9, rgba(255, 0, 0, 0.5));
-/// - booleans (e.g. true, false);
-/// - nulls (e.g. null);
-/// - lists of values, separated by spaces or commas (e.g. 1.5em 1em 0 2em or
-///   Helvetica, Arial, sans-serif);
-/// - maps from one value to another (e.g. (key1: value1, key2: value2)).
-///
-/// @group Core
+/// @group font-style
 ////
+
+///
+/// Displays all properties from the given font-style.
+///
+@mixin font-style($name, $properties: 'all')
+{
+    $fontStyle: get-font-style($name);
+    @each $property, $value in $fontStyle
+    {
+        $func: 'get-'+ $property;
+        @if (function-exists($func))
+        {
+            $value: call($func, $name);
+        }
+
+        #{$property}: #{$value};
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Setter functions and mixins
+// -----------------------------------------------------------------------------
+
+@function set-font-style($name, $options)
+{
+    $concrete-font-styles: map-append($concrete-font-styles,
+                                      $name,
+                                      $options) !global;
+
+    @return $concrete-font-styles;
+}
+
+@mixin set-font-style($name, $options)
+{
+    $x: set-font-style($name, $options);
+}
+
+// -----------------------------------------------------------------------------
+// Getter functions
+// -----------------------------------------------------------------------------
 
 ///
 /// Returns a font-style list from the `$concrete-font-styles` setting.
@@ -100,90 +126,8 @@
     @return _get-font-style-property($name, 'line-height');
 }
 
-///
-/// @param {string} $name [default]
-/// @param {string} $attr [false]
-/// @return {map|number|string}
-///
-@function get-transition($name: 'default', $attr: false)
-{
-    @if map-has-key($concrete-transitions, $name)
-    {
-        $transition: map-get($concrete-transitions, $name);
-
-        @if ($attr == false)
-        {
-            @return $transition;
-        }
-        @elseif map-has-key($transition, $attr)
-        {
-            @return map-get($transition, $attr);
-        }
-        @else
-        {
-            @return warn('get-transition',
-                'Unknown attribute `#{$attr}` for transition `#{$name}`!');
-        }
-    }
-
-    @return warn('get-transition', 'Unknown transition set `#{$name}`!');
-}
-
-///
-/// When `$value` is either `min` or `max`, the min/max value is returned from
-/// the breakpoint map inside `$concrete-breakpoints` with key `$breakpoint`.
-/// If `$value` has any other value, the whole map (with min and max keys) will
-/// be returned. If the breakpoint map cannot be found, a warning will be
-/// stored in `$concrete-warnings`.
-///
-/// @param {string} $breakpoint [default] - The breakpoint to return.
-/// @param {bool|string} $value [false] - The value of the breakpoint to return.
-///         This can be either `min`, `max`, `false` or `both`.
-/// @return {map|number}
-///
-@function get-breakpoint($breakpoint: null, $value: false)
-{
-    @if is-null($breakpoint)
-    {
-        $breakpoint: nth-first($_concrete-breakpoints);
-    }
-
-    @if map-has-key($concrete-breakpoints, $breakpoint)
-    {
-        $breakpoint: map-get($concrete-breakpoints, $breakpoint);
-
-        @if ($value == false or $value == 'both')
-        {
-            @return $breakpoint;
-        }
-        @elseif map-has-key($breakpoint, $value)
-        {
-            @return map-get($breakpoint, $value);
-        }
-        @else
-        {
-            @return warn('get-breakpoint',
-                'Unknown value `#{$value}` in `#{$breakpoint}`!');
-        }
-    }
-    @else
-    {
-        @return warn('get-breakpoint',
-            'Unknown breakpoint `#{$breakpoint}`!');
-    }
-}
-
-///
-/// Returns a width value from the `$concrete-container-width` setting.
-///
-/// @param {string} $breakpoint [default]
-/// @return {number}
-///
-// @function get-container-width($breakpoint: 'default')
-// {
-//     @return map-get($concrete-container-width, $breakpoint);
-// }
-
+// -----------------------------------------------------------------------------
+// Private functions
 // -----------------------------------------------------------------------------
 
 ///
@@ -191,7 +135,6 @@
 /// `$concrete-font-styles` setting.
 ///
 /// @access private
-/// @group private
 ///
 /// @param {string} $name - The name of the font-style.
 /// @param {string} $property - The name of the property of the font-style.
@@ -230,4 +173,12 @@
     }
 
     @return warn($errorFnName, 'Unknown font-style `#{$name}`!');
+}
+
+// -----------------------------------------------------------------------------
+// Global variables and settings
+// -----------------------------------------------------------------------------
+@if not global-variable-exists('concrete-font-styles')
+{
+    $concrete-font-styles: () !global;
 }
