@@ -1,9 +1,14 @@
 src:
   sass:
     - 'src/**/*.scss'
-    - 'examples/*.scss'
+    - 'examples/scss/**/*.scss'
+    - 'starter/**/*.scss'
+    - '!starter/main.scss'
 
 dest:
   css: 'examples/css'
+
+sass:
+  lint: true
 
 verbose: true
