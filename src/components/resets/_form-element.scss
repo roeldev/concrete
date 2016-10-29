@@ -12,8 +12,8 @@
 {
     @include dynamic-placeholder('reset-form-element', $extend)
     {
-        appearance: none;
-        background: none;
         border-radius: 0;
+        background: none;
+        appearance: none;
     }
 }

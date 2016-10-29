@@ -12,7 +12,7 @@
     $fontStyle: get-font-style($name);
     @each $property, $value in $fontStyle
     {
-        $func: 'get-'+ $property;
+        $func: 'get-' + $property;
         @if (function-exists($func))
         {
             $value: call($func, $name);
@@ -149,7 +149,7 @@
 {
     @if is-empty($errorFnName)
     {
-        $errorFnName: 'get-'+ $property;
+        $errorFnName: 'get-' + $property;
     }
 
     @if map-has-key($concrete-font-styles, $name)

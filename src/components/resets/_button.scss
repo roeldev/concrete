@@ -11,8 +11,8 @@
 {
     @include dynamic-placeholder('reset-button', $extend)
     {
-        appearance: none;
-        background: none;
         border: 0;
+        background: none;
+        appearance: none;
     }
 }

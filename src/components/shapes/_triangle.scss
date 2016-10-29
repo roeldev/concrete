@@ -31,9 +31,9 @@
 
     @if one-of($direction, 'up' 'u')
     {
+        border-bottom: $size2 solid $color;
         border-left: $size solid transparent;
         border-right: $size solid transparent;
-        border-bottom: $size2 solid $color;
     }
     @elseif one-of($direction, 'down' 'd')
     {

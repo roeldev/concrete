@@ -57,7 +57,7 @@
         {
             @if ($max == false)
             {
-                $max: map-get($value, 'max')
+                $max: map-get($value, 'max');
             }
 
             $min:   map-get($value, 'min');

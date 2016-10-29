@@ -13,13 +13,13 @@
 ///
 @mixin font-face($name, $dir, $file)
 {
-    $path: ($dir +''+ $file);
+    $path: ($dir + '' + $file);
 
     @font-face
     {
         font-family: $name;
         font-weight: normal;
-        font-style:  normal;
+        font-style: normal;
 
         src: url('#{$path}.eot');
         src: url('#{$path}.eot?#iefix') format('embedded-opentype'),
@@ -32,8 +32,8 @@
     {
         @font-face
         {
-           font-family: $name;
-           src: url('#{$path}.svg##{$name}') format('svg') !important;
+            font-family: $name;
+            src: url('#{$path}.svg##{$name}') format('svg') !important;
         }
     }
 }

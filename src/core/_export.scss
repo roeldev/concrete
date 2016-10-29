@@ -11,7 +11,7 @@
 /// @param {string} $name - Name of exported module
 /// @param {boolean} $warn [true] - Warn when module has been already imported
 ///
-@mixin export-once($name)
+@mixin export-once($name, $warn: true)
 {
     @if not in-list($_concrete-exported, $name)
     {
@@ -20,7 +20,7 @@
     }
     @elseif $warn or $_concrete-exported-warning
     {
-        @return warn('export', 'Module `#{$name}` has already been exported!');
+        @include warn('export', 'Content `#{$name}` has already been exported!');
     }
 }
 

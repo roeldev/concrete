@@ -25,9 +25,9 @@
 {
     @include dynamic-placeholder('hexagon', $extend)
     {
-        position: relative;
         display: inline-block;
         vertical-align: middle;
+        position: relative;
 
         &::before,
         &::after
