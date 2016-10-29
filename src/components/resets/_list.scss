@@ -4,6 +4,9 @@
 /// @group resets
 ////
 
+///
+/// Adds common reset styles for list elements like ul and ol.
+///
 @mixin reset-list($extend: true)
 {
     @include dynamic-placeholder('reset-list', $extend)

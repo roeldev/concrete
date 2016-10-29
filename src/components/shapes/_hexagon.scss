@@ -9,12 +9,12 @@
 ///
 /// @param {number} $size
 ///
-@mixin hexagon($size)
+@mixin hexagon($size, $extend: true)
 {
-    @include hexagon-placeholder;
+    @include hexagon-placeholder($extend);
 
     width: $size;
-    height: $size * 0.57735;
+    height: ($size * 0.57735);
 }
 
 // -----------------------------------------------------------------------------

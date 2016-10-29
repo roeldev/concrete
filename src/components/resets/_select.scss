@@ -4,7 +4,10 @@
 /// @group resets
 ////
 
-// https://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh465742.aspx
+///
+/// Adds common reset styles for select elements.
+/// https://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh465742.aspx
+///
 @mixin reset-select($extend: true)
 {
     @include dynamic-placeholder('reset-select', $extend)

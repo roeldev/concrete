@@ -1,7 +1,7 @@
 ////
 /// concrete | src/core/_utils.scss
 ///
-/// @group Core
+/// @group core
 ////
 
 @function keyword($args, $keyword, $default: null)
@@ -211,7 +211,6 @@
                $from);
 }
 
-// -----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
 // Global variables and settings

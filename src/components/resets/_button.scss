@@ -4,6 +4,9 @@
 /// @group resets
 ////
 
+///
+/// Adds common reset styles for button elements.
+///
 @mixin reset-button($extend: true)
 {
     @include dynamic-placeholder('reset-button', $extend)

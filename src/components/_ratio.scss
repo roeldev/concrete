@@ -15,17 +15,16 @@
     {
         position: relative;
 
-        @if ($selectorBody == true)
-        {
-            $selectorBody: 'body';
-        }
-
-        &__#{$selectorBody}
+        @include dynamic-selector($selectorBody, '&__body')
         {
             @include ratio-placeholder-body;
         }
     }
 }
+
+// -----------------------------------------------------------------------------
+// Dynamic placeholders
+// -----------------------------------------------------------------------------
 
 @mixin ratio-placeholder-body($extend: true)
 {

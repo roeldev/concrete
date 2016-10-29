@@ -4,13 +4,16 @@
 /// @group helpers
 ////
 
+///
+/// Makes a 'block' list of an ul element, ideal for footer menu's.
+///
 @mixin block-list($extend: true)
 {
     @include dynamic-placeholder('block-list', $extend)
     {
         @include reset-list;
 
-        li
+        > li
         {
             display: block;
             width: 100%;

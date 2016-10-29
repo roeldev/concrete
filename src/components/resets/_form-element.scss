@@ -4,6 +4,10 @@
 /// @group resets
 ////
 
+///
+/// Adds common reset styles for form related elements like inputs, selects and
+/// textareas.
+///
 @mixin reset-form-element($extend)
 {
     @include dynamic-placeholder('reset-form-element', $extend)

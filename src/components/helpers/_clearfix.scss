@@ -4,7 +4,10 @@
 /// @group helpers
 ////
 
-// *Clearfix helper taken from http://nicolasgallagher.com/micro-clearfix-hack/
+///
+/// Adds a clearfix based on Nicolas Gallagher's micro clearfix hack
+/// (http://nicolasgallagher.com/micro-clearfix-hack/).
+///
 @mixin clearfix($extend: true)
 {
     @include dynamic-placeholder('clearfix', $extend)

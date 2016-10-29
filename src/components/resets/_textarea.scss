@@ -4,6 +4,9 @@
 /// @group resets
 ////
 
+///
+/// Adds common reset styles for textarea elements.
+///
 @mixin reset-textarea($extend: true)
 {
     @include reset-form-element($extend);

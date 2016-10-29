@@ -4,6 +4,9 @@
 /// @group resets
 ////
 
+///
+/// Adds common reset styles for input elements.
+///
 @mixin reset-input($extend: true)
 {
     @include reset-form-element($extend);

@@ -4,6 +4,9 @@
 /// @group helpers
 ////
 
+///
+/// Makes a 'float' list of an ul element, ideal for main menu's.
+///
 @mixin float-list($float: left, $extend: true)
 {
     @include dynamic-placeholder('float-list', $extend)
@@ -11,7 +14,7 @@
         @include reset-list;
         @include clearfix;
 
-        li > a
+        > li > a
         {
             display: block;
         }
