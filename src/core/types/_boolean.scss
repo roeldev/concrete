@@ -1,0 +1,49 @@
+////
+/// concrete | src/core/types/_boolean.scss
+///
+/// Some extra boolean related functions.
+///
+/// Tests:
+/// ✓ is-bool
+/// ✓ is-true
+/// ✓ is-false
+///
+/// @group core
+////
+
+// -----------------------------------------------------------------------------
+// Type check related functions.
+// -----------------------------------------------------------------------------
+
+///
+/// Returns `true` if `$var` is a boolean.
+///
+/// @param {mixed} $var
+/// @return {bool}
+///
+@function is-bool($var)
+{
+    @return (type-of($var) == 'bool');
+}
+
+///
+/// Returns `true` if `$var` is a boolean with value `true`;
+///
+/// @param {mixed} $var
+/// @return {bool}
+///
+@function is-true($var)
+{
+    @return ($var == true);
+}
+
+///
+/// Returns `true` if `$var` is a boolean with value `false`;
+///
+/// @param {mixed} $var
+/// @return {bool}
+///
+@function is-false($var)
+{
+    @return ($var == false);
+}

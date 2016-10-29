@@ -11,9 +11,9 @@
         // include the default font-style set in `_font-styles.scss`
         @include font-style('default');
 
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
         box-sizing: border-box;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
     }
 
     html,
@@ -149,26 +149,16 @@
 
     .center-y
     {
-        @include center-y(false);
-
-        > .center-middle
-        {
-            @include center-placeholder-y-middle;
-        }
+        @include center-y('> .center-middle');
     }
 
     .center-xy
     {
-        @include center-xy(false);
-
-        > .center-middle
-        {
-            @include center-placeholder-xy-middle;
-        }
+        @include center-xy('> .center-middle');
     }
 
-    // .container
-    // {
-    //     @extend %concrete-container;
-    // }
+    .container
+    {
+        @include container;
+    }
 };

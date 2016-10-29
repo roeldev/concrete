@@ -4,56 +4,14 @@
 /// @group core
 ////
 
-///
-/// Returns `true` if $var is a number. If the 2nd parameter $unit is a string,
-/// the function will also check if `$var` is of that type of unit.
-///
-/// @param {mixed} $var
-/// @param {bool|string} $unit [false]
-/// @return {bool}
-///
-@function is-number($var, $unit: false)
-{
-    $result: (type-of($var) == 'number');
-    @if ($result and is-string($unit))
-    {
-        $result: (unit($var) == $unit);
-    }
-    @return $result;
-}
+@import 'types/boolean';
+@import 'types/color';
+@import 'types/list';
+@import 'types/map';
+@import 'types/number';
+@import 'types/string';
 
-///
-/// Returns `true` if `$var` is a string.
-///
-/// @param {mixed} $var
-/// @return {bool}
-///
-@function is-string($var)
-{
-    @return (type-of($var) == 'string');
-}
-
-///
-/// Returns `true` if `$var` is a color.
-///
-/// @param {mixed} $var
-/// @return {bool}
-///
-@function is-color($var)
-{
-    @return (type-of($var) == 'color');
-}
-
-///
-/// Returns `true` if `$var` is a boolean.
-///
-/// @param {mixed} $var
-/// @return {bool}
-///
-@function is-bool($var)
-{
-    @return (type-of($var) == 'bool');
-}
+// -----------------------------------------------------------------------------
 
 ///
 /// Returns `true` if `$var` is equal to null.
@@ -74,53 +32,11 @@
 ///
 @function is-scalar($var)
 {
-    @return is-number($var)
-        or is-string($var)
-        or is-color($var)
-        or is-bool($var)
-        or is-null($var);
-}
-
-///
-/// Returns `true` if `$var` is a list with the minimum length of `$length`.
-/// When no length is given or is not a valid number, the length check is
-/// skipped.
-///
-/// @param {mixed} $var
-/// @param {bool|number} $length
-/// @return {bool}
-///
-@function is-list($var, $length: false)
-{
-    $result: (type-of($var) == 'list' or is-arglist($var));
-    @if ($result and is-number($length))
-    {
-        $result: (length($var) >= $length);
-    }
-    @return $result;
-}
-
-///
-/// Returns `true` if `$var` is an arglist.
-///
-/// @param {mixed} $var
-/// @return {bool}
-///
-@function is-arglist($var)
-{
-    @return (type-of($var) == 'arglist');
-}
-
-
-///
-/// Returns `true` if `$var` is a map.
-///
-/// @param {mixed} $var
-/// @return {bool}
-///
-@function is-map($var)
-{
-    @return (type-of($var) == 'map');
+    @return is-number($var) or
+            is-string($var) or
+            is-color($var) or
+            is-bool($var) or
+            is-null($var);
 }
 
 ///
@@ -131,88 +47,71 @@
 ///
 @function is-empty($var)
 {
-    @return (is-null($var) or
-             (is-string($var) and $var == '') or
-             (is-list($var) or is-map($var) and length($var) >= 1));
+    @return is-null($var) or
+            is-empty-string($var) or
+            is-list($var, 1) or
+            is-map($var, 1);
 }
 
 // -----------------------------------------------------------------------------
-// Unit type related functions
-// -----------------------------------------------------------------------------
 
 ///
-/// Returns `true` if the given number is of unit `em`.
+/// Checks if the given vars are of the same type.
 ///
-/// @param {number} $number
-/// @return {bool}
+/// @param {mixed} $var1 - A variable to check.
+/// @param {mixed} $var2 - A second variable to check.
+/// @return {boolean}
 ///
-@function is-em($number)
+@function equal-types($var1, $var2)
 {
-    @return (is-number($number) and unit($number) == 'em');
+    @return (type-of($var1) == type-of($var2));
 }
 
 ///
-/// Returns `true` if the given number is of unit `rem`.
+/// Checks if a variable is the correct type. If not, the variable will be
+/// overwritten and set to a default value for that type.
 ///
-/// @param {number} $number
-/// @return {bool}
+/// @param {mixed} $var - The variable to check.
+/// @param {string|list} $type - The type $var should be.
+/// @param {mixed} $default [null] - The default value to return if
+///         (type-of($var) != $type).
+/// @return {mixed}
 ///
-@function is-rem($number)
+@function set-type($var, $type, $default: null)
 {
-    @return (is-number($number) and unit($number) == 'rem');
-}
+    // type alias
+    @if ($type == 'boolean')
+    {
+        $type: 'bool';
+    }
 
-///
-/// Returns `true` if the given number is of unit `%`.
-///
-/// @param {number} $number
-/// @return {bool}
-///
-@function is-percent($number)
-{
-    @return (is-number($number) and unit($number) == '%');
-}
+    $varType:         type-of($var);
+    $isIncorrectType: ($varType != $type);
 
-///
-/// Returns `true` if the given number is of unit `px`.
-///
-/// @param {number} $number
-/// @return {bool}
-///
-@function is-pixel($number)
-{
-    @return (is-number($number) and unit($number) == 'px');
-}
+    // special check for arglists wich are basically lists
+    @if ($isIncorrectType and
+         $type == 'list' and
+         is-list($var))
+    {
+        $isIncorrectType: false;
+    }
 
-///
-/// Returns `true` if the given number is of unit `pt`.
-///
-/// @param {number} $number
-/// @return {bool}
-///
-@function is-point($number)
-{
-    @return (is-number($number) and unit($number) == 'pt');
-}
+    @if $isIncorrectType
+    {
+        @if is-null($default)
+        {
+            @if ($type == 'number')
+            {
+                $default: 0;
+            }
+            @elseif ($type == 'list')
+            {
+                $default: ();
+            }
+        }
 
-///
-/// Returns `true` if the given number is of unit `in`.
-///
-/// @param {number} $number
-/// @return {bool}
-///
-@function is-inch($number)
-{
-    @return (is-number($number) and unit($number) == 'in');
-}
+        $var: $default;
+    }
 
-///
-/// Returns `true` if the given number is of unit `s`.
-///
-/// @param {number} $number
-/// @return {bool}
-///
-@function is-second($number)
-{
-    @return (is-number($number) and unit($number) == 's');
+    @return $var;
 }

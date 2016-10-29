@@ -1,0 +1,23 @@
+////
+/// concrete | src/core/_selector.scss
+///
+/// Dynamic selector
+///
+/// @group core
+////
+
+@mixin dynamic-selector($selector, $defaultSelector)
+{
+    @if $selector
+    {
+        @if ($selector == true)
+        {
+            $selector: $defaultSelector;
+        }
+
+        #{$selector}
+        {
+            @content;
+        }
+    }
+}

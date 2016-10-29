@@ -78,9 +78,6 @@
 
 @function _concrete-debug-parse($key, $value, $indent)
 {
-    $newline: '
-';
-
     @if is-scalar($value)
     {
         $value: _concrete-debug-scalar($value);
@@ -99,7 +96,7 @@
     }
 
     $value: '['+ $key +'] => '+ $value;
-    $value: $newline + $indent + $indentLevel + $value;
+    $value: newline() + $indent + $value;
 
     @return unquote($value);
 }
@@ -119,11 +116,16 @@
         $unit: unit($var);
         @if not is-empty($unit)
         {
-            $type: $type +'|'+ $unit;
+            $type: $type + '|' + $unit;
         }
     }
+    @elseif is-null($var)
+    {
+        $type: 'null';
+        $var: 'null';
+    }
 
-    @return '('+ $type +') `'+ $var +'`';
+    @return '(' + $type + ') `' + $var + '`';
 }
 
 ///
@@ -161,7 +163,7 @@
 
             $tagOpen:  $indentLevel +'(';
             $tagClose: $indentLevel +')';
-            $display:  $newline + $tagOpen + $display + $newline + $tagClose;
+            $display:  newline() + $tagOpen + $display + newline() + $tagClose;
         }
         @else
         {
@@ -186,6 +188,7 @@
 ///
 @function _concrete-debug-map($map, $inspect: true, $indentLevel: false)
 {
+    $display: '';
     $indent:  '   ';
 
     $mapLength: length($map);
@@ -211,7 +214,7 @@
 
             $tagOpen:  $indentLevel +'{';
             $tagClose: $indentLevel +'}';
-            $display:  $newline + $tagOpen + $display + $newline + $tagClose;
+            $display:  newline() + $tagOpen + $display + newline() + $tagClose;
         }
         @else
         {

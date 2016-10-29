@@ -1,0 +1,24 @@
+////
+/// concrete | src/components/_container.scss
+///
+/// @group container
+////
+
+@mixin container()
+{
+
+}
+
+// -----------------------------------------------------------------------------
+// Setter functions and mixins
+// -----------------------------------------------------------------------------
+
+@mixin set-container($breakpoint, $properties)
+{
+
+}
+
+// -----------------------------------------------------------------------------
+// Global variables and settings
+// -----------------------------------------------------------------------------
+$concrete-containers: () !global;
