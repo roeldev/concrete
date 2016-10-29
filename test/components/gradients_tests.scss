@@ -4,22 +4,53 @@
 /// @group tests
 ////
 
-@import 'true';
-@import '../../src/core';
+@import '../helpers/init';
 @import '../../src/components/gradients';
+
+@include set-test-file('components/_gradients');
 
 // // // // // // // // // // // // // // // // // // // // // // // // // // //
 
-@include test-module('components/_gradients: _gradient-param [function]')
+@include test-function('_gradient-position')
 {
-    @include test('Should return a list with both values')
+    @include test('Should return the same value')
+    {
+        @include assert-equal(_gradient-position(33%), 33%);
+    }
+
+    @include test('Should convert the number to percentage')
+    {
+        @include assert-equal(_gradient-position(0.21), 21%);
+    }
+
+    @include test('Should return false on invalid numbers [1]')
+    {
+        @include assert-equal(_gradient-position(10px), false);
+    }
+
+    @include test('Should return false on invalid numbers [2]')
+    {
+        @include assert-equal(_gradient-position('str'), false);
+    }
+}
+
+@include test-function('_gradient-param')
+{
+    @include test('Should return a list with both values [1]')
     {
         $actual: _gradient-param(red, 0%);
 
         @include assert-equal($actual, (red 0%));
     }
 
-    @include test('Should return the same input value')
+    @include test('Should return a list with both values [2]')
+    {
+        $actual: _gradient-param(red, 0);
+
+        @include assert-equal($actual, (red 0%));
+    }
+
+    @include test('Should return the same input value [1]')
     {
         $input:  (red 45%);
         $actual: _gradient-param($input, 0%);
@@ -27,9 +58,23 @@
         @include assert-equal($actual, $input);
     }
 
-    @include test('Should return a list with the color and position')
+    @include test('Should return the same input value [2]')
+    {
+        $actual: _gradient-param((red 0.43), 0%);
+
+        @include assert-equal($actual, (red 43%));
+    }
+
+    @include test('Should return a list with the color and position [1]')
     {
         $actual: _gradient-param((45% red), 0%);
+
+        @include assert-equal($actual, (red 45%));
+    }
+
+    @include test('Should return a list with the color and position [2]')
+    {
+        $actual: _gradient-param((0.45 red), 0%);
 
         @include assert-equal($actual, (red 45%));
     }
@@ -38,7 +83,7 @@
     {
         $color:   red; // 100% alpha
         $default: ($color 45%);
-        $actual:  _gradient-param(false, 10%, $default);
+        $actual:  _gradient-param(false, 0.1, $default);
         $color:   rgba($color, 0);
 
         @include assert-equal($actual, ($color 10%));
@@ -55,8 +100,7 @@
     }
 }
 
-
-@include test-module('components/_gradients: gradient-horizontal [mixin]')
+@include test-mixin('gradient-horizontal')
 {
     @include test('Should create a linear horizontal gradient')
     {
@@ -106,7 +150,7 @@
 }
 
 
-@include test-module('components/_gradients: gradient-vertical [mixin]')
+@include test-mixin('gradient-vertical')
 {
     @include test('Should create a linear vertical gradient')
     {
@@ -156,25 +200,25 @@
 }
 
 
-@include test-module('components/_gradients: gradient-radial [mixin]')
+@include test-mixin('gradient-radial')
 {
-    @include test('Should create a radial gradient')
-    {
-        @include assert('')
-        {
-            @include input
-            {
-                @include gradient-radial(#000 100%, #f00 5%);
-            }
+    // @include test('Should create a radial gradient')
+    // {
+    //     @include assert('')
+    //     {
+    //         @include input
+    //         {
+    //             @include gradient-radial(#000 1, #f00 5%);
+    //         }
 
-            @include expect
-            {
-                background: -webkit-radial-gradient(center, ellipse cover, #000 100%, #f00 5%);
-                background: -o-radial-gradient(center, ellipse cover, #000 100%, #f00 5%);
-                background: radial-gradient(ellipse at center, #000 100%, #f00 5%);
-            }
-        }
-    }
+    //         @include expect
+    //         {
+    //             background: -webkit-radial-gradient(center, ellipse cover, #000 100%, #f00 5%);
+    //             background: -o-radial-gradient(center, ellipse cover, #000 100%, #f00 5%);
+    //             background: radial-gradient(ellipse at center, #000 100%, #f00 5%);
+    //         }
+    //     }
+    // }
 
     @include test('Should create a radial gradient to transparent')
     {

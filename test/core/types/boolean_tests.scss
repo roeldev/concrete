@@ -1,0 +1,57 @@
+////
+/// concrete | test/core/types/boolean_tests.scss
+///
+/// @group tests
+////
+
+@import '../../helpers/init';
+@import '../../helpers/create-arglist';
+@import '../../helpers/type-test';
+
+@include set-test-file('core/types/_boolean');
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // //
+
+@include type-test('is-bool')
+{
+    @include type-test-assert-true(true, false);
+
+    @include type-test-assert-false(1,
+                                    0,
+                                    'true',
+                                    '!1',
+                                    #000,
+                                    null,
+                                    $TYPE_LIST,
+                                    $TYPE_MAP);
+}
+
+@include type-test('is-true')
+{
+    @include type-test-assert-true(true);
+
+    @include type-test-assert-false(1,
+                                    0,
+                                    'true',
+                                    '!1',
+                                    #000,
+                                    false,
+                                    null,
+                                    $TYPE_LIST,
+                                    $TYPE_MAP);
+}
+
+@include type-test('is-false')
+{
+    @include type-test-assert-true(false);
+
+    @include type-test-assert-false(1,
+                                    0,
+                                    'false',
+                                    '!1',
+                                    #000,
+                                    true,
+                                    null,
+                                    $TYPE_LIST,
+                                    $TYPE_MAP);
+}

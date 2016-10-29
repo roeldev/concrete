@@ -4,10 +4,6 @@
 // The variables defined in below files are needed to init the framework.
 //
 @import 'concrete/variables';
-@import 'concrete/font-styles';
-@import 'concrete/transitions';
-@import 'concrete/breakpoints';
-@import 'concrete/settings';
 
 // -----------------------------------------------------------------------------
 // Import the concrete framework
@@ -26,6 +22,7 @@
 // When using Bootstrap, it is recommended to not import the below defined
 // partials.
 //
-@import 'concrete/base';
-@import 'concrete/grid';
-@import 'concrete/iconfont';
+@import 'concrete/settings';
+// @import 'concrete/base';
+// -@import 'concrete/grid';
+// @import 'concrete/iconfont';

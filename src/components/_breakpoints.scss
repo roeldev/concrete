@@ -60,22 +60,60 @@
 // Setter functions and mixins
 // -----------------------------------------------------------------------------
 
-@mixin set-breakpoint($breakpoint, $size, $properties: null)
+@mixin set-breakpoint($breakpoint, $width, $properties: null, $overwrite: false)
 {
-    $_concrete-breakpoints: map-append($_concrete-breakpoints, $breakpoint,
-    (
-        min:        0,
-        max:        $size,
-        properties: $properties
-    )) !global;
+    @if is-null($properties) or not is-list($properties)
+    {
+        $properties: $_concrete-breakpoint-properties;
+    }
+
+    $data: _breakpoint-create-data($width, $properties);
+
+    $_concrete-breakpoints: map-append($_concrete-breakpoints,
+                                       $breakpoint,
+                                       $data) !global;
 }
 
-@mixin set-breakpoint-default-property($breakpoint, $property, $value)
+@mixin set-breakpoint-properties($breakpoint, $properties)
 {
-    $_concrete-breakpoints: _concrete-add($concrete-breakpoints, $breakpoint,
-    (
-        properties: ( $property: $value )
-    )) !global;
+    $data: ();
+
+    @if map-has-key($_concrete-breakpoints, $breakpoint)
+    {
+    // replace the existing properties map with the new one
+        $data: map-get($_concrete-breakpoints, $breakpoint);
+        $data: map-replace($data, 'properties', $properties);
+    }
+    @else
+    {
+        $data: _breakpoint-create-data(null, $properties);
+    }
+
+    $_concrete-breakpoints: map-replace($_concrete-breakpoints,
+                                        $breakpoint,
+                                        $data) !global;
+}
+
+@mixin set-breakpoint-property($breakpoint, $property, $value: null, $overwrite: false)
+{
+    @if is-null($value)
+    {
+        $value:    $property;
+        $property: $breakpoint;
+
+        $_concrete-breakpoint-properties: map-append($_concrete-breakpoint-properties,
+                                                     $property,
+                                                     $value) !global;
+
+        @each $breakpoint in $_concrete-breakpoints
+        {
+            @include set-breakpoint-property($breakpoint, $property, $value);
+        }
+    }
+    @else
+    {
+        // get-breakpoint-properties()
+    }
 }
 
 // -----------------------------------------------------------------------------
@@ -101,29 +139,119 @@
         $breakpoint: nth-first($_concrete-breakpoints);
     }
 
-    @if map-has-key($concrete-breakpoints, $breakpoint)
-    {
-        $breakpoint: map-get($concrete-breakpoints, $breakpoint);
+    $result: null;
+    $data:   _breakpoint-get('get-breakpoint', $breakpoint);
 
-        @if ($value == false or $value == 'both')
+    @if is-map($data)
+    {
+        @if ($value == false) or ($value == 'both')
         {
-            @return $breakpoint;
+            $result: $data;
         }
-        @elseif map-has-key($breakpoint, $value)
+        @elseif map-has-key($data, $value)
         {
-            @return map-get($breakpoint, $value);
+            $result: map-get($data, $value);
         }
         @else
         {
-            @return warn('get-breakpoint',
-                'Unknown value `#{$value}` in `#{$breakpoint}`!');
+            $result: warn('get-breakpoint',
+                          'Unknown value `#{$value}` in `#{$breakpoint}`!');
+        }
+    }
+
+    @return $result;
+}
+
+@function get-breakpoint-properties($breakpoint: null)
+{
+    @return _breakpoint-get-value('get-breakpoint-properties', $breakpoint, 'properties');
+
+    // $result: null;
+    // @if is-null($breakpoint) or ($breakpoint == 'default')
+    // {
+    //     $result: $_concrete-breakpoint-properties;
+    // }
+    // @else
+    // {
+    //     $result: _breakpoint-get('get-breakpoint-properties', $breakpoint);
+    // }
+
+    // @return $result;
+}
+
+@function get-breakpoint-property($breakpoint, $property)
+{
+    @return _breakpoint-get-property('get-breakpoint-property',
+                                     $breakpoint,
+                                     $property);
+}
+
+// -----------------------------------------------------------------------------
+
+///
+/// Maakt een breakpoint data map aan.
+///
+@function _breakpoint-create-data($widths, $properties)
+{
+    $minWidth: $widths;
+    $maxWidth: null;
+
+    @if is-list($widths)
+    {
+        $minWidth: nth($widths, 1);
+        $maxWidth: nth($widths, 2);
+    }
+
+    @return
+    (
+        'minWidth':   $minWidth,
+        'maxWidth':   $maxWidth,
+        'properties': $properties
+    );
+}
+
+///
+/// Geeft een eerder aangemaakte breakpoint data map terug.
+///
+@function _breakpoint-get($function, $breakpoint)
+{
+    $result: null;
+
+    @if map-has-key($_concrete-breakpoints, $breakpoint)
+    {
+        $result: map-get($_concrete-breakpoints, $breakpoint);
+    }
+    @else
+    {
+        $result: warn($function, 'Unknown breakpoint `#{$breakpoint}`!');
+    }
+
+    @return $result;
+}
+
+///
+/// Geeft een property van een aangemaakte breakpoint data map terug.
+///
+@function _breakpoint-get-property($function, $breakpoint, $property)
+{
+    $result: null;
+    $data:   _breakpoint-get($function, $breakpoint);
+
+    @if is-map($data) and map-has-key($data, 'properties')
+    {
+        $properties: map-get($data, 'properties');
+        @if map-has-key($properties, $property)
+        {
+            $result: map-get($properties, $property);
         }
     }
     @else
     {
-        @return warn('get-breakpoint',
-            'Unknown breakpoint `#{$breakpoint}`!');
+        $result: warn($function,
+                      'Missing properties for breakpoint `#{$breakpoint}`!');
     }
+
+    @return $result;
 }
 
 // -----------------------------------------------------------------------------
@@ -134,10 +262,10 @@
     $concrete-debug-breakpoints: false !global;
 }
 
-@if not global-variable-exists('concrete-breakpoints')
-{
-    $concrete-breakpoints: () !global;
-}
+$_concrete-breakpoints:           () !global;
+$_concrete-breakpoint-properties: () !global;
+$_concrete-in-breakpoint:         null !global;
+
 
 // deprecated
 @if not global-variable-exists('concrete-breakpoint-scrollbar-buffer')
@@ -145,11 +273,10 @@
     $concrete-breakpoint-scrollbar-buffer: () !global;
 }
 
-$_concrete-breakpoints:   _concrete-init-breakpoints() !global;
-$_concrete-in-breakpoint: null !global;
+// $_concrete-breakpoints:   _concrete-init-breakpoints() !global;
 
 // settings that are prepared so they are more easily to use by the framework
-$concrete-breakpoints: _concrete-parse-breakpoints();
+// $concrete-breakpoints: _concrete-parse-breakpoints();
 
 // $concrete-breakpoint-scrollbar-buffer:
     // _concrete-init-breakpoint-settings($concrete-breakpoint-scrollbar-buffer, 0);

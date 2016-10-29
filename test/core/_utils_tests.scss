@@ -53,25 +53,6 @@ $concrete-font-styles:
 }
 
 
-@include test-module('core/_utils: equal-units [function]')
-{
-    @include test('Should succeed when both numbers are of equal units')
-    {
-        @include assert-true(equal-units(1px, 2px));
-    }
-
-    @include test('Should fail when both numbers are not of equal units')
-    {
-        @include assert-false(equal-units(1px, 2%));
-    }
-
-    @include test('Should fail when a var is not a number')
-    {
-        @include assert-false(equal-units(1px, 'str'));
-    }
-}
-
-
 @include test-module('core/_utils: set-type [function]')
 {
     @include test('Should return the exact same value [1]')
@@ -106,33 +87,7 @@ $concrete-font-styles:
 }
 
 
-@include test-module('core/_utils: set-unit [function]')
-{
-    @include test('Should return the exact same value [1]')
-    {
-        @include assert-equal(set-unit(1px, 'px', 2%), 1px);
-    }
 
-    @include test('Should return the exact same value [2]')
-    {
-        @include assert-equal(set-unit(10vh, 'vh', 2%), 10vh);
-    }
-
-    @include test('Should return the default value [1]')
-    {
-        @include assert-equal(set-unit(10vh, 'vw', 20vw), 20vw);
-    }
-
-    @include test('Should return the default value [2]')
-    {
-        @include assert-equal(set-unit('test', '%'), 0);
-    }
-
-    @include test('Should return the default value [3]')
-    {
-        @include assert-equal(set-unit(true, 'px'), 0);
-    }
-}
 
 
 @include test-module('core/_utils: unquote-all [function]')
@@ -172,43 +127,5 @@ $concrete-font-styles:
         $expected: ('string1' 'string2' 'string3');
 
         @include assert-equal(unquote-all('string'), 'string');
-    }
-}
-
-
-@include test-module('core/_utils: em [function]')
-{
-    @include test('Should return a em value [1]')
-    {
-        @include assert-equal(em(32px, 16px), 2em);
-    }
-
-    @include test('Should return a em value [2]')
-    {
-        @include assert-equal(em(28px), 2em);
-    }
-
-    @include test('Should return a em value [3]')
-    {
-        @include assert-equal(em(10vh, 5vh), 2em);
-    }
-
-    @include test('Should return the same input value')
-    {
-        @include assert-equal(em(10vh, 10px), 10vh);
-    }
-}
-
-
-@include test-module('core/_utils: rem [function]')
-{
-    @include test('Should return a rem value')
-    {
-        @include assert-equal(rem(14px), 1rem);
-    }
-
-    @include test('Should return a rem value')
-    {
-        @include assert-equal(rem(10vh), 10vh);
     }
 }

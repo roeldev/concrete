@@ -4,36 +4,13 @@
 /// @group tests
 ////
 
-@import 'true';
-@import '../../src/core';
+@import '../helpers/init';
+
+@include set-test-file('core/_warn');
 
 // // // // // // // // // // // // // // // // // // // // // // // // // // //
 
-@include test-module('core/_log: _concrete-warn [function]')
-{
-    @include test('Should add a message to the global list [1]')
-    {
-        $_concrete-warnings: () !global;
-        $x:_concrete-warn('func', 'msg');
-
-        $expected: list-create('func: msg', 'comma');
-
-        @include assert-equal($_concrete-warnings, $expected);
-    }
-
-    @include test('Should add a message to the global list [2]')
-    {
-        $_concrete-warnings: () !global;
-        $x:_concrete-warn('test msg', '');
-
-        $expected: list-create('test msg', 'comma');
-
-        @include assert-equal($_concrete-warnings, $expected);
-    }
-}
-
-
-@include test-module('core/_log: warn [function]')
+@include test-function('warn')
 {
     @include test('Should add a message to the global list [1]')
     {
@@ -48,16 +25,26 @@
     @include test('Should add a message to the global list [2]')
     {
         $_concrete-warnings: () !global;
-        $x:warn('test msg');
+        $x:warn('test msg', '');
 
         $expected: list-create('test msg', 'comma');
+
+        @include assert-equal($_concrete-warnings, $expected);
+    }
+
+    @include test('Should add a message to the global list [3]')
+    {
+        $_concrete-warnings: () !global;
+        $x:warn('func', 'long' 'msg');
+
+        $expected: list-create('func: long msg', 'comma');
 
         @include assert-equal($_concrete-warnings, $expected);
     }
 }
 
 
-@include test-module('core/_log: warn [mixin]')
+@include test-mixin('warn')
 {
     @include test('Should add a message to the global list [1]')
     {

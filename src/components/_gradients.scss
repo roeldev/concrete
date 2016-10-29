@@ -6,6 +6,98 @@
 /// @group gradients
 ////
 
+// -----------------------------------------------------------------------------
+
+@function _gr-parse-param($param, $func: '_gr-parse-param', $type: '')
+{
+    $color:    false;
+    $position: false;
+
+    @if is-list($param, 1)
+    {
+        $listLength: length($param);
+
+        @if ($listLength == 1)
+        {
+            // extract the list value and call the parse function again
+            @return _gr-parse-param(nth-first($param), $func, $type);
+        }
+        // list has 2 or more values
+        @else
+        {
+            $nth1: nth($param, 1);
+            $nth2: nth($param, 2);
+
+            @if is-color($nth1)
+            {
+                $color: $nth1;
+
+                @if is-number($nth2)
+                {
+                    $position: _gr-parse-position($nth2);
+                }
+            }
+            @elseif is-number($nth1)
+            {
+                $position: _gr-parse-position($nth1);
+
+                @if is-color($nth2)
+                {
+                    $color: $nth2;
+                }
+            }
+            @else
+            {
+                @return warn($func, 'Invald format for list `#{$param}`,'
+                                    'expecting a color and/or a percentage.');
+            }
+        }
+    }
+    @elseif is-color($param)
+    {
+        $color: $param;
+    }
+    @elseif is-number($param)
+    {
+        $position: _gr-parse-position($param);
+    }
+    @else
+    {
+        @return warn($func, 'Invald format for gradient parameter `#{$param}`,'
+                            'expecting either a list (with a color and/or'
+                            'percentage), a color, or a percentage.');
+    }
+
+    @return ($color $position);
+}
+
+@function _gr-parse-position($value, $func: '_gr-parse-position')
+{
+    $result: false;
+
+    @if is-number($value)
+    {
+        @if is-percentage($value)
+        {
+            $result: $value;
+        }
+        @elseif unitless($value)
+        {
+            $multiplier: if(($value <= 1), 100%, 1%);
+            $result:     ($value * $multiplier);
+        }
+        @else
+        {
+            @return warn($func, 'Expecting number `"#{$param}"` to be'
+                                'unitless or a percentage.');
+        }
+    }
+
+    @return $result;
+}
+
+// -----------------------------------------------------------------------------
+
 ///
 /// Creates a horizontal gradient. Both start and end values can be either a
 /// color or a list with a color and a start/end position percentage. The
@@ -119,42 +211,51 @@
         // the list can be either (color position) or (position color)
         @if is-color($nth1)
         {
-            @if is-percent($nth2)
-            {
-                $position: $nth2;
-            }
-
-            $result: ($nth1 $position);
+            $position: _gradient-position($nth2);
+            $result:   ($nth1 $position);
         }
         @elseif is-color($nth2)
         {
-            @if is-percent($nth1)
-            {
-                $position: $nth1;
-            }
-
-            $result: ($nth2 $position);
+            $position: _gradient-position($nth1);
+            $result:   ($nth2 $position);
         }
     }
     @elseif is-color($param)
     {
-        $result: ($param $position);
+        $position: _gradient-position($position);
+        $result:   ($param $position);
     }
     // the param to parse is neither a color or list, so treat it as an invalid
     // value. use the first value (color) from the default parameter
     @elseif is-list($defaultParam)
     {
-        @if is-percent($param)
-        {
-            $position: $param;
-        }
+        $color:    nth($defaultParam, 1);
+        $position: _gradient-position($position);
 
-        $color: nth($defaultParam, 1);
         $alpha: alpha($color);
         $alpha: if(($alpha == 0), 1, 0);
 
         $color: rgba($color, $alpha);
         $result: ($color $position);
+    }
+
+    @return $result;
+}
+
+@function _gradient-position($value)
+{
+    $result: false;
+
+    @if is-number($value)
+    {
+        @if is-percentage($value)
+        {
+            $result: $value;
+        }
+        @elseif unitless($value) and ($value < 1)
+        {
+            $result: percentage($value);
+        }
     }
 
     @return $result;

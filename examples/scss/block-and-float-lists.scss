@@ -1,10 +1,10 @@
 ////
-/// concrete | examples/block_float_lists.scss
+/// concrete | examples/block-and-float-lists.scss
 ////
 
-@import 'basics';
+@import '../../starter/main';
 
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 ul
 {
@@ -19,7 +19,7 @@ ul
 
 nav
 {
-    @extend %concrete-clearfix;
+    @include clearfix;
 
     .float-list
     {

@@ -1,0 +1,45 @@
+////
+/// concrete | test/helpers/_init.scss
+///
+/// @group test-helpers
+////
+
+@import 'true';
+@import '../../src/core';
+
+// -----------------------------------------------------------------------------
+
+$_concrete-test-file: null !global;
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // //
+
+@mixin set-test-file($file)
+{
+    $_concrete-test-file: $file !global;
+}
+
+///
+/// Wrapper mixin for testing functions.
+///
+/// @param {string} $name - Name of the function.
+///
+@mixin test-function($name)
+{
+    @include test-module($_concrete-test-file + ': ' + $name + ' [function]')
+    {
+        @content;
+    }
+}
+
+///
+/// Wrapper mixin for testing mixins.
+///
+/// @param {string} $name - Name of the mixin.
+///
+@mixin test-mixin($name)
+{
+    @include test-module($_concrete-test-file + ': ' + $name + ' [mixin]')
+    {
+        @content;
+    }
+}

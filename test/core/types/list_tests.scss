@@ -1,15 +1,46 @@
 ////
-/// concrete | test/core/list_tests.scss
+/// concrete | test/core/types/list_tests.scss
 ///
 /// @group tests
 ////
 
-@import 'true';
-@import '../../src/core';
+@import '../../helpers/init';
+@import '../../helpers/create-arglist';
+@import '../../helpers/type-test';
+
+@include set-test-file('core/types/_list');
 
 // // // // // // // // // // // // // // // // // // // // // // // // // // //
 
-@include test-module('core/_list: list-create [function]')
+@include type-test('is-list')
+{
+    @include type-test-assert-true($TYPE_LIST, $TYPE_ARGLIST);
+
+    @include type-test-assert-false(1,
+                                    '()',
+                                    '1 2',
+                                    #000,
+                                    false,
+                                    null,
+                                    $TYPE_MAP);
+}
+
+// -----------------------------------------------------------------------------
+
+@include test-function('one-of')
+{
+    @include test('Should return true when value is in list')
+    {
+        @include assert-true(one-of('test', 1 false 'test' null));
+    }
+
+    @include test('Should return false when value is not in list')
+    {
+        @include assert-false(one-of('fail', 1 false 'test' null));
+    }
+}
+
+@include test-function('list-create')
 {
     @include test('Should return a list with a string value')
     {
@@ -42,7 +73,7 @@
 }
 
 
-@include test-module('core/_list: nth-first [function]')
+@include test-function('nth-first')
 {
     @include test('Should return the first value of the list')
     {
@@ -62,7 +93,7 @@
 }
 
 
-@include test-module('core/_list: nth-last [function]')
+@include test-function('nth-last')
 {
     @include test('Should return the last value of the list')
     {
@@ -82,7 +113,7 @@
 }
 
 
-@include test-module('core/_list: prepend [function]')
+@include test-function('prepend')
 {
     @include test('Should prepend the value to the list')
     {
@@ -112,21 +143,7 @@
 }
 
 
-@include test-module('core/_list: one-of [function]')
-{
-    @include test('Should return true when value is in list')
-    {
-        @include assert-true(one-of('test', 1 false 'test' null));
-    }
-
-    @include test('Should return false when value is not in list')
-    {
-        @include assert-false(one-of('fail', 1 false 'test' null));
-    }
-}
-
-
-@include test-module('core/_list: list-sort [function]')
+@include test-function('list-sort')
 {
     @include test('Should sort the list on numeric values')
     {
