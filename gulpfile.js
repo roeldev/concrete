@@ -36,3 +36,5 @@ Gulp.task('watch:lint', () =>
     Gulp.watch(SRC_FILES, ['sass']);
     Gulp.watch(TEST_FILES, ['sass:lint']);
 });
+
+Gulp.task('default', ['watch:test']);
