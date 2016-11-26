@@ -28,16 +28,18 @@
 
 @function set-font-style($name, $options)
 {
-    $concrete-font-styles: map-append($concrete-font-styles,
-                                      $name,
-                                      $options) !global;
+    @return storage-set('font-style', $name, $options);
 
-    @return $concrete-font-styles;
+    // $concrete-font-styles: map-append($concrete-font-styles,
+    //                                   $name,
+    //                                   $options) !global;
+
+    // @return $concrete-font-styles;
 }
 
 @mixin set-font-style($name, $options)
 {
-    $x: set-font-style($name, $options);
+    $name: set-font-style($name, $options);
 }
 
 // -----------------------------------------------------------------------------
@@ -52,12 +54,13 @@
 ///
 @function get-font-style($name: 'default')
 {
-    @if map-has-key($concrete-font-styles, $name)
-    {
-        @return map-get($concrete-font-styles, $name);
-    }
+    @return storage-get('font-style', $name);
+    // @if map-has-key($concrete-font-styles, $name)
+    // {
+    //     @return map-get($concrete-font-styles, $name);
+    // }
 
-    @return warn('get-font-style', 'Unknown font-style `#{$name}`!');
+    // @return warn('get-font-style', 'Unknown font-style `#{$name}`!');
 }
 
 ///
@@ -147,32 +150,41 @@
                                    $quote: false,
                                    $errorFnName: '')
 {
-    @if is-empty($errorFnName)
+    $result: storage-get('font-style', $name, $property);
+
+    @if is-string($result)
     {
-        $errorFnName: 'get-' + $property;
+        $result: if(is-true($quote), quote($result), unquote($result));
     }
 
-    @if map-has-key($concrete-font-styles, $name)
-    {
-        $fontStyle: map-get($concrete-font-styles, $name);
+    @return $result;
 
-        @if (is-map($fontStyle) and map-has-key($fontStyle, $property))
-        {
-            $result: map-get($fontStyle, $property);
+    // @if is-empty($errorFnName)
+    // {
+    //     $errorFnName: 'get-' + $property;
+    // }
 
-            @if is-string($result)
-            {
-                $result: if($quote == true, quote($result), unquote($result));
-            }
+    // @if map-has-key($concrete-font-styles, $name)
+    // {
+    //     $fontStyle: map-get($concrete-font-styles, $name);
 
-            @return $result;
-        }
+    //     @if (is-map($fontStyle) and map-has-key($fontStyle, $property))
+    //     {
+    //         $result: map-get($fontStyle, $property);
 
-        @return warn($errorFnName,
-            'Property `#{$property}` not set for font-style `#{$name}` !');
-    }
+    //         @if is-string($result)
+    //         {
+    //             $result: if($quote == true, quote($result), unquote($result));
+    //         }
 
-    @return warn($errorFnName, 'Unknown font-style `#{$name}`!');
+    //         @return $result;
+    //     }
+
+    //     @return warn($errorFnName,
+    //         'Property `#{$property}` not set for font-style `#{$name}` !');
+    // }
+
+    // @return warn($errorFnName, 'Unknown font-style `#{$name}`!');
 }
 
 // -----------------------------------------------------------------------------
