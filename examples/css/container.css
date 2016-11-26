@@ -1,0 +1,54 @@
+/*! (c) 2016 Your Name | yourdomain.com */
+/*! concrete v0.4.4 | GNU GPL v2.0 License | github.com/roeldev/concrete */
+/*
+    concrete - Sassy CSS framework (https://github.com/roeldev/concrete/)
+    Copyright (c) 2014-2016 Roel Schut (roelschut.nl)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+/* line 9, ./examples/scss/container.scss */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ddd; }
+
+/* line 16, ./examples/scss/container.scss */
+.top {
+  height: 80px;
+  padding: 0 20px;
+  background-color: #ccc;
+  line-height: 80px; }
+
+/* line 24, ./examples/scss/container.scss */
+main {
+  height: 100vh;
+  background-color: #fff; }
+  /* line 27, ./src/core/_placeholder.scss */
+  main, .footer__body {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px; }
+
+/* line 32, ./examples/scss/container.scss */
+.footer {
+  background-color: #666; }
+  /* line 36, ./examples/scss/container.scss */
+  .footer__body {
+    height: 300px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff; }
+
+/*# sourceMappingURL=container.css.map */

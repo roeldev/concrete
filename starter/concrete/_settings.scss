@@ -87,14 +87,14 @@
 // Containers
 // -----------------------------------------------------------------------------
 
-// set-container($breakpoint, $properties)
-// @include set-container('xxl',
-// (
-//     'width':     100%,
-//     'max-width': 1920px
-// ));
-
-// @include set-container('lg', ( 'width': calc(100% - 30px) ))
+// set-container($name $breakpoint, $properties)
+@include set-container('default',
+(
+    'width':     100%,
+    'max-width': 800px,
+    'margin':    0 auto,
+    'padding':   20px
+));
 
 
 // -----------------------------------------------------------------------------
