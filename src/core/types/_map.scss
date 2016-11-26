@@ -54,9 +54,9 @@
     @if map-has-key($map, $key)
     {
         $map: map-remove($map, $key);
-        $map: map-merge($map, ($key: $value));
     }
 
+    $map: map-merge($map, ($key: $value));
     @return $map;
 }
 
