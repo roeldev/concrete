@@ -1,0 +1,68 @@
+////
+/// concrete | src/core/_storage.scss
+///
+/// @group core
+////
+
+// -----------------------------------------------------------------------------
+// Setter functions and mixins
+// -----------------------------------------------------------------------------
+
+@function storage-set($type, $key, $value)
+{
+    // retrieve a global set storage map
+    $storage: if(map-has-key($_concrete-storage, $type),
+                 map-get($_concrete-storage, $type),
+                 ());
+
+    // add or replace the new key + value to the storage map
+    $storage: map-replace($storage, $key, $value);
+
+    // add the map back to the global variable
+    $_concrete-storage: map-replace($_concrete-storage,
+                                    $type,
+                                    $storage) !global;
+
+    @return $key;
+}
+
+@mixin storage-set($type, $key, $value)
+{
+    $set: storage-set($type, $key, $value);
+}
+
+// -----------------------------------------------------------------------------
+// Getter functions
+// -----------------------------------------------------------------------------
+
+@function storage-get($type, $keys...)
+{
+    $result: false;
+
+    @if map-has-key($_concrete-storage, $type)
+    {
+        $target: map-get-key($_concrete-storage, $type);
+
+        @each $key in $keys
+        {
+            @if map-has-key($target, $key)
+            {
+                $target: map-get($target, $key);
+            }
+            @else
+            {
+                // break out of the loop
+                @return false;
+            }
+        }
+
+        $result: $target;
+    }
+
+    @return $result;
+}
+
+// -----------------------------------------------------------------------------
+// Global variables and settings
+// -----------------------------------------------------------------------------
+$_concrete-storage: () !global;
