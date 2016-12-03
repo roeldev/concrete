@@ -10,14 +10,34 @@
 {
     @if $selector
     {
-        @if ($selector == true)
+        @if is-true($selector)
         {
             $selector: $defaultSelector;
         }
 
-        #{$selector}
+        $atRoot: false;
+        @if starts-with($selector, '@at-root')
         {
-            @content;
+            $selector: str-slice($selector, 9);
+            $atRoot: true;
+        }
+
+        @if $atRoot
+        {
+            @at-root
+            {
+                #{$selector}
+                {
+                    @content;
+                }
+            }
+        }
+        @else
+        {
+            #{$selector}
+            {
+                @content;
+            }
         }
     }
 }

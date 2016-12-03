@@ -10,15 +10,19 @@
 @mixin font-style($name, $properties: 'all')
 {
     $fontStyle: get-font-style($name);
-    @each $property, $value in $fontStyle
-    {
-        $func: 'get-' + $property;
-        @if (function-exists($func))
-        {
-            $value: call($func, $name);
-        }
 
-        #{$property}: #{$value};
+    @if not is-null($fontStyle)
+    {
+        @each $property, $value in $fontStyle
+        {
+            $func: 'get-' + $property;
+            @if function-exists($func)
+            {
+                $value: call($func, $name);
+            }
+
+            #{$property}: $value;
+        }
     }
 }
 
@@ -29,17 +33,29 @@
 @function set-font-style($name, $options)
 {
     @return storage-set('font-style', $name, $options);
+}
 
-    // $concrete-font-styles: map-append($concrete-font-styles,
-    //                                   $name,
-    //                                   $options) !global;
+@function extend-font-style($name, $extendFrom, $options: null)
+{
+    $extendFrom: get-font-style($extendFrom);
+    @if not is-null($extendFrom)
+    {
+        $options: if(not is-null($options),
+                     map-merge($extendFrom, $options),
+                     $extendFrom);
+    }
 
-    // @return $concrete-font-styles;
+    @return set-font-style($name, $options);
 }
 
 @mixin set-font-style($name, $options)
 {
-    $name: set-font-style($name, $options);
+    $x:set-font-style($name, $options);
+}
+
+@mixin extend-font-style($name, $extendFrom, $options: null)
+{
+    $x:extend-font-style($name, $extendFrom, $options);
 }
 
 // -----------------------------------------------------------------------------
@@ -55,12 +71,6 @@
 @function get-font-style($name: 'default')
 {
     @return storage-get('font-style', $name);
-    // @if map-has-key($concrete-font-styles, $name)
-    // {
-    //     @return map-get($concrete-font-styles, $name);
-    // }
-
-    // @return warn('get-font-style', 'Unknown font-style `#{$name}`!');
 }
 
 ///
@@ -69,16 +79,24 @@
 ///
 /// @param {string} $name - The name of the font-style.
 /// @param {string} $property - The name of the property of the font-style.
-/// @param {boolean} $quote - Quote the returned value?.
+/// @param {boolean|null} $quote [null] - Quote or unquote the returned value?
 ///
 /// @return {mixed}
 ///
-@function get-font-style-property($name, $property, $quote: false)
+@function get-font-style-property($name, $property, $quote: null)
 {
-    @return _get-font-style-property($name,
-                                     $property,
-                                     $quote,
-                                     'get-font-style-property');
+    $result: storage-get('font-style', $name, $property);
+
+    @if is-true($quote)
+    {
+        $result: quote-all($result);
+    }
+    @elseif is-false($quote)
+    {
+        $result: unquote-all($result);
+    }
+
+    @return $result;
 }
 
 ///
@@ -90,7 +108,13 @@
 ///
 @function get-font-family($name: 'default')
 {
-    @return _get-font-style-property($name, 'font-family', true);
+    $result: get-font-style-property($name, 'font-family');
+    @if is-list($result)
+    {
+        $result: change-separator($result, 'comma');
+    }
+
+    @return $result;
 }
 
 ///
@@ -102,7 +126,7 @@
 ///
 @function get-font-size($name: 'default')
 {
-    @return _get-font-style-property($name, 'font-size');
+    @return get-font-style-property($name, 'font-size', false);
 }
 
 ///
@@ -114,7 +138,7 @@
 ///
 @function get-font-weight($name: 'default')
 {
-    @return _get-font-style-property($name, 'font-weight');
+    @return get-font-style-property($name, 'font-weight', false);
 }
 
 ///
@@ -126,65 +150,7 @@
 ///
 @function get-line-height($name: 'default')
 {
-    @return _get-font-style-property($name, 'line-height');
-}
-
-// -----------------------------------------------------------------------------
-// Private functions
-// -----------------------------------------------------------------------------
-
-///
-/// Returns a font-style property from a font-style in the
-/// `$concrete-font-styles` setting.
-///
-/// @access private
-///
-/// @param {string} $name - The name of the font-style.
-/// @param {string} $property - The name of the property of the font-style.
-/// @param {boolean} $quote [false] - Quote the returned value?
-/// @param {string} $errorFnName [''] - Name of the function that is used.
-/// @return {mixed}
-///
-@function _get-font-style-property($name,
-                                   $property,
-                                   $quote: false,
-                                   $errorFnName: '')
-{
-    $result: storage-get('font-style', $name, $property);
-
-    @if is-string($result)
-    {
-        $result: if(is-true($quote), quote($result), unquote($result));
-    }
-
-    @return $result;
-
-    // @if is-empty($errorFnName)
-    // {
-    //     $errorFnName: 'get-' + $property;
-    // }
-
-    // @if map-has-key($concrete-font-styles, $name)
-    // {
-    //     $fontStyle: map-get($concrete-font-styles, $name);
-
-    //     @if (is-map($fontStyle) and map-has-key($fontStyle, $property))
-    //     {
-    //         $result: map-get($fontStyle, $property);
-
-    //         @if is-string($result)
-    //         {
-    //             $result: if($quote == true, quote($result), unquote($result));
-    //         }
-
-    //         @return $result;
-    //     }
-
-    //     @return warn($errorFnName,
-    //         'Property `#{$property}` not set for font-style `#{$name}` !');
-    // }
-
-    // @return warn($errorFnName, 'Unknown font-style `#{$name}`!');
+    @return get-font-style-property($name, 'line-height', false);
 }
 
 // -----------------------------------------------------------------------------

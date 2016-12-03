@@ -1,0 +1,40 @@
+// -----------------------------------------------------------------------------
+// Breakpoints
+// -----------------------------------------------------------------------------
+// Add all the (extra) breakpoints you need. The px value you specify will be
+// used as the minimum width value of the media query. The maximum value will
+// be the minimum value of the next breakpoint, minus 1px.
+//
+
+// set-breakpoint-property([$breakpoint = default,] $property, $value)
+@include set-breakpoint-property('buffer', 30px);
+@include set-breakpoint-property('padding', 20px);
+// @include set-breakpoint-property('sm', 'buffer', 10px);
+
+// set-breakpoint($breakpoint, $minWidth[, $properties = ()])
+@include set-breakpoint('xxl', 1920px);
+@include set-breakpoint('xl',  1200px 1919px);
+@include set-breakpoint('lg',  1024px 1999px, ( 'buffer': 20px, 'padding': 15px ));
+@include set-breakpoint('md',  768px 1023px);
+@include set-breakpoint('sm',  480px 767px, ( 'buffer': 10px ));
+@include set-breakpoint('xs',  240px 479px);
+
+// $concrete-breakpoints:
+// (
+//     // desktop >
+//     'xxl': ('min': 1920px, 'max': 9999px),
+
+//     'xl': 1200px,
+
+//     // tablet landscape
+//     'lg': 1024px,
+
+//     // tablet portrait
+//     'md': 768px,
+
+//     // mobile landscape
+//     'sm': 480px,
+
+//     // mobile portrait
+//     'xs': 240px
+// );

@@ -3,15 +3,35 @@
 // scss-lint:enable
 
 // -----------------------------------------------------------------------------
-// Framework related files
+// Init
 // -----------------------------------------------------------------------------
-// Import all basic required files to get you started. Typically these are
-// frameworks, mixins, functions, resets etc.
+// Import all required files to get you started. Typically these are
+// frameworks (eg. bootstrap), mixins, functions, resets (normalize) etc.
 //
 // @import 'normalize';
-@import 'concrete';
+@import '../src/init';
+
+// -----------------------------------------------------------------------------
+// Import all settings and variables
+// -----------------------------------------------------------------------------
+@import 'variables';
+@import 'concrete/settings';
+@import 'concrete/breakpoints';
+@import 'concrete/font-styles';
+@import 'concrete/transitions';
+
+// -----------------------------------------------------------------------------
+// Import extra partials
+// -----------------------------------------------------------------------------
+// When using Bootstrap, you can choose to not import these partials at all.
+//
+@import 'concrete/base';
+@import 'concrete/containers';
+@import 'concrete/grid';
+@import 'concrete/iconfont';
 
 // -----------------------------------------------------------------------------
 // Your project files
 // -----------------------------------------------------------------------------
-// Add all the remaining imports needed by your project.
+// Add all the remaining imports needed for your project.
+//

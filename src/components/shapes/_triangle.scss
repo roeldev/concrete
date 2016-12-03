@@ -21,7 +21,7 @@
     {
         $color: color($color);
     }
-    @elseif ($size2 == false)
+    @elseif is-false($size2)
     {
         $size2: $size;
     }

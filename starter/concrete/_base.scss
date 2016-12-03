@@ -36,16 +36,6 @@
     }
 
     // -------------------------------------------------------------------------
-    // Headings
-    // -------------------------------------------------------------------------
-    // %h1, .h1 { @include font-style('h1'); }
-    // %h2, .h2 { @include font-style('h2'); }
-    // %h3, .h3 { @include font-style('h3'); }
-    // %h4, .h4 { @include font-style('h4'); }
-    // %h5, .h5 { @include font-style('h5'); }
-    // %h6, .h6 { @include font-style('h6'); }
-
-    // -------------------------------------------------------------------------
     // Paragraphs and text elements
     // -------------------------------------------------------------------------
     p
@@ -136,29 +126,10 @@
     // -------------------------------------------------------------------------
     // Enable/disable basic concrete helpers.
     // -------------------------------------------------------------------------
-    // .clearfix      { @include clearfix; }
-    // .sticky-top    { @include sticky-top; }
-    // .sticky-bottom { @include sticky-bottom; }
-    // .float-list    { @include float-list; }
-    // .block-list    { @include block-list; }
-
-    .center-x
-    {
-        @include center-x;
-    }
-
-    .center-y
-    {
-        @include center-y('> .center-middle');
-    }
-
-    .center-xy
-    {
-        @include center-xy('> .center-middle');
-    }
-
-    .container
-    {
-        @include container;
-    }
+    // .clearfix   { @include clearfix; }
+    // .float-list { @include float-list; }
+    // .block-list { @include block-list; }
+    // .center     { @include center('> .center-m'); }
+    // .center-y   { @include center-vertical('> .center-m'); }
+    // .container  { @include container; }
 };

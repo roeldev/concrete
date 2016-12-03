@@ -1,0 +1,42 @@
+// -----------------------------------------------------------------------------
+// Fonts and font families
+// -----------------------------------------------------------------------------
+// Here is where you can define all of the font styles used in your application.
+// The default font will automatically be set to the html, input, select,
+// option, textarea and button elements.
+//
+
+// set-font-style($name, $properties)
+@include set-font-style('default',
+(
+    'font-family':    'Open Sans' sans-serif,
+    'font-size':      14px,
+    'color':          $color-default,
+    'letter-spacing': 0,
+    'line-height':    1.8em,
+    'text-transform': 'none',
+));
+
+@include set-font-style('heading',
+(
+    'font-family':    'geomanist-medium' sans-serif,
+    'letter-spacing': -0.01em,
+    'line-height':    1.3em
+));
+
+// extend-font-style($name, $extendFrom, $properties)
+@include extend-font-style('h1', 'heading', ( 'font-size': 60px ));
+
+// extend-font-style($name $breakpoint[, $extendFrom = $name], $properties)
+@include extend-font-style('h1' 'lg', ( 'font-size': 50px ));
+
+// $concrete-font-styles:
+// (
+//     'default':
+//     (
+//         'font-family':    ('open-sans', sans-serif),
+//         'font-size':      15px,
+//         'letter-spacing': 0,
+//         'line-height':    1.4em
+//     )
+// );

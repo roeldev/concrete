@@ -26,6 +26,32 @@
 
 // -----------------------------------------------------------------------------
 
+@include test-function('map-add')
+{
+    @include test('Should add the key and value to the map')
+    {
+        $actual:   map-add(('k1': 'v1', 'k2': 'v2'), 'k3', 'v3');
+        $expected: ('k1': 'v1', 'k2': 'v2', 'k3': 'v3');
+
+        @include assert-equal($actual, $expected);
+    }
+
+    @include test('Should return the original map')
+    {
+        $expected: ('k1': 'v1', 'k2': 'v2');
+        $actual:   map-add($expected, 'k2', 'existing value');
+
+        @include assert-equal($actual, $expected);
+    }
+
+    @include test('Should replace the key and value in the map')
+    {
+        $actual: map-add(('k1': 'v1'), 'k1', 'replaced value', true);
+
+        @include assert-equal($actual, ('k1': 'replaced value'));
+    }
+}
+
 @include test-function('map-replace')
 {
     @include test('Should replace the value of the key in the map')
@@ -44,6 +70,13 @@
 
         @include assert-equal($actual, $expected);
     }
+
+    @include test('Should add the extra key and value to the map')
+    {
+        $actual: map-replace(('k1': 'v1'), 'k2', 'added value', true);
+
+        @include assert-equal($actual, ('k1': 'v1', 'k2': 'added value'));
+    }
 }
 
 @include test-function('map-append')
@@ -58,7 +91,7 @@
 
     @include test('Should add the value to existing key in the map [1]')
     {
-        $actual:   map-append(('test': 1), 'test', 2);
+        $actual:   map-append(('test': 1), 'test', 2, 'comma');
         $expected: ('test': (1, 2));
 
         @include assert-equal($actual, $expected);

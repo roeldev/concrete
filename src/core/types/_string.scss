@@ -43,7 +43,20 @@
 
 }
 
-@function ends-with($str, $target, $position: null)
+@function starts-with($string, $substring, $offset: 1)
+{
+    $result: false;
+    $index:  str-index($string, $substring);
+
+    @if not is-null($index)
+    {
+        $result: ($index >= $offset);
+    }
+
+    @return $result;
+}
+
+@function ends-with($string, $substring, $offset: null)
 {
 
 }
@@ -51,6 +64,29 @@
 @function trim($str, $chars: ' ')
 {
 
+}
+
+@function quote-all($var)
+{
+    @if is-list($var)
+    {
+        $list:      ();
+        $separator: list-separator($list);
+
+        @each $value in $var
+        {
+            $value: quote-all($value);
+            $list:  append($list, $value, $separator);
+        }
+
+        $var: $list;
+    }
+    @elseif is-string($var)
+    {
+        $var: quote($var);
+    }
+
+    @return $var;
 }
 
 ///

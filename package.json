@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "setup": "npm install && bundle",
-    "start": "gulp watch",
+    "setup": "yarn",
+    "start": "yarn && gulp",
     "test": "mocha --reporter spec",
     "depcheck": "depcheck"
   },

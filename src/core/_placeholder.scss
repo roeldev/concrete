@@ -10,18 +10,19 @@
 // http://alistapart.com/article/dry-ing-out-your-sass-mixins
 @mixin dynamic-placeholder($name, $extend: true)
 {
-    @if $extend
+    @if is-true($extend)
     {
-        $placeholder-id: placeholder-id($name);
+        $placeholder-id: null;
 
+        @if storage-has('placeholder', $name)
+        {
+            $placeholder-id: placeholder-id($name);
+        }
         // create a real placeholder for the placeholder mixin's content so it
         // can be shared and re-used by different components
-        @if not map-has-key($_concrete-placeholders, $name)
+        @else
         {
-            $placeholder-id: unique-id();
-            $_concrete-placeholders: map-append($_concrete-placeholders,
-                                                $name,
-                                                $placeholder-id) !global;
+            $placeholder-id: storage-set('placeholder', $name, unique-id());
 
             // create the placeholder at root level
             @at-root %#{$placeholder-id}
@@ -49,7 +50,7 @@
 
 @function placeholder-id($name)
 {
-    @return map-get($_concrete-placeholders, $name);
+    @return storage-get('placeholder', $name);
 }
 
 @mixin placeholder-extend($name)
@@ -62,11 +63,6 @@
 // -----------------------------------------------------------------------------
 // Global variables and settings
 // -----------------------------------------------------------------------------
-@if not global-variable-exists('_concrete-placeholders')
-{
-    $_concrete-placeholders: () !global;
-}
-
 @if not global-variable-exists('concrete-debug-dynamic-placeholders')
 {
     $concrete-debug-dynamic-placeholders: false !global;

@@ -1,0 +1,50 @@
+////
+/// concrete | test/core/storage_tests.scss
+///
+/// @group tests
+////
+
+@import '../helpers/init';
+
+@include set-test-file('core/_storage');
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // //
+
+@include test-function('storage-set')
+{
+    @include test('Should create a new storage map with the key and value')
+    {
+        $_concrete-storage: () !global;
+        @include storage-set('test', 'k1', 'v1');
+
+        @include assert-equal($_concrete-storage, ( 'test': ( 'k1': 'v1' ) ));
+    }
+
+    @include test('Should replace the value of the key in the storage map')
+    {
+        $_concrete-storage: ( 'test': ('k1': 'v1') ) !global;
+        @include storage-set('test', 'k1', 'v2');
+
+        @include assert-equal($_concrete-storage, ( 'test': ( 'k1': 'v2' ) ));
+    }
+}
+
+
+@include test-function('storage-get')
+{
+    @include test('Should return the value of the key in the storage map [1]')
+    {
+        @include storage-set('test', 'k1', 'expected value');
+        $actual: storage-get('test', 'k1');
+
+        @include assert-equal($actual, 'expected value');
+    }
+
+    @include test('Should return the value of the key in the storage map [2]')
+    {
+        @include storage-set('test', 'k1', ( 'k2': 'expected value' ));
+        $actual: storage-get('test', 'k1', 'k2');
+
+        @include assert-equal($actual, 'expected value');
+    }
+}

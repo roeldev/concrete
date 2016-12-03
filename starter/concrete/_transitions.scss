@@ -1,0 +1,30 @@
+// -----------------------------------------------------------------------------
+// Transitions
+// -----------------------------------------------------------------------------
+// If you're using transitions most of the time the duration and easing
+// properties are the same for all transitions.
+//
+
+// set-transition($name, $properties)
+@include set-transition('default',
+(
+    'delay':    0s,
+    'duration': 0.3s,
+    'easing':   ease-in-out
+));
+
+// extend-transition($name[, $extendFrom = 'default'][, $properties = ()])
+@include extend-transition('top-nav', 'default', ( 'duration': 0.2s ));
+@include extend-transition('top-nav-link', 'default');
+@include extend-transition('btn', 'top-nav');
+@include extend-transition('slide', 'default', ( 'duration': 1s ));
+
+// $concrete-transitions:
+// (
+//     'default':
+//     (
+//         'delay':    0s,
+//         'duration': 0.2s,
+//         'easing':   ease-in-out
+//     )
+// );

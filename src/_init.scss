@@ -6,17 +6,26 @@
 ////
 
 @import 'core';
+
 @import 'components/resets';
+@import 'components/helpers';
+
+@import 'components/media-query';
 @import 'components/breakpoints';
+
 @import 'components/center';
 @import 'components/container';
-@import 'components/effects';
+@import 'components/grid';
+@import 'components/ratio';
+
 @import 'components/font-face';
-// @import 'components/font-style';
-// @import 'components/gradients';
-// @import 'components/ratio';
-// @import 'components/shapes';
-// @import 'components/transition';
+@import 'components/font-style';
+@import 'components/iconfont';
+
+@import 'components/effects';
+@import 'components/gradients';
+@import 'components/shapes';
+@import 'components/transition';
 
 // // // // // // // // // // // // // // // // // // // // // // // // // // //
 

@@ -40,7 +40,7 @@
             );
         }
 
-        @if (is-map($item) and map-has-key($item, 'min'))
+        @if is-map($item) and map-has-key($item, 'min')
         {
             $min:    map-get($item, 'min');
             $sorted: map-append($sorted, $min, $item);
@@ -111,10 +111,10 @@
     $hasMax: ($max != false);
     $hasMin: ($min != false);
 
-    @if ($hasMax or $hasMin)
+    @if $hasMax or $hasMin
     {
         // apply a scrollbar buffer to the min/max values
-        @if ($scrollbarBuffer == true)
+        @if is-true($scrollbarBuffer)
         {
             $scrollbarBuffer: 0;
         }
@@ -154,7 +154,7 @@
 @function _media-query-get-value($breakpoint, $type, $key)
 {
     $result: false;
-    @if (map-has-key($breakpoint, $key) and one-of($type, 'both' $key))
+    @if map-has-key($breakpoint, $key) and one-of($type, 'both' $key)
     {
         $value: map-get($breakpoint, $key);
         @if not is-empty($result)

@@ -1,28 +1,25 @@
 // -----------------------------------------------------------------------------
-// Import all settings and variables
-// -----------------------------------------------------------------------------
-// The variables defined in below files are needed to init the framework.
-//
-@import 'concrete/variables';
-
-// -----------------------------------------------------------------------------
 // Import the concrete framework
 // -----------------------------------------------------------------------------
 // Import all framework related files. This will import all the needed functions
-// and mixins to get you started :)
+// and mixins to get you started. Just comment the parts you don't need ;)
 //
 @import '../src/init';
-@import '../src/basics';
-@import '../src/grid';
-@import '../src/iconfont';
+
+// -----------------------------------------------------------------------------
+// Import all settings
+// -----------------------------------------------------------------------------
+@import 'concrete/settings';
+@import 'concrete/breakpoints';
+@import 'concrete/font-styles';
+@import 'concrete/transitions';
 
 // -----------------------------------------------------------------------------
 // Import extra partials
 // -----------------------------------------------------------------------------
-// When using Bootstrap, it is recommended to not import the below defined
-// partials.
+// When using Bootstrap, you can choose to not import these partials at all.
 //
-@import 'concrete/settings';
-// @import 'concrete/base';
-// -@import 'concrete/grid';
-// @import 'concrete/iconfont';
+@import 'concrete/base';
+@import 'concrete/containers';
+@import 'concrete/grid';
+@import 'concrete/iconfont';

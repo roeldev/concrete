@@ -6,103 +6,6 @@
 // https://github.com/roeldev/concrete
 //
 
-// -----------------------------------------------------------------------------
-// Breakpoints
-// -----------------------------------------------------------------------------
-// Add all the (extra) breakpoints you need. The px value you specify will be
-// used as the minimum width value of the media query. The maximum value will
-// be the minimum value of the next breakpoint, minus 1px.
-//
-
-// set-breakpoint-property([$breakpoint = default,] $property, $value)
-@include set-breakpoint-property('buffer', 30px);
-@include set-breakpoint-property('padding', 20px);
-// @include set-breakpoint-property('sm', 'buffer', 10px);
-
-// set-breakpoint($breakpoint, $minWidth[, $properties = ()])
-@include set-breakpoint('xxl', 1920px);
-@include set-breakpoint('xl',  1200px 1919px);
-@include set-breakpoint('lg',  1024px 1999px, ( 'buffer': 20px, 'padding': 15px ));
-@include set-breakpoint('md',  768px 1023px);
-@include set-breakpoint('sm',  480px 767px, ( 'buffer': 10px ));
-@include set-breakpoint('xs',  240px 479px);
-
-
-// -----------------------------------------------------------------------------
-// Fonts and font families
-// -----------------------------------------------------------------------------
-// Here is where you can define all of the font styles used in your application.
-// The default font will automatically be set to the html, input, select,
-// option, textarea and button elements.
-//
-
-// set-font-style($name, $properties)
-// @include set-font-style('default',
-// (
-//     'font-family':    'Open Sans' sans-serif,
-//     'font-size':      14px,
-//     'color':          $color-default,
-//     'letter-spacing': 0,
-//     'line-height':    1.8em,
-//     'text-transform': 'none',
-// ));
-
-// @include set-font-style('heading',
-// (
-//     'font-family':    'geomanist-medium' sans-serif,
-//     'letter-spacing': -0.01em,
-//     'line-height':    1.3em
-// ));
-
-// // extend-font-style($name, $extendFrom, $properties)
-// @include extend-font-style('h1', 'heading', ( 'font-size': 60px ));
-
-// // extend-font-style($name $breakpoint[, $extendFrom = $name], $properties)
-// @include extend-font-style('h1' 'lg', ( 'font-size': 50px ));
-
-
-// -----------------------------------------------------------------------------
-// Transitions
-// -----------------------------------------------------------------------------
-// If you're using transitions most of the time the duration and easing
-// properties are the same for all transitions.
-//
-
-// set-transition($name, $properties)
-// @include set-transition('default',
-// (
-//     'delay':    0s,
-//     'duration': 0.3s,
-//     'easing':   ease-in-out
-// ));
-
-// // extend-transition($name[, $extendFrom = 'default'][, $properties = ()])
-// @include extend-transition('top-nav', 'default', ( 'duration': 0.2s ));
-// @include extend-transition('top-nav-link', 'default');
-// @include extend-transition('btn', 'top-nav');
-// @include extend-transition('slide', 'default', ( 'duration': 1s ));
-
-
-// -----------------------------------------------------------------------------
-// Containers
-// -----------------------------------------------------------------------------
-
-// set-container($name $breakpoint, $properties)
-@include set-container('default',
-(
-    'width':     100%,
-    'max-width': 800px,
-    'margin':    0 auto,
-    'padding':   20px
-));
-
-
-// -----------------------------------------------------------------------------
-// Basic grid settings
-// -----------------------------------------------------------------------------
-// For more information about the available settings, check either the included
-// help documents, examples, or visit the project page: http://git.io/qoNLsw
-//
 
 // -----------------------------------------------------------------------------
 // Warnings and debug
@@ -110,6 +13,7 @@
 // Display warnings and/or debug messages in console. Warnings and debugs are
 // always displayed in the compiled CSS file.
 //
-$concrete-console-warnings:  true;
-$concrete-console-debugs:    true;
-$concrete-debug-breakpoints: false;
+$concrete-console-warnings:           true;
+$concrete-console-debugs:             true;
+$concrete-debug-breakpoints:          false;
+$concrete-debug-dynamic-placeholders: false;

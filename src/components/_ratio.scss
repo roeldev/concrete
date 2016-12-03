@@ -15,9 +15,22 @@
     {
         position: relative;
 
-        @include dynamic-selector($selectorBody, '&__body')
+        @if is-list($selectorBody)
         {
-            @include ratio-placeholder-body;
+            @each $selector in $selectorBody
+            {
+                @include dynamic-selector($selector, '&__body')
+                {
+                    @include ratio-placeholder-body;
+                }
+            }
+        }
+        @else
+        {
+            @include dynamic-selector($selectorBody, '&__body')
+            {
+                @include ratio-placeholder-body;
+            }
         }
     }
 }

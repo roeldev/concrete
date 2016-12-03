@@ -6,72 +6,175 @@
 /// @group gradients
 ////
 
-// -----------------------------------------------------------------------------
+// @include gradient(red) -> gradient-horizontal(red, transparent);
+// @include gradient(red, blue) -> gradient-horizontal(red, blue);
+// @include gradient('horizontal', red) -> gradient-horizontal(red, transparent);
 
-@function _gr-parse-param($param, $func: '_gr-parse-param', $type: '')
+@mixin gradient($type, $from: null, $to: null)
 {
-    $color:    false;
-    $position: false;
-
-    @if is-list($param, 1)
+    @if is-string($type)
     {
-        $listLength: length($param);
-
-        @if ($listLength == 1)
+        @if is-color($from)
         {
-            // extract the list value and call the parse function again
-            @return _gr-parse-param(nth-first($param), $func, $type);
+            $params: _gradients-parse-params($from, $to);
+            @include _gradient-from-type($type, $params)
         }
-        // list has 2 or more values
         @else
         {
-            $nth1: nth($param, 1);
-            $nth2: nth($param, 2);
-
-            @if is-color($nth1)
-            {
-                $color: $nth1;
-
-                @if is-number($nth2)
-                {
-                    $position: _gr-parse-position($nth2);
-                }
-            }
-            @elseif is-number($nth1)
-            {
-                $position: _gr-parse-position($nth1);
-
-                @if is-color($nth2)
-                {
-                    $color: $nth2;
-                }
-            }
-            @else
-            {
-                @return warn($func, 'Invald format for list `#{$param}`,'
-                                    'expecting a color and/or a percentage.');
-            }
+            @include _gradient-from-storage($type);
         }
     }
-    @elseif is-color($param)
+    @elseif is-color($type) or is-list($type)
     {
-        $color: $param;
-    }
-    @elseif is-number($param)
-    {
-        $position: _gr-parse-position($param);
+        @include gradient-horizontal($type, $from);
     }
     @else
     {
-        @return warn($func, 'Invald format for gradient parameter `#{$param}`,'
-                            'expecting either a list (with a color and/or'
-                            'percentage), a color, or a percentage.');
+        @include warn('Cannot create gradient');
     }
-
-    @return ($color $position);
 }
 
-@function _gr-parse-position($value, $func: '_gr-parse-position')
+@mixin gradient-horizontal($from, $to: null)
+{
+    $params: _gradients-parse-params($from, $to);
+    @include _gradient-horizontal($params);
+}
+
+@mixin gradient-vertical($from, $to: null)
+{
+    $params: _gradients-parse-params($from, $to);
+    @include _gradient-vertical($params);
+}
+
+@mixin gradient-radial($from, $to: null)
+{
+    $params: _gradients-parse-params($from, $to);
+    @include _gradient-radial($params);
+}
+
+// -----------------------------------------------------------------------------
+// Setter functions and mixins
+// -----------------------------------------------------------------------------
+
+@mixin set-gradient($name, $type, $from, $to: null)
+{
+    $params: _gradients-parse-params($from, $to);
+
+    $gradient:
+    (
+        'type': $type,
+        'from': map-get($params, 'from'),
+        'to':   map-get($params, 'to')
+    );
+
+    @include storage-set('gradients', $name, $gradient);
+}
+
+// -----------------------------------------------------------------------------
+// Getter functions
+// -----------------------------------------------------------------------------
+
+@function get-gradient($name...)
+{
+    @return storage-get('gradients', $name);
+}
+
+@function get-gradient-color($name, $color, $alpha: null)
+{
+    $result: storage-get('gradients', $name, $color, 'color');
+
+    @if not is-null($result) and not is-null($alpha)
+    {
+        $result: rgba($result, $alpha);
+    }
+
+    @return $result;
+}
+
+// -----------------------------------------------------------------------------
+// Private functions and mixins
+// -----------------------------------------------------------------------------
+
+@function _gradient-flatten-param($params, $key)
+{
+    $result: map-get($params, $key);
+    $result: map-values($result);
+    $result: change-separator($result, 'space');
+
+    @return $result;
+}
+
+@mixin _gradient-horizontal($params)
+{
+    @include _gradient-linear(left, to right, 1, $params);
+}
+
+@mixin _gradient-vertical($params)
+{
+    @include _gradient-linear(top, to bottom, 0, $params);
+}
+
+///
+/// *Original mixin taken from Bootstrap
+///
+/// @access private
+///
+/// @param {string} $direction1 - Direction of the gradient (old spec).
+/// @param {string} $direction2 - Direction of the gradient (current spec).
+/// @param {number} $ieGradientType - IE <=9 GradientType value.
+/// @param {map} $params - Map with starting and ending colors and positions.
+///
+@mixin _gradient-linear($direction1, $direction2, $ieGradientType, $params)
+{
+    // flatten the maps to the color and position are in a normal list
+    $from: _gradient-flatten-param($params, 'from');
+    $to:   _gradient-flatten-param($params, 'to');
+
+    // Chrome10+, Safari5.1+
+    background: -webkit-linear-gradient($direction1, $from, $to);
+
+    // Opera 12
+    background: -o-linear-gradient($direction1, $from, $to);
+
+    // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+    background: linear-gradient($direction2, $from, $to);
+    background-repeat: repeat-x;
+
+    // IE9 and down
+    $from: ie-hex-str(nth($from, 1));
+    $to:   ie-hex-str(nth($to, 1));
+
+    filter: progid:DXImageTransform.Microsoft.gradient(
+               startColorstr='#{$from}',
+               endColorstr='#{$to}',
+               GradientType=#{$ieGradientType} );
+}
+
+///
+/// Creates a radial gradient. See gradient-horizontal for further details.
+///
+/// @param {map} $params - Map with starting and ending colors and positions.
+///
+@mixin _gradient-radial($params)
+{
+    // flatten the maps to the color and position are in a normal list
+    $from: _gradient-flatten-param($params, 'from');
+    $to:   _gradient-flatten-param($params, 'to');
+
+    // Chrome10+, Safari5.1+
+    background: -webkit-radial-gradient(center, ellipse cover, $from, $to);
+
+    // Opera 12
+    background: -o-radial-gradient(center, ellipse cover, $from, $to);
+
+    // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+    background: radial-gradient(ellipse at center, $from, $to);
+}
+
+// -----------------------------------------------------------------------------
+// Private functions related to parsing the given parameters
+// -----------------------------------------------------------------------------
+@function _gradients-parse-position($value)
 {
     $result: false;
 
@@ -86,235 +189,118 @@
             $multiplier: if(($value <= 1), 100%, 1%);
             $result:     ($value * $multiplier);
         }
-        @else
-        {
-            @return warn($func, 'Expecting number `"#{$param}"` to be'
-                                'unitless or a percentage.');
-        }
     }
 
     @return $result;
 }
 
-// -----------------------------------------------------------------------------
-
-///
-/// Creates a horizontal gradient. Both start and end values can be either a
-/// color or a list with a color and a start/end position percentage. The
-/// default starting position is at 0% and end position at 100%.
-/// When the end color is not defined, the starting color will be used with
-/// 0% alpha, creating a gradient from a solid color to transparent.
-///
-/// Examples:
-/// gradient-horizontal(red);
-/// Creates a red to transparent gradient from positions 0% to 100%.
-///
-/// gradient-horizontal(red, blue);
-/// Creates a red to blue gradient from positions 0% to 100%.
-///
-/// gradient-horizontal(red 5%, blue 95%);
-/// Creates a red to blue gradient from positions 0% to 100%;
-///
-/// @param {color|list} $start - Starting color/position.
-/// @param {color|list|null} $end [null] - Ending color/position.
-///
-@mixin gradient-horizontal($start, $end: null)
+@function _gradients-parse-param($param)
 {
-    @include _gradient-linear('gradient-horizontal',
-                              left,
-                              to right,
-                              1,
-                              $start,
-                              $end);
-}
+    $color:    false;
+    $position: false;
 
-///
-/// Creates a vertical gradient. See gradient-horizontal for further details.
-///
-/// @param {color|list} $start - Starting color/position.
-/// @param {color|list|null} $end [null] - Ending color/position.
-///
-@mixin gradient-vertical($start, $end: null)
-{
-    @include _gradient-linear('gradient-vertical',
-                              top,
-                              to bottom,
-                              0,
-                              $start,
-                              $end);
-}
-
-///
-/// Creates a radial gradient. See gradient-horizontal for further details.
-///
-/// @param {color|list} $start - Starting color/position.
-/// @param {color|list|null} $end [null] - Ending color/position.
-///
-@mixin gradient-radial($start, $end: null)
-{
-    $origStart: $start;
-    $origEnd:   $end;
-
-    $start: _gradient-param($start, 0%);
-    @if is-list($start)
-    {
-        $end: _gradient-param($end, 100%, $start);
-        @if is-list($end)
-        {
-            // Chrome10+, Safari5.1+
-            background: -webkit-radial-gradient(center, ellipse cover, $start, $end);
-
-            // Opera 12
-            background: -o-radial-gradient(center, ellipse cover, $start, $end);
-
-            // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
-            background: radial-gradient(ellipse at center,  $start, $end);
-        }
-        @else
-        {
-            @include warn('gradient-radial',
-                          'Invalid end value `"#{$origEnd}"`');
-        }
-    }
-    @else
-    {
-        @include warn('gradient-radial',
-                      'Invalid start value `"#{$origStart}"`');
-    }
-}
-
-// -----------------------------------------------------------------------------
-// Private functions
-// -----------------------------------------------------------------------------
-
-///
-/// Parses a start/end value param passed to one of the gradient-* mixins.
-/// Creates a list with a color and a position from where the gradient will
-/// start or end.
-///
-/// @access private
-///
-/// @param {color|list} $param - Starting/ending color and position.
-/// @param {number} $position - The fallback position percent value.
-/// @param {list|boolean} $defaultParam [false] - Already parsed color and
-///         position list wich are used as fallback.
-/// @return {list|boolean}
-///
-@function _gradient-param($param, $position, $defaultParam: false)
-{
-    $result: false;
     @if is-list($param, 2)
     {
         $nth1: nth($param, 1);
         $nth2: nth($param, 2);
 
-        // the list can be either (color position) or (position color)
         @if is-color($nth1)
         {
-            $position: _gradient-position($nth2);
-            $result:   ($nth1 $position);
+            $color:    $nth1;
+            $position: _gradients-parse-position($nth2);
         }
-        @elseif is-color($nth2)
+        @elseif is-number($nth1)
         {
-            $position: _gradient-position($nth1);
-            $result:   ($nth2 $position);
+            $position: _gradients-parse-position($nth1);
+
+            @if is-color($nth2)
+            {
+                $color: $nth2;
+            }
         }
     }
     @elseif is-color($param)
     {
-        $position: _gradient-position($position);
-        $result:   ($param $position);
-    }
-    // the param to parse is neither a color or list, so treat it as an invalid
-    // value. use the first value (color) from the default parameter
-    @elseif is-list($defaultParam)
-    {
-        $color:    nth($defaultParam, 1);
-        $position: _gradient-position($position);
-
-        $alpha: alpha($color);
-        $alpha: if(($alpha == 0), 1, 0);
-
-        $color: rgba($color, $alpha);
-        $result: ($color $position);
-    }
-
-    @return $result;
-}
-
-@function _gradient-position($value)
-{
-    $result: false;
-
-    @if is-number($value)
-    {
-        @if is-percentage($value)
-        {
-            $result: $value;
-        }
-        @elseif unitless($value) and ($value < 1)
-        {
-            $result: percentage($value);
-        }
-    }
-
-    @return $result;
-}
-
-///
-/// *Original mixin taken from Bootstrap
-///
-/// @access private
-///
-/// @param {string} $function - The gradient-* function wich is used.
-/// @param {string} $direction1 - Direction of the gradient (old spec).
-/// @param {string} $direction2 - Direction of the gradient (current spec).
-/// @param {number} $ieGradientType - IE <=9 GradientType value.
-/// @param {color|list} $start - Starting color/position.
-/// @param {color|list|null} $end [null] - Ending color/position.
-///
-@mixin _gradient-linear($function,
-                        $direction1,
-                        $direction2,
-                        $ieGradientType,
-                        $start,
-                        $end)
-{
-    $origStart: $start;
-    $origEnd:   $end;
-
-    $start: _gradient-param($start, 0%);
-    @if is-list($start)
-    {
-        $end: _gradient-param($end, 100%, $start);
-        @if is-list($end)
-        {
-            // Chrome10+, Safari5.1+
-            background: -webkit-linear-gradient($direction1, $start, $end);
-
-            // Opera 12
-            background: -o-linear-gradient($direction1, $start, $end);
-
-            // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
-            background: linear-gradient($direction2, $start, $end);
-            background-repeat: repeat-x;
-
-            // IE9 and down
-            $startColor: ie-hex-str(nth($start, 1));
-            $endColor:   ie-hex-str(nth($end, 1));
-
-            filter: progid:DXImageTransform.Microsoft.gradient(
-                       startColorstr='#{$startColor}',
-                       endColorstr='#{$endColor}',
-                       GradientType=#{$ieGradientType} );
-        }
-        @else
-        {
-            @include warn($function, 'Invalid end value `"#{$origEnd}"`');
-        }
+        $color: $param;
     }
     @else
     {
-        @include warn($function, 'Invalid start value `"#{$origStart}"`');
+        $position: _gradients-parse-position($param);
+    }
+
+    @return ( 'color': $color, 'position': $position );
+}
+
+@function _gradients-parse-params($from, $to)
+{
+    $from: _gradients-parse-param($from);
+    $to:   _gradients-parse-param($to);
+
+    $fromColor:    map-get($from, 'color');
+    $fromPosition: map-get($from, 'position');
+    $toColor:      map-get($to, 'color');
+    $toPosition:   map-get($to, 'position');
+
+    @if is-false($toColor)
+    {
+        $alpha:   alpha($fromColor);
+        $toColor: if(($alpha >= 0.5), rgba($fromColor, 0), rgba($fromColor, 1));
+    }
+
+    $noFromPosition: is-false($fromPosition);
+    $noToPosition:   is-false($toPosition);
+
+    // default gradients go from 0% to 100%
+    @if ($noFromPosition and $noToPosition)
+    {
+        $fromPosition: 0%;
+        $toPosition:   100%;
+    }
+    @elseif $noFromPosition
+    {
+        // when the to position is at 0%, the from position is the opposite;
+        // 100%
+        $fromPosition: if(($toPosition == 0%), 100%, 0%);
+    }
+    @elseif $noToPosition
+    {
+        // when the from position is at 100%, the to position is the opposite;
+        // 0%
+        $toPosition: if(($fromPosition == 100%), 0%, 100%);
+    }
+
+    $resultFrom: ( 'color': $fromColor, 'position': $fromPosition );
+    $resultTo:   ( 'color': $toColor, 'position': $toPosition );
+
+    @return ( 'from': $resultFrom, 'to': $resultTo );
+}
+
+@mixin _gradient-from-type($type, $params)
+{
+    @if ($type == 'horizontal')
+    {
+        @include _gradient-horizontal($params);
+    }
+    @elseif ($type == 'vertical')
+    {
+        @include _gradient-vertical($params);
+    }
+    @elseif ($type == 'radial')
+    {
+        @include _gradient-radial($params);
+    }
+    @else
+    {
+        @include warn('Unknown gradient type ' + $type);
+    }
+}
+
+@mixin _gradient-from-storage($name)
+{
+    $gradient: get-gradient($name);
+
+    @if not is-null($gradient)
+    {
+        @include _gradient-from-type(map-get($gradient, 'type'), $gradient);
     }
 }

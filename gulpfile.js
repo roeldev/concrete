@@ -9,10 +9,9 @@ const SassDoc   = require('sassdoc');
 
 Maelstrom.init(Gulp, ['maelstrom-sass']);
 
-const SRC_FILES  = Maelstrom.sass.src();
-const TEST_FILES = Maelstrom.sass.src('test/**/*.scss');
-
 // // // // // // // // // // // // // // // // // // // // // // // // // // //
+
+console.log(Maelstrom.sass.src());
 
 Gulp.task('sass:doc', () =>
 {
@@ -21,20 +20,20 @@ Gulp.task('sass:doc', () =>
 
 Gulp.task('watch', () =>
 {
-    Gulp.watch(SRC_FILES, ['sass']);
-    Gulp.watch(TEST_FILES, ['sass:lint', 'sass:test']);
+    Gulp.watch(Maelstrom.sass.src(), ['sass']);
+    Gulp.watch(Maelstrom.sass.src('test/**/*.scss'), ['sass:lint', 'sass:test']);
 });
 
 Gulp.task('watch:test', () =>
 {
-    // Gulp.watch(SRC_FILES, ['sass']);
-    Gulp.watch(TEST_FILES, ['sass:test']);
+    // Gulp.watch(Maelstrom.sass.src(), ['sass']);
+    Gulp.watch(Maelstrom.sass.src('test/**/*.scss'), ['sass:test']);
 });
 
 Gulp.task('watch:lint', () =>
 {
-    Gulp.watch(SRC_FILES, ['sass']);
-    Gulp.watch(TEST_FILES, ['sass:lint']);
+    Gulp.watch(Maelstrom.sass.src(), ['sass']);
+    Gulp.watch(Maelstrom.sass.src('test/**/*.scss'), ['sass:lint']);
 });
 
 Gulp.task('default', ['watch:test']);

@@ -4,10 +4,10 @@
 /// @group container
 ////
 
-@mixin container($container: 'default')
+@mixin container($containerName: 'default')
 {
-    $container: _container-parse-name($container);
-    $container: get-container($container);
+    // $containerName: _container-parse-name($containerName);
+    $container:     get-container($containerName);
 
     @if not is-false($container)
     {
@@ -29,13 +29,13 @@
 
 @mixin set-container($container, $properties)
 {
-    $container: _container-parse-name($container);
+    // $container: _container-parse-name($container);
     @include storage-set('container', $container, $properties);
 }
 
 @function get-container($container)
 {
-    $container: _container-parse-name($container);
+    // $container: _container-parse-name($container);
     @return storage-get('container', $container);
 }
 
@@ -47,7 +47,7 @@
         $container: null;
     }
 
-    $container: _container-parse-name($container);
+    // $container: _container-parse-name($container);
     @return storage-get('container', $container, $property);
 }
 
@@ -55,19 +55,19 @@
 // Private functions and mixins
 // -----------------------------------------------------------------------------
 
-@function _container-parse-name($name)
-{
-    $breakpoint: 'default';
+// @function _container-parse-name($name)
+// {
+//     $breakpoint: 'default';
 
-    @if is-null($name)
-    {
-        $name: 'default';
-    }
-    @elseif is-list($name)
-    {
-        $breakpoint: nth($name, 2);
-        $name:       nth($name, 1);
-    }
+//     @if is-null($name)
+//     {
+//         $name: 'default';
+//     }
+//     @elseif is-list($name)
+//     {
+//         $breakpoint: nth($name, 2);
+//         $name:       nth($name, 1);
+//     }
 
-    @return ($name $breakpoint);
-}
+//     @return ($name $breakpoint);
+// }

@@ -1,6 +1,11 @@
 ////
 /// concrete | src/core/_storage.scss
 ///
+/// Tests:
+/// ✓ storage-set
+/// - storage-get
+/// - storage-has
+///
 /// @group core
 ////
 
@@ -10,20 +15,26 @@
 
 @function storage-set($type, $key, $value)
 {
-    // retrieve a global set storage map
-    $storage: if(map-has-key($_concrete-storage, $type),
-                 map-get($_concrete-storage, $type),
-                 ());
+    @if map-has-key($_concrete-storage, $type)
+    {
+        $storage: map-get($_concrete-storage, $type);
 
-    // add or replace the new key + value to the storage map
-    $storage: map-replace($storage, $key, $value);
+        // add or replace the key + value in the storage map
+        $storage: map-replace($storage, $key, $value, true);
 
-    // add the map back to the global variable
-    $_concrete-storage: map-replace($_concrete-storage,
-                                    $type,
-                                    $storage) !global;
+        // add the map back to the global variable
+        $_concrete-storage: map-replace($_concrete-storage,
+                                        $type,
+                                        $storage) !global;
+    }
+    @else
+    {
+        // create a new storage map and merge it with the global variable
+        $merge: ($type: ( $key: $value ));
+        $_concrete-storage: map-merge($_concrete-storage, $merge) !global;
+    }
 
-    @return $key;
+    @return $value;
 }
 
 @mixin storage-set($type, $key, $value)
@@ -37,11 +48,46 @@
 
 @function storage-get($type, $keys...)
 {
+    $result: null;
+
+    @if map-has-key($_concrete-storage, $type)
+    {
+        // make sure that arglists are handled correct
+        $firstKey: nth-first($keys);
+        @if is-list($firstKey)
+        {
+            $keys: $firstKey;
+        }
+
+        $target: map-get($_concrete-storage, $type);
+
+        @each $key in $keys
+        {
+            @if map-has-key($target, $key)
+            {
+                $target: map-get($target, $key);
+            }
+            @else
+            {
+                // break out of the loop
+                @return null;
+            }
+        }
+
+        $result: $target;
+    }
+
+    @return $result;
+}
+
+@function storage-has($type, $keys...)
+{
     $result: false;
 
     @if map-has-key($_concrete-storage, $type)
     {
-        $target: map-get-key($_concrete-storage, $type);
+        $result: true;
+        $target: map-get($_concrete-storage, $type);
 
         @each $key in $keys
         {
@@ -55,8 +101,6 @@
                 @return false;
             }
         }
-
-        $result: $target;
     }
 
     @return $result;

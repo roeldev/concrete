@@ -13,7 +13,7 @@
 @mixin transition($property: 'all', $duration: 'default', $easing: false, $delay: false)
 {
     // determin the default transition setting group
-    $default: (is-string($duration) and $duration != 'default');
+    $default: is-string($duration) and ($duration != 'default');
     $default: if($default, $duration, 'default');
 
     // retrieve default values where necessary
@@ -21,11 +21,11 @@
     {
         $duration: get-transition($default, 'duration');
     }
-    @if ($easing == false)
+    @if is-false($easing)
     {
         $easing: get-transition($default, 'easing');
     }
-    @if ($delay == false)
+    @if is-false($delay)
     {
         $delay: get-transition($default, 'delay');
         @if not is-second($delay)
@@ -38,14 +38,14 @@
     $hasDurationList: is-list($duration);
 
     // check if all is included in the properties list
-    @if ($hasPropertyList and one-of('all', $property))
+    @if $hasPropertyList and in-list($property, 'all')
     {
         // if so, don't bother using the remaining properties. all is enough.
         $property:        'all';
         $hasPropertyList: false;
     }
 
-    @if ($hasPropertyList and $hasDurationList)
+    @if $hasPropertyList and $hasDurationList
     {
         $propertyListLength: length($property);
         $durationListLength: length($duration);
@@ -93,7 +93,7 @@
 ///
 @mixin transition-delay($value: 'default')
 {
-    @if ($value == 'default' or is-empty($value))
+    @if ($value == 'default') or is-empty($value)
     {
         $value: get-transition($value, 'delay');
     }
@@ -110,7 +110,7 @@
 ///
 @mixin transition-duration($value: 'default')
 {
-    @if ($value == 'default' or is-empty($value))
+    @if ($value == 'default') or is-empty($value)
     {
         $value: get-transition($value, 'duration');
     }
@@ -149,16 +149,12 @@
 
 @function set-transition($name, $options)
 {
-    $concrete-transitions: map-append($concrete-transitions,
-                                      $name,
-                                      $options) !global;
-
-    @return $concrete-transitions;
+    @return storage-set('transition', $name, $options);
 }
 
 @mixin set-transition($name, $options)
 {
-    $x: set-font-style($name, $options);
+    $x:set-transition($name, $options);
 }
 
 // -----------------------------------------------------------------------------
@@ -172,32 +168,12 @@
 ///
 @function get-transition($name: 'default', $attr: false)
 {
-    @if map-has-key($concrete-transitions, $name)
-    {
-        $transition: map-get($concrete-transitions, $name);
+    $result: storage-get('transition', $name);
 
-        @if ($attr == false)
-        {
-            @return $transition;
-        }
-        @elseif map-has-key($transition, $attr)
-        {
-            @return map-get($transition, $attr);
-        }
-        @else
-        {
-            @return warn('get-transition',
-                'Unknown attribute `#{$attr}` for transition `#{$name}`!');
-        }
+    @if not is-false($attr) and is-map($result) and map-has-key($result, $attr)
+    {
+        $result: map-get($result, $attr);
     }
 
-    @return warn('get-transition', 'Unknown transition set `#{$name}`!');
-}
-
-// -----------------------------------------------------------------------------
-// Global variables and settings
-// -----------------------------------------------------------------------------
-@if not global-variable-exists('concrete-transitions')
-{
-    $concrete-transitions: () !global;
+    @return $result;
 }

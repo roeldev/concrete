@@ -106,7 +106,7 @@
     {
         @include assert('')
         {
-            @include input
+            @include output
             {
                 @include gradient-horizontal(#000, #fff);
             }
@@ -129,7 +129,7 @@
     {
         @include assert('')
         {
-            @include input
+            @include output
             {
                 @include gradient-horizontal(#f00 5%);
             }
@@ -156,7 +156,7 @@
     {
         @include assert('')
         {
-            @include input
+            @include output
             {
                 @include gradient-vertical(#000 33%, #fff);
             }
@@ -179,7 +179,7 @@
     {
         @include assert('')
         {
-            @include input
+            @include output
             {
                 @include gradient-vertical(#f00 5%);
             }
@@ -206,7 +206,7 @@
     // {
     //     @include assert('')
     //     {
-    //         @include input
+    //         @include output
     //         {
     //             @include gradient-radial(#000 1, #f00 5%);
     //         }
@@ -224,7 +224,7 @@
     {
         @include assert('')
         {
-            @include input
+            @include output
             {
                 @include gradient-radial(#000);
             }

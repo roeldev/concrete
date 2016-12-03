@@ -5,7 +5,8 @@
 ///
 /// Tests:
 /// ✓ is-map
-/// - map-replace
+/// ✓ map-add
+/// ✓ map-replace
 /// ✓ map-append
 /// ✓ map-get-key
 /// - map-sort
@@ -41,35 +42,76 @@
 // -----------------------------------------------------------------------------
 
 ///
-/// Replace an existing entry in a map with a new value.
+/// Adds a key to a map when it does not exist in the map. If it does, the
+/// original map is returned.
 ///
 /// @param {map} $map The map holding the key and value pairs.
-/// @param {string} $key The key in the map to replace the value from
-/// @param {mixed} $value The value to replace the entry in the map with.
-/// @param {string} $seperator [comma]
-/// @return {map} Returns a new map with the added value.
+/// @param {string} $key The key to add to the map.
+/// @param {mixed} $value The value to add to the map.
+/// @param {bool} $replace [false] Replace the key when it already exists
+/// @param {string} $seperator [auto]
+/// @return {map} Returns a new map with the added or replaced key and value.
 ///
-@function map-replace($map, $key, $value, $seperator: 'comma')
+@function map-add($map, $key, $value, $replace: false, $seperator: 'auto')
 {
+    $add: true;
+
     @if map-has-key($map, $key)
     {
-        $map: map-remove($map, $key);
+        $add: false;
+
+        @if is-true($replace)
+        {
+            $map: map-remove($map, $key);
+            $add: true;
+        }
     }
 
-    $map: map-merge($map, ($key: $value));
+    @if is-true($add)
+    {
+        $map: map-merge($map, ($key: $value));
+    }
+
     @return $map;
 }
 
 ///
-/// Append a value to an entry in a map.
+/// Replace an existing key in a map with a new value. When the key does not
+/// exist it returns the original map.
+///
+/// @param {map} $map The map holding the key and value pairs.
+/// @param {string} $key The key in the map to replace the value from
+/// @param {mixed} $value The value to replace the entry in the map with.
+/// @param {bool} $add [false] Add the key + value entry when not in the map.
+/// @param {string} $seperator [auto]
+/// @return {map} Returns a new map with the replaced or added key and value.
+///
+@function map-replace($map, $key, $value, $add: false, $seperator: 'auto')
+{
+    @if map-has-key($map, $key)
+    {
+        $map: map-remove($map, $key);
+        $add: true;
+    }
+
+    @if is-true($add)
+    {
+        $map: map-merge($map, ($key: $value));
+    }
+
+    @return $map;
+}
+
+///
+/// Append a value to an existing entry in a map or creates a new entry.
 ///
 /// @param {map} $map The map holding the key and value pairs.
 /// @param {string} $key The key in the map to append the value to.
 /// @param {mixed} $value The value to append to the entry in the map.
-/// @param {string} $seperator [comma]
+/// @param {string} $seperator [auto]
 /// @return {map} Returns a new map with the added value.
 ///
-@function map-append($map, $key, $value, $seperator: 'comma')
+@function map-append($map, $key, $value, $seperator: 'auto')
 {
     @if map-has-key($map, $key)
     {
@@ -95,6 +137,11 @@
 {
     $index: index(map-values($map), $value);
     @return if(not is-null($index), nth(map-keys($map), $index), null);
+}
+
+@function map-default-get($map, $key, $defaultValue)
+{
+    @return if(map-has-key($map, $key), map-get($map, $key), $defaultValue);
 }
 
 ///
