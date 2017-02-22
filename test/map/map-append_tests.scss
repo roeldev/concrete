@@ -1,0 +1,30 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('map-append')
+{
+    @include test('Should add the key and value to the map')
+    {
+        $actual:   map-append(('test': true), 'test2', true);
+        $expected: ('test': true, 'test2': true);
+
+        @include assert-equal($actual, $expected);
+    }
+
+    @include test('Should add the value to existing key in the map [1]')
+    {
+        $actual:   map-append(('test': 1), 'test', 2, 'comma');
+        $expected: ('test': (1, 2));
+
+        @include assert-equal($actual, $expected);
+    }
+
+    @include test('Should add the value to existing key in the map [2]')
+    {
+        $actual:   map-append(('test': 1), 'test', 2, 'space');
+        $expected: ('test': (1 2));
+
+        @include assert-equal($actual, $expected);
+    }
+}

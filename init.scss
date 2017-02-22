@@ -1,0 +1,49 @@
+////
+/// This file imports all required functions and mixins to let the framework
+/// work.
+////
+
+@import 'src/types';
+@import 'src/list';
+@import 'src/map';
+@import 'src/number';
+@import 'src/string';
+
+@import 'src/storage';
+@import 'src/utils';
+@import 'src/placeholder';
+@import 'src/export';
+@import 'src/debug';
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // //
+
+@include export-once('concrete/copyright-info')
+{
+    // scss-lint:disable all
+    /*! concrete v0.4.4 | GNU GPL v2.0 License | github.com/roeldev/concrete */
+    // scss-lint:enable all
+}
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // //
+
+@include export-once('concrete/license-info')
+{
+/*
+    concrete - Sassy CSS framework (https://github.com/roeldev/concrete/)
+    Copyright (c) 2014-2016 Roel Schut (roelschut.nl)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+}

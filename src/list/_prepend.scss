@@ -1,0 +1,12 @@
+///
+/// Prepend a value to an existing list.
+///
+/// @param {list} $list
+/// @param {mixed} $value
+/// @param {string} $separator [auto]
+/// @return {list}
+///
+@function prepend($list, $value, $separator: 'auto')
+{
+    @return join(($value), $list, $separator);
+}

@@ -1,0 +1,22 @@
+///
+/// Calculates the relative em value compared to the given base font-size.
+/// Example taken from http://vvv.tobiassjosten.net/css/px-to-em-with-sass/
+///
+/// @param {number} $from - The value to calculate the em value from.
+/// @param {number|string} $base [default] - The font-size to compare the
+///         $from value with.
+/// @return {number}
+///
+@function em($from, $base: null)
+{
+    @if is-null($base)
+    {
+        $base: $_concrete-em-base-value;
+    }
+    @if is-string($base)
+    {
+        $base: get-font-size($base);
+    }
+
+    @return if(equal-units($from, $base), (($from / $base) * 1em), $from);
+}

@@ -1,0 +1,53 @@
+///
+/// Displays all given variables and their types.
+///
+/// @param {mixed} $var
+///
+@mixin debug($var...)
+{
+    @if not is-list($var, 1)
+    {
+        $var: $_concrete-debugs;
+        $_concrete-debugs: () !global;
+    }
+
+    $prefix:  '@debug';
+    $display: '';
+
+    @if is-scalar($var)
+    {
+        $display: _concrete-debug-scalar($var);
+    }
+    @elseif is-list($var)
+    {
+        $display: _concrete-debug-list($var);
+    }
+    @elseif is-map($var)
+    {
+        $display: _concrete-debug-map($var);
+    }
+    @else
+    {
+        $display: '{unknown}';
+    }
+
+    @if $concrete-console-debugs
+    {
+        @debug($display);
+    }
+
+/* #{$prefix} #{$display} */
+}
+
+///
+/// Adds the variable `$var` to the list `$_concrete-debugs` and will be
+/// displayed by the `display-debug()` mixin.
+///
+/// @param {mixed} $var
+/// @return {null}
+///
+@function debug($var...)
+{
+    $_concrete-debugs: append($_concrete-debugs, $var, 'comma') !global;
+    @return null;
+}

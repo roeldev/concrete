@@ -1,0 +1,10 @@
+///
+/// Returns `true` if `$var` is a string.
+///
+/// @param {mixed} $var
+/// @return {bool}
+///
+@function is-string($var)
+{
+    @return (type-of($var) == 'string');
+}

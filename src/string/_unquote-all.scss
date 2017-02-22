@@ -1,0 +1,29 @@
+///
+/// Unquotes all strings inside `$var` if it is a list. Or unquotes `$var` when
+/// it is only a string. Otherwise it just returns the given variable.
+///
+/// @param {list|string} $var
+/// @return {list|string}
+///
+@function unquote-all($var)
+{
+    @if is-list($var)
+    {
+        $list:      ();
+        $separator: list-separator($list);
+
+        @each $value in $var
+        {
+            $value: unquote-all($value);
+            $list:  append($list, $value, $separator);
+        }
+
+        $var: $list;
+    }
+    @elseif is-string($var)
+    {
+        $var: unquote($var);
+    }
+
+    @return $var;
+}

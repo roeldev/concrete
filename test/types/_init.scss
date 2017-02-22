@@ -1,0 +1,76 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+$_concrete-test-current-type-function: null !global;
+
+$TYPE_LIST:    (1 2 3) !global;
+$TYPE_ARGLIST: arglist-create(4 5 6) !global;
+$TYPE_MAP:     ('a': 1, 'b': 2, 'c': 3) !global;
+
+// -----------------------------------------------------------------------------
+
+@mixin type-test($func)
+{
+    $_concrete-test-current-type-function: $func !global;
+
+    @include test-module($func + ' [function]')
+    {
+        @content;
+    }
+}
+
+@mixin type-test-assert-true($values...)
+{
+    $iL: length($values);
+    @for $i from 1 through $iL
+    {
+        $value:    nth($values, $i);
+        $valueStr: $value;
+
+        // onderstaande waardes omzetten naar string via debug functions
+        @if is-null($value)
+        {
+            $valueStr: 'null';
+        }
+        @elseif is-map($value)
+        {
+            $valueStr: '[map]';
+        }
+
+        @include test('Should return true with value `' + $valueStr + '`')
+        {
+            $result: call($_concrete-test-current-type-function, $value);
+            @include assert-true($result);
+        }
+    }
+}
+
+@mixin type-test-assert-false($values...)
+{
+    @each $value in $values
+    {
+        $type: type-of($value);
+
+        @include test('Should return false when using a ' + $type)
+        {
+            $result: call($_concrete-test-current-type-function, $value);
+            @include assert-false($result);
+        }
+    }
+}
+
+@mixin type-unit-test-assert-false($values...)
+{
+    @each $value in $values
+    {
+        $unit: unit($value);
+        $unit: if(($unit == ''), 'no unit', 'unit `' + $unit + '`');
+
+        @include test('Should return false when using ' + $unit)
+        {
+            $result: call($_concrete-test-current-type-function, $value);
+            @include assert-false($result);
+        }
+    }
+}

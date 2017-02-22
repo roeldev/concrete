@@ -8,7 +8,7 @@
   ],
   "license": "GPL-2.0+",
   "main": [
-    "src/_init.scss"
+    "main.scss"
   ],
   "repository": {
     "type": "git",
@@ -39,8 +39,6 @@
     "node_modules",
     "test",
     "tests",
-    "Gemfile",
-    "Gemfile.lock",
     "gulpfile.js",
     "package.json"
   ]

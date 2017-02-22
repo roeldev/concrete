@@ -1,0 +1,26 @@
+@import 'init';
+
+// -----------------------------------------------------------------------------
+
+@include type-test('is-string')
+{
+    @include type-test-assert-true(
+        'str',
+        '1',
+        '1rem',
+        'true',
+        '#ff0',
+        'null',
+        '()',
+        ''
+    );
+
+    @include type-test-assert-false(
+        1,
+        #fff,
+        true,
+        null,
+        $TYPE_LIST,
+        $TYPE_MAP
+    );
+}

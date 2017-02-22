@@ -1,0 +1,45 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+/*@include test-module('core/_utils: unquote-all [function]')
+{
+    @include test('Should unquote all list items [1]')
+    {
+        $input:    ('"string"' 1 2 3 true);
+        $expected: (string 1 2 3 true);
+
+        @include assert-equal(unquote-all($input), $expected);
+    }
+
+    @include test('Should unquote all list items [2]')
+    {
+        $input:    ('"string1"' "'string2'" '"string3"');
+        $expected: ('string1' "string2" 'string3');
+
+        @include assert-equal(unquote-all($input), $expected);
+    }
+
+    @include test('Should unquote the string')
+    {
+        @include assert-equal(unquote-all('"string"'), string);
+    }
+
+    @include test('Should return the same input value [1]')
+    {
+        $input:    ('string1' 'string2' 'string3');
+        $expected: ('string1' 'string2' 'string3');
+
+        @include assert-equal(unquote-all($input), $expected);
+    }
+
+    @include test('Should return the same input value [2]')
+    {
+        @include assert-equal(unquote-all('string'), 'string');
+    }
+
+    @include test('Should return the same input value [3]')
+    {
+        @include assert-equal(unquote-all(string), 'string');
+    }
+}*/

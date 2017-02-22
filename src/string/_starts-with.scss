@@ -1,0 +1,21 @@
+@function starts-with($string, $substring, $offset: 1)
+{
+    $result: false;
+
+    @if not is-empty($substring)
+    {
+        @if not is-string($substring)
+        {
+            $substring: $substring + unquote('');
+        }
+
+        $index: str-index($string, $substring);
+
+        @if not is-null($index)
+        {
+            $result: ($index == $offset);
+        }
+    }
+
+    @return $result;
+}

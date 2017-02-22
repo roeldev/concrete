@@ -1,0 +1,12 @@
+///
+/// Returns true if $value exists in the $list. This is basically an alias for
+/// the in-list() function.
+///
+/// @param {mixed} $value
+/// @param {list} $list
+/// @return {boolean}
+///
+@function one-of($value, $list)
+{
+    @return in-list($list, $value);
+}

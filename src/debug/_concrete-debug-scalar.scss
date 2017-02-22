@@ -1,0 +1,26 @@
+///
+/// @access private
+/// @group private
+///
+/// @param {number|string|color|bool|null} $var
+/// @return {string}
+///
+@function _concrete-debug-scalar($var)
+{
+    $type: type-of($var);
+    @if is-number($var)
+    {
+        $unit: unit($var);
+        @if not is-empty($unit)
+        {
+            $type: $type + '|' + $unit;
+        }
+    }
+    @elseif is-null($var)
+    {
+        $type: 'null';
+        $var: 'null';
+    }
+
+    @return '(' + $type + ') `' + $var + '`';
+}

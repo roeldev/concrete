@@ -1,0 +1,22 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('storage-set')
+{
+    @include test('Should create a new storage map with the key and value')
+    {
+        $_concrete-storage: () !global;
+        @include storage-set('test', 'k1', 'v1');
+
+        @include assert-equal($_concrete-storage, ( 'test': ( 'k1': 'v1' ) ));
+    }
+
+    @include test('Should replace the value of the key in the storage map')
+    {
+        $_concrete-storage: ( 'test': ('k1': 'v1') ) !global;
+        @include storage-set('test', 'k1', 'v2');
+
+        @include assert-equal($_concrete-storage, ( 'test': ( 'k1': 'v2' ) ));
+    }
+}

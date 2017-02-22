@@ -1,0 +1,17 @@
+////
+/// Export related functions, mixins and global variables.
+////
+
+@if not global-variable-exists('_concrete-exported')
+{
+    $_concrete-exported: () !global;
+}
+
+@if not global-variable-exists('_concrete-exported-warning')
+{
+    $_concrete-exported-warning: false !global;
+}
+
+// -----------------------------------------------------------------------------
+
+@import 'export/export-once';

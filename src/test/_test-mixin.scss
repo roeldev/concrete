@@ -1,0 +1,17 @@
+///
+/// Wrapper mixin for testing mixins.
+///
+/// @param {string} $name - Name of the mixin.
+///
+@mixin test-mixin($name)
+{
+    @if not is-null($_concrete-test-prefix)
+    {
+        $name: $_concrete-test-prefix + ': ' + $name;
+    }
+
+    @include test-module($name + ' [mixin]')
+    {
+        @content;
+    }
+}

@@ -1,0 +1,12 @@
+///
+/// Creates a new list with $value as it's first value.
+///
+/// @param {mixed} $value [null]
+/// @param {string} $separator [auto]
+/// @return {list}
+///
+@function list-create($value: null, $separator: 'auto')
+{
+    $list: ();
+    @return if(is-empty($value), $list, join(($value), $list, $separator));
+}

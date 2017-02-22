@@ -1,0 +1,10 @@
+///
+/// Checks if `$var` is an empty map.
+///
+/// @param {mixed} $var
+/// @return {bool}
+///
+@function is-empty-map($var)
+{
+    @return is-map($var) and (length($var) < 1);
+}

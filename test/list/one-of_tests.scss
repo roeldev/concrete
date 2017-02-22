@@ -1,0 +1,16 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('one-of')
+{
+    @include test('Should return true when value is in list')
+    {
+        @include assert-true(one-of('test', 1 false 'test' null));
+    }
+
+    @include test('Should return false when value is not in list')
+    {
+        @include assert-false(one-of('fail', 1 false 'test' null));
+    }
+}

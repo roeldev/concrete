@@ -1,0 +1,14 @@
+@function set-unit($var, $unit, $defaultValue: 0)
+{
+    @if not is-number($var) or (unit($var) != $unit)
+    {
+        @if is-null($defaultValue)
+        {
+            $defaultValue: 0;
+        }
+
+        $var: $defaultValue;
+    }
+
+    @return $var;
+}

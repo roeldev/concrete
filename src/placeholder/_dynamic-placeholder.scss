@@ -1,0 +1,39 @@
+// example taken from
+// http://alistapart.com/article/dry-ing-out-your-sass-mixins
+@mixin dynamic-placeholder($name, $extend: true)
+{
+    @if is-true($extend)
+    {
+        $placeholder-id: null;
+
+        @if storage-has('placeholder', $name)
+        {
+            $placeholder-id: placeholder-id($name);
+        }
+        // create a real placeholder for the placeholder mixin's content so it
+        // can be shared and re-used by different components
+        @else
+        {
+            $placeholder-id: storage-set('placeholder', $name, unique-id());
+
+            // create the placeholder at root level
+            @at-root %#{$placeholder-id}
+            {
+                @content;
+
+                @if $concrete-debug-dynamic-placeholders
+                {
+                    -debug: '#{$name} | #{$placeholder-id}';
+                }
+            }
+        }
+
+        // let the component extend the real placeholder
+        @extend %#{$placeholder-id};
+    }
+    // when not extending a placeholder, echo the placeholder mixin's content
+    @else
+    {
+        @content;
+    }
+}

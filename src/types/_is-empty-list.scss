@@ -1,0 +1,10 @@
+///
+/// Checks if `$var` is an empty list.
+///
+/// @param {mixed} $var
+/// @return {bool}
+///
+@function is-empty-list($var)
+{
+    @return is-list($var) and (length($var) < 1);
+}

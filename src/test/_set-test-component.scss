@@ -1,0 +1,4 @@
+@mixin set-test-component($component)
+{
+    $_concrete-test-prefix: 'concrete-component-' + $component !global;
+}

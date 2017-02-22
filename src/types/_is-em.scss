@@ -1,0 +1,10 @@
+///
+/// Returns `true` if the given number is of unit `em`.
+///
+/// @param {number} $number
+/// @return {bool}
+///
+@function is-em($number)
+{
+    @return is-number($number) and (unit($number) == 'em');
+}

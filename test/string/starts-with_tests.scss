@@ -1,0 +1,36 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('starts-with')
+{
+    @include test('Should detect the string starts with the substring [1]')
+    {
+        @include assert-equal(starts-with('test1', 't'), true);
+    }
+
+    @include test('Should detect the string starts with the substring [2]')
+    {
+        @include assert-equal(starts-with('test1', 'tes'), true);
+    }
+
+    @include test('Should detect the string starts not with the substring [1]')
+    {
+        @include assert-equal(starts-with('test1', 'e'), false);
+    }
+
+    @include test('Should detect the string starts not with the substring [2]')
+    {
+        @include assert-equal(starts-with('test1', 'est'), false);
+    }
+
+    @include test('Should detect the string starts not with the substring [3]')
+    {
+        @include assert-equal(starts-with('test1', ''), false);
+    }
+
+    @include test('Should detect the string starts not with the substring [4]')
+    {
+        @include assert-equal(starts-with('test1', 'x'), false);
+    }
+}

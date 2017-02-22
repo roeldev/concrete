@@ -1,0 +1,10 @@
+///
+/// Returns the last value of the list.
+///
+/// @param {list} $list
+/// @return {mixed}
+///
+@function nth-last($list)
+{
+    @return if(is-list($list, 1), nth($list, length($list)), null);
+}

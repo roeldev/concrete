@@ -1,0 +1,14 @@
+////
+/// Dynamic placeholder related functions, mixins and global variables.
+////
+
+@if not global-variable-exists('concrete-debug-dynamic-placeholders')
+{
+    $concrete-debug-dynamic-placeholders: false !global;
+}
+
+// -----------------------------------------------------------------------------
+
+@import 'placeholder/dynamic-placeholder';
+@import 'placeholder/placeholder-extend';
+@import 'placeholder/placeholder-id';

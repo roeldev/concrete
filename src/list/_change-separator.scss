@@ -1,0 +1,4 @@
+@function change-separator($list, $separator)
+{
+    @return join($list, (), $separator);
+}

@@ -1,0 +1,20 @@
+@import 'init';
+
+// -----------------------------------------------------------------------------
+
+@include type-test('is-scalar')
+{
+    @include type-test-assert-true(
+        1,
+        'str',
+        #f00,
+        true,
+        null
+    );
+
+    @include type-test-assert-false(
+        $TYPE_LIST,
+        $TYPE_ARGLIST,
+        $TYPE_MAP
+    );
+}

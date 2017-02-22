@@ -1,0 +1,48 @@
+///
+/// Checks if a variable is the correct type. If not, the variable will be
+/// overwritten and set to a default value for that type.
+///
+/// @param {mixed} $var - The variable to check.
+/// @param {string|list} $type - The type $var should be.
+/// @param {mixed} $default [null] - The default value to return if
+///         (type-of($var) != $type).
+/// @return {mixed}
+///
+@function set-type($var, $type, $default: null)
+{
+    // type alias
+    @if ($type == 'boolean')
+    {
+        $type: 'bool';
+    }
+
+    $varType:         type-of($var);
+    $isIncorrectType: ($varType != $type);
+
+    // special check for arglists wich are basically lists
+    @if ($isIncorrectType and
+         $type == 'list' and
+         is-list($var))
+    {
+        $isIncorrectType: false;
+    }
+
+    @if $isIncorrectType
+    {
+        @if is-null($default)
+        {
+            @if ($type == 'number')
+            {
+                $default: 0;
+            }
+            @elseif ($type == 'list')
+            {
+                $default: ();
+            }
+        }
+
+        $var: $default;
+    }
+
+    @return $var;
+}

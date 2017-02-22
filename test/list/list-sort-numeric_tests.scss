@@ -1,0 +1,38 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('list-sort-numeric')
+{
+    @include test('Should sort the list on numeric values [1]')
+    {
+        $actual:   list-sort-numeric(1 4 5 2 6 3, false);
+        $expected: (1 2 3 4 5 6);
+
+        @include assert-equal($actual, $expected);
+    }
+
+    @include test('Should sort the list on numeric values [2]')
+    {
+        $actual:   list-sort-numeric((22, 8, 31, 55, 9), false);
+        $expected: (8, 9, 22, 31, 55);
+
+        @include assert-equal($actual, $expected);
+    }
+
+    @include test('Should reverse sort the list on numeric values')
+    {
+        $actual:   list-sort-numeric(1 4 5 2 6 3, true);
+        $expected: (6 5 4 3 2 1);
+
+        @include assert-equal($actual, $expected);
+    }
+
+    @include test('Should reverse sort the list on numeric values [2]')
+    {
+        $actual:   list-sort-numeric((22, 8, 31, 55, 9), true);
+        $expected: (55, 31, 22, 9, 8);
+
+        @include assert-equal($actual, $expected);
+    }
+}

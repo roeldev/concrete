@@ -1,0 +1,35 @@
+////
+/// Debug related functions, mixins and global variables.
+////
+
+@if not global-variable-exists('_concrete-debugs')
+{
+    $_concrete-debugs: () !global;
+}
+
+@if not global-variable-exists('_concrete-warnings')
+{
+    $_concrete-warnings: () !global;
+}
+
+@if not global-variable-exists('concrete-console-debugs')
+{
+    $concrete-console-debugs: false !global;
+}
+
+@if not global-variable-exists('concrete-console-warnings')
+{
+    $concrete-console-warnings: false !global;
+}
+
+// -----------------------------------------------------------------------------
+
+@import 'debug/concrete-debug-parse';
+@import 'debug/concrete-debug-list';
+@import 'debug/concrete-debug-map';
+@import 'debug/concrete-debug-scalar';
+
+@import 'debug/debug';
+@import 'debug/warn.scss';
+@import 'debug/display-debug';
+@import 'debug/display-warnings';

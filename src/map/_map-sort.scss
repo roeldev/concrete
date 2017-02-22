@@ -1,0 +1,26 @@
+///
+/// Sort map according to values.
+///
+/// @param {map} $map
+/// @param {string} $type [regular]
+/// @param {bool} $reverse [false]
+/// @return {map}
+///
+/// @todo Make sorting of maps with multiple equal values possible.
+///
+@function map-sort($map, $type: 'regular', $reverse: false)
+{
+    $result:     ();
+    $keysList:   map-keys($map);
+    $valuesList: map-values($map);
+    $values:     list-sort($valuesList, $type, $reverse);
+
+    @each $value in $values
+    {
+        $index:  index($valuesList, $value);
+        $key:    nth($keysList, $index);
+        $result: map-merge($result, ($key: $value));
+    }
+
+    @return $result;
+}

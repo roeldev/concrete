@@ -3,16 +3,9 @@
   "scripts": {
     "setup": "yarn",
     "start": "yarn && gulp",
-    "test": "mocha --reporter spec",
-    "depcheck": "depcheck"
+    "test": "mocha --reporter spec"
   },
   "devDependencies": {
-    "depcheck": "^0.6.4",
-    "gulp": "^3.9.0",
-    "gulp-mocha": "^3.0.0",
-    "maelstrom": "^0.3.0",
-    "maelstrom-css": "^0.1.1",
-    "maelstrom-sass": "^0.1.1",
-    "sassdoc": "^2.1.15"
+    "gulp": "^3.9.1"
   }
 }

@@ -1,0 +1,22 @@
+@import 'init';
+
+// -----------------------------------------------------------------------------
+
+@include type-test('is-inch')
+{
+    @include type-test-assert-true(
+        1in,
+        2343.345in,
+        -3452345in
+    );
+
+    @include type-unit-test-assert-false(
+        0,
+        1em,
+        2rem,
+        3%,
+        4px,
+        5pt,
+        7s
+    );
+}

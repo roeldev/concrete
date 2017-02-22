@@ -1,0 +1,25 @@
+@function storage-has($type, $keys...)
+{
+    $result: false;
+
+    @if map-has-key($_concrete-storage, $type)
+    {
+        $result: true;
+        $target: map-get($_concrete-storage, $type);
+
+        @each $key in $keys
+        {
+            @if map-has-key($target, $key)
+            {
+                $target: map-get($target, $key);
+            }
+            @else
+            {
+                // break out of the loop
+                @return false;
+            }
+        }
+    }
+
+    @return $result;
+}

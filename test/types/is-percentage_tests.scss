@@ -1,0 +1,21 @@
+@import 'init';
+
+// -----------------------------------------------------------------------------
+
+@include type-test('is-percentage')
+{
+    @include type-test-assert-true(
+        1%,
+        2343.345%,
+        -3452345%);
+
+    @include type-unit-test-assert-false(
+        0,
+        1em,
+        2rem,
+        4px,
+        5pt,
+        6in,
+        7s
+    );
+}

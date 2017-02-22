@@ -1,0 +1,13 @@
+///
+/// Returns `true` if `$var` is empty.
+///
+/// @param {mixed} $var
+/// @return {bool}
+///
+@function is-empty($var)
+{
+    @return is-null($var) or
+            is-empty-string($var) or
+            is-empty-list($var) or
+            is-empty-map($var);
+}

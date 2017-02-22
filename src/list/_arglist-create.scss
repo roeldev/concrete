@@ -1,0 +1,4 @@
+@function arglist-create($list...)
+{
+    @return $list;
+}

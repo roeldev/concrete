@@ -1,0 +1,11 @@
+////
+/// Internal framework storage related functions and global variables.
+////
+
+$_concrete-storage: () !global;
+
+// -----------------------------------------------------------------------------
+
+@import 'storage/storage-get';
+@import 'storage/storage-set';
+@import 'storage/storage-has';

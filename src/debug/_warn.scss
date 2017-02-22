@@ -1,0 +1,38 @@
+///
+/// Adds a warning to the `$_concrete-warnings` list and, if available, outputs
+/// the warning with the `@warn` directive.
+/// If the 2nd optional parameter is not used, the first parameter should
+/// contain the actual warning message.
+///
+/// @param {string} $function - The function that created the warning.
+/// @param {string|list} $message [''] - The warning text message.
+/// @return {null}
+///
+@function warn($function, $message: '')
+{
+    @if is-list($message, 1)
+    {
+        $message: implode($message, ' ');
+    }
+
+    $message: if(is-empty($message), $function, $function + ': ' + $message);
+    $_concrete-warnings: append($_concrete-warnings, $message, 'comma') !global;
+
+    @if $concrete-console-warnings
+    {
+        @warn($message);
+    }
+
+    @return null;
+}
+
+///
+/// Mixin version of the warn function.
+///
+/// @param {string} $function - The function that created the warning.
+/// @param {string|list} $message [''] - The warning text message.
+///
+@mixin warn($function, $message: '')
+{
+    $message: warn($function, $message);
+}

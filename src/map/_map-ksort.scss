@@ -1,0 +1,21 @@
+///
+/// Sort map according to keys.
+///
+/// @param {map} $map
+/// @param {string} $type [regular]
+/// @param {bool} $reverse [false]
+/// @return {map}
+///
+@function map-ksort($map, $type: 'regular', $reverse: false)
+{
+    $result: ();
+    $keys:   list-sort(map-keys($map), $type, $reverse);
+
+    @each $key in $keys
+    {
+        $value:  map-get($map, $key);
+        $result: map-merge($result, ($key: $value));
+    }
+
+    @return $result;
+}

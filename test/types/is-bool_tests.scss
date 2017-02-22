@@ -1,0 +1,22 @@
+@import 'init';
+
+// -----------------------------------------------------------------------------
+
+@include type-test('is-bool')
+{
+    @include type-test-assert-true(
+       true,
+       false
+    );
+
+    @include type-test-assert-false(
+        1,
+        0,
+        'true',
+        '!1',
+        #000,
+        null,
+        $TYPE_LIST,
+        $TYPE_MAP
+    );
+}

@@ -1,0 +1,27 @@
+///
+/// Sort a list according to the given sort type function.
+///
+/// @param {list} $list
+/// @param {string} $type [regular]
+/// @param {bool} $reverse [false]
+/// @return {list}
+///
+@function list-sort($list, $type: 'regular', $reverse: false)
+{
+    @if is-list($list, 2)
+    {
+        $func: 'list-sort-' + $type;
+
+        // dynamically call the right sort function
+        @if function-exists($func)
+        {
+            $list: call($func, $list, $reverse);
+        }
+        @else
+        {
+            @return warn('list-sort', 'Unknown sort type `#{$type}`!');
+        }
+    }
+
+    @return $list;
+}

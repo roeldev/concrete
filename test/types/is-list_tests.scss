@@ -1,0 +1,18 @@
+@import 'init';
+
+// -----------------------------------------------------------------------------
+
+@include type-test('is-list')
+{
+    @include type-test-assert-true($TYPE_LIST, $TYPE_ARGLIST);
+
+    @include type-test-assert-false(
+        1,
+        '()',
+        '1 2',
+        #000,
+        false,
+        null,
+        $TYPE_MAP
+    );
+}

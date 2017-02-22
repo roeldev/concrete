@@ -1,0 +1,18 @@
+///
+/// Returns `true` if the given number is of unit `px`.
+///
+/// @param {number} $number
+/// @return {bool}
+///
+@function is-pixel($number)
+{
+    @return is-number($number) and (unit($number) == 'px');
+}
+
+///
+/// Alias of is-pixel function.
+///
+@function is-px($number)
+{
+    @return is-pixel($number);
+}

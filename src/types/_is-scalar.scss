@@ -1,0 +1,14 @@
+///
+/// Returns `true` if `$var` is either a number, string, color, boolean or null.
+///
+/// @param {mixed} $var
+/// @return {bool}
+///
+@function is-scalar($var)
+{
+    @return is-number($var) or
+            is-string($var) or
+            is-color($var) or
+            is-bool($var) or
+            is-null($var);
+}

@@ -1,0 +1,17 @@
+///
+/// Returns `true` if $var is a number. If the 2nd parameter $unit is a string,
+/// the function will also check if `$var` is of that type of unit.
+///
+/// @param {mixed} $var
+/// @param {bool|string} $unit [false]
+/// @return {bool}
+///
+@function is-number($var, $unit: false)
+{
+    $result: (type-of($var) == 'number');
+    @if $result and is-string($unit)
+    {
+        $result: (unit($var) == $unit);
+    }
+    @return $result;
+}

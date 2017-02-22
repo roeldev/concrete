@@ -1,0 +1,49 @@
+///
+/// @access private
+/// @group private
+///
+/// @param {list} $list
+/// @param {bool|string} $indentLevel [false]
+/// @return {string}
+///
+@function _concrete-debug-list($list, $inspect: true, $indentLevel: false)
+{
+    $display: '';
+    $indent:  '   ';
+
+    $listLength: length($list);
+    @if ($listLength > 0)
+    {
+        @if ($inspect == true)
+        {
+
+            @if ($indentLevel == false)
+            {
+                $indentLevel: $indent;
+            }
+
+            @for $i from 1 through $listLength
+            {
+                $value: _concrete-debug-parse($i,
+                                              nth($list, $i),
+                                              $indentLevel + $indent);
+
+                $display: $display + $value;
+            }
+
+            $tagOpen:  $indentLevel + '(';
+            $tagClose: $indentLevel + ')';
+            $display:  newline() + $tagOpen + $display + newline() + $tagClose;
+        }
+        @else
+        {
+            $display: ' (...)';
+        }
+    }
+    @else
+    {
+        $display: ' ( )';
+    }
+
+    @return '(' + type-of($list) + '|' + $listLength + ')' + $display;
+}

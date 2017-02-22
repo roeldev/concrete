@@ -1,0 +1,21 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('equal-units')
+{
+    @include test('Should succeed when both numbers are of equal units')
+    {
+        @include assert-true(equal-units(1px, 2px));
+    }
+
+    @include test('Should fail when both numbers are not of equal units')
+    {
+        @include assert-false(equal-units(1px, 2%));
+    }
+
+    @include test('Should fail when a var is not a number')
+    {
+        @include assert-false(equal-units(1px, 'str'));
+    }
+}

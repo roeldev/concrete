@@ -1,0 +1,18 @@
+@function em-base-value($newBaseValue)
+{
+    @if is-string($newBaseValue)
+    {
+        $newBaseValue: get-font-size($newBaseValue);
+    }
+
+    $_concrete-em-base-value: $newBaseValue !global;
+
+    @return $newBaseValue;
+}
+
+// -----------------------------------------------------------------------------
+
+@if not global-variable-exists('_concrete-em-base-value')
+{
+    $_concrete-em-base-value: 'default' !global;
+}

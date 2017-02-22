@@ -1,0 +1,33 @@
+///
+/// Adds a key to a map when it does not exist in the map. If it does, the
+/// original map is returned.
+///
+/// @param {map} $map The map holding the key and value pairs.
+/// @param {string} $key The key to add to the map.
+/// @param {mixed} $value The value to add to the map.
+/// @param {bool} $replace [false] Replace the key when it already exists
+/// @param {string} $seperator [auto]
+/// @return {map} Returns a new map with the added or replaced key and value.
+///
+@function map-add($map, $key, $value, $replace: false, $seperator: 'auto')
+{
+    $add: true;
+
+    @if map-has-key($map, $key)
+    {
+        $add: false;
+
+        @if is-true($replace)
+        {
+            $map: map-remove($map, $key);
+            $add: true;
+        }
+    }
+
+    @if is-true($add)
+    {
+        $map: map-merge($map, ($key: $value));
+    }
+
+    @return $map;
+}

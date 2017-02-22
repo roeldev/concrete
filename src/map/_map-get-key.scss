@@ -1,0 +1,12 @@
+///
+/// Finds and returns the key of first occurance of `$value` in `$map`.
+///
+/// @param {map} $map
+/// @param {mixed} $value
+/// @return {mixed}
+///
+@function map-get-key($map, $value)
+{
+    $index: index(map-values($map), $value);
+    @return if(not is-null($index), nth(map-keys($map), $index), null);
+}

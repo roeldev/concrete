@@ -1,0 +1,16 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('rem')
+{
+    @include test('Should return a rem value [1]')
+    {
+        @include assert-equal(rem(16px), 1rem);
+    }
+
+    @include test('Should return a rem value [2]')
+    {
+        @include assert-equal(rem(10vh), 10vh);
+    }
+}

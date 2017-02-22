@@ -1,0 +1,16 @@
+///
+/// Calculates the relative rem value. The rem units are always relative to the
+/// font-size in the body html element.
+///
+/// @param {number} $from - The pixel value to calculate the rem value from.
+/// @param {number} $baseFallback - Fallback base pixel value when the default
+///         font-size cannot be retrieved.
+/// @return {number}
+///
+@function rem($from, $baseFallback: 16px)
+{
+    $base: get-font-size();
+    $base: set-unit($base, 'px', $baseFallback);
+
+    @return if(is-pixel($from), (($from / $base) * 1rem), $from);
+}

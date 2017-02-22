@@ -1,0 +1,36 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('equal-types')
+{
+    @include test('Should succeed when both vars are of equal types [1]')
+    {
+        @include assert-true(equal-types('test1', 'test2'));
+    }
+
+    @include test('Should succeed when both vars are of equal types [2]')
+    {
+        @include assert-true(equal-types(false, true));
+    }
+
+    @include test('Should succeed when both vars are of equal types [3]')
+    {
+        @include assert-true(equal-types(1%, 3vh));
+    }
+
+    @include test('Should fail when both vars are not of equal types [1]')
+    {
+        @include assert-true(not equal-types('test1', true));
+    }
+
+    @include test('Should fail when both vars are not of equal types [2]')
+    {
+        @include assert-false(equal-types(1, true));
+    }
+
+    @include test('Should fail when both vars are not of equal types [3]')
+    {
+        @include assert-false(equal-types((), null));
+    }
+}

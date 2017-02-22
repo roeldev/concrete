@@ -1,0 +1,13 @@
+///
+/// Checks if the given numbers are of the same unit.
+///
+/// @param {mixed} $var1 - A variable to check.
+/// @param {mixed} $var2 - A second variable to check.
+/// @return {boolean}
+///
+@function equal-units($var1, $var2)
+{
+    @return is-number($var1) and
+            is-number($var2) and
+            (unit($var1) == unit($var2));
+}

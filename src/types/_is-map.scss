@@ -1,0 +1,19 @@
+///
+/// Returns `true` if `$var` is a map with the minimum length of `$length`.
+/// When no length is given or is not a valid number, the length check is
+/// skipped.
+///
+/// @param {mixed} $var
+/// @param {bool|number} $length
+/// @return {bool}
+///
+@function is-map($var, $length: false)
+{
+    $result: (type-of($var) == 'map');
+    @if $result and is-number($length)
+    {
+        $result: (length($var) >= $length);
+    }
+
+    @return $result;
+}

@@ -1,0 +1,13 @@
+@import 'true';
+@import 'init';
+
+// -----------------------------------------------------------------------------
+
+$_concrete-test-prefix: null !global;
+
+// -----------------------------------------------------------------------------
+
+@import 'src/test/set-test-component';
+@import 'src/test/set-test-file';
+@import 'src/test/test-function';
+@import 'src/test/test-mixin';

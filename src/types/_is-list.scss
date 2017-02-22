@@ -1,0 +1,17 @@
+///
+/// Returns `true` if `$var` is a list.
+///
+/// @param {mixed} $var
+/// @param {bool|number} $length
+/// @return {bool}
+///
+@function is-list($var, $length: false)
+{
+    $result: ((type-of($var) == 'list') or is-arglist($var));
+    @if $result and is-number($length)
+    {
+        $result: (length($var) >= $length);
+    }
+
+    @return $result;
+}

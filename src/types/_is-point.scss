@@ -1,0 +1,18 @@
+///
+/// Returns `true` if the given number is of unit `pt`.
+///
+/// @param {number} $number
+/// @return {bool}
+///
+@function is-point($number)
+{
+    @return is-number($number) and (unit($number) == 'pt');
+}
+
+///
+/// Alias of is-point function.
+///
+@function is-pt($number)
+{
+    @return is-point($number);
+}

@@ -1,0 +1,29 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('map-add')
+{
+    @include test('Should add the key and value to the map')
+    {
+        $actual:   map-add(('k1': 'v1', 'k2': 'v2'), 'k3', 'v3');
+        $expected: ('k1': 'v1', 'k2': 'v2', 'k3': 'v3');
+
+        @include assert-equal($actual, $expected);
+    }
+
+    @include test('Should return the original map')
+    {
+        $expected: ('k1': 'v1', 'k2': 'v2');
+        $actual:   map-add($expected, 'k2', 'existing value');
+
+        @include assert-equal($actual, $expected);
+    }
+
+    @include test('Should replace the key and value in the map')
+    {
+        $actual: map-add(('k1': 'v1'), 'k1', 'replaced value', true);
+
+        @include assert-equal($actual, ('k1': 'replaced value'));
+    }
+}

@@ -1,3 +1,5 @@
+.idea
+docs/
 logs/
 node_modules/
 .sass-cache

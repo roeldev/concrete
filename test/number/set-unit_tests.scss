@@ -1,0 +1,31 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('set-unit')
+{
+    @include test('Should return the exact same value [1]')
+    {
+        @include assert-equal(set-unit(1px, 'px', 2%), 1px);
+    }
+
+    @include test('Should return the exact same value [2]')
+    {
+        @include assert-equal(set-unit(10vh, 'vh', 2%), 10vh);
+    }
+
+    @include test('Should return the default value [1]')
+    {
+        @include assert-equal(set-unit(10vh, 'vw', 20vw), 20vw);
+    }
+
+    @include test('Should return the default value [2]')
+    {
+        @include assert-equal(set-unit('test', '%'), 0);
+    }
+
+    @include test('Should return the default value [3]')
+    {
+        @include assert-equal(set-unit(true, 'px'), 0);
+    }
+}

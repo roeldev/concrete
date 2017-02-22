@@ -1,0 +1,22 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('nth-first')
+{
+    @include test('Should return the first value of the list')
+    {
+        $input: ('first' 'second' 'last');
+        @include assert-equal(nth-first($input), 'first');
+    }
+
+    @include test('Should return null on empty list')
+    {
+        @include assert-equal(nth-first(()), null);
+    }
+
+    @include test('Should return null on invalid list var')
+    {
+        @include assert-equal(nth-first(false), null);
+    }
+}

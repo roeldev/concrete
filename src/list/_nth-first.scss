@@ -1,0 +1,10 @@
+///
+/// Returns the first value of the list.
+///
+/// @param {list} $list
+/// @return {mixed}
+///
+@function nth-first($list)
+{
+    @return if(is-list($list, 1), nth($list, 1), null);
+}

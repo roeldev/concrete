@@ -1,0 +1,16 @@
+////
+/// ✓ tests
+/// - documentation
+/// - examples
+////
+
+///
+/// Returns `true` if `$var` is a boolean.
+///
+/// @param {mixed} $var
+/// @return {bool}
+///
+@function is-bool($var)
+{
+    @return (type-of($var) == 'bool');
+}

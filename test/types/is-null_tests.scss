@@ -1,0 +1,18 @@
+@import 'init';
+
+// -----------------------------------------------------------------------------
+
+@include type-test('is-null')
+{
+    @include type-test-assert-true(null);
+
+    @include type-test-assert-false(
+        0,
+        'null',
+        '',
+        #000,
+        false,
+        $TYPE_LIST,
+        $TYPE_MAP
+    );
+}

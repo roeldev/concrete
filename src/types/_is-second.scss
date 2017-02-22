@@ -1,0 +1,10 @@
+///
+/// Returns `true` if the given number is of unit `s`.
+///
+/// @param {number} $number
+/// @return {bool}
+///
+@function is-second($number)
+{
+    @return is-number($number) and (unit($number) == 's');
+}

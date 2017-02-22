@@ -1,0 +1,35 @@
+@mixin dynamic-selector($selector, $defaultSelector)
+{
+    @if $selector
+    {
+        @if is-true($selector)
+        {
+            $selector: $defaultSelector;
+        }
+
+        $atRoot: false;
+        @if starts-with($selector, '@at-root')
+        {
+            $selector: str-slice($selector, 9);
+            $atRoot: true;
+        }
+
+        @if $atRoot
+        {
+            @at-root
+            {
+                #{$selector}
+                {
+                    @content;
+                }
+            }
+        }
+        @else
+        {
+            #{$selector}
+            {
+                @content;
+            }
+        }
+    }
+}

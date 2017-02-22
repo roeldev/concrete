@@ -1,0 +1,23 @@
+///
+/// Append a value to an existing entry in a map or creates a new entry.
+///
+/// @param {map} $map The map holding the key and value pairs.
+/// @param {string} $key The key in the map to append the value to.
+/// @param {mixed} $value The value to append to the entry in the map.
+/// @param {string} $seperator [auto]
+/// @return {map} Returns a new map with the added value.
+///
+@function map-append($map, $key, $value, $seperator: 'auto')
+{
+    @if map-has-key($map, $key)
+    {
+        // append the extra value to the already existing value
+        $value: append(map-get($map, $key), $value, $seperator);
+        // remove the existing key
+        $map: map-remove($map, $key);
+    }
+
+    // merge the key and value to the map
+    $map: map-merge($map, ($key: $value));
+    @return $map;
+}

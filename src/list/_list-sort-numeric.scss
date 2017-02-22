@@ -1,0 +1,45 @@
+///
+/// Sorts a list of numbers from low to high (0 -> 9).
+///
+/// *Example code taken from Sam Richards' quick-sort function.
+///  https://css-tricks.com/snippets/sass/sorting-function/
+///
+@function list-sort-numeric($list, $reverse: false)
+{
+    $length: length($list);
+    @if ($length > 1)
+    {
+        $separator: list-separator($list);
+        $reverse:   is-true($reverse);
+        $method:    if($reverse, 'prepend', 'append');
+
+        $lower:  ();
+        $equal:  ();
+        $higher: ();
+        $middle: nth($list, ceil($length / 2));
+
+        @each $item in $list
+        {
+            @if ($item == $middle)
+            {
+                $equal: call($method, $equal, $item, $separator);
+            }
+            @elseif ($item < $middle)
+            {
+                $lower: call($method, $lower, $item, $separator);
+            }
+            @else
+            {
+                $higher: call($method, $higher, $item, $separator);
+            }
+        }
+
+        $join1: if($reverse, $higher, $lower);
+        $join2: if($reverse, $lower, $higher);
+
+        $list: join(list-sort-numeric($join1, $reverse), $equal, $separator);
+        $list: join($list, list-sort-numeric($join2, $reverse), $separator);
+    }
+
+    @return $list;
+}

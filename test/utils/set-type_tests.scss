@@ -1,0 +1,36 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('set-type')
+{
+    @include test('Should return the exact same value [1]')
+    {
+        @include assert-equal(set-type(1234, 'number', 'test'), 1234);
+    }
+
+    @include test('Should return the exact same value [2]')
+    {
+        @include assert-true(set-type(true, 'bool', false));
+    }
+
+    @include test('Should return the exact same value [3]')
+    {
+        @include assert-false(set-type(false, 'boolean', 2%));
+    }
+
+    @include test('Should return the default value [1]')
+    {
+        @include assert-true(set-type(12, 'boolean', true));
+    }
+
+    @include test('Should return the default value [2]')
+    {
+        @include assert-equal(set-type('test', 'number'), 0);
+    }
+
+    @include test('Should return the default value [3]')
+    {
+        @include assert-equal(set-type('test', 'list'), ());
+    }
+}

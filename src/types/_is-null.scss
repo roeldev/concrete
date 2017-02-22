@@ -1,0 +1,10 @@
+///
+/// Returns `true` if `$var` is equal to null.
+///
+/// @param {mixed} $var
+/// @return {bool}
+///
+@function is-null($var)
+{
+    @return (type-of($var) == 'null');
+}

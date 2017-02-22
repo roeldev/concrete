@@ -1,0 +1,4 @@
+test:
+  - 'test/**/*.scss'
+  - '!test/**/_*.scss'
+  - '!test/_*/**/*.scss'

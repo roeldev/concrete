@@ -1,0 +1,4 @@
+@function placeholder-id($name)
+{
+    @return storage-get('placeholder', $name);
+}

@@ -1,0 +1,35 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('list-create')
+{
+    @include test('Should return a list with a string value')
+    {
+        $result: list-create('test');
+        $actual: (is-list($result, 1) and nth-first($result) == 'test');
+
+        @include assert-true($actual);
+    }
+
+    @include test('Should return a list with a boolean value')
+    {
+        $result: list-create(true);
+        $actual: (is-list($result, 1) and nth-first($result) == true);
+
+        @include assert-true($actual);
+    }
+
+    @include test('Should return a list with a number value')
+    {
+        $result: list-create(1);
+        $actual: (is-list($result, 1) and nth-first($result) == 1);
+
+        @include assert-true($actual);
+    }
+
+    @include test('Should return an empty list')
+    {
+        @include assert-equal(list-create(), ());
+    }
+}

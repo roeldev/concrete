@@ -1,0 +1,17 @@
+@import 'init';
+
+// -----------------------------------------------------------------------------
+
+@include type-test('is-map')
+{
+    @include type-test-assert-true($TYPE_MAP, $TYPE_MAP);
+
+    @include type-test-assert-false(
+        1,
+        '()',
+        #000,
+        false,
+        null,
+        $TYPE_LIST
+    );
+}

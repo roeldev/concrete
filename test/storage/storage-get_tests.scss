@@ -1,0 +1,22 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('storage-get')
+{
+    @include test('Should return the value of the key in the storage map [1]')
+    {
+        @include storage-set('test', 'k1', 'expected value');
+        $actual: storage-get('test', 'k1');
+
+        @include assert-equal($actual, 'expected value');
+    }
+
+    @include test('Should return the value of the key in the storage map [2]')
+    {
+        @include storage-set('test', 'k1', ( 'k2': 'expected value' ));
+        $actual: storage-get('test', 'k1', 'k2');
+
+        @include assert-equal($actual, 'expected value');
+    }
+}

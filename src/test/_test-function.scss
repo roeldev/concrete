@@ -1,0 +1,17 @@
+///
+/// Wrapper mixin for testing functions.
+///
+/// @param {string} $name - Name of the function.
+///
+@mixin test-function($name)
+{
+    @if not is-null($_concrete-test-prefix)
+    {
+        $name: $_concrete-test-prefix + ': ' + $name;
+    }
+
+    @include test-module($name + ' [function]')
+    {
+        @content;
+    }
+}

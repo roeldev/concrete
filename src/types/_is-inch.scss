@@ -1,0 +1,10 @@
+///
+/// Returns `true` if the given number is of unit `in`.
+///
+/// @param {number} $number
+/// @return {bool}
+///
+@function is-inch($number)
+{
+    @return is-number($number) and (unit($number) == 'in');
+}

@@ -1,0 +1,22 @@
+@import 'init';
+
+// -----------------------------------------------------------------------------
+
+@include type-test('is-empty')
+{
+    @include type-test-assert-true(
+       '',
+       null,
+       ()
+    );
+
+    @include type-test-assert-false(
+        1,
+        0,
+        #000,
+        true,
+        false,
+        $TYPE_LIST,
+        $TYPE_MAP
+    );
+}

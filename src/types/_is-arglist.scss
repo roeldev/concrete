@@ -1,0 +1,10 @@
+///
+/// Returns `true` if `$var` is an arglist.
+///
+/// @param {mixed} $var
+/// @return {bool}
+///
+@function is-arglist($var)
+{
+    @return (type-of($var) == 'arglist');
+}

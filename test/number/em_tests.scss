@@ -1,0 +1,27 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('em')
+{
+    @include test('Should return a em value [1]')
+    {
+        @include assert-equal(em(32px, 16px), 2em);
+    }
+
+    @include test('Should return a em value [2]')
+    {
+        @include set-em-base-value(14px);
+        @include assert-equal(em(28px), 2em);
+    }
+
+    @include test('Should return a em value [3]')
+    {
+        @include assert-equal(em(10vh, 5vh), 2em);
+    }
+
+    @include test('Should return the same input value')
+    {
+        @include assert-equal(em(10vh, 10px), 10vh);
+    }
+}

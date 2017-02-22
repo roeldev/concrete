@@ -1,0 +1,4 @@
+@mixin set-em-base-value($newBaseValue)
+{
+    $dummy: em-base-value($newBaseValue);
+}

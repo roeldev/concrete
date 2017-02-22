@@ -1,0 +1,5 @@
+// https://github.com/sass/sass/issues/1395
+@function unicode($str)
+{
+    @return unquote("'") + unquote(str-insert($str, '\\', 1)) + unquote("'");
+}

@@ -1,9 +1,0 @@
-// -----------------------------------------------------------------------------
-// Define your font icons
-// -----------------------------------------------------------------------------
-@include iconfont('icon-font-name', 'icon-prefix', '/path/to/font-files/')
-{
-    // place your icon classes here, or if you plan to use gulp with maelstrom
-    // you can remove this file as it will automatically be created
-    @include iconfont-placeholder-glyph('icon-example', 'a');
-}

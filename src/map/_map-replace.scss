@@ -1,0 +1,26 @@
+///
+/// Replace an existing key in a map with a new value. When the key does not
+/// exist it returns the original map.
+///
+/// @param {map} $map The map holding the key and value pairs.
+/// @param {string} $key The key in the map to replace the value from
+/// @param {mixed} $value The value to replace the entry in the map with.
+/// @param {bool} $add [false] Add the key + value entry when not in the map.
+/// @param {string} $seperator [auto]
+/// @return {map} Returns a new map with the replaced or added key and value.
+///
+@function map-replace($map, $key, $value, $add: false, $seperator: 'auto')
+{
+    @if map-has-key($map, $key)
+    {
+        $map: map-remove($map, $key);
+        $add: true;
+    }
+
+    @if is-true($add)
+    {
+        $map: map-merge($map, ($key: $value));
+    }
+
+    @return $map;
+}

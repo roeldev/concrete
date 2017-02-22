@@ -1,0 +1,30 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('map-get-key')
+{
+    @include test('Should return the first found key from the map [1]')
+    {
+        $input: ('a': 1, 'b': 2, 'c': 3);
+        @include assert-equal(map-get-key($input, 2), 'b');
+    }
+
+    @include test('Should return the first found key from the map [2]')
+    {
+        $input: ('a': 2, 'b': 2, 'c': 3);
+        @include assert-equal(map-get-key($input, 2), 'a');
+    }
+
+    @include test('Should return the first found key from the map [3]')
+    {
+        $input: (1: 'a', 2: 'b', 'a': 1, 'b': 2);
+        @include assert-equal(map-get-key($input, 2), 'b');
+    }
+
+    @include test('Should return null when the key is not found')
+    {
+        $input: ('a': 1, 'b': 2, 'c': 3);
+        @include assert-equal(map-get-key($input, 4), null);
+    }
+}
