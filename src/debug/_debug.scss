@@ -7,29 +7,13 @@
 {
     @if not is-list($var, 1)
     {
+        // TODO: via storage doen
         $var: $_concrete-debugs;
         $_concrete-debugs: () !global;
     }
 
     $prefix:  '@debug';
-    $display: '';
-
-    @if is-scalar($var)
-    {
-        $display: _concrete-debug-scalar($var);
-    }
-    @elseif is-list($var)
-    {
-        $display: _concrete-debug-list($var);
-    }
-    @elseif is-map($var)
-    {
-        $display: _concrete-debug-map($var);
-    }
-    @else
-    {
-        $display: '{unknown}';
-    }
+    $display: var-dump($var);
 
     @if $concrete-console-debugs
     {

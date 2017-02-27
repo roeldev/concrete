@@ -1,0 +1,16 @@
+@function _var-dump--item($key, $value, $indent)
+{
+    @if is-list($value) or is-map($value)
+    {
+        $value: _var-dump--items($value, true, $indent);
+    }
+    @else
+    {
+        $value: _var-dump--scalar($value);
+    }
+
+    $value: '[' + $key + '] => ' + $value;
+    $value: newline() + $indent + $value;
+
+    @return unquote($value);
+}

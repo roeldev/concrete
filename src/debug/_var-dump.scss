@@ -1,0 +1,31 @@
+@function var-dump($vars...)
+{
+    @if (length($vars) == 1)
+    {
+        $vars: nth($vars, 1);
+    }
+
+    $result: if(is-list($vars) or is-map($vars),
+                _var-dump--items($vars, true),
+                _var-dump--scalar($vars));
+
+    @return $result;
+}
+
+@mixin var-dump($vars...)
+{
+    @if (length($vars) == 1)
+    {
+        $vars: nth($vars, 1);
+    }
+
+    $result: if(is-list($vars) or is-map($vars),
+                _var-dump--items($vars, true),
+                _var-dump--scalar($vars));
+
+/*
+
+@var-dump #{$result}
+
+*/
+}

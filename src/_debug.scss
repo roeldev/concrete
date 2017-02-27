@@ -24,10 +24,10 @@
 
 // -----------------------------------------------------------------------------
 
-@import 'debug/concrete-debug-parse';
-@import 'debug/concrete-debug-list';
-@import 'debug/concrete-debug-map';
-@import 'debug/concrete-debug-scalar';
+@import 'debug/var-dump--item';
+@import 'debug/var-dump--items';
+@import 'debug/var-dump--scalar';
+@import 'debug/var-dump';
 
 @import 'debug/debug';
 @import 'debug/warn.scss';

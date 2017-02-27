@@ -4,6 +4,7 @@
 @mixin display-warnings()
 {
     $prefix: '@warn';
+
     @if is-list($_concrete-warnings, 1)
     {
 

@@ -1,0 +1,58 @@
+///
+/// @access private
+/// @group private
+///
+/// @param {list|map} $items
+/// @param {bool|string} $indentLevel [false]
+/// @return {string}
+///
+@function _var-dump--items($items, $inspect: true, $indentLevel: '')
+{
+    $result:   '';
+    $indent:   '  ';
+    $isMap:    is-map($items);
+    $tagOpen:  if($isMap, '{', '(');
+    $tagClose: if($isMap, '}', ')');
+
+    $length: length($items);
+    @if ($length > 0)
+    {
+        @if is-true($inspect)
+        {
+            @if $isMap
+            {
+                @each $key, $value in $items
+                {
+                    $value: _var-dump--item('`' + $key + '`', $value,
+                                           $indentLevel + $indent);
+
+                    $result: $result + $value;
+                }
+            }
+            @else
+            {
+                @for $i from 1 through $length
+                {
+                    $value: _var-dump--item($i, nth($items, $i),
+                                           $indentLevel + $indent);
+
+                    $result: $result + $value;
+                }
+            }
+
+            $tagOpen:  $indentLevel + $tagOpen;
+            $tagClose: $indentLevel + $tagClose;
+            $result:   newline() + $tagOpen + $result + newline() + $tagClose;
+        }
+        @else
+        {
+            $result: ' ' + $tagOpen + '...' + $tagClose;
+        }
+    }
+    @else
+    {
+        $result: ' ' + $tagOpen + ' ' + $tagClose;
+    }
+
+    @return '(' + type-of($items) + '|' + $length + ')' + $result;
+}

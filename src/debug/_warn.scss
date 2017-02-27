@@ -15,6 +15,7 @@
         $message: implode($message, ' ');
     }
 
+    // TODO: via storage doen
     $message: if(is-empty($message), $function, $function + ': ' + $message);
     $_concrete-warnings: append($_concrete-warnings, $message, 'comma') !global;
 

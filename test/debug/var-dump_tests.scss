@@ -1,0 +1,137 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('var-dump')
+{
+    @include test('Should dump the string variable [1]')
+    {
+        $input: 'test string';
+        @include assert-equal(var-dump($input), '(string|11) `' + $input + '`');
+    }
+
+    @include test('Should dump the string variable [2]')
+    {
+        @include assert-equal(var-dump('()'), '(string|2) `()`');
+    }
+
+    @include test('Should dump the empty string variable')
+    {
+        @include assert-equal(var-dump(''), '(string|0) ``');
+    }
+
+    @include test('Should dump the number variable')
+    {
+        @include assert-equal(var-dump(12px), '(number|px) `12px`');
+    }
+
+    @include test('Should dump the color variable [1]')
+    {
+        $actual:   var-dump(rgba(red, 0.5));
+        $expected: '(color) `rgba(255, 0, 0, 0.5)`';
+
+        @include assert-equal($actual, $expected);
+    }
+
+    @include test('Should dump the color variable [2]')
+    {
+        @include assert-equal(var-dump(red), '(color) `red`');
+    }
+
+    @include test('Should dump the color variable [3]')
+    {
+        @include assert-equal(var-dump(#f00), '(color) `#f00`');
+    }
+
+    @include test('Should dump the null variable')
+    {
+        @include assert-equal(var-dump(null), '(null) `null`');
+    }
+
+    @include test('Should dump the empty list variable')
+    {
+        @include assert-equal(var-dump(list-create()), '(list|0) ( )');
+    }
+}
+
+@include test-mixin('var-dump')
+{
+    @include test('Should dump multiple variables')
+    {
+        @include assert
+        {
+            @include output
+            {
+                @include var-dump('test', 1 2 3, red);
+            }
+
+            @include expect
+            {
+/*
+
+@var-dump (arglist|3)
+(
+  [1] => (string|4) `test`
+  [2] => (list|3)
+  (
+    [1] => (number) `1`
+    [2] => (number) `2`
+    [3] => (number) `3`
+  )
+  [3] => (color) `red`
+)
+
+*/
+            }
+        }
+    }
+
+    @include test('Should dump the list')
+    {
+        @include assert
+        {
+            @include output
+            {
+                @include var-dump(('a' 1 b 2%));
+            }
+
+            @include expect
+            {
+/*
+
+@var-dump (list|4)
+(
+  [1] => (string|1) `a`
+  [2] => (number) `1`
+  [3] => (string|1) `b`
+  [4] => (number|%) `2%`
+)
+
+*/
+            }
+        }
+    }
+
+    @include test('Should dump the map')
+    {
+        @include assert
+        {
+            @include output
+            {
+                @include var-dump(('test': 'test'));
+            }
+
+            @include expect
+            {
+/*
+
+@var-dump (map|1)
+{
+  [`test`] => (string|4) `test`
+}
+
+*/
+            }
+        }
+    }
+}

@@ -5,7 +5,7 @@
 /// @param {number|string|color|bool|null} $var
 /// @return {string}
 ///
-@function _concrete-debug-scalar($var)
+@function _var-dump--scalar($var)
 {
     $type: type-of($var);
     @if is-number($var)
@@ -16,10 +16,14 @@
             $type: $type + '|' + $unit;
         }
     }
+    @elseif is-string($var)
+    {
+        $type: $type + '|' + str-length($var);
+    }
     @elseif is-null($var)
     {
         $type: 'null';
-        $var: 'null';
+        $var:  'null';
     }
 
     @return '(' + $type + ') `' + $var + '`';
