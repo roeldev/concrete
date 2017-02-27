@@ -7,18 +7,16 @@
     @include test('Should sort the map in numeric order')
     {
         $input:    (3: 'a', 4: 'b', 1: 'c', 2: 'd');
-        $actual:   map-ksort($input, 'numeric');
         $expected: (1: 'c', 2: 'd', 3: 'a', 4: 'b');
 
-        @include assert-equal($actual, $expected);
+        @include assert-equal(map-ksort($input, 'numeric'), $expected);
     }
 
     @include test('Should sort the map in reverse numeric order')
     {
         $input:    (3: 'a', 4: 'b', 1: 'c', 2: 'd');
-        $actual:   map-ksort($input, 'numeric', true);
         $expected: (4: 'b', 3: 'a', 2: 'd', 1: 'c');
 
-        @include assert-equal($actual, $expected);
+        @include assert-equal(map-ksort($input, 'numeric', true), $expected);
     }
 }

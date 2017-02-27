@@ -6,25 +6,19 @@
 /// @param {string} $key The key to add to the map.
 /// @param {mixed} $value The value to add to the map.
 /// @param {bool} $replace [false] Replace the key when it already exists
-/// @param {string} $seperator [auto]
 /// @return {map} Returns a new map with the added or replaced key and value.
 ///
-@function map-add($map, $key, $value, $replace: false, $seperator: 'auto')
+@function map-add($map, $key, $value, $replace: false)
 {
-    $add: true;
-
     @if map-has-key($map, $key)
     {
-        $add: false;
-
         @if is-true($replace)
         {
             $map: map-remove($map, $key);
-            $add: true;
+            $map: map-merge($map, ($key: $value));
         }
     }
-
-    @if is-true($add)
+    @else
     {
         $map: map-merge($map, ($key: $value));
     }

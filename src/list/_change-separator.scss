@@ -1,4 +1,9 @@
 @function change-separator($list, $separator)
 {
-    @return join($list, (), $separator);
+    @if ($separator == 'comma') or ($separator == 'space')
+    {
+        $list: join($list, (), $separator);
+    }
+
+    @return $list;
 }

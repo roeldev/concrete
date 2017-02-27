@@ -1,0 +1,20 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('implode')
+{
+    @include test('Should join the list values [1]')
+    {
+        $input: ('test', 'string');
+
+        @include assert-equal(implode($input, ' '), 'test string');
+    }
+
+    @include test('Should join the list values [2]')
+    {
+        $input: ('test', 'string');
+
+        @include assert-equal(implode($input, red), 'testredstring');
+    }
+}

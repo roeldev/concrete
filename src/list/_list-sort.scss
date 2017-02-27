@@ -10,7 +10,7 @@
 {
     @if is-list($list, 2)
     {
-        $func: 'list-sort-' + $type;
+        $func: 'list-sort--' + $type;
 
         // dynamically call the right sort function
         @if function-exists($func)

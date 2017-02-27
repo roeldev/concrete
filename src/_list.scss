@@ -3,14 +3,13 @@
 ////
 
 @import 'list/arglist-create';
-@import 'list/list-create';
-@import 'list/list-length';
-@import 'list/prepend';
-@import 'list/nth-first';
-@import 'list/nth-last';
-@import 'list/in-list';
-@import 'list/one-of';
-@import 'list/list-sort';
-@import 'list/list-sort-numeric';
 @import 'list/change-separator';
 @import 'list/implode';
+@import 'list/in-list';
+@import 'list/list-create';
+@import 'list/list-sort--numeric';
+@import 'list/list-sort';
+@import 'list/nth-first';
+@import 'list/nth-last';
+@import 'list/one-of';
+@import 'list/prepend';

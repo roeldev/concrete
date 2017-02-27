@@ -1,0 +1,30 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('arglist-create')
+{
+    @include test('Should return a arglist with a string value')
+    {
+        $result: arglist-create('test');
+        $actual: (is-arglist($result) and nth-first($result) == 'test');
+
+        @include assert-true($actual);
+    }
+
+    @include test('Should return a arglist with a boolean value')
+    {
+        $result: arglist-create(true);
+        $actual: (is-arglist($result) and nth-first($result) == true);
+
+        @include assert-true($actual);
+    }
+
+    @include test('Should return a arglist with a number value')
+    {
+        $result: arglist-create(1);
+        $actual: (is-arglist($result) and nth-first($result) == 1);
+
+        @include assert-true($actual);
+    }
+}
