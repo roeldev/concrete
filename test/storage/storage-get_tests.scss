@@ -4,19 +4,30 @@
 
 @include test-function('storage-get')
 {
-    @include test('Should return the value of the key in the storage map [1]')
+    @include test('Should return the stored value')
     {
-        @include storage-set('test', 'k1', 'expected value');
-        $actual: storage-get('test', 'k1');
+        $expected: 'expected value';
+        @include storage-set('test1', $expected);
+        $actual: storage-get('test1');
 
-        @include assert-equal($actual, 'expected value');
+        @include assert-equal($actual, $expected);
     }
 
-    @include test('Should return the value of the key in the storage map [2]')
+    @include test('Should return the storage')
     {
-        @include storage-set('test', 'k1', ( 'k2': 'expected value' ));
-        $actual: storage-get('test', 'k1', 'k2');
+        $expected: 'expected value';
+        @include storage-add('test2', 'k1', $expected);
+        $actual: storage-get('test2', 'k1');
 
-        @include assert-equal($actual, 'expected value');
+        @include assert-equal($actual, $expected);
+    }
+
+    @include test('Should return the value of the key in the storage map')
+    {
+        $expected: 'expected value';
+        @include storage-add('test3', 'k1', ( 'k2': $expected ));
+        $actual: storage-get('test3', 'k1', 'k2');
+
+        @include assert-equal($actual, $expected);
     }
 }

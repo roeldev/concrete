@@ -1,8 +1,8 @@
-@function storage-get($type, $keys...)
+@function storage-get($id, $keys...)
 {
     $result: null;
 
-    @if map-has-key($_concrete-storage, $type)
+    @if map-has-key($_concrete-storage, $id)
     {
         // make sure that arglists are handled correct
         $firstKey: nth-first($keys);
@@ -11,7 +11,7 @@
             $keys: $firstKey;
         }
 
-        $target: map-get($_concrete-storage, $type);
+        $target: map-get($_concrete-storage, $id);
 
         @each $key in $keys
         {

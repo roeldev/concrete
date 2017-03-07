@@ -1,0 +1,15 @@
+@function storage-remove($id)
+{
+    $result: map-has-key($_concrete-storage, $id);
+    @if $result
+    {
+        $_concrete-storage: map-remove($_concrete-storage, $id) !global;
+    }
+
+    @return $result;
+}
+
+@mixin storage-remove($id)
+{
+    $dummy: storage-remove($id);
+}

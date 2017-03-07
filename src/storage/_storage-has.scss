@@ -1,15 +1,15 @@
-@function storage-has($type, $keys...)
+@function storage-has($id, $keys...)
 {
     $result: false;
 
-    @if map-has-key($_concrete-storage, $type)
+    @if map-has-key($_concrete-storage, $id)
     {
         $result: true;
-        $target: map-get($_concrete-storage, $type);
+        $target: map-get($_concrete-storage, $id);
 
         @each $key in $keys
         {
-            @if map-has-key($target, $key)
+            @if is-map($target) and map-has-key($target, $key)
             {
                 $target: map-get($target, $key);
             }

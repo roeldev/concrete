@@ -6,6 +6,8 @@ $_concrete-storage: () !global;
 
 // -----------------------------------------------------------------------------
 
+@import 'storage/storage-add';
 @import 'storage/storage-get';
-@import 'storage/storage-set';
 @import 'storage/storage-has';
+@import 'storage/storage-remove';
+@import 'storage/storage-set';

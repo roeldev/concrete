@@ -1,0 +1,33 @@
+@function storage-add($id, $key, $value)
+{
+    $addAsList: (is-null($key) or is-false($key));
+    $storage:   ();
+
+    @if map-has-key($_concrete-storage, $id)
+    {
+        $storage: map-get($_concrete-storage, $id);
+
+        $storage: if($addAsList,
+                     // append the value add the end of the storage list
+                     append($storage, $value, 'comma'),
+                     // add or replace the key + value in the storage map
+                     map-replace($storage, $key, $value, true));
+    }
+    @else
+    {
+        // create a new storage list or map
+        $storage: if($addAsList, list-create($value, 'comma'), ($key: $value));
+    }
+
+    $_concrete-storage: map-replace($_concrete-storage,
+                                    $id,
+                                    $storage,
+                                    true) !global;
+
+    @return $storage;
+}
+
+@mixin storage-add($id, $key, $value: null)
+{
+    $dummy: storage-add($id, $key, $value);
+}

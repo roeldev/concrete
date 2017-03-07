@@ -1,28 +1,11 @@
-@function storage-set($type, $key, $value)
+@function storage-set($id, $value)
 {
-    @if map-has-key($_concrete-storage, $type)
-    {
-        $storage: map-get($_concrete-storage, $type);
-
-        // add or replace the key + value in the storage map
-        $storage: map-replace($storage, $key, $value, true);
-
-        // add the map back to the global variable
-        $_concrete-storage: map-replace($_concrete-storage,
-                                        $type,
-                                        $storage) !global;
-    }
-    @else
-    {
-        // create a new storage map and merge it with the global variable
-        $merge: ($type: ( $key: $value ));
-        $_concrete-storage: map-merge($_concrete-storage, $merge) !global;
-    }
+    $_concrete-storage: map-add($_concrete-storage, $id, $value, true) !global;
 
     @return $value;
 }
 
-@mixin storage-set($type, $key, $value)
+@mixin storage-set($id, $value)
 {
-    $dummy: storage-set($type, $key, $value);
+    $dummy: storage-set($id, $value);
 }

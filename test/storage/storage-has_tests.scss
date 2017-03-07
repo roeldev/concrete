@@ -1,0 +1,20 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('storage-has')
+{
+    @include test('Should return `true` when the storage entry exists')
+    {
+        $_concrete-storage: ( 'test': 'v1' ) !global;
+
+        @include assert-true(storage-has('test'));
+    }
+
+    @include test('Should return `false` when the storage entry doesnt exist')
+    {
+        $_concrete-storage: ( 'test': 'v1' ) !global;
+
+        @include assert-false(storage-has('does-not-exist'));
+    }
+}

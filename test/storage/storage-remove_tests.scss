@@ -1,0 +1,28 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('storage-remove')
+{
+    @include test('Should remove the storage entry')
+    {
+        $_concrete-storage: ( 'test': 'v1' ) !global;
+        @include storage-remove('test');
+
+        @include assert-equal($_concrete-storage, map-create());
+    }
+
+    @include test('Should return `true` when the storage entry is removed')
+    {
+        $input: 'just an entry to remove';
+
+        @include storage-set($input, 'random value is random');
+        @include assert-true(storage-remove($input));
+    }
+
+    @include test('Should return `false` when the storage entry is not removed')
+    {
+        @include storage-set('just an entry', 'random value is random');
+        @include assert-false(storage-remove('remoooove'));
+    }
+}
