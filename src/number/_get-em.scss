@@ -1,0 +1,4 @@
+@function get-em()
+{
+    @return storage-get('em');
+}

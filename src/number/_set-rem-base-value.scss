@@ -1,0 +1,15 @@
+@function set-rem-base-value($value)
+{
+    $result: false;
+    @if is-pixel($value)
+    {
+        $result: storage-set('rem', $value);
+    }
+
+    @return $result;
+}
+
+@mixin set-rem-base-value($value)
+{
+    $dummy: set-rem-base-value($value);
+}

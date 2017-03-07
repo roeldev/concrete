@@ -4,13 +4,32 @@
 
 @include test-function('rem')
 {
-    @include test('Should return a rem value [1]')
+    @include test('Should return a rem value')
     {
+        $concrete-relative-numbers: true !global;
+
+        @include set-rem-base-value(16px);
         @include assert-equal(rem(16px), 1rem);
     }
 
-    @include test('Should return a rem value [2]')
+    @include test('Should return the same value')
     {
         @include assert-equal(rem(10vh), 10vh);
+    }
+
+    @include test('Should return 1rem')
+    {
+        $concrete-relative-numbers: true !global;
+
+        @include assert-equal(rem(), 1rem);
+    }
+
+    @include test('Should return the rem base value')
+    {
+        $concrete-relative-numbers: false !global;
+        $input: 54px;
+
+        @include set-rem-base-value($input);
+        @include assert-equal(rem(), $input);
     }
 }

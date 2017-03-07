@@ -4,24 +4,43 @@
 
 @include test-function('em')
 {
-    @include test('Should return a em value [1]')
+    @include test('Should return the same input value')
+    {
+        @include assert-equal(em(10vh, 10px), 10vh);
+    }
+
+    @include test('Should return the default em base value')
+    {
+        $expected: set-em(2345px);
+        @include assert-equal(em(), $expected);
+    }
+
+    @include test('Should set and return the default em base value')
+    {
+        $input: 345px;
+        @include assert-equal(em(345px, true), $input);
+    }
+
+    @include test('Should return a relative em value [1]')
     {
         @include assert-equal(em(32px, 16px), 2em);
     }
 
-    @include test('Should return a em value [2]')
-    {
-        @include set-em-base-value(14px);
-        @include assert-equal(em(28px), 2em);
-    }
-
-    @include test('Should return a em value [3]')
+    @include test('Should return a relative em value [2]')
     {
         @include assert-equal(em(10vh, 5vh), 2em);
     }
 
-    @include test('Should return the same input value')
+    @include test('Should return a relative em value [3]')
     {
-        @include assert-equal(em(10vh, 10px), 10vh);
+        @include set-em(14px);
+        @include assert-equal(em(28px), 2em);
+    }
+
+    @include test('Should return a relative em value [4]')
+    {
+        $dummy: em(15px, true);
+
+        @include assert-equal(em(45px), 3em);
     }
 }

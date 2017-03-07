@@ -2,21 +2,43 @@
 /// Calculates the relative em value compared to the given base font-size.
 /// Example taken from http://vvv.tobiassjosten.net/css/px-to-em-with-sass/
 ///
-/// @param {number} $from - The value to calculate the em value from.
-/// @param {number|string} $base [default] - The font-size to compare the
-///         $from value with.
+/// @param {number} $value - The value to calculate the em value from.
+/// @param {number|null} $base [null] - The font-size to compare the
+///         original value with.
 /// @return {number}
 ///
-@function em($from, $base: null)
+@function em($value: null, $base: null)
 {
-    @if is-null($base)
+    // set current value as the new base value
+    @if is-true($base)
     {
-        $base: $_concrete-em-base-value;
+        @if set-em($value)
+        {
+            $base:  $value;
+            $value: null;
+        }
     }
-    @if is-string($base)
+    // use a previously set em base value as default
+    @elseif is-null($base)
     {
-        $base: get-font-size($base);
+        $base: get-em();
     }
 
-    @return if(equal-units($from, $base), (($from / $base) * 1em), $from);
+    @if is-number($base)
+    {
+        // return the base value
+        @if is-null($value)
+        {
+            $value: $base;
+        }
+        // calculate the relative value
+        @elseif is-true($concrete-relative-numbers)
+        {
+            $value: if(equal-units($value, $base),
+                       (($value / $base) * 1em),
+                       $value);
+        }
+    }
+
+    @return $value;
 }

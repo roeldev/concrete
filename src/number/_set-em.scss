@@ -1,0 +1,15 @@
+@function set-em($value)
+{
+    $result: false;
+    @if is-pixel($value)
+    {
+        $result: storage-set('em', $value);
+    }
+
+    @return $result;
+}
+
+@mixin set-em($value)
+{
+    $dummy: set-em($value);
+}

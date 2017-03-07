@@ -2,9 +2,20 @@
 /// Number related functions.
 ////
 
-@import 'number/set-em-base-value';
-@import 'number/em-base-value';
+@if not global-variable-exists('concrete-relative-numbers')
+{
+    $concrete-relative-numbers: true !global;
+}
+
+// -----------------------------------------------------------------------------
+
+@import 'number/set-em';
+@import 'number/set-rem-base-value';
+@import 'number/get-em';
+@import 'number/get-rem-base-value';
+
 @import 'number/em';
+@import 'number/em-to-rem';
 @import 'number/rem';
-@import 'number/set-unit';
 @import 'number/equal-units';
+@import 'number/set-unit';

@@ -1,0 +1,4 @@
+@function get-rem-base-value()
+{
+    @return storage-get('rem');
+}

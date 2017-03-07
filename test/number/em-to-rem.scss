@@ -1,0 +1,14 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('em-to-rem')
+{
+    @include test('Should return a rem value')
+    {
+        @include set-rem-base-value(10px);
+        @include set-em(20px);
+
+        @include assert-equal(em-to-rem(), 2rem);
+    }
+}

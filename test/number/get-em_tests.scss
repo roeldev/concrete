@@ -1,0 +1,21 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('get-em')
+{
+    @include test('Should return the stored em value')
+    {
+        $expected: 11px;
+
+        @include set-em($expected);
+        @include assert-equal(get-em(), $expected);
+    }
+
+    @include test('Should return `null` when the storage does not exists')
+    {
+        $_concrete-storage: () !global;
+
+        @include assert-equal(get-em(), null);
+    }
+}
