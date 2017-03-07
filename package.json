@@ -5,6 +5,7 @@
     "test": "gulp test"
   },
   "devDependencies": {
-    "concrete-tools": "^0.1.0"
+    "concrete-tools": "^0.1.0",
+    "gulp": "^3.9.1"
   }
 }
