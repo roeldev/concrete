@@ -1,0 +1,10 @@
+///
+/// Creates a new empty map.
+///
+/// @return {map}
+///
+@function map-create()
+{
+    $map: ( 'remove-me': true );
+    @return map-remove($map, 'remove-me');
+}
