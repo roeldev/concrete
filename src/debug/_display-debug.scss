@@ -1,11 +1,25 @@
 @mixin display-debug()
 {
-    @if is-list($_concrete-debugs, 1)
+    $debugs: storage-get('debug-dumps');
+
+    @if is-list($debugs, 1)
     {
+        $dump: newline(2);
 
-/******************************************************************************/
-/* display-debug(): */
+        @each $debug in $debugs
+        {
+            $debug: var-dump($debug);
+            $dump:  $dump + '@debug #{$debug}' + newline(2);
 
-        @include debug();
+            @if $concrete-console-debugs
+            {
+                @debug($debug);
+            }
+        }
+/*#{$dump}*/
+    }
+    @else
+    {
+/* NO DEBUG DATA TO DISPLAY */
     }
 }

@@ -1,0 +1,40 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('debug')
+{
+    @include test('Should display the debug')
+    {
+        $_concrete-storage: () !global;
+
+        @include assert
+        {
+            @include output
+            {
+                @include debug('test');
+            }
+
+            @include expect
+            {
+/*
+
+@debug (string|4) `test`
+
+*/
+            }
+        }
+    }
+
+    @include test('Should new debug entries')
+    {
+        $_concrete-storage: () !global;
+
+        $x:debug('test');
+        $x:debug(true);
+
+        $expected: ( 'debug-dumps': ( 'test', true ) );
+
+        @include assert-equal($_concrete-storage, $expected);
+    }
+}

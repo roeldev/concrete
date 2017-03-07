@@ -1,0 +1,70 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('display-debug')
+{
+    @include test('Should display the debug')
+    {
+        $_concrete-storage: () !global;
+
+        @include assert
+        {
+            @include output
+            {
+                $x: debug('test');
+
+                @include display-debug;
+            }
+
+            @include expect
+            {
+/*
+
+@debug (string|4) `test`
+
+*/
+            }
+        }
+    }
+
+    @include test('Should display all debugs')
+    {
+        $_concrete-storage: () !global;
+
+        @include assert
+        {
+            @include output
+            {
+                $x: debug('test');
+                $x: debug((just a list with items));
+                $x: debug(false);
+                $x: debug(null);
+
+                @include display-debug;
+            }
+
+            @include expect
+            {
+/*
+
+@debug (string|4) `test`
+
+@debug (list|5)
+(
+  [1] => (string|4) `just`
+  [2] => (string|1) `a`
+  [3] => (string|4) `list`
+  [4] => (string|4) `with`
+  [5] => (string|5) `items`
+)
+
+@debug (bool) `false`
+
+@debug (null) `null`
+
+*/
+            }
+        }
+    }
+}

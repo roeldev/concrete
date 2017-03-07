@@ -1,29 +1,4 @@
 ///
-/// Displays all given variables and their types.
-///
-/// @param {mixed} $var
-///
-@mixin debug($var...)
-{
-    @if not is-list($var, 1)
-    {
-        // TODO: via storage doen
-        $var: $_concrete-debugs;
-        $_concrete-debugs: () !global;
-    }
-
-    $prefix:  '@debug';
-    $display: var-dump($var);
-
-    @if $concrete-console-debugs
-    {
-        @debug($display);
-    }
-
-/* #{$prefix} #{$display} */
-}
-
-///
 /// Adds the variable `$var` to the list `$_concrete-debugs` and will be
 /// displayed by the `display-debug()` mixin.
 ///
@@ -32,6 +7,37 @@
 ///
 @function debug($var...)
 {
-    $_concrete-debugs: append($_concrete-debugs, $var, 'comma') !global;
-    @return null;
+    @if (length($var) == 1)
+    {
+        $var: nth-first($var);
+    }
+
+    @return storage-add('debug-dumps', null, $var);
+}
+
+///
+/// Displays all given variables and their types.
+///
+/// @param {mixed} $var
+///
+@mixin debug($var...)
+{
+    @if (length($var) == 1)
+    {
+        $var: nth-first($var);
+    }
+
+    $prefix: '@debug';
+    $dump:   var-dump($var);
+
+    @if $concrete-console-debugs
+    {
+        @debug($dump);
+    }
+
+/*
+
+@debug #{$dump}
+
+*/
 }
