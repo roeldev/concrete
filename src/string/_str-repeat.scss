@@ -1,0 +1,23 @@
+///
+/// Repeats a string.
+///
+/// @param {string} $str
+/// @param {number} $multiplier
+/// @return {string}
+///
+@function str-repeat($str, $multiplier)
+{
+    $result:  '';
+
+    @if not is-empty-string($str) and
+        is-number($multiplier) and
+        ($multiplier >= 1)
+    {
+        @for $i from 1 through $multiplier
+        {
+            $result: $result + $str;
+        }
+    }
+
+    @return $result;
+}

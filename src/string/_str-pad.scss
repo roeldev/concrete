@@ -1,0 +1,38 @@
+@function str-pad($str, $padLength, $padStr: ' ', $padType: 'right')
+{
+    $strLength: str-length($str);
+
+    // only pad when needed
+    @if ($padLength > $strLength)
+    {
+        $amountToPad:      ($padLength - $strLength);
+        $amountToPadLeft:  0;
+        $amountToPadRight: 0;
+
+        @if ($padType == 'both')
+        {
+            // divide the amount to pad on both sides
+            $amountToPadLeft:  floor($amountToPad / 2);
+            $amountToPadRight: ($amountToPad - $amountToPadLeft);
+        }
+        @elseif ($padType == 'left')
+        {
+            $amountToPadLeft: $amountToPad;
+        }
+        @else
+        {
+            $amountToPadRight: $amountToPad;
+        }
+
+        @if ($amountToPadLeft > 0)
+        {
+            $str: str-fill($padStr, $amountToPadLeft, true) + $str;
+        }
+        @if ($amountToPadRight > 0)
+        {
+            $str: $str + str-fill($padStr, $amountToPadRight, true);
+        }
+    }
+
+    @return $str;
+}

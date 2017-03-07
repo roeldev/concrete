@@ -1,0 +1,26 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('str-repeat')
+{
+    @include test('Should repeat the string [1]')
+    {
+        @include assert-equal(str-repeat('.', 3), '...');
+    }
+
+    @include test('Should repeat the string [2]')
+    {
+        @include assert-equal(str-repeat('. .', 2), '. .. .');
+    }
+
+    @include test('Should return an empty string on empty repeat string')
+    {
+        @include assert-equal(str-repeat('', 33), '');
+    }
+
+    @include test('Should return an empty string on < 1 multiplier')
+    {
+        @include assert-equal(str-repeat('repeat me!', 0), '');
+    }
+}

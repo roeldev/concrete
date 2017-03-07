@@ -1,0 +1,26 @@
+@function chunk-split($str, $length: 1, $separator: 'auto')
+{
+    $result:    ();
+    $strLength: str-length($str);
+
+    @if ($strLength <= $length)
+    {
+        $result: list-create($str, $separator);
+    }
+    @else
+    {
+        @for $i from 1 through floor($strLength / $length)
+        {
+            $result: append($result, str-slice($str, 1, $length), $separator);
+            $str:    str-slice($str, $length + 1);
+        }
+
+        // append the leftover string to the chunked results list
+        @if (str-length($str) >= 1)
+        {
+            $result: append($result, $str, $separator);
+        }
+    }
+
+    @return $result;
+}

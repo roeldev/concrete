@@ -10,7 +10,7 @@
     @if is-list($var)
     {
         $list:      ();
-        $separator: list-separator($list);
+        $separator: list-separator($var);
 
         @each $value in $var
         {

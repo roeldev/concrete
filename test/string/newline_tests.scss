@@ -1,0 +1,14 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('newline')
+{
+    @include test('Should return a newline')
+    {
+        $expected: '
+';
+
+        @include assert-equal(newline(), $expected);
+    }
+}

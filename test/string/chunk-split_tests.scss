@@ -1,0 +1,26 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('chunk-split')
+{
+    @include test('Should split the string in chunks of 1')
+    {
+        @include assert-equal(chunk-split('test'), 't' 'e' 's' 't');
+    }
+
+    @include test('Should split the string in chunks of 2')
+    {
+        @include assert-equal(chunk-split('test', 2), 'te' 'st');
+    }
+
+    @include test('Should split the string and append the leftover char')
+    {
+        @include assert-equal(chunk-split('tests', 2), 'te' 'st' 's');
+    }
+
+    @include test('Should not split the string')
+    {
+        @include assert-equal(chunk-split('test', 5), list-create('test'));
+    }
+}

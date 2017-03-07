@@ -6,7 +6,7 @@
     {
         @if not is-string($substring)
         {
-            $substring: $substring + unquote('');
+            $substring: inspect($substring);
         }
 
         $index: str-index($string, $substring);

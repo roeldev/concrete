@@ -2,27 +2,25 @@
 
 // -----------------------------------------------------------------------------
 
-@include test-function('unquote-all')
+@include test-function('quote-all')
 {
-    @include test('Should remove quotes from the string')
+    @include test('Should apply quotes to the string')
     {
         @include assert
         {
-            $input: 'str';
-
             @include output
             {
-                content: unquote-all($input);
+                content: quote-all('str');
             }
 
             @include expect
             {
-                content: #{$input};
+                content: "str";
             }
         }
     }
 
-    @include test('Should remove quotes from strings in the list')
+    @include test('Should apply quotes to the strings in the list')
     {
         @include assert
         {
@@ -30,12 +28,12 @@
 
             @include output
             {
-                content: unquote-all($input);
+                content: quote-all($input);
             }
 
             @include expect
             {
-                content: #{$input};
+                content: "str1", "str2", "str3";
             }
         }
     }

@@ -2,12 +2,18 @@
 /// String related functions.
 ////
 
-@import 'string/ends-with';
-@import 'string/explode';
+// @import 'string/ends-with';
+// @import 'string/explode';
+@import 'string/chunk-split';
+@import 'string/ltrim';
 @import 'string/newline';
 @import 'string/quote-all';
 @import 'string/starts-with';
-@import 'string/str-replace';
-@import 'string/trim';
+@import 'string/str-fill';
+@import 'string/str-pad';
+@import 'string/str-repeat';
+// @import 'string/str-replace';
+@import 'string/rtrim';
+// @import 'string/trim';
 @import 'string/unicode';
 @import 'string/unquote-all';

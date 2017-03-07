@@ -2,35 +2,35 @@
 
 // -----------------------------------------------------------------------------
 
-@include test-function('starts-with')
+@include test-function('ends-with')
 {
     @include test('Should detect the string starts with the substring [1]')
     {
-        @include assert-true(starts-with('test1', 't'));
+        @include assert-true(ends-with('test1', '1'));
     }
 
     @include test('Should detect the string starts with the substring [2]')
     {
-        @include assert-true(starts-with('test1', 'tes'));
+        @include assert-true(ends-with('test1', 'st1'));
     }
 
     @include test('Should detect the string starts not with the substring [1]')
     {
-        @include assert-false(starts-with('test1', 'e'));
+        @include assert-false(ends-with('test1', 'e'));
     }
 
     @include test('Should detect the string starts not with the substring [2]')
     {
-        @include assert-false(starts-with('test1', 'est'));
+        @include assert-false(ends-with('test1', 'est'));
     }
 
     @include test('Should detect the string starts not with the substring [3]')
     {
-        @include assert-false(starts-with('test1', ''));
+        @include assert-false(ends-with('test1', ''));
     }
 
     @include test('Should detect the string starts not with the substring [4]')
     {
-        @include assert-false(starts-with('test1', 'x'));
+        @include assert-false(ends-with('test1', 'x'));
     }
 }

@@ -1,0 +1,25 @@
+// $exactLength shortens the $str when it's already longer than $length
+@function str-fill($str, $length, $sliceLonger: false)
+{
+    @if not is-string($str)
+    {
+        $str: inspect($str);
+    }
+
+    $strLength: str-length($str);
+    $slice:     is-true($sliceLonger) and ($strLength != $length);
+
+    @if ($strLength < $length)
+    {
+        $str:   str-repeat($str, ceil($length / $strLength));
+        $slice: (str-length($str) > $length);
+    }
+
+    // make sure the final string is the right length
+    @if $slice
+    {
+        $str: str-slice($str, 1, $length);
+    }
+
+    @return $str;
+}

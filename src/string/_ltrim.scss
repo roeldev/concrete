@@ -1,0 +1,21 @@
+@function ltrim($str, $chars: ' ')
+{
+    @if not is-empty-string($str)
+    {
+        @if is-string($chars)
+        {
+            $chars: chunk-split($chars);
+        }
+
+        // get first char and check if we're supposed to trim it
+        $char: str-slice($str, 1, 1);
+        @if one-of($char, $chars)
+        {
+            // trim the character and check for the next char
+            $str: str-slice($str, 2);
+            $str: ltrim($str, $chars);
+        }
+    }
+
+    @return $str;
+}

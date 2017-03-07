@@ -1,5 +1,7 @@
-@function newline()
+@function newline($multiplier: 1)
 {
-    @return '
+    $newline: '
 ';
+
+    @return str-repeat($newline, $multiplier);
 }

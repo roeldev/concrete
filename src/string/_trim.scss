@@ -1,4 +1,8 @@
 @function trim($str, $chars: ' ')
 {
+    $chars: chunk-split($chars);
+    $str:   ltrim($str, $chars);
+    $str:   rtrim($str, $chars);
 
+    @return $str;
 }

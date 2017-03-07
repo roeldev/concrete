@@ -1,0 +1,36 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('rtrim')
+{
+    @include test('Should trim the spaces')
+    {
+        @include assert-equal(rtrim('test  '), 'test');
+    }
+
+    @include test('Should trim the matching character')
+    {
+        @include assert-equal(rtrim('test', 'te'), 'tes');
+    }
+
+    @include test('Should trim the matching characters')
+    {
+        @include assert-equal(rtrim('test', 't' 's'), 'te');
+    }
+
+    @include test('Should trim all characters')
+    {
+        @include assert-equal(rtrim('test', 'tes'), '');
+    }
+
+    @include test('Should trim no characters')
+    {
+        @include assert-equal(rtrim('test', 'xy'), 'test');
+    }
+
+    @include test('Should not loop at all')
+    {
+        @include assert-equal(rtrim('', 'xy'), '');
+    }
+}

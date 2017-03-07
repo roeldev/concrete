@@ -1,0 +1,31 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('str-pad')
+{
+    @include test('Should pad to the right of the string')
+    {
+        @include assert-equal(str-pad('Alien', 10), 'Alien     ');
+    }
+
+    @include test('Should pad to the left of the string')
+    {
+        @include assert-equal(str-pad('Alien', 10, '-=', 'left'), '-=-=-Alien');
+    }
+
+    @include test('Should pad both sides of the string')
+    {
+        @include assert-equal(str-pad('Alien', 10, '_', 'both'), '__Alien___');
+    }
+
+    @include test('Should pad with a truncated pad string')
+    {
+        @include assert-equal(str-pad('Alien', 6, '___'), 'Alien_');
+    }
+
+    @include test('Should not pad the string')
+    {
+        @include assert-equal(str-pad('Alien', 3, '*'), 'Alien');
+    }
+}

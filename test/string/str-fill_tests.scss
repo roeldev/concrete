@@ -1,0 +1,35 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('str-fill')
+{
+    @include test('Should return an empty string')
+    {
+        @include assert-equal(str-fill('test', 0, true), '');
+    }
+
+    @include test('Should return the same string [1]')
+    {
+        $input: 'test';
+
+        @include assert-equal(str-fill($input, 0, false), $input);
+    }
+
+    @include test('Should return the same string [2]')
+    {
+        $input: 'test';
+
+        @include assert-equal(str-fill($input, 1), $input);
+    }
+
+    @include test('Should return a string with the exact length [1]')
+    {
+        @include assert-equal(str-fill('test', 6, true), 'testte');
+    }
+
+    @include test('Should return a string with the exact length [2]')
+    {
+        @include assert-equal(str-fill('test', 6, false), 'testte');
+    }
+}
