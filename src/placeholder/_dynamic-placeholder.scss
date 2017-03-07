@@ -14,7 +14,7 @@
         // can be shared and re-used by different components
         @else
         {
-            $placeholder-id: storage-set('placeholder', $name, unique-id());
+            $placeholder-id: storage-add('placeholder', $name, unique-id());
 
             // create the placeholder at root level
             @at-root %#{$placeholder-id}
