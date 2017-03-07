@@ -1,9 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "setup": "yarn",
     "start": "yarn && gulp watch",
-    "test": "mocha --reporter spec"
+    "test": "gulp test"
   },
   "devDependencies": {
     "concrete-tools": "^0.1.0"
