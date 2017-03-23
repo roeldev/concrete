@@ -7,6 +7,9 @@ $_concrete-test-prefix: null !global;
 
 // -----------------------------------------------------------------------------
 
+@import 'src/test/mass-assert-false';
+@import 'src/test/mass-assert-true';
+@import 'src/test/mass-test';
 @import 'src/test/set-test-component';
 @import 'src/test/set-test-file';
 @import 'src/test/test-function';

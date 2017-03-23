@@ -2,3 +2,10 @@
 {
     $_concrete-test-prefix: 'concrete-component-' + $component !global;
 }
+
+// -----------------------------------------------------------------------------
+
+@if not global-variable-exists('_concrete-test-prefix')
+{
+    $_concrete-test-prefix: null !global;
+}

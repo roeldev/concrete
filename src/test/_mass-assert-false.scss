@@ -1,0 +1,13 @@
+@mixin mass-assert-false($values...)
+{
+    @each $value in $values
+    {
+        $dump: simple-dump($value);
+
+        @include test('Should return false with "' + $dump + '"')
+        {
+            $result: call($_concrete-mass-test-function, $value);
+            @include assert-false($result);
+        }
+    }
+}

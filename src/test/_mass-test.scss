@@ -1,0 +1,16 @@
+@mixin mass-test($func)
+{
+    $_concrete-mass-test-function: $func !global;
+
+    @include test-function($func)
+    {
+        @content;
+    }
+}
+
+// -----------------------------------------------------------------------------
+
+@if not global-variable-exists('_concrete-mass-test-function')
+{
+    $_concrete-mass-test-function: null !global;
+}
