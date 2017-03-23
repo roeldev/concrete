@@ -4,32 +4,32 @@
 {
     @if is-true($extend)
     {
-        $placeholder-id: null;
+        $placeholderId: null;
 
         @if storage-has('placeholder', $name)
         {
-            $placeholder-id: placeholder-id($name);
+            $placeholderId: storage-get('placeholder', $name);
         }
         // create a real placeholder for the placeholder mixin's content so it
         // can be shared and re-used by different components
         @else
         {
-            $placeholder-id: storage-add('placeholder', $name, unique-id());
+            $placeholderId: storage-add('placeholder', $name, unique-id());
 
             // create the placeholder at root level
-            @at-root %#{$placeholder-id}
+            @at-root %#{$placeholderId}
             {
                 @content;
 
-                @if $concrete-debug-dynamic-placeholders
+                @if is-true($concrete-debug-dynamic-placeholders)
                 {
-                    -debug: '#{$name} | #{$placeholder-id}';
+                    -debug: '#{$name} | #{$placeholderId}';
                 }
             }
         }
 
         // let the component extend the real placeholder
-        @extend %#{$placeholder-id};
+        @extend %#{$placeholderId};
     }
     // when not extending a placeholder, echo the placeholder mixin's content
     @else
