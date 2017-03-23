@@ -1,0 +1,19 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+@include test-function('to-list')
+{
+    @include test('Should create a list from the number')
+    {
+        @include assert-equal(to-list(1), list-create(1));
+    }
+
+    @include test('Should create a list from the arglist')
+    {
+        $actual:   to-list(arglist-create(2, 3, 4, 'test', 'baa'));
+        $expected: (2, 3, 4, 'test', 'baa');
+
+        @include assert-equal(simple-dump($actual), simple-dump($expected));
+    }
+}

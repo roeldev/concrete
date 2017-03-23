@@ -1,0 +1,32 @@
+@function to-list($var, $separator: 'auto')
+{
+    $result: ();
+
+    @if not is-empty($var)
+    {
+        @if is-arglist($var)
+        {
+            @if ($separator != 'space')
+            {
+                $separator: 'comma';
+            }
+
+            $result: join($result, $var, $separator);
+        }
+        @elseif is-list($var)
+        {
+            $result: $var;
+        }
+        @elseif is-scalar($var)
+        {
+            $result: append($result, $var, $separator);
+        }
+        @elseif is-map($var)
+        {
+            $result: map-values($result);
+            $result: change-separator($result, $separator);
+        }
+    }
+
+    @return $result;
+}

@@ -1,0 +1,4 @@
+@function to-string($var)
+{
+    @return inspect($var);
+}
