@@ -1,0 +1,15 @@
+// https://css-tricks.com/snippets/sass/strip-unit-function/
+
+/// Remove the unit of a number.
+/// @param {number} $number - Number to remove unit from
+/// @return {number} - Unitless number
+@function strip-unit($number)
+{
+    $result: $number;
+    @if is-number($number) and not unitless($number)
+    {
+        $result: ($number / ($number * 0 + 1));
+    }
+
+    @return $result;
+}

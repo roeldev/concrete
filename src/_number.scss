@@ -9,13 +9,15 @@
 
 // -----------------------------------------------------------------------------
 
-@import 'number/set-em';
-@import 'number/set-rem-base-value';
+@import 'number/em-to-rem';
+@import 'number/em';
+@import 'number/equal-units';
 @import 'number/get-em';
 @import 'number/get-rem-base-value';
-
-@import 'number/em';
-@import 'number/em-to-rem';
+@import 'number/max-set';
+@import 'number/min-set';
 @import 'number/rem';
-@import 'number/equal-units';
+@import 'number/set-em';
+@import 'number/set-rem-base-value';
 @import 'number/set-unit';
+@import 'number/strip-unit';

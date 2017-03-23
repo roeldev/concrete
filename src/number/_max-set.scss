@@ -1,0 +1,14 @@
+@function max-set($values...)
+{
+    $result: null;
+
+    @each $value in $values
+    {
+        @if is-number($value)
+        {
+            $result: if(is-null($result), $value, max($result, $value));
+        }
+    }
+
+    @return $result;
+}
