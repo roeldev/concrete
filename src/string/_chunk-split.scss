@@ -1,5 +1,10 @@
 @function chunk-split($str, $length: 1, $separator: 'auto')
 {
+    @if not is-string($str)
+    {
+        $str: inspect($str);
+    }
+
     $result:    ();
     $strLength: str-length($str);
 
