@@ -1,17 +1,21 @@
 @function implode($list, $glue: '')
 {
     $result: '';
-    $glue:   inspect($glue);
-    $iL:     length($list);
 
-    @for $i from 1 through $iL
+    @if is-list($list)
     {
-        $value:  nth($list, $i);
-        $result: $result + $value;
+        $glue: inspect($glue);
+        $iL:   length($list);
 
-        @if ($i < $iL)
+        @for $i from 1 through $iL
         {
-            $result: $result + $glue;
+            $value:  nth($list, $i);
+            $result: $result + inspect($value);
+
+            @if ($i < $iL)
+            {
+                $result: $result + $glue;
+            }
         }
     }
 
