@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------------
 
-@include type-test('is-scalar')
+@include mass-test('is-scalar')
 {
-    @include type-test-assert-true(
+    @include mass-assert-true(
         1,
         'str',
         #f00,
@@ -12,7 +12,7 @@
         null
     );
 
-    @include type-test-assert-false(
+    @include mass-assert-false(
         $TYPE_LIST,
         $TYPE_ARGLIST,
         $TYPE_MAP

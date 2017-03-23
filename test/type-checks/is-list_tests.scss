@@ -2,11 +2,11 @@
 
 // -----------------------------------------------------------------------------
 
-@include type-test('is-list')
+@include mass-test('is-list')
 {
-    @include type-test-assert-true($TYPE_LIST, $TYPE_ARGLIST);
+    @include mass-assert-true($TYPE_LIST, $TYPE_ARGLIST);
 
-    @include type-test-assert-false(
+    @include mass-assert-false(
         1,
         '()',
         '1 2',

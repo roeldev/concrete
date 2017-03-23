@@ -1,0 +1,17 @@
+///
+/// Checks if `$var` is an empty string.
+///
+/// @param {mixed} $var
+/// @return {bool}
+///
+@function is-empty-string($var)
+{
+    $result: not is-null($var);
+
+    @if $result
+    {
+        $result: is-string($var) and ($var == '');
+    }
+
+    @return $result;
+}

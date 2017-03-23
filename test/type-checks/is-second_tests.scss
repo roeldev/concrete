@@ -2,15 +2,15 @@
 
 // -----------------------------------------------------------------------------
 
-@include type-test('is-second')
+@include mass-test('is-second')
 {
-    @include type-test-assert-true(
+    @include mass-assert-true(
         1s,
         2343.345s,
         -3452345s
     );
 
-    @include type-unit-test-assert-false(
+    @include mass-assert-false(
         0,
         1em,
         2rem,

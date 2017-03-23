@@ -2,21 +2,19 @@
 
 // -----------------------------------------------------------------------------
 
-@include type-test('is-bool')
+@include mass-test('is-empty-map')
 {
-    @include type-test-assert-true(
-       true,
-       false
-    );
+    @include mass-assert-true(map-create());
 
-    @include type-test-assert-false(
+    @include mass-assert-false(
         1,
-        0,
-        'true',
-        '!1',
+        '()',
+        '1 2',
         #000,
+        false,
         null,
         $TYPE_LIST,
+        $TYPE_ARGLIST,
         $TYPE_MAP
     );
 }

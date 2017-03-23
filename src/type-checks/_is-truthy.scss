@@ -1,0 +1,8 @@
+@function is-truthy($var)
+{
+    @return if($var, true, false) and
+        not is-empty-list($var) and
+        not is-empty-map($var) and
+        not is-empty-string($var) and
+        ($var != 0);
+}

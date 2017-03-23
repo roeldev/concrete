@@ -2,21 +2,21 @@
 
 // -----------------------------------------------------------------------------
 
-@include type-test('is-em')
+@include mass-test('is-inch')
 {
-    @include type-test-assert-true(
-       1em,
-       2343.345em,
-       -3452345em
+    @include mass-assert-true(
+        1in,
+        2343.345in,
+        -3452345in
     );
 
-    @include type-unit-test-assert-false(
+    @include mass-assert-false(
         0,
+        1em,
         2rem,
         3%,
         4px,
         5pt,
-        6in,
         7s
     );
 }

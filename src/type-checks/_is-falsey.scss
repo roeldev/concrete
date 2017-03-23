@@ -1,0 +1,4 @@
+@function is-falsey($var)
+{
+    @return not is-truthy($var);
+}

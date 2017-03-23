@@ -2,18 +2,20 @@
 
 // -----------------------------------------------------------------------------
 
-@include type-test('is-true')
+@include mass-test('is-empty')
 {
-    @include type-test-assert-true(true);
+    @include mass-assert-true(
+       '',
+       null,
+       ()
+    );
 
-    @include type-test-assert-false(
+    @include mass-assert-false(
         1,
         0,
-        'true',
-        '!1',
         #000,
+        true,
         false,
-        null,
         $TYPE_LIST,
         $TYPE_MAP
     );

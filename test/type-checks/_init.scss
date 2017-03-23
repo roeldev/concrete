@@ -1,0 +1,7 @@
+@import '../../test';
+
+// -----------------------------------------------------------------------------
+
+$TYPE_LIST:    (1 2 3) !global;
+$TYPE_ARGLIST: arglist-create(4 5 6) !global;
+$TYPE_MAP:     ('a': 1, 'b': 2, 'c': 3) !global;

@@ -1,0 +1,20 @@
+@import 'init';
+
+// -----------------------------------------------------------------------------
+
+@include mass-test('is-empty-list')
+{
+    @include mass-assert-true(list-create());
+
+    @include mass-assert-false(
+        1,
+        '()',
+        '1 2',
+        #000,
+        false,
+        null,
+        $TYPE_LIST,
+        $TYPE_ARGLIST,
+        $TYPE_MAP
+    );
+}

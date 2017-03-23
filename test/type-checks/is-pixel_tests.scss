@@ -2,19 +2,19 @@
 
 // -----------------------------------------------------------------------------
 
-@include type-test('is-rem')
+@include mass-test('is-pixel')
 {
-    @include type-test-assert-true(
-        1rem,
-        2343.345rem,
-        -3452345rem
+    @include mass-assert-true(
+        1px,
+        2343.345px,
+        -3452345px
     );
 
-    @include type-unit-test-assert-false(
+    @include mass-assert-false(
         0,
         1em,
+        2rem,
         3%,
-        4px,
         5pt,
         6in,
         7s

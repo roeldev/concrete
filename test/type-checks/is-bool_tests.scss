@@ -1,0 +1,22 @@
+@import 'init';
+
+// -----------------------------------------------------------------------------
+
+@include mass-test('is-bool')
+{
+    @include mass-assert-true(
+       true,
+       false
+    );
+
+    @include mass-assert-false(
+        1,
+        0,
+        'true',
+        '!1',
+        #000,
+        null,
+        $TYPE_LIST,
+        $TYPE_MAP
+    );
+}

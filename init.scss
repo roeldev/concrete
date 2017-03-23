@@ -3,11 +3,12 @@
 /// work.
 ////
 
-@import 'src/types';
+@import 'src/type-checks';
 @import 'src/list';
 @import 'src/map';
 @import 'src/number';
 @import 'src/string';
+@import 'src/type-casting';
 
 @import 'src/storage';
 @import 'src/utils';

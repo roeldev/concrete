@@ -2,17 +2,16 @@
 
 // -----------------------------------------------------------------------------
 
-@include type-test('is-color')
+@include mass-test('is-false')
 {
-    @include type-test-assert-true(
-       #000,
-       rgb(0, 1, 2),
-       rgba(4, 5, 6, 0.8)
-    );
+    @include mass-assert-true(false);
 
-    @include type-test-assert-false(
+    @include mass-assert-false(
+        1,
         0,
-        '#ff0',
+        'false',
+        '!1',
+        #000,
         true,
         null,
         $TYPE_LIST,

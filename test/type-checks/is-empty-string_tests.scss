@@ -1,0 +1,23 @@
+@import 'init';
+
+// -----------------------------------------------------------------------------
+
+@include mass-test('is-empty-string')
+{
+    @include mass-assert-true('');
+
+    @include mass-assert-false(
+        ' ',
+        'not empty',
+        '0',
+        1,
+        0,
+        #000,
+        true,
+        false,
+        null,
+        ()
+        $TYPE_LIST,
+        $TYPE_MAP
+    );
+}

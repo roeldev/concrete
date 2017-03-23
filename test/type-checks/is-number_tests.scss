@@ -2,16 +2,16 @@
 
 // -----------------------------------------------------------------------------
 
-@include type-test('is-number')
+@include mass-test('is-number')
 {
-    @include type-test-assert-true(
+    @include mass-assert-true(
         1,
         1.23em,
         -1%,
         -1.23vh
     );
 
-    @include type-test-assert-false(
+    @include mass-assert-false(
         '1rem',
         #fff,
         true,

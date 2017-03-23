@@ -2,17 +2,18 @@
 
 // -----------------------------------------------------------------------------
 
-@include type-test('is-percentage')
+@include mass-test('is-em')
 {
-    @include type-test-assert-true(
-        1%,
-        2343.345%,
-        -3452345%);
+    @include mass-assert-true(
+       1em,
+       2343.345em,
+       -3452345em
+    );
 
-    @include type-unit-test-assert-false(
+    @include mass-assert-false(
         0,
-        1em,
         2rem,
+        3%,
         4px,
         5pt,
         6in,

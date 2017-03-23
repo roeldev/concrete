@@ -2,20 +2,19 @@
 
 // -----------------------------------------------------------------------------
 
-@include type-test('is-point')
+@include mass-test('is-percentage')
 {
-    @include type-test-assert-true(
-        1pt,
-        2343.345pt,
-        -3452345pt
-    );
+    @include mass-assert-true(
+        1%,
+        2343.345%,
+        -3452345%);
 
-    @include type-unit-test-assert-false(
+    @include mass-assert-false(
         0,
         1em,
         2rem,
-        3%,
         4px,
+        5pt,
         6in,
         7s
     );

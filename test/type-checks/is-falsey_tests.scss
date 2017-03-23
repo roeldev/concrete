@@ -1,0 +1,27 @@
+@import 'init';
+
+// -----------------------------------------------------------------------------
+
+@include mass-test('is-falsey')
+{
+    @include mass-assert-true(
+        0,
+        false,
+        '',
+        null,
+        arglist-create(),
+        list-create(),
+        map-create()
+    );
+
+    @include mass-assert-false(
+        true,
+        1,
+        'true',
+        '!1',
+        '0',
+        #000,
+        $TYPE_LIST,
+        $TYPE_MAP
+    );
+}

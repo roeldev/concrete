@@ -2,20 +2,20 @@
 
 // -----------------------------------------------------------------------------
 
-@include type-test('is-pixel')
+@include mass-test('is-point')
 {
-    @include type-test-assert-true(
-        1px,
-        2343.345px,
-        -3452345px
+    @include mass-assert-true(
+        1pt,
+        2343.345pt,
+        -3452345pt
     );
 
-    @include type-unit-test-assert-false(
+    @include mass-assert-false(
         0,
         1em,
         2rem,
         3%,
-        5pt,
+        4px,
         6in,
         7s
     );

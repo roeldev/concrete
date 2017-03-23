@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------------
 
-@include type-test('is-string')
+@include mass-test('is-string')
 {
-    @include type-test-assert-true(
+    @include mass-assert-true(
         'str',
         '1',
         '1rem',
@@ -15,7 +15,7 @@
         ''
     );
 
-    @include type-test-assert-false(
+    @include mass-assert-false(
         1,
         #fff,
         true,
