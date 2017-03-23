@@ -1,12 +1,12 @@
-@function _var-dump--item($key, $value, $indent)
+@function _dump--item($key, $value, $indent)
 {
     @if is-list($value) or is-map($value)
     {
-        $value: _var-dump--items($value, true, $indent);
+        $value: _dump--items($value, true, $indent);
     }
     @else
     {
-        $value: _var-dump--scalar($value);
+        $value: _dump--scalar($value);
     }
 
     $value: '[' + $key + '] => ' + $value;

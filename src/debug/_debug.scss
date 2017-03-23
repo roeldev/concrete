@@ -28,7 +28,7 @@
     }
 
     $prefix: '@debug';
-    $dump:   var-dump($var);
+    $dump:   dump($var);
 
     @if $concrete-console-debugs
     {

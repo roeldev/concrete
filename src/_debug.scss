@@ -24,12 +24,12 @@
 
 // -----------------------------------------------------------------------------
 
-@import 'debug/var-dump--item';
-@import 'debug/var-dump--items';
-@import 'debug/var-dump--scalar';
-@import 'debug/var-dump';
-
 @import 'debug/debug';
-@import 'debug/warn.scss';
 @import 'debug/display-debug';
 @import 'debug/display-warnings';
+@import 'debug/dump--item';
+@import 'debug/dump--items';
+@import 'debug/dump--scalar';
+@import 'debug/dump';
+@import 'debug/simple-dump';
+@import 'debug/warn.scss';

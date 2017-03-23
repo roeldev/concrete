@@ -5,7 +5,7 @@
 /// @param {number|string|color|bool|null} $var
 /// @return {string}
 ///
-@function _var-dump--scalar($var)
+@function _dump--scalar($var)
 {
     $type: type-of($var);
     @if is-number($var)

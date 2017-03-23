@@ -2,32 +2,32 @@
 
 // -----------------------------------------------------------------------------
 
-@include test-function('var-dump')
+@include test-function('dump')
 {
     @include test('Should dump the string variable [1]')
     {
         $input: 'test string';
-        @include assert-equal(var-dump($input), '(string|11) `' + $input + '`');
+        @include assert-equal(dump($input), '(string|11) `' + $input + '`');
     }
 
     @include test('Should dump the string variable [2]')
     {
-        @include assert-equal(var-dump('()'), '(string|2) `()`');
+        @include assert-equal(dump('()'), '(string|2) `()`');
     }
 
     @include test('Should dump the empty string variable')
     {
-        @include assert-equal(var-dump(''), '(string|0) ``');
+        @include assert-equal(dump(''), '(string|0) ``');
     }
 
     @include test('Should dump the number variable')
     {
-        @include assert-equal(var-dump(12px), '(number|px) `12px`');
+        @include assert-equal(dump(12px), '(number|px) `12px`');
     }
 
     @include test('Should dump the color variable [1]')
     {
-        $actual:   var-dump(rgba(red, 0.5));
+        $actual:   dump(rgba(red, 0.5));
         $expected: '(color) `rgba(255, 0, 0, 0.5)`';
 
         @include assert-equal($actual, $expected);
@@ -35,26 +35,26 @@
 
     @include test('Should dump the color variable [2]')
     {
-        @include assert-equal(var-dump(red), '(color) `red`');
+        @include assert-equal(dump(red), '(color) `red`');
     }
 
     @include test('Should dump the color variable [3]')
     {
-        @include assert-equal(var-dump(#f00), '(color) `#f00`');
+        @include assert-equal(dump(#f00), '(color) `#f00`');
     }
 
     @include test('Should dump the null variable')
     {
-        @include assert-equal(var-dump(null), '(null) `null`');
+        @include assert-equal(dump(null), '(null) `null`');
     }
 
     @include test('Should dump the empty list variable')
     {
-        @include assert-equal(var-dump(list-create()), '(list|0) ( )');
+        @include assert-equal(dump(list-create()), '(list|0|space) ( )');
     }
 }
 
-@include test-mixin('var-dump')
+@include test-mixin('dump')
 {
     @include test('Should dump multiple variables')
     {
@@ -62,17 +62,17 @@
         {
             @include output
             {
-                @include var-dump('test', 1 2 3, red);
+                @include dump('test', 1 2 3, red);
             }
 
             @include expect
             {
 /*
 
-@var-dump (arglist|3)
+@dump (arglist|3|comma)
 (
   [1] => (string|4) `test`
-  [2] => (list|3)
+  [2] => (list|3|space)
   (
     [1] => (number) `1`
     [2] => (number) `2`
@@ -92,14 +92,14 @@
         {
             @include output
             {
-                @include var-dump(('a' 1 b 2%));
+                @include dump(('a', 1, b, 2%));
             }
 
             @include expect
             {
 /*
 
-@var-dump (list|4)
+@dump (list|4|comma)
 (
   [1] => (string|1) `a`
   [2] => (number) `1`
@@ -118,17 +118,17 @@
         {
             @include output
             {
-                @include var-dump(('test': 'test'));
+                @include dump(('test': 'test'));
             }
 
             @include expect
             {
 /*
 
-@var-dump (map|1)
-{
+@dump (map|1)
+(
   [`test`] => (string|4) `test`
-}
+)
 
 */
             }

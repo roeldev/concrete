@@ -8,7 +8,7 @@
 
         @each $debug in $debugs
         {
-            $debug: var-dump($debug);
+            $debug: dump($debug);
             $dump:  $dump + '@debug #{$debug}' + newline(2);
 
             @if $concrete-console-debugs

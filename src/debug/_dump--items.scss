@@ -6,13 +6,11 @@
 /// @param {bool|string} $indentLevel [false]
 /// @return {string}
 ///
-@function _var-dump--items($items, $inspect: true, $indentLevel: '')
+@function _dump--items($items, $inspect: true, $indentLevel: '')
 {
     $result:   '';
     $indent:   '  ';
     $isMap:    is-map($items);
-    $tagOpen:  if($isMap, '{', '(');
-    $tagClose: if($isMap, '}', ')');
 
     $length: length($items);
     @if ($length > 0)
@@ -23,7 +21,7 @@
             {
                 @each $key, $value in $items
                 {
-                    $value: _var-dump--item('`' + $key + '`', $value,
+                    $value: _dump--item('`' + $key + '`', $value,
                                            $indentLevel + $indent);
 
                     $result: $result + $value;
@@ -33,26 +31,33 @@
             {
                 @for $i from 1 through $length
                 {
-                    $value: _var-dump--item($i, nth($items, $i),
+                    $value: _dump--item($i, nth($items, $i),
                                            $indentLevel + $indent);
 
                     $result: $result + $value;
                 }
             }
 
-            $tagOpen:  $indentLevel + $tagOpen;
-            $tagClose: $indentLevel + $tagClose;
-            $result:   newline() + $tagOpen + $result + newline() + $tagClose;
+            $tagOpen:  newline() + $indentLevel + '(';
+            $tagClose: newline() + $indentLevel + ')';
+            $result:   $tagOpen + $result + $tagClose;
         }
         @else
         {
-            $result: ' ' + $tagOpen + '...' + $tagClose;
+            $inspect: inspect($items);
+            $result:  ' (' + $inspect + ')';
         }
     }
     @else
     {
-        $result: ' ' + $tagOpen + ' ' + $tagClose;
+        $result: ' ( )';
     }
 
-    @return '(' + type-of($items) + '|' + $length + ')' + $result;
+    $properties: ( type-of($items), $length );
+    @if not $isMap
+    {
+        $properties: append($properties, list-separator($items));
+    }
+
+    @return '(' + implode($properties, '|') + ')' + $result;
 }
