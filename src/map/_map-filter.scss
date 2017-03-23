@@ -1,0 +1,17 @@
+@function map-filter($map, $filter, $type: 'include')
+{
+    $result: ();
+
+    @each $key, $value in $map
+    {
+        $inList: in-list($filter, $key);
+
+        @if (($type != 'exclude') and $inList) or
+            (($type == 'exclude') and not $inList)
+        {
+            $result: map-add($result, $key, $value);
+        }
+    }
+
+    @return $result;
+}
