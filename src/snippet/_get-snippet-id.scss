@@ -1,0 +1,4 @@
+@function get-snippet-id($name)
+{
+    @return storage-get('snippet', $name);
+}

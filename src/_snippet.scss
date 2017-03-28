@@ -1,0 +1,14 @@
+////
+/// Dynamic snippet related functions, mixins and global variables.
+////
+
+@if not global-variable-exists('concrete-debug-snippets')
+{
+    $concrete-debug-snippets: false !global;
+}
+
+// -----------------------------------------------------------------------------
+
+@import 'snippet/get-snippet-id';
+@import 'snippet/snippet-extend';
+@import 'snippet/snippet';

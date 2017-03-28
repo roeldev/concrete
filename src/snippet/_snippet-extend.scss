@@ -1,0 +1,13 @@
+@mixin snippet-extend($name)
+{
+    $snippetId: get-snippet-id($name);
+
+    @if not is-null($snippetId)
+    {
+        @extend %#{$snippetId};
+    }
+    @else
+    {
+        @include warn('Unable to extend snippet `' + $name + '`');
+    }
+}

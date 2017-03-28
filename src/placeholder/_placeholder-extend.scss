@@ -1,6 +1,0 @@
-@mixin placeholder-extend($name)
-{
-    $placeholder-id: placeholder-id($name);
-
-    @extend %#{$placeholder-id};
-}

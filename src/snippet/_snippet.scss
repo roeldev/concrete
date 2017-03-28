@@ -1,0 +1,39 @@
+// example taken from
+// http://alistapart.com/article/dry-ing-out-your-sass-mixins
+@mixin snippet($name, $extend: true)
+{
+    @if is-true($extend)
+    {
+        $snippetId: null;
+
+        @if storage-has('snippet', $name)
+        {
+            $snippetId: get-snippet-id($name);
+        }
+        // create a real placeholder for the snippet mixin's content so it can
+        // be shared and re-used by different components
+        @else
+        {
+            $snippetId: storage-add('snippet', $name, unique-id());
+
+            // create the placeholder at root level
+            @at-root %#{$snippetId}
+            {
+                @content;
+
+                @if is-true($concrete-debug-snippets)
+                {
+                    -snippet: '#{$name} | #{$snippetId}';
+                }
+            }
+        }
+
+        // let the component extend the real placeholder
+        @extend %#{$snippetId};
+    }
+    // when not extending a placeholder, echo the snippet mixin's content
+    @else
+    {
+        @content;
+    }
+}
