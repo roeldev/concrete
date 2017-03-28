@@ -1,0 +1,46 @@
+@function to-unit($number, $unit, $alwaysConvert: false)
+{
+    $result: 0;
+
+    @if not is-number($number)
+    {
+        $number: 0;
+    }
+
+    @if ($number > 0) or is-true($alwaysConvert)
+    {
+        @if (unit($number) != $unit)
+        {
+            $multiplier: 1;
+
+            $units: (
+                'deg':  1deg,
+                'em':   1em,
+                'in':   1in,
+                'inch': 1in,
+                '%':    1%,
+                'px':   1px,
+                'pt':   1pt,
+                'rad':  1rad,
+                'rem':  1rem,
+                's':    1s,
+                'sec':  1s
+            );
+
+            $break: false;
+            @each $check, $value in $units
+            {
+                @if not $break and ($unit == $check)
+                {
+                    $multiplier: $value;
+                    $break:      true;
+                }
+            }
+
+            $number: strip-unit($number);
+            $result: ($number * $multiplier);
+        }
+    }
+
+    @return $result;
+}
