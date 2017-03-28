@@ -1,0 +1,15 @@
+// https://unindented.org/articles/trigonometry-in-sass/
+@function fact($number)
+{
+    $result: 1;
+
+    @if ($number > 0)
+    {
+        @for $i from 1 through $number
+        {
+            $result: $result * $i;
+        }
+    }
+
+    @return $result;
+}

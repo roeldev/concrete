@@ -1,0 +1,13 @@
+// https://unindented.org/articles/trigonometry-in-sass/
+@function cos($angle)
+{
+    $cos:   0;
+    $angle: rad($angle);
+
+    @for $i from 0 through 10
+    {
+        $cos: $cos + pow(-1, $i) * pow($angle, 2 * $i) / fact(2 * $i);
+    }
+
+    @return $cos;
+}

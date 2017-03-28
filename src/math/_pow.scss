@@ -1,0 +1,22 @@
+// https://unindented.org/articles/trigonometry-in-sass/
+@function pow($number, $exp)
+{
+    $result: 1;
+
+    @if ($exp > 0)
+    {
+        @for $i from 1 through $exp
+        {
+           $result: ($result * $number);
+        }
+    }
+    @else if ($exp < 0)
+    {
+        @for $i from 1 through -$exp
+        {
+            $result: ($result / $number);
+        }
+    }
+
+    @return $result;
+}

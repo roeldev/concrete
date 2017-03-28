@@ -1,0 +1,13 @@
+// https://unindented.org/articles/trigonometry-in-sass/
+@function rad($angle)
+{
+    $unitless: strip-unit($angle);
+
+    // If the angle has 'deg' as unit, convert to radians.
+    @if is-degree($angle)
+    {
+        $unitless: $unitless / 180 * pi();
+    }
+
+    @return $unitless;
+}
