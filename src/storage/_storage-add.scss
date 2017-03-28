@@ -24,7 +24,7 @@
                                     $storage,
                                     true) !global;
 
-    @return $storage;
+    @return $value;
 }
 
 @mixin storage-add($id, $key, $value: null)

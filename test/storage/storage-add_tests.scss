@@ -28,4 +28,13 @@
 
         @include assert-equal($_concrete-storage, ( 'test': ( 1, 2 ) ));
     }
+
+    @include test('Should add to the storage and return the same value')
+    {
+        $_concrete-storage: () !global;
+        $expected:          'test passed';
+        $actual:            storage-add('foo', 'bar', $expected);
+
+        @include assert-equal($actual, $expected);
+    }
 }
