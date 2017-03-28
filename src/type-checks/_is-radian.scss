@@ -1,0 +1,10 @@
+///
+/// Returns `true` if the given number is of unit `rad`.
+///
+/// @param {number} $number
+/// @return {bool}
+///
+@function is-radian($number)
+{
+    @return is-number($number) and (unit($number) == 'rad');
+}
