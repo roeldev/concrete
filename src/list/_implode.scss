@@ -1,3 +1,10 @@
+///
+/// Join the values from the list to a string.
+///
+/// @param {list} $list
+/// @param {string} $glue
+/// @return {string}
+///
 @function implode($list, $glue: '')
 {
     $result: '';

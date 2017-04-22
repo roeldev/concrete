@@ -1,6 +1,13 @@
+///
+/// Change the separator of the list.
+///
+/// @param {list} $list
+/// @param {string} $separator
+/// @return {list}
+///
 @function change-separator($list, $separator)
 {
-    @if ($separator == 'comma') or ($separator == 'space')
+    @if one-of($separator, 'comma' 'space')
     {
         $list: join($list, (), $separator);
     }

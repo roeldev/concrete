@@ -1,4 +1,10 @@
-@function arglist-create($list...)
+///
+/// Creates a new arglist from the supplied arguments.
+///
+/// @param {mixed} $value
+/// @return {arglist}
+///
+@function arglist-create($value...)
 {
-    @return $list;
+    @return $value;
 }

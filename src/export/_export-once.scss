@@ -1,15 +1,16 @@
 ///
-/// This mixin helps making sure a module is imported once and only once.
-/// inspired by https://github.com/wilsonpage/sass-import-once
+/// With this mixin it is possible to output certain content only once.
+/// Inspired by https://github.com/wilsonpage/sass-import-once
 ///
-/// @param {string} $name - Name of exported module
-/// @param {boolean} $warn [true] - Warn when module has been already imported
+/// @param {string} $name - Name/identifier of the content
+/// @param {boolean} $warn [true] - Warn when content has already been exported
 ///
 @mixin export-once($name, $warn: true)
 {
     @if not in-list($_concrete-exported, $name)
     {
         $_concrete-exported: append($_concrete-exported, $name) !global;
+
         @content;
     }
     @elseif $warn or $_concrete-exported-warning
