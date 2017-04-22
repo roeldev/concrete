@@ -1,0 +1,4 @@
+@function default-when-null($var, $default)
+{
+    @return if(is-null($var), $default, $var);
+}
