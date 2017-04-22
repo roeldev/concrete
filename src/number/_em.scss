@@ -7,7 +7,7 @@
 ///         original value with.
 /// @return {number}
 ///
-@function em($value: null, $base: null)
+@function em($value: null, $base: null, $force: false)
 {
     // set current value as the new base value
     @if is-true($base)
@@ -32,7 +32,7 @@
             $value: $base;
         }
         // calculate the relative value
-        @elseif is-true($concrete-relative-numbers)
+        @elseif is-true($concrete-relative-numbers) or is-true($force)
         {
             $value: if(equal-units($value, $base),
                        (($value / $base) * 1em),
