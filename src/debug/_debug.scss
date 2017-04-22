@@ -27,8 +27,7 @@
         $var: nth-first($var);
     }
 
-    $prefix: '@debug';
-    $dump:   dump($var);
+    $dump: dump($var);
 
     @if $concrete-console-debugs
     {
